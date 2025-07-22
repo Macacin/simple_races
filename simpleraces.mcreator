@@ -1,0 +1,1184 @@
+{
+  "mod_elements": [
+    {
+      "name": "DwarfSelect",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dwarf_select",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/client/gui/DwarfSelectScreen.java",
+          "src/main/java/net/simpleraces/network/DwarfSelectButtonMessage.java",
+          "src/main/java/net/simpleraces/world/inventory/DwarfSelectMenu.java"
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "OpenSelect",
+      "type": "keybind",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "open_select",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/network/OpenSelectMessage.java"
+        ]
+      }
+    },
+    {
+      "name": "OpenSelectOnKeyPressed",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "open_select_on_key_pressed",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/OpenSelectOnKeyPressedProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DwarfModel",
+      "type": "livingentity",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dwarf_model",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/entity/DwarfModelEntity.java",
+          "src/main/resources/assets/simpleraces/models/item/dwarf_model_spawn_egg.json",
+          "src/main/java/net/simpleraces/client/renderer/DwarfModelRenderer.java"
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "DwarfReturn",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dwarf_return",
+      "metadata": {
+        "return_type": "entity",
+        "files": [
+          "src/main/java/net/simpleraces/procedures/DwarfReturnProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "Start",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "start",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/world/inventory/StartMenu.java",
+          "src/main/java/net/simpleraces/client/gui/StartScreen.java"
+        ]
+      },
+      "path": "~/StartAnimation"
+    },
+    {
+      "name": "StartWhileThisGUIIsOpenTick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "start_while_this_gui_is_open_tick",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/StartWhileThisGUIIsOpenTickProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/StartAnimation"
+    },
+    {
+      "name": "Start2",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "start_2",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/world/inventory/Start2Menu.java",
+          "src/main/java/net/simpleraces/client/gui/Start2Screen.java"
+        ]
+      },
+      "path": "~/StartAnimation"
+    },
+    {
+      "name": "ElfModel",
+      "type": "livingentity",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "elf_model",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/client/renderer/ElfModelRenderer.java",
+          "src/main/resources/assets/simpleraces/models/item/elf_model_spawn_egg.json",
+          "src/main/java/net/simpleraces/entity/ElfModelEntity.java"
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "OrcModel",
+      "type": "livingentity",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "orc_model",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/entity/OrcModelEntity.java",
+          "src/main/java/net/simpleraces/client/renderer/OrcModelRenderer.java",
+          "src/main/resources/assets/simpleraces/models/item/orc_model_spawn_egg.json"
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "DragonModel",
+      "type": "livingentity",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dragon_model",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/simpleraces/models/item/dragon_model_spawn_egg.json",
+          "src/main/java/net/simpleraces/client/renderer/DragonModelRenderer.java",
+          "src/main/java/net/simpleraces/entity/DragonModelEntity.java"
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "MerfolkModel",
+      "type": "livingentity",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "merfolk_model",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/entity/MerfolkModelEntity.java",
+          "src/main/resources/assets/simpleraces/models/item/merfolk_model_spawn_egg.json",
+          "src/main/java/net/simpleraces/client/renderer/MerfolkModelRenderer.java"
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "ElfSelect",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "elf_select",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/client/gui/ElfSelectScreen.java",
+          "src/main/java/net/simpleraces/network/ElfSelectButtonMessage.java",
+          "src/main/java/net/simpleraces/world/inventory/ElfSelectMenu.java"
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "ElfReturn",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "elf_return",
+      "metadata": {
+        "return_type": "entity",
+        "files": [
+          "src/main/java/net/simpleraces/procedures/ElfReturnProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "OpenElf",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "open_elf",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/OpenElfProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "OpenDwarf",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "open_dwarf",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/OpenDwarfProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "MerfolkSelect",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "merfolk_select",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/world/inventory/MerfolkSelectMenu.java",
+          "src/main/java/net/simpleraces/client/gui/MerfolkSelectScreen.java",
+          "src/main/java/net/simpleraces/network/MerfolkSelectButtonMessage.java"
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "MerfolkReturn",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "merfolk_return",
+      "metadata": {
+        "return_type": "entity",
+        "files": [
+          "src/main/java/net/simpleraces/procedures/MerfolkReturnProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "OpenMerfolk",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "open_merfolk",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/OpenMerfolkProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "OrcSelect",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "orc_select",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/world/inventory/OrcSelectMenu.java",
+          "src/main/java/net/simpleraces/client/gui/OrcSelectScreen.java",
+          "src/main/java/net/simpleraces/network/OrcSelectButtonMessage.java"
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "OrcReturn",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "orc_return",
+      "metadata": {
+        "return_type": "entity",
+        "files": [
+          "src/main/java/net/simpleraces/procedures/OrcReturnProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "OpenOrc",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "open_orc",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/OpenOrcProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "DragonSelect",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dragon_select",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/world/inventory/DragonSelectMenu.java",
+          "src/main/java/net/simpleraces/network/DragonSelectButtonMessage.java",
+          "src/main/java/net/simpleraces/client/gui/DragonSelectScreen.java"
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "DragonReturn",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dragon_return",
+      "metadata": {
+        "return_type": "entity",
+        "files": [
+          "src/main/java/net/simpleraces/procedures/DragonReturnProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "OpenDragon",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "open_dragon",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/OpenDragonProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "KleidersTesting",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "kleiders_testing",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/KleidersTestingProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Resizer",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "resizer",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/ResizerProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SelectedDwarf",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "selected_dwarf",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/SelectedDwarfProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "SelectedElf",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "selected_elf",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/SelectedElfProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "SelectedOrc",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "selected_orc",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/SelectedOrcProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "SelectedDragon",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "selected_dragon",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/SelectedDragonProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "SelectedMerfolk",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "selected_merfolk",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/SelectedMerfolkProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "Deselect",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "deselect",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/DeselectProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Classreset",
+      "type": "command",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "classreset",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/command/ClassresetCommand.java"
+        ]
+      }
+    },
+    {
+      "name": "KleidersArm",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "kleiders_arm",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/KleidersArmProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ClassAbilities",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "class_abilities",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/ClassAbilitiesProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DrakonicAttack",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "drakonic_attack",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/DrakonicAttackProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ElvenBow",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "elven_bow",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/ElvenBowProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ResistanceAdd",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "resistance_add",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/ResistanceAddProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AttributeDeathFix",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "attribute_death_fix",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/AttributeDeathFixProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Classes"
+    },
+    {
+      "name": "SimpleRPGRaces",
+      "type": "config",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "simple_rpg_races",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/configuration/SimpleRPGRacesConfiguration.java"
+        ]
+      }
+    },
+    {
+      "name": "ForcePick",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "force_pick",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/ForcePickProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "JoinMessage",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "join_message",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/JoinMessageProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Itempopeffect",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "itempopeffect",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/item/ItempopeffectItem.java",
+          "src/main/resources/assets/simpleraces/models/item/itempopeffect.json"
+        ]
+      }
+    },
+    {
+      "name": "ElfEatsMeat",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "elf_eats_meat",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/ElfEatsMeatProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ElfMagic",
+      "type": "procedure",
+      "compiles": false,
+      "locked_code": false,
+      "registry_name": "elf_magic",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/procedures/ElfMagicProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "immediatesourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ClassDesc",
+      "type": "gui",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "class_desc",
+      "metadata": {
+        "files": [
+          "src/main/java/net/simpleraces/client/gui/ClassDescScreen.java",
+          "src/main/java/net/simpleraces/world/inventory/ClassDescMenu.java",
+          "src/main/java/net/simpleraces/network/ClassDescButtonMessage.java"
+        ]
+      },
+      "path": "~/Classes"
+    }
+  ],
+  "variable_elements": [
+    {
+      "name": "dwarf",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    },
+    {
+      "name": "elf",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    },
+    {
+      "name": "orc",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    },
+    {
+      "name": "merfolk",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    },
+    {
+      "name": "dragon",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    },
+    {
+      "name": "selected",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    }
+  ],
+  "sound_elements": [],
+  "tag_elements": {
+    "BIOMES:minecraft:forest": [
+      "birch_forest",
+      "crimson_forest",
+      "forest",
+      "warped_forest",
+      "dark_forest",
+      "roofed_forest",
+      "mutated_birch_forest",
+      "mutated_forest"
+    ],
+    "ITEMS:minecraft:meat": [
+      "Items.COOKED_FISH#0",
+      "Items.FISH#0",
+      "Items.FISH#1",
+      "Items.FISH#2",
+      "Items.FISH#3",
+      "Items.COOKED_FISH#1",
+      "Items.PORKCHOP",
+      "Items.COOKED_PORKCHOP",
+      "Items.BEEF",
+      "Items.COOKED_BEEF",
+      "Items.CHICKEN",
+      "Items.COOKED_CHICKEN",
+      "Items.RABBIT",
+      "Items.COOKED_RABBIT"
+    ],
+    "ITEMS:minecraft:melt": [
+      "Items.GOLDEN_HELMET",
+      "Items.GOLDEN_LEGGINGS",
+      "Items.GOLDEN_CHESTPLATE",
+      "Items.GOLDEN_BOOTS",
+      "Items.LEATHER_HELMET",
+      "Items.LEATHER_CHESTPLATE",
+      "Items.LEATHER_LEGGINGS",
+      "Items.LEATHER_BOOTS"
+    ]
+  },
+  "tab_element_order": {},
+  "language_map": {
+    "en_us": {
+      "gui.simpleraces.class_desc.tooltip_passive_mine_faster_in_dark": "Passive: Mine Faster Underground",
+      "gui.simpleraces.orc_select.tooltip_previous": "Previous",
+      "gui.simpleraces.class_desc.tooltip_previous": "Previous",
+      "gui.simpleraces.elf_select.tooltip_next": "Next",
+      "gui.simpleraces.orc_select.tooltip_passive_mine_faster_in_dark": "Passive: Additional Strength at Low Health + Knockback Res",
+      "gui.simpleraces.start.tooltip_dwarves_are_stout_skilled_craft": "Desc: Stout Skilled Miners",
+      "gui.simpleraces.dwarf_select.tooltip_confirm": "Confirm",
+      "gui.simpleraces.merfolk_select.tooltip_passive_mine_faster_in_dark": "Passive: Gills + Adept Under Water",
+      "gui.simpleraces.dwarf_select.tooltip_dwarves_are_stout_skilled_craft": "- Can\u0027t Use Bows | Lower Health",
+      "gui.simpleraces.dragon_select.tooltip_confirm": "Confirm",
+      "gui.simpleraces.merfolk_select.tooltip_previous": "Previous",
+      "entity.simpleraces.orc_model": "Dwarf Model",
+      "gui.simpleraces.orc_select.tooltip_next": "Next",
+      "gui.simpleraces.template.button_conf": "",
+      "gui.simpleraces.elf_select.button_empty": "",
+      "gui.simpleraces.template.tooltip_confirm": "Confirm",
+      "gui.simpleraces.start.tooltip_passive_mine_faster_in_dark": "Passive: Mine Faster in Dark",
+      "gui.simpleraces.orc_select.button_empty": "",
+      "gui.simpleraces.elf_select.button_conf": "",
+      "gui.simpleraces.elf_select.tooltip_passive_mine_faster_in_dark": "Passive: Nightvision + Bow Benefits + Bow Power",
+      "gui.simpleraces.dwarf_select.button_conf1": "",
+      "gui.simpleraces.class_desc.button_empty1": "",
+      "gui.simpleraces.dwarf_select.button_empty1": "",
+      "gui.simpleraces.orc_select.button_empty1": "",
+      "death.water.attack": "%1$s tried to swim in water",
+      "entity.simpleraces.dwarf_model": "Dwarf Model",
+      "key.simpleraces.open_select": "Open Race Select Menu",
+      "key.categories.simpleraces": "Simple RPG Races",
+      "gui.simpleraces.start.tooltip_previous": "Previous",
+      "gui.simpleraces.class_desc.tooltip_confirm": "Confirm",
+      "gui.simpleraces.dwarf_select.tooltip_next": "Next",
+      "item.simpleraces.dwarf_model_spawn_egg": "Dwarf Model Spawn Egg",
+      "gui.simpleraces.start.button_conf": "",
+      "item.simpleraces.orc_model_spawn_egg": "Dwarf Model Spawn Egg",
+      "gui.simpleraces.class_desc.button_empty": "",
+      "gui.simpleraces.elf_select.tooltip_dwarves_are_stout_skilled_craft": "Can\u0027t Eat Meat | Slow Pickaxe Mining",
+      "gui.simpleraces.elf_select.button_empty1": "",
+      "gui.simpleraces.elf_select.button_conf1": "",
+      "death.attack.elfmagic": "%1$s died to %2$s magic arrows",
+      "gui.simpleraces.orc_select.button_conf1": "",
+      "gui.simpleraces.template.tooltip_previous": "Previous",
+      "gui.simpleraces.merfolk_select.tooltip_confirm": "Confirm",
+      "gui.simpleraces.start.tooltip_confirm": "Confirm",
+      "gui.simpleraces.class_desc.tooltip_dwarves_are_stout_skilled_craft": "Desc: Stout Skilled Miners",
+      "gui.simpleraces.merfolk_select.button_empty": "",
+      "gui.simpleraces.dragon_select.button_empty": "",
+      "item.simpleraces.merfolk_model_spawn_egg": "Dwarf Model Spawn Egg",
+      "entity.simpleraces.elf_model": "Dwarf Model",
+      "gui.simpleraces.merfolk_select.button_conf": "",
+      "gui.simpleraces.dragon_select.tooltip_passive_mine_faster_in_dark": "Passive: Fire Aspect + Fire Res",
+      "gui.simpleraces.orc_select.tooltip_dwarves_are_stout_skilled_craft": "- Slowed With Heavy Armor | Large Hitbox",
+      "item.simpleraces.itempopeffect": "...",
+      "gui.simpleraces.merfolk_select.tooltip_next": "Next",
+      "gui.simpleraces.orc_select.tooltip_confirm": "Confirm",
+      "item.simpleraces.elf_model_spawn_egg": "Dwarf Model Spawn Egg",
+      "gui.simpleraces.elf_select.tooltip_confirm": "Confirm",
+      "gui.simpleraces.template.tooltip_passive_mine_faster_in_dark": "Passive: Mine Faster in Dark",
+      "gui.simpleraces.dragon_select.button_conf": "",
+      "entity.simpleraces.merfolk_model": "Dwarf Model",
+      "gui.simpleraces.orc_select.button_conf": "",
+      "gui.simpleraces.dragon_select.tooltip_previous": "Previous",
+      "gui.simpleraces.merfolk_select.button_conf1": "",
+      "gui.simpleraces.merfolk_select.tooltip_dwarves_are_stout_skilled_craft": "- Weaker Attack Damage",
+      "gui.simpleraces.dragon_select.button_empty1": "",
+      "gui.simpleraces.class_desc.button_conf": "",
+      "gui.simpleraces.dwarf_select.tooltip_previous": "Previous",
+      "gui.simpleraces.class_desc.tooltip_next": "Next",
+      "gui.simpleraces.template.tooltip_dwarves_are_stout_skilled_craft": "Desc: Stout Skilled Miners",
+      "gui.simpleraces.merfolk_select.button_empty1": "",
+      "gui.simpleraces.dragon_select.tooltip_next": "Next",
+      "entity.simpleraces.dragon_model": "Dwarf Model",
+      "gui.simpleraces.elf_select.tooltip_previous": "Previous",
+      "gui.simpleraces.dwarf_select.tooltip_passive_mine_faster_in_dark": "Passive: Progressive Underground Benefits + Pickaxe Strength",
+      "gui.simpleraces.dragon_select.tooltip_dwarves_are_stout_skilled_craft": "- Hurt By Water | Melts Gold/Leather Armor",
+      "gui.simpleraces.start.tooltip_next": "Next",
+      "gui.simpleraces.dwarf_select.button_empty": "",
+      "gui.simpleraces.template.tooltip_next": "Next",
+      "gui.simpleraces.dwarf_select.button_conf": "",
+      "item.simpleraces.dragon_model_spawn_egg": "Dwarf Model Spawn Egg"
+    }
+  },
+  "foldersRoot": {
+    "name": "~",
+    "children": [
+      {
+        "name": "Classes",
+        "children": []
+      },
+      {
+        "name": "StartAnimation",
+        "children": []
+      }
+    ]
+  },
+  "workspaceSettings": {
+    "modid": "simpleraces",
+    "modName": "Simple RPG Races",
+    "version": "1.0.2",
+    "description": "Pick From Fantasy Races Including - Dwarves, Elves, Orcs, Merfolk, and Drakonics",
+    "author": "MinoBanana",
+    "websiteURL": "https://www.curseforge.com/members/minobanana/projects",
+    "license": "All Rights Reserved",
+    "serverSideOnly": false,
+    "modPicture": "tuxpi.com.1732571896",
+    "requiredMods": [],
+    "dependencies": [],
+    "dependants": [],
+    "mcreatorDependencies": [
+      "kleidersplayerrenderer",
+      "pehkui"
+    ],
+    "currentGenerator": "forge-1.20.1",
+    "credits": "MinoBanana",
+    "modElementsPackage": "net.simpleraces"
+  },
+  "mcreatorVersion": 202400451119
+}

@@ -1,0 +1,7 @@
+{
+  "_fv": 73,
+  "_type": "procedure",
+  "definition": {
+    "procedurexml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><xml xmlns=\"https://developers.google.com/blockly/xml\"><block deletable=\"false\" type=\"event_trigger\" x=\"87\" y=\"74\"><field name=\"trigger\">render_arm_event</field><next><block type=\"obligatory_render_arm_event\"><next><block type=\"controls_if\"><value name=\"IF0\"><block inline=\"false\" type=\"logic_binary_ops\"><field name=\"OP\">AND</field><value name=\"A\"><block type=\"variables_get_logic\"><mutation xmlns=\"http://www.w3.org/1999/xhtml\" has_entity=\"true\" is_player_var=\"true\"/><field name=\"VAR\">global:merfolk</field><value name=\"entity\"><block type=\"entity_from_deps\"/></value></block></value><value name=\"B\"><block type=\"entity_isinwater\"><value name=\"entity\"><block type=\"entity_from_deps\"/></value></block></value></block></value><statement name=\"DO0\"><block type=\"render_default_arm\"><value name=\"texture\"><block type=\"text\"><field name=\"TEXT\">simpleraces:textures/entities/merfolk.png</field></block></value><value name=\"slim\"><block type=\"logic_boolean\"><field name=\"BOOL\">FALSE</field></block></value><next><block type=\"hide_base_arm\"/></next></block></statement></block></next></block></next></block></xml>"
+  }
+}

@@ -1,0 +1,15 @@
+Java Launcher: C:\Program Files\Java\jdk-17\bin\java.exe
+Arguments: '--task, SRG_TO_MCP, --input, C:\Users\Масим\.gradle\caches\modules-2\files-2.1\curse.maven\kleiders-custom-renderer-api-682065\6475112\9f0f94ed3dd661b542e92d10aa40c8426117b36c\kleiders-custom-renderer-api-682065-6475112.jar, --output, C:\Users\Масим\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\kleiders-custom-renderer-api-682065\6475112_mapped_official_1.20.1\kleiders-custom-renderer-api-682065-6475112_mapped_official_1.20.1.jar, --mcp, C:\Users\Масим\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\mapping\1.20.1\mapping-1.20.1-mapping.zip, --strip-signatures'
+Classpath:
+ - C:\Users\Масим\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\installertools\1.4.4\installertools-1.4.4-fatjar.jar
+Working directory: C:\Users\Масим\Projects\simpleraces\build\_RenameSrg2Mcp_1201019926
+Main class: net.minecraftforge.installertools.ConsoleTool
+====================================
+Task: SRG_TO_MCP
+Input:  C:\Users\￐ﾜ￐ﾰ￑ﾁ￐ﾸ￐ﾼ\.gradle\caches\modules-2\files-2.1\curse.maven\kleiders-custom-renderer-api-682065\6475112\9f0f94ed3dd661b542e92d10aa40c8426117b36c\kleiders-custom-renderer-api-682065-6475112.jar
+Output: C:\Users\￐ﾜ￐ﾰ￑ﾁ￐ﾸ￐ﾼ\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\kleiders-custom-renderer-api-682065\6475112_mapped_official_1.20.1\kleiders-custom-renderer-api-682065-6475112_mapped_official_1.20.1.jar
+MCP:    C:\Users\￐ﾜ￐ﾰ￑ﾁ￐ﾸ￐ﾼ\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\mapping\1.20.1\mapping-1.20.1-mapping.zip
+Loading MCP Data
+Processing ZIP file
+Stripped Manifest of sha digests
+Process complete

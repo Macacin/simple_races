@@ -1,0 +1,12 @@
+{
+  "_fv": 73,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "M",
+    "keyBindingName": "Open Race Select Menu",
+    "keyBindingCategoryKey": "simpleraces",
+    "onKeyPressed": {
+      "name": "OpenSelectOnKeyPressed"
+    }
+  }
+}
