@@ -31,7 +31,7 @@ public class SelectedHalfdeadProcedure {
 			}
 			AttributeInstance maxHealthAttr = ((Player) entity).getAttribute(Attributes.MAX_HEALTH);
 			if (maxHealthAttr != null) {
-				double newMax = 26;
+				double newMax = 30;
 				maxHealthAttr.setBaseValue(newMax);
 				((Player) entity).setHealth((float) newMax);
 			}
