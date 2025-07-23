@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class WitchSelectMenu extends AbstractRaceSelectMenu implements Supplier<Map<Integer, Slot>> {
+public class SerpentinSelectMenu extends AbstractRaceSelectMenu implements Supplier<Map<Integer, Slot>> {
 	public final static HashMap<String, Object> guistate = new HashMap<>();
 	public final Level world;
 	public final Player entity;
@@ -34,8 +34,8 @@ public class WitchSelectMenu extends AbstractRaceSelectMenu implements Supplier<
 	private Entity boundEntity = null;
 	private BlockEntity boundBlockEntity = null;
 
-	public WitchSelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.WITCH_SELECT.get(), id);
+	public SerpentinSelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
+		super(SimpleracesModMenus.Serpentin_SELECT.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

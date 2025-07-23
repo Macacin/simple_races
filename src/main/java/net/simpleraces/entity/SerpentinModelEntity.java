@@ -11,7 +11,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
@@ -19,13 +18,13 @@ import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.simpleraces.init.SimpleracesModEntities;
 
-public class WitchModelEntity extends Witch {
-	public WitchModelEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(SimpleracesModEntities.WITCH_MODEL.get(), world);
+public class SerpentinModelEntity extends Witch {
+	public SerpentinModelEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(SimpleracesModEntities.Serpentin_MODEL.get(), world);
 		setNoAi(true);
 	}
 
-	public WitchModelEntity(EntityType<WitchModelEntity> type, Level world) {
+	public SerpentinModelEntity(EntityType<SerpentinModelEntity> type, Level world) {
 		super(type, world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;

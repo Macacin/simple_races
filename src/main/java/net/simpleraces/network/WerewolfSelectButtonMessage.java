@@ -71,7 +71,7 @@ public class WerewolfSelectButtonMessage {
 		}
 		if (buttonID == 2) {
 
-			OpenWitchProcedure.execute(world, x, y, z,  entity);
+			OpenSerpentinProcedure.execute(world, x, y, z,  entity);
 		}
 	}
 }

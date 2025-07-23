@@ -24,7 +24,7 @@ public class SimpleracesModMenus {
 	public static final RegistryObject<MenuType<OrcSelectMenu>> ORC_SELECT = REGISTRY.register("orc_select", () -> IForgeMenuType.create(OrcSelectMenu::new));
 	public static final RegistryObject<MenuType<DragonSelectMenu>> DRAGON_SELECT = REGISTRY.register("dragon_select", () -> IForgeMenuType.create(DragonSelectMenu::new));
 	public static final RegistryObject<MenuType<FairySelectMenu>> FAIRY_SELECT = REGISTRY.register("fairy_select", () -> IForgeMenuType.create(FairySelectMenu::new));
-	public static final RegistryObject<MenuType<WitchSelectMenu>> WITCH_SELECT = REGISTRY.register("witch_select", () -> IForgeMenuType.create(WitchSelectMenu::new));
+	public static final RegistryObject<MenuType<SerpentinSelectMenu>> Serpentin_SELECT = REGISTRY.register("Serpentin_select", () -> IForgeMenuType.create(SerpentinSelectMenu::new));
 	public static final RegistryObject<MenuType<WerewolfSelectMenu>> WEREWOLF_SELECT = REGISTRY.register("werewolf_select", () -> IForgeMenuType.create(WerewolfSelectMenu::new));
 	public static final RegistryObject<MenuType<HalfdeadSelectMenu>> HALFDEAD_SELECT = REGISTRY.register("halfdead_select", () -> IForgeMenuType.create(HalfdeadSelectMenu::new));
 	public static final RegistryObject<MenuType<ArachaSelectMenu>> ARACHNA_SELECT = REGISTRY.register("arachna_select", () -> IForgeMenuType.create(ArachaSelectMenu::new));

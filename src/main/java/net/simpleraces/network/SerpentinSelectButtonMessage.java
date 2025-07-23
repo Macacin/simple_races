@@ -5,42 +5,38 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.network.NetworkEvent;
-import net.simpleraces.SimpleracesMod;
 import net.simpleraces.procedures.*;
 import net.simpleraces.world.inventory.DragonSelectMenu;
 
 import java.util.HashMap;
 import java.util.function.Supplier;
 
-public class WitchSelectButtonMessage {
+public class SerpentinSelectButtonMessage {
 	private final int buttonID, x, y, z;
 
-	public WitchSelectButtonMessage(FriendlyByteBuf buffer) {
+	public SerpentinSelectButtonMessage(FriendlyByteBuf buffer) {
 		this.buttonID = buffer.readInt();
 		this.x = buffer.readInt();
 		this.y = buffer.readInt();
 		this.z = buffer.readInt();
 	}
 
-	public WitchSelectButtonMessage(int buttonID, int x, int y, int z) {
+	public SerpentinSelectButtonMessage(int buttonID, int x, int y, int z) {
 		this.buttonID = buttonID;
 		this.x = x;
 		this.y = y;
 		this.z = z;
 	}
 
-	public static void buffer(WitchSelectButtonMessage message, FriendlyByteBuf buffer) {
+	public static void buffer(SerpentinSelectButtonMessage message, FriendlyByteBuf buffer) {
 		buffer.writeInt(message.buttonID);
 		buffer.writeInt(message.x);
 		buffer.writeInt(message.y);
 		buffer.writeInt(message.z);
 	}
 
-	public static void handler(WitchSelectButtonMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
+	public static void handler(SerpentinSelectButtonMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
 		NetworkEvent.Context context = contextSupplier.get();
 		context.enqueueWork(() -> {
 			Player entity = context.getSender();
@@ -61,7 +57,7 @@ public class WitchSelectButtonMessage {
 			return;
 		if (buttonID == 0) {
 
-			SelectedWitchProcedure.execute(entity);
+			SelectedSerpentinProcedure.execute(entity);
 		}
 		if (buttonID == 1) {
 

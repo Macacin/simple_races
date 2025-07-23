@@ -28,7 +28,7 @@ public class SimpleracesModScreens {
 			MenuScreens.register(SimpleracesModMenus.DRAGON_SELECT.get(), DragonSelectScreen::new);
 			MenuScreens.register(SimpleracesModMenus.CLASS_DESC.get(), ClassDescScreen::new);
 			MenuScreens.register(SimpleracesModMenus.FAIRY_SELECT.get(), FairySelectScreen::new);
-			MenuScreens.register(SimpleracesModMenus.WITCH_SELECT.get(), WitchSelectScreen::new);
+			MenuScreens.register(SimpleracesModMenus.Serpentin_SELECT.get(), SerpentinSelectScreen::new);
 			MenuScreens.register(SimpleracesModMenus.WEREWOLF_SELECT.get(), WerewolfSelectScreen::new);
 			MenuScreens.register(SimpleracesModMenus.HALFDEAD_SELECT.get(), HalfdeadSelectScreen::new);
 			MenuScreens.register(SimpleracesModMenus.ARACHNA_SELECT.get(), ArachnaSelectScreen::new);

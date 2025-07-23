@@ -3,7 +3,7 @@ package net.simpleraces.client.gui;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.simpleraces.entity.ElfModelEntity;
-import net.simpleraces.entity.WitchModelEntity;
+import net.simpleraces.entity.SerpentinModelEntity;
 import net.simpleraces.init.SimpleracesModEntities;
 import net.simpleraces.network.ModMessages;
 import net.simpleraces.world.inventory.ElfSelectMenu;

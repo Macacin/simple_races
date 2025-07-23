@@ -5,10 +5,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
 import net.simpleraces.network.SimpleracesModVariables;
 
-public class SelectedWitchProcedure {
+public class SelectedSerpentinProcedure {
 	public static void execute(Entity entity) {
 		if (entity == null)
 			return;
@@ -18,7 +17,7 @@ public class SelectedWitchProcedure {
 			{
 				boolean _setval = true;
 				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.witch = _setval;
+					capability.Serpentin = _setval;
 					capability.syncPlayerVariables(entity);
 				});
 			}
@@ -36,7 +35,7 @@ public class SelectedWitchProcedure {
 				((Player) entity).setHealth((float) newMax);
 			}
 			if (entity instanceof Player _player && !_player.level().isClientSide())
-				_player.displayClientMessage(Component.literal("\u00A7e Selected Witch"), true);
+				_player.displayClientMessage(Component.literal("\u00A7e Selected Serpentin"), true);
 		} else {
 			if (entity instanceof Player _player && !_player.level().isClientSide())
 				_player.displayClientMessage(Component.literal("\u00A74 Class Previously Set"), true);

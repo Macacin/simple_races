@@ -309,7 +309,7 @@ public class ResistanceAddProcedure {
 		LivingEntity entity = event.getEntity();
 		if (!(event.getEntity() instanceof Player player)) return;
 		if (player.level().isClientSide) return;
-		if ((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).map(playerVariables -> playerVariables.witch)
+		if ((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).map(playerVariables -> playerVariables.Serpentin)
 				.orElse(false))){
 			if (entity.hasEffect(MobEffects.POISON)) {
 				entity.removeEffect(MobEffects.POISON);
@@ -376,7 +376,7 @@ public class ResistanceAddProcedure {
 	@SubscribeEvent
 	public static void onPotionUsed(LivingEntityUseItemEvent.Stop event) {
 		if(event.getEntity().getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new SimpleracesModVariables.PlayerVariables()).witch) {
+				.orElse(new SimpleracesModVariables.PlayerVariables()).Serpentin) {
             event.setCanceled(true);
         }
 	}
@@ -385,7 +385,7 @@ public class ResistanceAddProcedure {
     public static void onLivingHurt(LivingHurtEvent event) {
 		LivingEntity target = event.getEntity();
 		if (((event.getSource().getEntity() instanceof Player) && (((Player) event.getSource().getEntity()).getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new SimpleracesModVariables.PlayerVariables()).witch))){
+				.orElse(new SimpleracesModVariables.PlayerVariables()).Serpentin))){
 			boolean hasDebuff = false;
 
 			for (MobEffectInstance effect : target.getActiveEffects()) {

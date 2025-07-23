@@ -48,8 +48,8 @@ public class SimpleracesModEntities {
 
 					.sized(0.6f, 1.0f));
 
-	public static final RegistryObject<EntityType<WitchModelEntity>> WITCH_MODEL = register("witch_model",
-			EntityType.Builder.<WitchModelEntity>of(WitchModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(WitchModelEntity::new)
+	public static final RegistryObject<EntityType<SerpentinModelEntity>> Serpentin_MODEL = register("Serpentin_model",
+			EntityType.Builder.<SerpentinModelEntity>of(SerpentinModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SerpentinModelEntity::new)
 
 					.sized(0.6f, 1.8f));
 
@@ -81,7 +81,7 @@ public class SimpleracesModEntities {
 			DragonModelEntity.init();
 			MerfolkModelEntity.init();
 			FairyModelEntity.init();
-			WitchModelEntity.init();
+			SerpentinModelEntity.init();
 			WerewolfModelEntity.init();
 			HalfdeadModelEntity.init();
 			ArachaModelEntity.init();
@@ -96,7 +96,7 @@ public class SimpleracesModEntities {
 		event.put(DRAGON_MODEL.get(), DragonModelEntity.createAttributes().build());
 		event.put(MERFOLK_MODEL.get(), MerfolkModelEntity.createAttributes().build());
 		event.put(FAIRY_MODEL.get(), FairyModelEntity.createAttributes().build());
-		event.put(WITCH_MODEL.get(), WitchModelEntity.createAttributes().build());
+		event.put(Serpentin_MODEL.get(), SerpentinModelEntity.createAttributes().build());
 		event.put(WEREWOLF_MODEL.get(), WerewolfModelEntity.createAttributes().build());
 		event.put(HALFDEAD_MODEL.get(), HalfdeadModelEntity.createAttributes().build());
 		event.put(ARACHA_MODEL.get(), ArachaModelEntity.createAttributes().build());

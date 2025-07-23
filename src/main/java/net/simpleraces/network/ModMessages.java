@@ -28,7 +28,7 @@ public class ModMessages {
 		INSTANCE.registerMessage(nextId(), ElfSelectButtonMessage.class, ElfSelectButtonMessage::buffer, ElfSelectButtonMessage::new, ElfSelectButtonMessage::handler);
 		INSTANCE.registerMessage(nextId(), HalfdeadSelectButtonMessage.class, HalfdeadSelectButtonMessage::buffer, HalfdeadSelectButtonMessage::new, HalfdeadSelectButtonMessage::handler);
 		INSTANCE.registerMessage(nextId(), MerfolkSelectButtonMessage.class, MerfolkSelectButtonMessage::buffer, MerfolkSelectButtonMessage::new, MerfolkSelectButtonMessage::handler);
-		INSTANCE.registerMessage(nextId(), WitchSelectButtonMessage.class, WitchSelectButtonMessage::buffer, WitchSelectButtonMessage::new, WitchSelectButtonMessage::handler);
+		INSTANCE.registerMessage(nextId(), SerpentinSelectButtonMessage.class, SerpentinSelectButtonMessage::buffer, SerpentinSelectButtonMessage::new, SerpentinSelectButtonMessage::handler);
 		INSTANCE.registerMessage(nextId(), WerewolfSelectButtonMessage.class, WerewolfSelectButtonMessage::buffer, WerewolfSelectButtonMessage::new, WerewolfSelectButtonMessage::handler);
 		INSTANCE.registerMessage(nextId(), ClassDescButtonMessage.class, ClassDescButtonMessage::buffer, ClassDescButtonMessage::new, ClassDescButtonMessage::handler);
 		INSTANCE.registerMessage(nextId(), OpenSelectMessage.class, OpenSelectMessage::buffer, OpenSelectMessage::new, OpenSelectMessage::handler);

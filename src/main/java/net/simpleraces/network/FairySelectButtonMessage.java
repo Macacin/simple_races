@@ -65,7 +65,7 @@ public class FairySelectButtonMessage {
 		}
 		if (buttonID == 1) {
 
-			OpenWitchProcedure.execute(world, x, y, z, entity);
+			OpenSerpentinProcedure.execute(world, x, y, z, entity);
 		}
 		if (buttonID == 2) {
 

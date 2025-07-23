@@ -87,7 +87,7 @@ public class SimpleracesModVariables {
 			clone.selected = original.selected;
 			clone.fairy = original.fairy;
 			clone.halfdead = original.halfdead;
-			clone.witch = original.witch;
+			clone.Serpentin = original.Serpentin;
 			clone.werewolf = original.werewolf;
 			clone.aracha = original.aracha;
 			if (!event.isWasDeath()) {
@@ -138,7 +138,7 @@ public class SimpleracesModVariables {
 		public boolean dragon = false;
 		public boolean fairy = false;
 		public boolean halfdead = false;
-		public boolean witch = false;
+		public boolean Serpentin = false;
 		public boolean werewolf = false;
 		public boolean aracha = false;
 		public boolean selected = false;
@@ -158,7 +158,7 @@ public class SimpleracesModVariables {
 			nbt.putBoolean("selected", selected);
 			nbt.putBoolean("fairy", fairy);
 			nbt.putBoolean("halfdead", halfdead);
-			nbt.putBoolean("witch", witch);
+			nbt.putBoolean("Serpentin", Serpentin);
 			nbt.putBoolean("werewolf", werewolf);
 			nbt.putBoolean("aracha", aracha);
 			return nbt;
@@ -174,7 +174,7 @@ public class SimpleracesModVariables {
 			selected = nbt.getBoolean("selected");
 			fairy = nbt.getBoolean("fairy");
 			halfdead = nbt.getBoolean("halfdead");
-			witch = nbt.getBoolean("witch");
+			Serpentin = nbt.getBoolean("Serpentin");
 			werewolf = nbt.getBoolean("werewolf");
 			aracha = nbt.getBoolean("aracha");
 		}
@@ -217,7 +217,7 @@ public class SimpleracesModVariables {
 					variables.selected = message.data.selected;
 					variables.fairy = message.data.fairy;
 					variables.halfdead = message.data.halfdead;
-					variables.witch = message.data.witch;
+					variables.Serpentin = message.data.Serpentin;
 					variables.werewolf = message.data.werewolf;
 					variables.aracha = message.data.aracha;
 				}

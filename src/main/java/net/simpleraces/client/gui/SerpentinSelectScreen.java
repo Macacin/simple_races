@@ -8,26 +8,22 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.simpleraces.SimpleracesMod;
-import net.simpleraces.entity.WitchModelEntity;
+import net.simpleraces.entity.SerpentinModelEntity;
 import net.simpleraces.init.SimpleracesModEntities;
-import net.simpleraces.network.ElfSelectButtonMessage;
 import net.simpleraces.network.ModMessages;
-import net.simpleraces.network.WitchSelectButtonMessage;
-import net.simpleraces.procedures.ElfReturnProcedure;
+import net.simpleraces.network.SerpentinSelectButtonMessage;
 import net.simpleraces.world.inventory.ElfSelectMenu;
-import net.simpleraces.world.inventory.WitchSelectMenu;
+import net.simpleraces.world.inventory.SerpentinSelectMenu;
 
 import java.util.HashMap;
 
 @OnlyIn(Dist.CLIENT)
-public class WitchSelectScreen extends AbstractContainerScreen<WitchSelectMenu> {
+public class SerpentinSelectScreen extends AbstractContainerScreen<SerpentinSelectMenu> {
 	private final static HashMap<String, Object> guistate = ElfSelectMenu.guistate;
 	private final Level world;
 	private final int x, y, z;
@@ -36,7 +32,7 @@ public class WitchSelectScreen extends AbstractContainerScreen<WitchSelectMenu> 
 	Button button_empty;
 	Button button_empty1;
 
-	public WitchSelectScreen(WitchSelectMenu container, Inventory inventory, Component text) {
+	public SerpentinSelectScreen(SerpentinSelectMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
 		this.world = container.world;
 		this.x = container.x;
@@ -47,23 +43,23 @@ public class WitchSelectScreen extends AbstractContainerScreen<WitchSelectMenu> 
 		this.imageHeight = 0;
 	}
 
-	private static final ResourceLocation texture = new ResourceLocation("simpleraces:textures/screens/witch.png");
+	private static final ResourceLocation texture = new ResourceLocation("simpleraces:textures/screens/serpentin.png");
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(guiGraphics);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + -37, this.topPos + 32, 28, 0f + (float) Math.atan((this.leftPos + -37 - mouseX) / 40.0), (float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
-				new WitchModelEntity(SimpleracesModEntities.WITCH_MODEL.get(), world));
+				new SerpentinModelEntity(SimpleracesModEntities.Serpentin_MODEL.get(), world));
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
 		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + -18 && mouseY < topPos + 6)
 			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_next"), mouseX, mouseY);
 		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + 8 && mouseY < topPos + 32)
 			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_previous"), mouseX, mouseY);
 		if (mouseX > leftPos + 22 && mouseX < leftPos + 46 && mouseY > topPos + -41 && mouseY < topPos + -17)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.witch_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
+			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.Serpentin_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
 		if (mouseX > leftPos + 46 && mouseX < leftPos + 70 && mouseY > topPos + -41 && mouseY < topPos + -17)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.witch_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
+			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.Serpentin_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
 		if (mouseX > leftPos + 25 && mouseX < leftPos + 49 && mouseY > topPos + 24 && mouseY < topPos + 48)
 			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_confirm"), mouseX, mouseY);
 	}
@@ -98,24 +94,24 @@ public class WitchSelectScreen extends AbstractContainerScreen<WitchSelectMenu> 
 		super.init();
 		button_conf = new PlainTextButton(this.leftPos + 17, this.topPos + 27, 46, 20, Component.translatable("gui.simpleraces.elf_select.button_conf"), e -> {
 			if (true) {
-				ModMessages.INSTANCE.sendToServer(new WitchSelectButtonMessage(0, x, y, z));
-				WitchSelectButtonMessage.handleButtonAction(entity, 0, x, y, z);
+				ModMessages.INSTANCE.sendToServer(new SerpentinSelectButtonMessage(0, x, y, z));
+				SerpentinSelectButtonMessage.handleButtonAction(entity, 0, x, y, z);
 			}
 		}, this.font);
 		guistate.put("button:button_conf", button_conf);
 		this.addRenderableWidget(button_conf);
 		button_empty = new PlainTextButton(this.leftPos + -9, this.topPos + -14, 25, 20, Component.translatable("gui.simpleraces.elf_select.button_empty"), e -> {
 			if (true) {
-				ModMessages.INSTANCE.sendToServer(new WitchSelectButtonMessage(1, x, y, z));
-				WitchSelectButtonMessage.handleButtonAction(entity, 1, x, y, z);
+				ModMessages.INSTANCE.sendToServer(new SerpentinSelectButtonMessage(1, x, y, z));
+				SerpentinSelectButtonMessage.handleButtonAction(entity, 1, x, y, z);
 			}
 		}, this.font);
 		guistate.put("button:button_empty", button_empty);
 		this.addRenderableWidget(button_empty);
 		button_empty1 = new PlainTextButton(this.leftPos + -9, this.topPos + 7, 25, 20, Component.translatable("gui.simpleraces.elf_select.button_empty1"), e -> {
 			if (true) {
-				ModMessages.INSTANCE.sendToServer(new WitchSelectButtonMessage(2, x, y, z));
-				WitchSelectButtonMessage.handleButtonAction(entity, 2, x, y, z);
+				ModMessages.INSTANCE.sendToServer(new SerpentinSelectButtonMessage(2, x, y, z));
+				SerpentinSelectButtonMessage.handleButtonAction(entity, 2, x, y, z);
 			}
 		}, this.font);
 		guistate.put("button:button_empty1", button_empty1);
