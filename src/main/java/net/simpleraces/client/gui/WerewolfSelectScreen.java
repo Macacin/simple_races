@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.PlainTextButton;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
@@ -21,6 +22,8 @@ import net.simpleraces.network.WerewolfSelectButtonMessage;
 import net.simpleraces.world.inventory.WerewolfSelectMenu;
 
 import java.util.HashMap;
+
+import static net.simpleraces.client.gui.MerfolkSelectScreen.renderWidgetBox;
 
 @OnlyIn(Dist.CLIENT)
 public class WerewolfSelectScreen extends AbstractContainerScreen<WerewolfSelectMenu> {
@@ -45,25 +48,39 @@ public class WerewolfSelectScreen extends AbstractContainerScreen<WerewolfSelect
 
 	private static final ResourceLocation texture = new ResourceLocation("simpleraces:textures/screens/werewolf.png");
 
+
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(guiGraphics);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-			InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + -37, this.topPos + 32, 28, 0f + (float) Math.atan((this.leftPos + -37 - mouseX) / 40.0), (float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
-					new WerewolfModelEntity(SimpleracesModEntities.WEREWOLF_MODEL.get(), world));
+
+		InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics,
+				this.leftPos + -37, this.topPos + 32, 28,
+				(float) Math.atan((this.leftPos + -37 - mouseX) / 40.0),
+				(float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
+				new WerewolfModelEntity(SimpleracesModEntities.WEREWOLF_MODEL.get(), world));
+
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
-		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + -18 && mouseY < topPos + 6)
+
+		if (mouseX > leftPos - 7 && mouseX < leftPos + 17 && mouseY > topPos - 18 && mouseY < topPos + 6)
 			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.werewolf_select.tooltip_next"), mouseX, mouseY);
-		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + 8 && mouseY < topPos + 32)
+
+		if (mouseX > leftPos - 7 && mouseX < leftPos + 17 && mouseY > topPos + 8 && mouseY < topPos + 32)
 			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.werewolf_select.tooltip_previous"), mouseX, mouseY);
-		if (mouseX > leftPos + 22 && mouseX < leftPos + 46 && mouseY > topPos + -41 && mouseY < topPos + -17)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.werewolf_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
-		if (mouseX > leftPos + 46 && mouseX < leftPos + 70 && mouseY > topPos + -41 && mouseY < topPos + -17)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.werewolf_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
+
+		if (mouseX > leftPos + 22 && mouseX < leftPos + 46 && mouseY > topPos - 41 && mouseY < topPos - 17)
+			guiGraphics.renderTooltip(font, Component.translatable(Screen.hasShiftDown()
+					? "gui.simpleraces.werewolf_select.tooltip_dwarves_are_stout_skilled_craft.extended"
+					: "gui.simpleraces.werewolf_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
+
+		if (mouseX > leftPos + 46 && mouseX < leftPos + 70 && mouseY > topPos - 41 && mouseY < topPos - 17)
+			guiGraphics.renderTooltip(font, Component.translatable(Screen.hasShiftDown()
+					? "gui.simpleraces.werewolf_select.tooltip_passive_mine_faster_in_dark.extended"
+					: "gui.simpleraces.werewolf_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
+
 		if (mouseX > leftPos + 25 && mouseX < leftPos + 49 && mouseY > topPos + 24 && mouseY < topPos + 48)
 			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.werewolf_select.tooltip_confirm"), mouseX, mouseY);
 	}
-
 	@Override
 	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
 		RenderSystem.setShaderColor(1, 1, 1, 1);
@@ -92,7 +109,7 @@ public class WerewolfSelectScreen extends AbstractContainerScreen<WerewolfSelect
 	@Override
 	public void init() {
 		super.init();
-		button_conf = new PlainTextButton(this.leftPos + 17, this.topPos + 27, 46, 20, Component.translatable("gui.simpleraces.elf_select.button_conf"), e -> {
+		button_conf = new PlainTextButton(this.leftPos - 2, this.topPos + 27, 46, 20, Component.translatable("gui.simpleraces.elf_select.button_conf"), e -> {
 			if (true) {
 				ModMessages.INSTANCE.sendToServer(new WerewolfSelectButtonMessage(0, x, y, z));
 				WerewolfSelectButtonMessage.handleButtonAction(entity, 0, x, y, z);

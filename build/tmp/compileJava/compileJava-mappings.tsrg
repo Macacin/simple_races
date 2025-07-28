@@ -1,0 +1,1 @@
+net/simpleraces/mixin/PlayerMixin interactOn (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult; m_36157_

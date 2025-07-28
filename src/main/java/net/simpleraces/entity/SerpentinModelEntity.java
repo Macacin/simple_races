@@ -20,7 +20,7 @@ import net.simpleraces.init.SimpleracesModEntities;
 
 public class SerpentinModelEntity extends Witch {
 	public SerpentinModelEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(SimpleracesModEntities.Serpentin_MODEL.get(), world);
+		this(SimpleracesModEntities.SERPENTIN_MODEL.get(), world);
 		setNoAi(true);
 	}
 

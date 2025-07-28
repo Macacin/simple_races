@@ -75,7 +75,7 @@ public class AttributeDeathFixProcedure {
 				player.setHealth((float) newMaxHealth);
 			}
 			player.getAbilities().mayfly = true;
-			player.getAbilities().setFlyingSpeed(0.03f);
+			player.getAbilities().setFlyingSpeed(0.025f);
 			player.onUpdateAbilities();
 		}
 	}

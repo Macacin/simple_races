@@ -1,5 +1,6 @@
 package net.simpleraces.client.gui;
 
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.simpleraces.network.ModMessages;
@@ -47,27 +48,47 @@ public class DwarfSelectScreen extends AbstractContainerScreen<DwarfSelectMenu> 
 
 	private static final ResourceLocation texture = new ResourceLocation("simpleraces:textures/screens/dwarf_select.png");
 
+
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(guiGraphics);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
+
 		if (DwarfReturnProcedure.execute(world) instanceof LivingEntity livingEntity) {
-			InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + -37, this.topPos + 32, 20, 0f + (float) Math.atan((this.leftPos + -37 - mouseX) / 40.0), (float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
+			InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + -37, this.topPos + 32, 20,
+					0f + (float) Math.atan((this.leftPos + -37 - mouseX) / 40.0),
+					(float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
 					livingEntity);
 		}
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
-		if (mouseX > leftPos + -6 && mouseX < leftPos + 18 && mouseY > topPos + -16 && mouseY < topPos + 8)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.dwarf_select.tooltip_next"), mouseX, mouseY);
-		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + 8 && mouseY < topPos + 32)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.dwarf_select.tooltip_previous"), mouseX, mouseY);
-		if (mouseX > leftPos + 22 && mouseX < leftPos + 46 && mouseY > topPos + -41 && mouseY < topPos + -17)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.dwarf_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
-		if (mouseX > leftPos + 46 && mouseX < leftPos + 70 && mouseY > topPos + -41 && mouseY < topPos + -17)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.dwarf_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
-		if (mouseX > leftPos + 25 && mouseX < leftPos + 49 && mouseY > topPos + 24 && mouseY < topPos + 48)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.dwarf_select.tooltip_confirm"), mouseX, mouseY);
-	}
 
+		this.renderTooltip(guiGraphics, mouseX, mouseY);
+
+		if (mouseX > leftPos + -6 && mouseX < leftPos + 18 && mouseY > topPos + -16 && mouseY < topPos + 8) {
+			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.dwarf_select.tooltip_next"), mouseX, mouseY);
+		}
+
+		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + 8 && mouseY < topPos + 32) {
+			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.dwarf_select.tooltip_previous"), mouseX, mouseY);
+		}
+
+		if (mouseX > leftPos + 22 && mouseX < leftPos + 46 && mouseY > topPos + -41 && mouseY < topPos + -17) {
+			guiGraphics.renderTooltip(font,
+					Component.translatable(Screen.hasShiftDown()
+							? "gui.simpleraces.dwarf_select.tooltip_dwarves_are_stout_skilled_craft.extended"
+							: "gui.simpleraces.dwarf_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
+		}
+
+		if (mouseX > leftPos + 46 && mouseX < leftPos + 70 && mouseY > topPos + -41 && mouseY < topPos + -17) {
+			guiGraphics.renderTooltip(font,
+					Component.translatable(Screen.hasShiftDown()
+							? "gui.simpleraces.dwarf_select.tooltip_passive_mine_faster_in_dark.extended"
+							: "gui.simpleraces.dwarf_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
+		}
+
+		if (mouseX > leftPos + 25 && mouseX < leftPos + 49 && mouseY > topPos + 24 && mouseY < topPos + 48) {
+			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.dwarf_select.tooltip_confirm"), mouseX, mouseY);
+		}
+	}
 	@Override
 	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
 		RenderSystem.setShaderColor(1, 1, 1, 1);

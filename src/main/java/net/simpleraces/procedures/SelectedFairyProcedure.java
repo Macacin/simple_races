@@ -21,14 +21,15 @@ public class SelectedFairyProcedure {
 					capability.fairy = _setval;
 					capability.syncPlayerVariables(entity);
 				});
+				entity.getPersistentData().putInt("fairy_flight_ticks", 0);
 			}
-			{
-				boolean _setval = true;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.selected = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
+//			{
+//				boolean _setval = true;
+//				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+//					capability.selected = _setval;
+//					capability.syncPlayerVariables(entity);
+//				});
+//			}
 			AttributeInstance maxHealthAttr = ((Player) entity).getAttribute(Attributes.MAX_HEALTH);
 			if (maxHealthAttr != null) {
 				double newMax = 8;

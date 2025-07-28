@@ -81,7 +81,7 @@ public class DeselectProcedure {
 			{
 				boolean _setval = false;
 				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.Serpentin = _setval;
+					capability.serpentin = _setval;
 					capability.syncPlayerVariables(entity);
 				});
 			}

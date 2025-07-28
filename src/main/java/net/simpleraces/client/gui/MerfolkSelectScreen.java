@@ -1,5 +1,7 @@
 package net.simpleraces.client.gui;
 
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.simpleraces.network.ModMessages;
@@ -51,23 +53,47 @@ public class MerfolkSelectScreen extends AbstractContainerScreen<MerfolkSelectMe
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(guiGraphics);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
+
 		if (MerfolkReturnProcedure.execute(world) instanceof LivingEntity livingEntity) {
-			InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + -37, this.topPos + 32, 28, 0f + (float) Math.atan((this.leftPos + -37 - mouseX) / 40.0), (float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
+			InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics,
+					this.leftPos + -37, this.topPos + 32, 28,
+					(float) Math.atan((this.leftPos + -37 - mouseX) / 40.0),
+					(float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
 					livingEntity);
 		}
+
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
+
 		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + -18 && mouseY < topPos + 6)
 			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.merfolk_select.tooltip_next"), mouseX, mouseY);
+
 		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + 8 && mouseY < topPos + 32)
 			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.merfolk_select.tooltip_previous"), mouseX, mouseY);
+
 		if (mouseX > leftPos + 22 && mouseX < leftPos + 46 && mouseY > topPos + -41 && mouseY < topPos + -17)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.merfolk_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
+			guiGraphics.renderTooltip(font,
+					Component.translatable(Screen.hasShiftDown()
+							? "gui.simpleraces.merfolk_select.tooltip_dwarves_are_stout_skilled_craft.extended"
+							: "gui.simpleraces.merfolk_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
+
 		if (mouseX > leftPos + 46 && mouseX < leftPos + 70 && mouseY > topPos + -41 && mouseY < topPos + -17)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.merfolk_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
+			guiGraphics.renderTooltip(font,
+					Component.translatable(Screen.hasShiftDown()
+							? "gui.simpleraces.merfolk_select.tooltip_passive_mine_faster_in_dark.extended"
+							: "gui.simpleraces.merfolk_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
+
 		if (mouseX > leftPos + 25 && mouseX < leftPos + 49 && mouseY > topPos + 24 && mouseY < topPos + 48)
 			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.merfolk_select.tooltip_confirm"), mouseX, mouseY);
 	}
-
+	public static void renderWidgetBox(GuiGraphics guiGraphics, AbstractWidget widget) {
+		int left = widget.getX();
+		int top = widget.getY();
+		int width = widget.getWidth();
+		int height = widget.getHeight();
+		guiGraphics.fill(left, top, left + width, top + height, -16777216);
+		guiGraphics.fill(left + 1, top + 1, left + width - 1, top + height - 1, -16777216 | 0xFF000000);
+		guiGraphics.fill(left + 2, top + 2, left + width - 2, top + height - 2, -16777216 | 0xFF000000);
+	}
 	@Override
 	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
 		RenderSystem.setShaderColor(1, 1, 1, 1);
@@ -96,7 +122,7 @@ public class MerfolkSelectScreen extends AbstractContainerScreen<MerfolkSelectMe
 	@Override
 	public void init() {
 		super.init();
-		button_conf = new PlainTextButton(this.leftPos + 15, this.topPos + 27, 46, 20, Component.translatable("gui.simpleraces.merfolk_select.button_conf"), e -> {
+		button_conf = new PlainTextButton(this.leftPos -2, this.topPos + 27, 46, 20, Component.translatable("gui.simpleraces.merfolk_select.button_conf"), e -> {
 			if (true) {
 				ModMessages.INSTANCE.sendToServer(new MerfolkSelectButtonMessage(0, x, y, z));
 				MerfolkSelectButtonMessage.handleButtonAction(entity, 0, x, y, z);

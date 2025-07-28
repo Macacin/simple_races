@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.PlainTextButton;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
@@ -54,21 +55,42 @@ public class ArachnaSelectScreen extends AbstractContainerScreen<ArachaSelectMen
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(guiGraphics);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
-			InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + -37, this.topPos + 32, 28, 0f + (float) Math.atan((this.leftPos + -37 - mouseX) / 40.0), (float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
-					new ArachaModelEntity(SimpleracesModEntities.ARACHA_MODEL.get(), world));
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
-		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + -18 && mouseY < topPos + 6)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_next"), mouseX, mouseY);
-		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + 8 && mouseY < topPos + 32)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_previous"), mouseX, mouseY);
-		if (mouseX > leftPos + 22 && mouseX < leftPos + 46 && mouseY > topPos + -41 && mouseY < topPos + -17)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.aracha_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
-		if (mouseX > leftPos + 46 && mouseX < leftPos + 70 && mouseY > topPos + -41 && mouseY < topPos + -17)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.aracha_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
-		if (mouseX > leftPos + 25 && mouseX < leftPos + 49 && mouseY > topPos + 24 && mouseY < topPos + 48)
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_confirm"), mouseX, mouseY);
-	}
 
+		InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + -37, this.topPos + 32, 28,
+			0f + (float) Math.atan((this.leftPos + -37 - mouseX) / 40.0),
+			(float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
+			new ArachaModelEntity(SimpleracesModEntities.ARACHA_MODEL.get(), world));
+
+		this.renderTooltip(guiGraphics, mouseX, mouseY);
+
+		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + -18 && mouseY < topPos + 6) {
+			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_next"), mouseX, mouseY);
+		}
+
+		if (mouseX > leftPos + -7 && mouseX < leftPos + 17 && mouseY > topPos + 8 && mouseY < topPos + 32) {
+			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_previous"), mouseX, mouseY);
+		}
+
+		if (mouseX > leftPos + 22 && mouseX < leftPos + 46 && mouseY > topPos + -41 && mouseY < topPos + -17) {
+			if (Screen.hasShiftDown()) {
+				guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.aracha_select.tooltip_dwarves_are_stout_skilled_craft.extended"), mouseX, mouseY);
+			} else {
+				guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.aracha_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
+			}
+		}
+
+		if (mouseX > leftPos + 46 && mouseX < leftPos + 70 && mouseY > topPos + -41 && mouseY < topPos + -17) {
+			if (Screen.hasShiftDown()) {
+				guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.aracha_select.tooltip_passive_mine_faster_in_dark.extended"), mouseX, mouseY);
+			} else {
+				guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.aracha_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
+			}
+		}
+
+		if (mouseX > leftPos + 25 && mouseX < leftPos + 49 && mouseY > topPos + 24 && mouseY < topPos + 48) {
+			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_confirm"), mouseX, mouseY);
+		}
+	}
 	@Override
 	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
 		RenderSystem.setShaderColor(1, 1, 1, 1);
@@ -97,7 +119,7 @@ public class ArachnaSelectScreen extends AbstractContainerScreen<ArachaSelectMen
 	@Override
 	public void init() {
 		super.init();
-		button_conf = new PlainTextButton(this.leftPos + 17, this.topPos + 27, 46, 20, Component.translatable("gui.simpleraces.elf_select.button_conf"), e -> {
+		button_conf = new PlainTextButton(this.leftPos, this.topPos + 27, 46, 20, Component.translatable("gui.simpleraces.elf_select.button_conf"), e -> {
 			if (true) {
 				ModMessages.INSTANCE.sendToServer(new ArachaSelectButtonMessage(0, x, y, z));
 				ArachaSelectButtonMessage.handleButtonAction(entity, 0, x, y, z);

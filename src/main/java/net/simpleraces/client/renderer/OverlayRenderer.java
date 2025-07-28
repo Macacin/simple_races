@@ -3,6 +3,7 @@ package net.simpleraces.client.renderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
@@ -27,13 +28,14 @@ public class OverlayRenderer {
             int x = 11;
             int y = 11;
 
-            int maxWidth = 80;
+            int maxWidth = 97;
             int barWidth = (int) ((SyncVars.heat / 100.0f) * maxWidth);
+            gui.blit(new ResourceLocation("simpleraces","textures/screens/overheat.png"), x, y, 0, 0, maxWidth, 18);
+            gui.blit(new ResourceLocation("simpleraces","textures/screens/overheat.png"), x, y + 10, 0, 25, barWidth, 5);
+//            gui.fill(x, y, x + maxWidth, y + 8, 0x77000000);
+//            gui.fill(x, y, x + barWidth, y + 8, SyncVars.overheated ? 0xFFFF0000 : 0xFFFFA500);
 
-            gui.fill(x, y, x + maxWidth, y + 8, 0x77000000);
-            gui.fill(x, y, x + barWidth, y + 8, SyncVars.overheated ? 0xFFFF0000 : 0xFFFFA500);
-
-            gui.drawString(mc.font, "Heat: " + SyncVars.heat + "%", x, y - 10, 0xFFFFFF, true);
+//            gui.drawString(mc.font, "Heat: " + SyncVars.heat + "%", x, y - 10, 0xFFFFFF, true);
         }
     }
 }

@@ -1,8 +1,10 @@
 package net.simpleraces.procedures;
 
 import net.minecraft.core.particles.*;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -10,7 +12,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -18,6 +19,9 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.projectile.EvokerFangs;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -29,7 +33,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.server.ServerLifecycleHooks;
-import net.simpleraces.client.SyncVars;
 import net.simpleraces.effect.ModEffects;
 import net.simpleraces.entity.WerewolfState;
 import net.simpleraces.heat.HeatProvider;
@@ -64,6 +67,7 @@ import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber
@@ -73,12 +77,41 @@ public class ResistanceAddProcedure {
 	private static final UUID MERFOLK_WATER_DAMAGE_UUID  = UUID.fromString("d9f6b0c2-3e97-4a84-8f45-abcdef012345");
 	private static final UUID WEREWOLF_HUMAN_DAMAGE_UUID = UUID.fromString("a3e1f9d4-5b2c-4e1a-9f77-112233445566");
 	private static final UUID WEREWOLF_BEAST_DAMAGE_UUID = UUID.fromString("f2b4c6d8-7e9f-4a12-b3c4-556677889900");
+	private static final UUID ELF_SPEED_UUID = UUID.fromString("f2b4c6d8-7e9f-4a12-b3c4-556677889901");
 
+	private static final Set<ResourceKey<Biome>> FOREST_BIOMES = Set.of(
+        Biomes.FOREST,
+        Biomes.FLOWER_FOREST,
+        Biomes.BIRCH_FOREST,
+        Biomes.OLD_GROWTH_BIRCH_FOREST,
+        Biomes.DARK_FOREST,
+        Biomes.TAIGA,
+        Biomes.OLD_GROWTH_PINE_TAIGA,
+        Biomes.OLD_GROWTH_SPRUCE_TAIGA,
+
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "aspen_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "autumnal_valley")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "cherry_blossom_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "cika_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "ebony_woods")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "glowshroom_bayou")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "jacaranda_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "maple_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "mega_spruce_taiga")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "mega_coniferous_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "pine_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "redwood_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "seasonal_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "snowy_fir_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "weeping_witch_forest")),
+        ResourceKey.create(Registries.BIOME, new ResourceLocation("byg", "zelkova_forest"))
+    );
 	@SubscribeEvent
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide()) return;
 
 		Player player = event.player;
+		Level level = player.level();
 		execute(event, player.level(), player.getX(), player.getY(), player.getZ(), player);
 
 		SimpleracesModVariables.PlayerVariables vars = player.getCapability(
@@ -162,7 +195,6 @@ public class ResistanceAddProcedure {
 					}
 					player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2, 0, true, false));
 					BlockPos pos = player.blockPosition().below();
-					Level level = player.level();
 					if (level.getBlockState(pos).isAir() &&
 							Blocks.FIRE.defaultBlockState().canSurvive(level, pos)) {
 						level.setBlockAndUpdate(pos, Blocks.FIRE.defaultBlockState());
@@ -171,6 +203,31 @@ public class ResistanceAddProcedure {
 			});
 
 		} else if (vars.fairy) {
+			CompoundTag data = player.getPersistentData();
+
+			int flightTime = data.getInt("fairy_flight_ticks");
+			if(player.getAbilities().flying) {
+                flightTime++;
+            }
+			data.putInt("fairy_flight_ticks", flightTime);
+			if(flightTime > 10 * 20){
+				player.getAbilities().mayfly = false;
+				player.getAbilities().flying = false;
+				player.onUpdateAbilities();
+				if(!data.getBoolean("falled") && player.getY() < player.yo){
+					if(player.onGround()){
+						data.putBoolean("falled", true);
+					} else {
+						player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 2, 0, false, true));
+					}
+				}
+			} else{
+				player.getAbilities().mayfly = true;
+				data.putBoolean("falled", false);
+				player.getAbilities().setFlyingSpeed(0.025f);
+				player.onUpdateAbilities();
+			}
+
 			((ServerLevel) player.level()).sendParticles(
 					new DustColorTransitionOptions(
 							new Vector3f(1f, 1f, 1f),
@@ -179,8 +236,6 @@ public class ResistanceAddProcedure {
 					),
 					player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 0
 			);
-			player.getAbilities().mayfly = true;
-			player.onUpdateAbilities();
 
 		} else if (vars.aracha) {
 			if (player.isInWater()) {
@@ -222,10 +277,71 @@ public class ResistanceAddProcedure {
 
 				player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1, false, true));
 			}
+		} else if(vars.elf){
+			if(level.getBrightness(LightLayer.SKY, player.getOnPos().above(2)) > 0 && FOREST_BIOMES.contains(level.getBiome(player.getOnPos()).unwrapKey().get())){
+				player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 5, 0, false, true));
+				AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
+				if (speedAttr != null && speedAttr.getModifier(ELF_SPEED_UUID) == null) {
+					speedAttr.addTransientModifier(new AttributeModifier(
+							ELF_SPEED_UUID,
+							"Elf speed boost",
+							0.1,
+							AttributeModifier.Operation.MULTIPLY_BASE
+					));
+				}
+			} else {
+				AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
+				if (speedAttr != null) {
+					speedAttr.removeModifier(ELF_SPEED_UUID);
+				}
+			}
 		}
 	}
 
+	@SubscribeEvent
+	public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event){
+		Player player = event.getEntity();
+		SimpleracesModVariables.PlayerVariables vars = player.getCapability(
+				SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null
+		).orElse(new SimpleracesModVariables.PlayerVariables());
 
+		AttributeDeathFixProcedure.execute(player);
+		vars.selected = false;
+		if (vars.fairy) {
+			SelectedFairyProcedure.execute(player);
+		} else if (vars.aracha) {
+			SelectedArachaProcedure.execute(player);
+		} else if (vars.dragon) {
+			SelectedDragonProcedure.execute(player);
+		} else if (vars.halfdead) {
+			SelectedHalfdeadProcedure.execute(player);
+		} else if (vars.werewolf) {
+			SelectedWerewolfProcedure.execute(player);
+		} else if (vars.dwarf) {
+			SelectedDwarfProcedure.execute(player);
+		} else if (vars.elf) {
+			SelectedElfProcedure.execute(player);
+		} else if (vars.orc) {
+			SelectedOrcProcedure.execute(player);
+		} else if (vars.merfolk) {
+			SelectedMerfolkProcedure.execute(player);
+		} else if (vars.serpentin) {
+			SelectedSerpentinProcedure.execute(player);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onLivingFall(LivingFallEvent event) {
+		LivingEntity entity = event.getEntity();
+		SimpleracesModVariables.PlayerVariables vars = entity.getCapability(
+				SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null
+		).orElse(new SimpleracesModVariables.PlayerVariables());
+		if (vars.fairy) {
+			event.setDamageMultiplier(0.75f);
+		} else if(vars.dragon){
+			event.setDamageMultiplier(0.85f);
+		}
+	}
 
 	@SubscribeEvent
 	public static void onEntityAttributeModification(EntityAttributeModificationEvent evt) {
@@ -281,6 +397,9 @@ public class ResistanceAddProcedure {
     public static void onPotionUsed(LivingEntityUseItemEvent.Finish event) {
         ItemStack stack = event.getItem();
         LivingEntity entity = event.getEntity();
+		if(!entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).map(vars -> vars.serpentin).orElse(false)){
+			return;
+		}
 
         if (!(stack.getItem() instanceof PotionItem)) return;
 
@@ -309,7 +428,7 @@ public class ResistanceAddProcedure {
 		LivingEntity entity = event.getEntity();
 		if (!(event.getEntity() instanceof Player player)) return;
 		if (player.level().isClientSide) return;
-		if ((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).map(playerVariables -> playerVariables.Serpentin)
+		if ((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).map(playerVariables -> playerVariables.serpentin)
 				.orElse(false))){
 			if (entity.hasEffect(MobEffects.POISON)) {
 				entity.removeEffect(MobEffects.POISON);
@@ -355,7 +474,7 @@ public class ResistanceAddProcedure {
         Player player = event.getEntity();
 
         player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(vars -> {
-            if (vars.werewolf) {
+            if (vars.werewolf && WerewolfState.isBeast(player)) {
                 ItemStack stack = event.getItemStack();
 
                 if (!isMeat(stack.getItem())) {
@@ -374,18 +493,10 @@ public class ResistanceAddProcedure {
     }
 
 	@SubscribeEvent
-	public static void onPotionUsed(LivingEntityUseItemEvent.Stop event) {
-		if(event.getEntity().getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new SimpleracesModVariables.PlayerVariables()).Serpentin) {
-            event.setCanceled(true);
-        }
-	}
-
-	@SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
 		LivingEntity target = event.getEntity();
 		if (((event.getSource().getEntity() instanceof Player) && (((Player) event.getSource().getEntity()).getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new SimpleracesModVariables.PlayerVariables()).Serpentin))){
+				.orElse(new SimpleracesModVariables.PlayerVariables()).serpentin))){
 			boolean hasDebuff = false;
 
 			for (MobEffectInstance effect : target.getActiveEffects()) {
@@ -444,7 +555,7 @@ public class ResistanceAddProcedure {
 			if (count >= 3) {
 				data.putInt("bite_count", 0);
 //            target.hurt(player.damageSources().magic(), 4.0f);
-				spawnFangs(player.level(), player.getX(), player.getY(), player.getZ(), player.getYRot(), player);
+				spawnFangs(player.level(), target.getX(), target.getY(), target.getZ(), player.getYRot(), player);
 				target.addEffect(new MobEffectInstance(MobEffects.POISON, 40, 0));
 
 				target.level().playSound(null, target.blockPosition(), SoundEvents.BEE_STING, SoundSource.PLAYERS, 1.0f, 1.0f);

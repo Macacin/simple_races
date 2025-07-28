@@ -21,7 +21,7 @@ public class SimpleracesModEntityRenderers {
 		event.registerEntityRenderer(SimpleracesModEntities.DRAGON_MODEL.get(), DragonModelRenderer::new);
 		event.registerEntityRenderer(SimpleracesModEntities.MERFOLK_MODEL.get(), MerfolkModelRenderer::new);
 		event.registerEntityRenderer(SimpleracesModEntities.FAIRY_MODEL.get(), FairyModelRenderer::new);
-		event.registerEntityRenderer(SimpleracesModEntities.Serpentin_MODEL.get(), SerpentinModelRenderer::new);
+		event.registerEntityRenderer(SimpleracesModEntities.SERPENTIN_MODEL.get(), SerpentinModelRenderer::new);
 		event.registerEntityRenderer(SimpleracesModEntities.WEREWOLF_MODEL.get(), WerewolfModelRenderer::new);
 		event.registerEntityRenderer(SimpleracesModEntities.HALFDEAD_MODEL.get(), HalfdeadModelRenderer::new);
 		event.registerEntityRenderer(SimpleracesModEntities.ARACHA_MODEL.get(), ArachaModelRenderer::new);
