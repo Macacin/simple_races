@@ -10,6 +10,7 @@ import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.simpleraces.client.SyncVars;
+import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
 import net.simpleraces.network.SimpleracesModVariables;
 
 @OnlyIn(Dist.CLIENT)
@@ -29,7 +30,7 @@ public class OverlayRenderer {
             int y = 11;
 
             int maxWidth = 97;
-            int barWidth = (int) ((SyncVars.heat / 100.0f) * maxWidth);
+            int barWidth = (int) ((SyncVars.heat / SyncVars.maxHeat) * maxWidth);
             gui.blit(new ResourceLocation("simpleraces","textures/screens/overheat.png"), x, y, 0, 0, maxWidth, 18);
             gui.blit(new ResourceLocation("simpleraces","textures/screens/overheat.png"), x, y + 10, 0, 25, barWidth, 5);
 //            gui.fill(x, y, x + maxWidth, y + 8, 0x77000000);

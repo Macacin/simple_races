@@ -32,7 +32,7 @@ public class SelectedFairyProcedure {
 //			}
 			AttributeInstance maxHealthAttr = ((Player) entity).getAttribute(Attributes.MAX_HEALTH);
 			if (maxHealthAttr != null) {
-				double newMax = 8;
+				double newMax = SimpleRPGRacesConfiguration.FAIRY_MAX_HEALTH.get();
 				maxHealthAttr.setBaseValue(newMax);
 				((Player) entity).setHealth((float) newMax);
 			}

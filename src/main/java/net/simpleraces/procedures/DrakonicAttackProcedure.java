@@ -1,5 +1,6 @@
 package net.simpleraces.procedures;
 
+import net.minecraft.world.entity.player.Player;
 import net.simpleraces.network.SimpleracesModVariables;
 import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
 
@@ -26,10 +27,20 @@ public class DrakonicAttackProcedure {
 	}
 
 	private static void execute(@Nullable Event event, Entity entity, Entity sourceentity) {
-		if (entity == null || sourceentity == null)
+		if (entity == null || sourceentity == null || !(sourceentity instanceof Player player))
 			return;
 		if ((sourceentity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).dragon && SimpleRPGRacesConfiguration.DRAK_FIRE.get()) {
-			entity.setSecondsOnFire(3);
+			player.getCapability(SimpleracesModVariables.HEAT).ifPresent(data -> {
+				if (data.isOverheated()) {
+					entity.setSecondsOnFire(SimpleRPGRacesConfiguration.DRAKONID_OVERHEAT_FIRE_TIME);
+				}
+			});
 		}
 	}
+	@SubscribeEvent
+	public static void onHit(LivingAttackEvent event) {
+		if (!(event.getSource().getEntity() instanceof Player player)) return;
+		if(!(player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables()).dragon)) return;
+	}
+
 }

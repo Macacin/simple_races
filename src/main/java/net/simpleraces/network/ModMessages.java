@@ -32,7 +32,7 @@ public class ModMessages {
 		INSTANCE.registerMessage(nextId(), WerewolfSelectButtonMessage.class, WerewolfSelectButtonMessage::buffer, WerewolfSelectButtonMessage::new, WerewolfSelectButtonMessage::handler);
 		INSTANCE.registerMessage(nextId(), ClassDescButtonMessage.class, ClassDescButtonMessage::buffer, ClassDescButtonMessage::new, ClassDescButtonMessage::handler);
 		INSTANCE.registerMessage(nextId(), OpenSelectMessage.class, OpenSelectMessage::buffer, OpenSelectMessage::new, OpenSelectMessage::handler);
-		INSTANCE.registerMessage(nextId(), SyncHeatPacket.class, SyncHeatPacket::encode, buf -> new SyncHeatPacket(buf.readUUID(), buf.readInt(), buf.readBoolean()), SyncHeatPacket::handle);
+		INSTANCE.registerMessage(nextId(), SyncHeatPacket.class, SyncHeatPacket::encode, buf -> new SyncHeatPacket(buf.readUUID(), buf.readInt(), buf.readInt(), buf.readBoolean()), SyncHeatPacket::handle);
 		INSTANCE.registerMessage(nextId(), SyncWerewolfPacket.class, SyncWerewolfPacket::encode, buf -> new SyncWerewolfPacket(buf.readBoolean()), SyncWerewolfPacket::handle);
 		INSTANCE.registerMessage(nextId(), SimpleracesModVariables.PlayerVariablesSyncMessage.class, SimpleracesModVariables.PlayerVariablesSyncMessage::buffer,
 				SimpleracesModVariables.PlayerVariablesSyncMessage::new, SimpleracesModVariables.PlayerVariablesSyncMessage::handler);

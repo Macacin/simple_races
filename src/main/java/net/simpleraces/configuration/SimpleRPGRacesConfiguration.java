@@ -1,6 +1,7 @@
 package net.simpleraces.configuration;
 
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.simpleraces.world.inventory.ArachaSelectMenu;
 
 
 public class SimpleRPGRacesConfiguration {
@@ -36,12 +37,25 @@ public class SimpleRPGRacesConfiguration {
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DRAK_FIRE_RES;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DRAKONID_ARMOR_MELT;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DRAKONID_WATER_HURT;
+	public static final ForgeConfigSpec.ConfigValue<Integer> DRAKONID_HEAT_PER_ATTACK;
+	public static final ForgeConfigSpec.ConfigValue<Integer> DRAKONID_MAX_HEAT;
+	public static final ForgeConfigSpec.ConfigValue<Integer> DRAKONID_OVERHEAT_TIME;
+	public static final ForgeConfigSpec.ConfigValue<Float> DRAKONID_FALL_MULTIPLY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> DRAKONID_OVERHEAT_FIRE_TIME;
+	public static final ForgeConfigSpec.ConfigValue<Float> FAIRY_FALL_MULTIPLY;
+	public static final ForgeConfigSpec.ConfigValue<Float> FAIRY_FLY_SPEED_MULTIPLY;
+	public static final ForgeConfigSpec.ConfigValue<Double> FAIRY_MAX_HEALTH;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ELF_EARS;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ORC_TUSKS;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> MERFOLK_FORM;
+	public static final ForgeConfigSpec.ConfigValue<Double> MERFOLK_MAX_HEALTH;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DWARF_RESIZE;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ELF_RESIZE;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ORC_RESIZE;
+	public static final ForgeConfigSpec.ConfigValue<Double> ARACHA_MAX_HEALTH;
+	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_MAX_HEALTH;
+	public static final ForgeConfigSpec.ConfigValue<Double> WEREFOLF_MAX_HEALTH;
+	public static final ForgeConfigSpec.ConfigValue<Double> SERPENTIN_MAX_HEALTH;
 
 	static {
 		BUILDER.push("Class Select");
@@ -78,6 +92,7 @@ public class SimpleRPGRacesConfiguration {
 		MERFOLK_SWIM_SPEED = BUILDER.comment("Swim speed").define("merfolk_swim_speed", 2.0);
 		MERFOLK_CONDUIT_EFFECT = BUILDER.comment("Whether or not the conduit effect is applied").define("merfolk_conduit_effect", true);
 		MERFOLK_ATTACK_DAMAGE = BUILDER.comment("Merfolk attack damage level").define("merfolk_attack_damage", 0.8);
+		MERFOLK_MAX_HEALTH = BUILDER.comment("Merfolk max health").define("merfolk_max_health", 18.0);
 		BUILDER.pop();
 		BUILDER.push("Drakonid Class Attributes");
 		DRAK_FIRE = BUILDER.comment("Apply fire aspect to attacks").define("drak_fire", true);
@@ -85,6 +100,21 @@ public class SimpleRPGRacesConfiguration {
 		DRAK_FIRE_RES = BUILDER.comment("Whether or not to resist damage from fire sources").define("drak_fire_res", true);
 		DRAKONID_ARMOR_MELT = BUILDER.comment("Drakonid (gold/leather armor) melts").define("drakonid_armor_mel", true);
 		DRAKONID_WATER_HURT = BUILDER.comment("Drakonid hurt by water").define("drakonid_water_hurt", true);
+		DRAKONID_HEAT_PER_ATTACK = BUILDER.comment("Heat generated per attack").define("drakonid_heat_per_attack", 4);
+		DRAKONID_MAX_HEAT = BUILDER.comment("Maximum heat level before overheating").define("drakonid_max_heat", 100);
+		DRAKONID_OVERHEAT_TIME = BUILDER.comment("Time in seconds of overheating").define("drakonid_overheat_time", 20 * 30);
+		DRAKONID_FALL_MULTIPLY = BUILDER.comment("Drakonid fall damage multiplier").define("drakonid_fall_multiply", 0.85f);
+		DRAKONID_OVERHEAT_FIRE_TIME = BUILDER.comment("Time in seconds fire duration after overheating").define("drakonid_overheat_fire_time", 5);
+		BUILDER.pop();
+		BUILDER.push("Fairy Class Attributes");
+		FAIRY_FALL_MULTIPLY = BUILDER.comment("Fairy fall damage multiplier").define("fairy_fall_multiply", 0.75f);
+		FAIRY_FLY_SPEED_MULTIPLY = BUILDER.comment("Fairy fly speed multiplier").define("fairy_fly_speed_multiply", 1.0f);
+		FAIRY_MAX_HEALTH = BUILDER.comment("Fairy max health").define("fairy_max_health", 8.0);
+		BUILDER.pop();
+		BUILDER.push("Another Class Attributes");
+		ARACHA_MAX_HEALTH = BUILDER.comment("Aracha max health").define("aracha_max_health", 16.0);
+		HALFDEAD_MAX_HEALTH = BUILDER.comment("Halfdead max health").define("halfdead_max_health", 23.0);
+		WEREFOLF_MAX_HEALTH = BUILDER.comment("Werewolf max health").define("werewolf_max_health", 20.0);
 		BUILDER.pop();
 		BUILDER.push("Cosmetics");
 		ELF_EARS = BUILDER.define("elf_ears", true);

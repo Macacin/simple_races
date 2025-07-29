@@ -178,7 +178,7 @@ public class ResistanceAddProcedure {
 			}
 			player.getCapability(SimpleracesModVariables.HEAT).ifPresent(data -> {
 				ModMessages.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
-						new SyncHeatPacket(player.getUUID(), data.getHeat(), data.isOverheated()));
+						new SyncHeatPacket(player.getUUID(), data.getHeat(), SimpleRPGRacesConfiguration.DRAKONID_MAX_HEAT.get(), data.isOverheated()));
 				if (data.isOverheated()) {
 					int ticks = data.getOverheatTicks() - 1;
 					data.setOverheatTicks(ticks);
@@ -224,7 +224,7 @@ public class ResistanceAddProcedure {
 			} else{
 				player.getAbilities().mayfly = true;
 				data.putBoolean("falled", false);
-				player.getAbilities().setFlyingSpeed(0.025f);
+				player.getAbilities().setFlyingSpeed(0.025f * SimpleRPGRacesConfiguration.FAIRY_FLY_SPEED_MULTIPLY.get());
 				player.onUpdateAbilities();
 			}
 
@@ -337,9 +337,9 @@ public class ResistanceAddProcedure {
 				SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null
 		).orElse(new SimpleracesModVariables.PlayerVariables());
 		if (vars.fairy) {
-			event.setDamageMultiplier(0.75f);
+			event.setDamageMultiplier(SimpleRPGRacesConfiguration.FAIRY_FALL_MULTIPLY.get());
 		} else if(vars.dragon){
-			event.setDamageMultiplier(0.85f);
+			event.setDamageMultiplier(SimpleRPGRacesConfiguration.DRAKONID_FALL_MULTIPLY.get());
 		}
 	}
 
@@ -648,27 +648,17 @@ public class ResistanceAddProcedure {
 		player.getCapability(SimpleracesModVariables.HEAT).ifPresent(data -> {
 			if (data.isOverheated()) return;
 
-			data.setHeat(data.getHeat() + 4);
-			if (data.getHeat() >= 100) {
-				data.setHeat(100);
+			data.setHeat(data.getHeat() + SimpleRPGRacesConfiguration.DRAKONID_HEAT_PER_ATTACK.get());
+			if (data.getHeat() >= SimpleRPGRacesConfiguration.DRAKONID_MAX_HEAT.get()) {
+				data.setHeat(SimpleRPGRacesConfiguration.DRAKONID_MAX_HEAT.get());
 				data.setOverheated(true);
-				data.setOverheatTicks(30 * 20);
+				data.setOverheatTicks(SimpleRPGRacesConfiguration.DRAKONID_OVERHEAT_TIME.get());
 
 				player.sendSystemMessage(Component.literal("§cВы перегрелись!"));
 			}
 		});
 	}
 
-	@SubscribeEvent
-	public static void onHit(LivingAttackEvent event) {
-		if (!(event.getSource().getEntity() instanceof Player player)) return;
-		if(!(player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables()).dragon)) return;
-		player.getCapability(SimpleracesModVariables.HEAT).ifPresent(data -> {
-			if (data.isOverheated()) {
-				event.getEntity().setSecondsOnFire(5);
-			}
-		});
-	}
 	@SubscribeEvent
 	public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
 		if (event.getObject() instanceof Player) {
