@@ -3,6 +3,9 @@
     "net/simpleraces/mixin/WebBlockMixin": {
       "entityInside": "Lnet/minecraft/world/level/block/WebBlock;m_7892_(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)V"
     },
+    "net/simpleraces/mixin/AnvilMenuMixin": {
+      "createResult": "Lnet/minecraft/world/inventory/AnvilMenu;m_6640_()V"
+    },
     "net/simpleraces/mixin/EnchantmentHelperMixin": {
       "hasAquaAffinity": "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;m_44934_(Lnet/minecraft/world/entity/LivingEntity;)Z"
     }
@@ -11,6 +14,9 @@
     "searge": {
       "net/simpleraces/mixin/WebBlockMixin": {
         "entityInside": "Lnet/minecraft/world/level/block/WebBlock;m_7892_(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/Entity;)V"
+      },
+      "net/simpleraces/mixin/AnvilMenuMixin": {
+        "createResult": "Lnet/minecraft/world/inventory/AnvilMenu;m_6640_()V"
       },
       "net/simpleraces/mixin/EnchantmentHelperMixin": {
         "hasAquaAffinity": "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;m_44934_(Lnet/minecraft/world/entity/LivingEntity;)Z"

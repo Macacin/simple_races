@@ -49,33 +49,33 @@ public class AttributeDeathFixProcedure {
 		} else if ((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).merfolk) {
 			AttributeInstance healthAttr = ((Player)entity).getAttribute(Attributes.MAX_HEALTH);
 			if (healthAttr != null) {
-				double newMaxHealth = 18;
+				double newMaxHealth = SimpleRPGRacesConfiguration.MERFOLK_MAX_HEALTH.get();
 				healthAttr.setBaseValue(newMaxHealth);
 				((Player)entity).setHealth((float) newMaxHealth);
 			}
 		} else if((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).aracha){
 			AttributeInstance healthAttr = ((Player)entity).getAttribute(Attributes.MAX_HEALTH);
 			if (healthAttr != null) {
-				double newMaxHealth = 16;
+				double newMaxHealth = SimpleRPGRacesConfiguration.ARACHA_MAX_HEALTH.get();
 				healthAttr.setBaseValue(newMaxHealth);
 				((Player)entity).setHealth((float) newMaxHealth);
 			}
 		} else if((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).halfdead){
 			AttributeInstance healthAttr = ((Player)entity).getAttribute(Attributes.MAX_HEALTH);
 			if (healthAttr != null) {
-				double newMaxHealth = 23;
+				double newMaxHealth = SimpleRPGRacesConfiguration.HALFDEAD_MAX_HEALTH.get();
 				healthAttr.setBaseValue(newMaxHealth);
 				((Player)entity).setHealth((float) newMaxHealth);
 			}
 		} else if((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).fairy){
 			AttributeInstance healthAttr = ((Player)entity).getAttribute(Attributes.MAX_HEALTH);
 			if (healthAttr != null) {
-				double newMaxHealth = 8;
+				double newMaxHealth = SimpleRPGRacesConfiguration.FAIRY_MAX_HEALTH.get();
 				healthAttr.setBaseValue(newMaxHealth);
 				player.setHealth((float) newMaxHealth);
 			}
 			player.getAbilities().mayfly = true;
-			player.getAbilities().setFlyingSpeed(0.03f);
+			player.getAbilities().setFlyingSpeed(0.025f * SimpleRPGRacesConfiguration.FAIRY_FLY_SPEED_MULTIPLY.get());
 			player.onUpdateAbilities();
 		}
 	}

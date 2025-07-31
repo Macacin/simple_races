@@ -37,7 +37,7 @@ public class DwarfSelectMenu extends AbstractRaceSelectMenu implements Supplier<
 	private BlockEntity boundBlockEntity = null;
 
 	public DwarfSelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.DWARF_SELECT.get(), id);
+		super(SimpleracesModMenus.DWARF_SELECT.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

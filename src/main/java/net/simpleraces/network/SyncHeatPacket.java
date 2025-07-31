@@ -16,26 +16,29 @@ import java.util.function.Supplier;
 
 public class SyncHeatPacket {
     private final int heat;
+    private final int maxHeat;
     private final boolean overheated;
     private final UUID playerUUID;
 
-    public SyncHeatPacket(UUID playerUUID, int heat, boolean overheated) {
+    public SyncHeatPacket(UUID playerUUID, int heat, int maxHeat, boolean overheated) {
         this.playerUUID = playerUUID;
         this.heat = heat;
         this.overheated = overheated;
+        this.maxHeat = maxHeat;
     }
 
     public static void encode(SyncHeatPacket packet, FriendlyByteBuf buf) {
         buf.writeUUID(packet.playerUUID);
         buf.writeInt(packet.heat);
+        buf.writeInt(packet.maxHeat);
         buf.writeBoolean(packet.overheated);
     }
 
     public static SyncHeatPacket decode(FriendlyByteBuf buf) {
-        return new SyncHeatPacket(buf.readUUID(), buf.readInt(), buf.readBoolean());
+        return new SyncHeatPacket(buf.readUUID(), buf.readInt(), buf.readInt(), buf.readBoolean());
     }
 
     public static void handle(SyncHeatPacket packet, Supplier<NetworkEvent.Context> ctx) {
-        SyncVars.syncHeat(packet.heat, packet.overheated);
+        SyncVars.syncHeat(packet.heat, packet.maxHeat, packet.overheated);
     }
 }

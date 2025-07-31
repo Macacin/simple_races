@@ -25,7 +25,7 @@ public class ElfModelEntity extends Monster {
 		this(SimpleracesModEntities.ELF_MODEL.get(), world);
 	}
 
-	public ElfModelEntity(EntityType<ElfModelEntity> type, Level world) {
+	public ElfModelEntity(EntityType<Monster> type, Level world) {
 		super(type, world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;

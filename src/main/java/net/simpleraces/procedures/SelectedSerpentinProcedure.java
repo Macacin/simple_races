@@ -17,7 +17,7 @@ public class SelectedSerpentinProcedure {
 			{
 				boolean _setval = true;
 				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.Serpentin = _setval;
+					capability.serpentin = _setval;
 					capability.syncPlayerVariables(entity);
 				});
 			}

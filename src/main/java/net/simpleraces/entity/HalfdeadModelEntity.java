@@ -23,7 +23,7 @@ public class HalfdeadModelEntity extends Monster {
 		this(SimpleracesModEntities.HALFDEAD_MODEL.get(), world);
 	}
 
-	public HalfdeadModelEntity(EntityType<HalfdeadModelEntity> type, Level world) {
+	public HalfdeadModelEntity(EntityType<Monster> type, Level world) {
 		super(type, world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;

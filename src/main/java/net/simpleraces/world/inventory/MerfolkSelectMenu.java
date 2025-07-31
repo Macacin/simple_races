@@ -37,7 +37,7 @@ public class MerfolkSelectMenu extends AbstractRaceSelectMenu implements Supplie
 	private BlockEntity boundBlockEntity = null;
 
 	public MerfolkSelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.MERFOLK_SELECT.get(), id);
+		super(SimpleracesModMenus.MERFOLK_SELECT.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

@@ -37,7 +37,7 @@ public class ClassDescMenu extends AbstractRaceSelectMenu implements Supplier<Ma
 	private BlockEntity boundBlockEntity = null;
 
 	public ClassDescMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.CLASS_DESC.get(), id);
+		super(SimpleracesModMenus.CLASS_DESC.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

@@ -37,7 +37,7 @@ public class OrcSelectMenu extends AbstractRaceSelectMenu implements Supplier<Ma
 	private BlockEntity boundBlockEntity = null;
 
 	public OrcSelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.ORC_SELECT.get(), id);
+		super(SimpleracesModMenus.ORC_SELECT.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

@@ -35,7 +35,7 @@ public class FairySelectMenu extends AbstractRaceSelectMenu implements Supplier<
 	private BlockEntity boundBlockEntity = null;
 
 	public FairySelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.FAIRY_SELECT.get(), id);
+		super(SimpleracesModMenus.FAIRY_SELECT.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

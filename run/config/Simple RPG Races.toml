@@ -1,0 +1,112 @@
+
+["Class Select"]
+	#Force player to pick a class after joining
+	force_pick = false
+	#Message players who haven't selected a class
+	join_message = true
+	#Ability to deselect classes (survival) via /classreset
+	deselect = false
+	#Enter Join Message Text
+	join_message_text = "Click the Assigned Key [M] To Open the RPG Race Selection Menu"
+
+["Elf Class Attributes"]
+	#Whether or not elves have night vision
+	elf_night_vision = false
+	#Set elf max health
+	elf_max_health = 16.0
+	#Add glowing effect when drawing bow
+	elf_bow_sight = true
+	#Elf gains mining fatigue while holding a pickaxe
+	elf_pickaxe_restrict = true
+	#Bonus damage elves deal with bows
+	elf_bow_bonus_damage = 2.0
+	#Whether or not elves can eat meat without being poisoned
+	elf_meat_restrict = true
+
+["Orc Class Attributes"]
+	#Level of resistance effect
+	orc_res_level = 0.0
+	#Orc attack damage bonus
+	orc_attack_damage = 1.5
+	#Increased strength on low health
+	orc_rage = true
+	#Knockback resistance bonus
+	orc_knockback_res = 1.1
+	#Armor value at which the Orc class begins to be slowed
+	orc_armor_value_slow = 0.0
+	#Orc gains minor strength boost at less than 5 health
+	orc_mini_rage = true
+
+["Dwarf Class Attributes"]
+	#Increased mining speed underground
+	dwarf_haste = true
+	dwarf_max_health = 10.0
+	#Level of resistance effect
+	dwarf_res_level = 1.0
+	#Dwarf gains nightvision + haste 2 at subzero levels (underground only)
+	dwarf_subzero_effects = false
+	#Dwarf strength level while holding a pickaxe
+	dwarf_pickaxe_strength = 0.0
+	#Dwarf cant use bows
+	dwarf_bow_restrict = true
+
+["Merfolk Class Attributes"]
+	#Swim speed
+	merfolk_swim_speed = 2.0
+	#Whether or not the conduit effect is applied
+	merfolk_conduit_effect = true
+	#Merfolk attack damage level
+	merfolk_attack_damage = 0.8
+	#Merfolk max health
+	merfolk_max_health = 18.0
+
+["Drakonid Class Attributes"]
+	#Apply fire aspect to attacks
+	drak_fire = true
+	#Drakonid attack damage bonus
+	drak_attack_damage = 1.25
+	#Whether or not to resist damage from fire sources
+	drak_fire_res = true
+	#Drakonid (gold/leather armor) melts
+	drakonid_armor_mel = true
+	#Drakonid hurt by water
+	drakonid_water_hurt = true
+	#Heat generated per attack
+	drakonid_heat_per_attack = 4
+	#Maximum heat level before overheating
+	drakonid_max_heat = 100
+	#Time in seconds of overheating
+	drakonid_overheat_time = 600
+	#Drakonid fall damage multiplier
+	drakonid_fall_multiply = 0.85
+	#Time in seconds fire duration after overheating
+	drakonid_overheat_fire_time = 5
+
+["Fairy Class Attributes"]
+	#Fairy fall damage multiplier
+	fairy_fall_multiply = 0.75
+	#Fairy fly speed multiplier
+	fairy_fly_speed_multiply = 1.0
+	#Fairy max health
+	fairy_max_health = 8.0
+	#Fairy flying time(seconds)
+	fairy_max_flying_time = 10
+
+["Another Class Attributes"]
+	#Aracha max health
+	aracha_max_health = 16.0
+	#Halfdead max health
+	halfdead_max_health = 23.0
+	#Werewolf max health
+	werewolf_max_health = 20.0
+	#Serpentin max health
+	serpentin_max_health = 20.0
+
+[Cosmetics]
+	elf_ears = true
+	orc_tusks = true
+	merfolk_form = true
+	dwarf_resize = true
+	elf_resize = true
+	orc_resize = true
+

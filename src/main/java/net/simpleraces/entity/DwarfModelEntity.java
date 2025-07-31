@@ -25,7 +25,7 @@ public class DwarfModelEntity extends Monster {
 		this(SimpleracesModEntities.DWARF_MODEL.get(), world);
 	}
 
-	public DwarfModelEntity(EntityType<DwarfModelEntity> type, Level world) {
+	public DwarfModelEntity(EntityType<Monster> type, Level world) {
 		super(type, world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;

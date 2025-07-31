@@ -25,7 +25,7 @@ public class OrcModelEntity extends Monster {
 		this(SimpleracesModEntities.ORC_MODEL.get(), world);
 	}
 
-	public OrcModelEntity(EntityType<OrcModelEntity> type, Level world) {
+	public OrcModelEntity(EntityType<Monster> type, Level world) {
 		super(type, world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;

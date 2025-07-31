@@ -1,7 +1,5 @@
 package net.simpleraces.network;
 
-import net.simpleraces.SimpleracesMod;
-
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -87,7 +85,7 @@ public class SimpleracesModVariables {
 			clone.selected = original.selected;
 			clone.fairy = original.fairy;
 			clone.halfdead = original.halfdead;
-			clone.Serpentin = original.Serpentin;
+			clone.serpentin = original.serpentin;
 			clone.werewolf = original.werewolf;
 			clone.aracha = original.aracha;
 			if (!event.isWasDeath()) {
@@ -138,7 +136,7 @@ public class SimpleracesModVariables {
 		public boolean dragon = false;
 		public boolean fairy = false;
 		public boolean halfdead = false;
-		public boolean Serpentin = false;
+		public boolean serpentin = false;
 		public boolean werewolf = false;
 		public boolean aracha = false;
 		public boolean selected = false;
@@ -158,7 +156,7 @@ public class SimpleracesModVariables {
 			nbt.putBoolean("selected", selected);
 			nbt.putBoolean("fairy", fairy);
 			nbt.putBoolean("halfdead", halfdead);
-			nbt.putBoolean("Serpentin", Serpentin);
+			nbt.putBoolean("Serpentin", serpentin);
 			nbt.putBoolean("werewolf", werewolf);
 			nbt.putBoolean("aracha", aracha);
 			return nbt;
@@ -174,7 +172,7 @@ public class SimpleracesModVariables {
 			selected = nbt.getBoolean("selected");
 			fairy = nbt.getBoolean("fairy");
 			halfdead = nbt.getBoolean("halfdead");
-			Serpentin = nbt.getBoolean("Serpentin");
+			serpentin = nbt.getBoolean("Serpentin");
 			werewolf = nbt.getBoolean("werewolf");
 			aracha = nbt.getBoolean("aracha");
 		}
@@ -217,7 +215,7 @@ public class SimpleracesModVariables {
 					variables.selected = message.data.selected;
 					variables.fairy = message.data.fairy;
 					variables.halfdead = message.data.halfdead;
-					variables.Serpentin = message.data.Serpentin;
+					variables.serpentin = message.data.serpentin;
 					variables.werewolf = message.data.werewolf;
 					variables.aracha = message.data.aracha;
 				}
