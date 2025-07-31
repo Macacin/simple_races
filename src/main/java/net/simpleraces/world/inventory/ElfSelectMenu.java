@@ -37,7 +37,7 @@ public class ElfSelectMenu extends AbstractRaceSelectMenu implements Supplier<Ma
 	private BlockEntity boundBlockEntity = null;
 
 	public ElfSelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.ELF_SELECT.get(), id);
+		super(SimpleracesModMenus.ELF_SELECT.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

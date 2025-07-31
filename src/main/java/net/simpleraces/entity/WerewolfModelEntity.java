@@ -23,7 +23,7 @@ public class WerewolfModelEntity extends Monster {
 		this(SimpleracesModEntities.WEREWOLF_MODEL.get(), world);
 	}
 
-	public WerewolfModelEntity(EntityType<WerewolfModelEntity> type, Level world) {
+	public WerewolfModelEntity(EntityType<Monster> type, Level world) {
 		super(type, world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;

@@ -57,6 +57,8 @@
 	merfolk_conduit_effect = true
 	#Merfolk attack damage level
 	merfolk_attack_damage = 0.8
+	#Merfolk max health
+	merfolk_max_health = 18.0
 
 ["Drakonid Class Attributes"]
 	#Apply fire aspect to attacks
@@ -69,6 +71,36 @@
 	drakonid_armor_mel = true
 	#Drakonid hurt by water
 	drakonid_water_hurt = true
+	#Heat generated per attack
+	drakonid_heat_per_attack = 4
+	#Maximum heat level before overheating
+	drakonid_max_heat = 100
+	#Time in seconds of overheating
+	drakonid_overheat_time = 600
+	#Drakonid fall damage multiplier
+	drakonid_fall_multiply = 0.85
+	#Time in seconds fire duration after overheating
+	drakonid_overheat_fire_time = 5
+
+["Fairy Class Attributes"]
+	#Fairy fall damage multiplier
+	fairy_fall_multiply = 0.75
+	#Fairy fly speed multiplier
+	fairy_fly_speed_multiply = 1.0
+	#Fairy max health
+	fairy_max_health = 8.0
+	#Fairy flying time(seconds)
+	fairy_max_flying_time = 10
+
+["Another Class Attributes"]
+	#Aracha max health
+	aracha_max_health = 16.0
+	#Halfdead max health
+	halfdead_max_health = 23.0
+	#Werewolf max health
+	werewolf_max_health = 20.0
+	#Serpentin max health
+	serpentin_max_health = 20.0
 
 [Cosmetics]
 	elf_ears = true

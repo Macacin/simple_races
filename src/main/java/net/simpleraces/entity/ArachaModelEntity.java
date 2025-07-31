@@ -23,7 +23,7 @@ public class ArachaModelEntity extends Monster {
 		this(SimpleracesModEntities.ARACHA_MODEL.get(), world);
 	}
 
-	public ArachaModelEntity(EntityType<ArachaModelEntity> type, Level world) {
+	public ArachaModelEntity(EntityType<Monster> type, Level world) {
 		super(type, world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;

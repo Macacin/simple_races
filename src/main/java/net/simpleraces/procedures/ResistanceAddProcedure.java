@@ -209,24 +209,37 @@ public class ResistanceAddProcedure {
 			if(player.getAbilities().flying) {
                 flightTime++;
             }
-			data.putInt("fairy_flight_ticks", flightTime);
-			if(flightTime > 10 * 20){
+			int fallingTime =  data.getInt("fairy_falling_ticks");
+			if(flightTime > SimpleRPGRacesConfiguration.FAIRY_MAX_FLYING_TIME.get() * 20){
 				player.getAbilities().mayfly = false;
 				player.getAbilities().flying = false;
 				player.onUpdateAbilities();
+				FAIRY_FLYING_BAR = SimpleRPGRacesConfiguration.FAIRY_MAX_FLYING_TIME.get() * 20 - fallingTime;
 				if(!data.getBoolean("falled") && player.getY() < player.yo){
 					if(player.onGround()){
 						data.putBoolean("falled", true);
+						data.putInt("fairy_flight_ticks", Math.max(0, SimpleRPGRacesConfiguration.FAIRY_MAX_FLYING_TIME.get() * 20 - fallingTime));
 					} else {
 						player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 2, 0, false, true));
+						fallingTime++;
 					}
 				}
-			} else{
+				if(data.getBoolean("falled")){
+					fallingTime++;
+				}
+				if(fallingTime >= SimpleRPGRacesConfiguration.FAIRY_MAX_FLYING_TIME.get() * 20){
+					flightTime = 0;
+					fallingTime = 0;
+				}
+			} else {
+				FAIRY_FLYING_BAR = flightTime;
 				player.getAbilities().mayfly = true;
 				data.putBoolean("falled", false);
 				player.getAbilities().setFlyingSpeed(0.025f * SimpleRPGRacesConfiguration.FAIRY_FLY_SPEED_MULTIPLY.get());
 				player.onUpdateAbilities();
 			}
+			data.putInt("fairy_flight_ticks", flightTime);
+			data.putInt("fairy_falling_ticks", fallingTime);
 
 			((ServerLevel) player.level()).sendParticles(
 					new DustColorTransitionOptions(
@@ -298,37 +311,7 @@ public class ResistanceAddProcedure {
 		}
 	}
 
-	@SubscribeEvent
-	public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event){
-		Player player = event.getEntity();
-		SimpleracesModVariables.PlayerVariables vars = player.getCapability(
-				SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null
-		).orElse(new SimpleracesModVariables.PlayerVariables());
-
-		AttributeDeathFixProcedure.execute(player);
-		vars.selected = false;
-		if (vars.fairy) {
-			SelectedFairyProcedure.execute(player);
-		} else if (vars.aracha) {
-			SelectedArachaProcedure.execute(player);
-		} else if (vars.dragon) {
-			SelectedDragonProcedure.execute(player);
-		} else if (vars.halfdead) {
-			SelectedHalfdeadProcedure.execute(player);
-		} else if (vars.werewolf) {
-			SelectedWerewolfProcedure.execute(player);
-		} else if (vars.dwarf) {
-			SelectedDwarfProcedure.execute(player);
-		} else if (vars.elf) {
-			SelectedElfProcedure.execute(player);
-		} else if (vars.orc) {
-			SelectedOrcProcedure.execute(player);
-		} else if (vars.merfolk) {
-			SelectedMerfolkProcedure.execute(player);
-		} else if (vars.serpentin) {
-			SelectedSerpentinProcedure.execute(player);
-		}
-	}
+	public static int FAIRY_FLYING_BAR = 0;
 
 	@SubscribeEvent
 	public static void onLivingFall(LivingFallEvent event) {
@@ -406,6 +389,7 @@ public class ResistanceAddProcedure {
         List<MobEffectInstance> originalEffects = PotionUtils.getMobEffects(stack);
 
         for (MobEffectInstance effect : originalEffects) {
+			if(!effect.getEffect().isBeneficial()) continue;
             MobEffect type = effect.getEffect();
             int amplifier = effect.getAmplifier();
             int duration = effect.getDuration();

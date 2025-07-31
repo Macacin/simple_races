@@ -35,7 +35,7 @@ public class SerpentinSelectMenu extends AbstractRaceSelectMenu implements Suppl
 	private BlockEntity boundBlockEntity = null;
 
 	public SerpentinSelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.SERPENTIN_SELECT.get(), id);
+		super(SimpleracesModMenus.SERPENTIN_SELECT.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

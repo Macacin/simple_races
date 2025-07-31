@@ -4,6 +4,7 @@
  */
 package net.simpleraces.init;
 
+import net.minecraft.world.entity.monster.Monster;
 import net.simpleraces.entity.*;
 import net.simpleraces.SimpleracesMod;
 
@@ -22,53 +23,53 @@ import net.minecraft.world.entity.Entity;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SimpleracesModEntities {
 	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, SimpleracesMod.MODID);
-	public static final RegistryObject<EntityType<DwarfModelEntity>> DWARF_MODEL = register("dwarf_model",
-			EntityType.Builder.<DwarfModelEntity>of(DwarfModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DwarfModelEntity::new)
+	public static final RegistryObject<EntityType<Monster>> DWARF_MODEL = register("dwarf_model",
+			EntityType.Builder.<Monster>of(DwarfModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DwarfModelEntity::new)
+
+					.sized(0.6f, 1.44f));
+	public static final RegistryObject<EntityType<Monster>> ELF_MODEL = register("elf_model",
+			EntityType.Builder.<Monster>of(ElfModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ElfModelEntity::new)
 
 					.sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<ElfModelEntity>> ELF_MODEL = register("elf_model",
-			EntityType.Builder.<ElfModelEntity>of(ElfModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ElfModelEntity::new)
+	public static final RegistryObject<EntityType<Monster>> ORC_MODEL = register("orc_model",
+			EntityType.Builder.<Monster>of(OrcModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(OrcModelEntity::new)
 
 					.sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<OrcModelEntity>> ORC_MODEL = register("orc_model",
-			EntityType.Builder.<OrcModelEntity>of(OrcModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(OrcModelEntity::new)
+	public static final RegistryObject<EntityType<Monster>> DRAGON_MODEL = register("dragon_model",
+			EntityType.Builder.<Monster>of(DragonModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DragonModelEntity::new)
 
 					.sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<DragonModelEntity>> DRAGON_MODEL = register("dragon_model",
-			EntityType.Builder.<DragonModelEntity>of(DragonModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DragonModelEntity::new)
-
-					.sized(0.6f, 1.8f));
-	public static final RegistryObject<EntityType<MerfolkModelEntity>> MERFOLK_MODEL = register("merfolk_model",
-			EntityType.Builder.<MerfolkModelEntity>of(MerfolkModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(MerfolkModelEntity::new)
+	public static final RegistryObject<EntityType<Monster>> MERFOLK_MODEL = register("merfolk_model",
+			EntityType.Builder.<Monster>of(MerfolkModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(MerfolkModelEntity::new)
 
 					.sized(0.6f, 1.8f));
 
-	public static final RegistryObject<EntityType<FairyModelEntity>> FAIRY_MODEL = register("fairy_model",
-			EntityType.Builder.<FairyModelEntity>of(FairyModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(FairyModelEntity::new)
+	public static final RegistryObject<EntityType<Monster>> FAIRY_MODEL = register("fairy_model",
+			EntityType.Builder.<Monster>of(FairyModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(FairyModelEntity::new)
 
 					.sized(0.6f, 1.0f));
 
-	public static final RegistryObject<EntityType<SerpentinModelEntity>> SERPENTIN_MODEL = register("serpentin_model",
-			EntityType.Builder.<SerpentinModelEntity>of(SerpentinModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SerpentinModelEntity::new)
+	public static final RegistryObject<EntityType<Monster>> SERPENTIN_MODEL = register("serpentin_model",
+			EntityType.Builder.<Monster>of(SerpentinModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SerpentinModelEntity::new)
 
 					.sized(0.6f, 1.8f));
 
-	public static final RegistryObject<EntityType<WerewolfModelEntity>> WEREWOLF_MODEL = register("werewolf_model",
-			EntityType.Builder.<WerewolfModelEntity>of(WerewolfModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(WerewolfModelEntity::new)
+	public static final RegistryObject<EntityType<Monster>> WEREWOLF_MODEL = register("werewolf_model",
+			EntityType.Builder.<Monster>of(WerewolfModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(WerewolfModelEntity::new)
 
 					.sized(0.6f, 1.8f));
 
-	public static final RegistryObject<EntityType<HalfdeadModelEntity>> HALFDEAD_MODEL = register("halfdead_model",
-			EntityType.Builder.<HalfdeadModelEntity>of(HalfdeadModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HalfdeadModelEntity::new)
+	public static final RegistryObject<EntityType<Monster>> HALFDEAD_MODEL = register("halfdead_model",
+			EntityType.Builder.<Monster>of(HalfdeadModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HalfdeadModelEntity::new)
 
 					.sized(0.6f, 1.8f));
 
-	public static final RegistryObject<EntityType<ArachaModelEntity>> ARACHA_MODEL = register("aracha_model",
-			EntityType.Builder.<ArachaModelEntity>of(ArachaModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ArachaModelEntity::new)
+	public static final RegistryObject<EntityType<Monster>> ARACHA_MODEL = register("aracha_model",
+			EntityType.Builder.<Monster>of(ArachaModelEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ArachaModelEntity::new)
 
 					.sized(0.6f, 1.8f));
 
-	private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
+	private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<Monster> entityTypeBuilder) {
 		return REGISTRY.register(registryname, () -> (EntityType<T>) entityTypeBuilder.build(registryname));
 	}
 
@@ -100,5 +101,21 @@ public class SimpleracesModEntities {
 		event.put(WEREWOLF_MODEL.get(), WerewolfModelEntity.createAttributes().build());
 		event.put(HALFDEAD_MODEL.get(), HalfdeadModelEntity.createAttributes().build());
 		event.put(ARACHA_MODEL.get(), ArachaModelEntity.createAttributes().build());
+	}
+
+	public static EntityType<Monster> getByName(String name) {
+		return switch(name) {
+			case "arachna" -> ARACHA_MODEL.get();
+			case "dwarf" -> DWARF_MODEL.get();
+			case "elf" -> ELF_MODEL.get();
+			case "orc" -> ORC_MODEL.get();
+			case "dragon" -> DRAGON_MODEL.get();
+			case "merfolk" -> MERFOLK_MODEL.get();
+			case "fairy" -> FAIRY_MODEL.get();
+			case "serpentin" -> SERPENTIN_MODEL.get();
+			case "werewolf" -> WEREWOLF_MODEL.get();
+			case "halfdead" -> HALFDEAD_MODEL.get();
+			default -> null;
+		};
 	}
 }

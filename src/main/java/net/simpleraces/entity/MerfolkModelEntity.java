@@ -25,7 +25,7 @@ public class MerfolkModelEntity extends Monster {
 		this(SimpleracesModEntities.MERFOLK_MODEL.get(), world);
 	}
 
-	public MerfolkModelEntity(EntityType<MerfolkModelEntity> type, Level world) {
+	public MerfolkModelEntity(EntityType<Monster> type, Level world) {
 		super(type, world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;

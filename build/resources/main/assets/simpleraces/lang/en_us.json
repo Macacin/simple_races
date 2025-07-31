@@ -86,10 +86,42 @@
   "gui.simpleraces.werewolf_select.tooltip_confirm": "",
   "gui.simpleraces.fairy_select.tooltip_dwarves_are_stout_skilled_craft": "- Tiny Flying Creature | Loved by Animals ",
   "gui.simpleraces.fairy_select.tooltip_passive_mine_faster_in_dark": "Boosts Crop Growth",
-  "gui.simpleraces.Serpentin_select.tooltip_passive_mine_faster_in_dark": "Poison & Wither Immune",
-  "gui.simpleraces.Serpentin_select.tooltip_dwarves_are_stout_skilled_craft": "- Potion Mastery | Bonus Damage to Debuffed ",
+  "gui.simpleraces.erpentin_select.tooltip_passive_mine_faster_in_dark": "Poison & Wither Immune",
+  "gui.simpleraces.serpentin_select.tooltip_dwarves_are_stout_skilled_craft": "- Potion Mastery | Bonus Damage to Debuffed ",
   "gui.simpleraces.aracha_select.tooltip_dwarves_are_stout_skilled_craft": "- Wall Climber | Ignores Webs",
   "gui.simpleraces.aracha_select.tooltip_passive_mine_faster_in_dark": "Venomous Bite | Fire Weakness",
   "gui.simpleraces.halfdead_select.tooltip_dwarves_are_stout_skilled_craft": "- Death Mark Curse | Anti-Undead | Reduced Healing",
-  "gui.simpleraces.halfdead_select.tooltip_passive_mine_faster_in_dark": "Lifesteal on Kill | Large Hitbox"
+  "gui.simpleraces.halfdead_select.tooltip_passive_mine_faster_in_dark": "Lifesteal on Kill | Large Hitbox",
+
+  "gui.simpleraces.elf_select.tooltip_dwarves_are_stout_skilled_craft.extended": "",
+  "gui.simpleraces.elf_select.tooltip_passive_mine_faster_in_dark.extended": "",
+
+  "gui.simpleraces.fairy_select.tooltip_next": "",
+  "gui.simpleraces.fairy_select.tooltip_previous": "",
+  "gui.simpleraces.fairy_select.tooltip_confirm": "",
+  "gui.simpleraces.fairy_select.tooltip_dwarves_are_stout_skilled_craft.extended": "",
+  "gui.simpleraces.fairy_select.tooltip_passive_mine_faster_in_dark.extended": "",
+
+  "gui.simpleraces.halfdead_select.tooltip_next": "",
+  "gui.simpleraces.halfdead_select.tooltip_previous": "",
+  "gui.simpleraces.halfdead_select.tooltip_confirm": "",
+  "gui.simpleraces.halfdead_select.tooltip_dwarves_are_stout_skilled_craft.extended": "",
+  "gui.simpleraces.halfdead_select.tooltip_passive_mine_faster_in_dark.extended": "",
+
+  "gui.simpleraces.merfolk_select.tooltip_dwarves_are_stout_skilled_craft.extended": "",
+  "gui.simpleraces.merfolk_select.tooltip_passive_mine_faster_in_dark.extended": "",
+
+  "gui.simpleraces.orc_select.tooltip_dwarves_are_stout_skilled_craft.extended": "",
+  "gui.simpleraces.orc_select.tooltip_passive_mine_faster_in_dark.extended": "",
+
+  "gui.simpleraces.serpentin_select.tooltip_next": "",
+  "gui.simpleraces.serpentin_select.tooltip_previous": "",
+  "gui.simpleraces.serpentin_select.tooltip_confirm": "",
+  "gui.simpleraces.serpentin_select.tooltip_dwarves_are_stout_skilled_craft.extended": "",
+  "gui.simpleraces.serpentin_select.tooltip_passive_mine_faster_in_dark": "",
+  "gui.simpleraces.serpentin_select.tooltip_passive_mine_faster_in_dark.extended": "",
+
+  "gui.simpleraces.werewolf_select.tooltip_dwarves_are_stout_skilled_craft.extended": "",
+  "gui.simpleraces.werewolf_select.tooltip_passive_mine_faster_in_dark.extended": ""
+
 }

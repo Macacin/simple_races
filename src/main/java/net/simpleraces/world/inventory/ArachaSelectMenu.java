@@ -35,7 +35,7 @@ public class ArachaSelectMenu extends AbstractRaceSelectMenu implements Supplier
 	private BlockEntity boundBlockEntity = null;
 
 	public ArachaSelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.ARACHNA_SELECT.get(), id);
+		super(SimpleracesModMenus.ARACHNA_SELECT.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

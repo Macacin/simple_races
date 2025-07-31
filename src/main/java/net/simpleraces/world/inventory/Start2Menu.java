@@ -42,7 +42,7 @@ public class Start2Menu extends AbstractRaceSelectMenu implements Supplier<Map<I
 	private BlockEntity boundBlockEntity = null;
 
 	public Start2Menu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.START_2.get(), id);
+		super(SimpleracesModMenus.START_2.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

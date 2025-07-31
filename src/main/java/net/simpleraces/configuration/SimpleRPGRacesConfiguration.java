@@ -57,6 +57,9 @@ public class SimpleRPGRacesConfiguration {
 	public static final ForgeConfigSpec.ConfigValue<Double> WEREFOLF_MAX_HEALTH;
 	public static final ForgeConfigSpec.ConfigValue<Double> SERPENTIN_MAX_HEALTH;
 
+	public static final ForgeConfigSpec.ConfigValue<Integer> FAIRY_MAX_FLYING_TIME;
+
+
 	static {
 		BUILDER.push("Class Select");
 		FORCE_PICK = BUILDER.comment("Force player to pick a class after joining").define("force_pick", false);
@@ -110,11 +113,13 @@ public class SimpleRPGRacesConfiguration {
 		FAIRY_FALL_MULTIPLY = BUILDER.comment("Fairy fall damage multiplier").define("fairy_fall_multiply", 0.75f);
 		FAIRY_FLY_SPEED_MULTIPLY = BUILDER.comment("Fairy fly speed multiplier").define("fairy_fly_speed_multiply", 1.0f);
 		FAIRY_MAX_HEALTH = BUILDER.comment("Fairy max health").define("fairy_max_health", 8.0);
+		FAIRY_MAX_FLYING_TIME = BUILDER.comment("Fairy flying time(seconds)").define("fairy_max_flying_time", 10);
 		BUILDER.pop();
 		BUILDER.push("Another Class Attributes");
 		ARACHA_MAX_HEALTH = BUILDER.comment("Aracha max health").define("aracha_max_health", 16.0);
 		HALFDEAD_MAX_HEALTH = BUILDER.comment("Halfdead max health").define("halfdead_max_health", 23.0);
 		WEREFOLF_MAX_HEALTH = BUILDER.comment("Werewolf max health").define("werewolf_max_health", 20.0);
+		SERPENTIN_MAX_HEALTH = BUILDER.comment("Serpentin max health").define("serpentin_max_health", 20.0);
 		BUILDER.pop();
 		BUILDER.push("Cosmetics");
 		ELF_EARS = BUILDER.define("elf_ears", true);

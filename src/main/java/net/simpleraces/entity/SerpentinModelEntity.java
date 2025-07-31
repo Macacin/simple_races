@@ -11,12 +11,14 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.simpleraces.init.SimpleracesModEntities;
+import org.jetbrains.annotations.Nullable;
 
 public class SerpentinModelEntity extends Witch {
 	public SerpentinModelEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -24,8 +26,8 @@ public class SerpentinModelEntity extends Witch {
 		setNoAi(true);
 	}
 
-	public SerpentinModelEntity(EntityType<SerpentinModelEntity> type, Level world) {
-		super(type, world);
+	public SerpentinModelEntity(EntityType<Monster> type, Level world) {
+		super(tryCastToWitch(type), world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;
 		setNoAi(true);
@@ -73,5 +75,14 @@ public class SerpentinModelEntity extends Witch {
 		builder = builder.add(Attributes.ATTACK_DAMAGE, 3);
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
 		return builder;
+	}
+
+	public static EntityType<Witch> tryCastToWitch(EntityType<?> type) {
+		if (Witch.class.isAssignableFrom(type.getBaseClass())) {
+			@SuppressWarnings("unchecked")
+			EntityType<Witch> witchType = (EntityType<Witch>) type;
+			return witchType;
+		}
+		return EntityType.WITCH;
 	}
 }

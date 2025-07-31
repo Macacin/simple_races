@@ -35,7 +35,7 @@ public class WerewolfSelectMenu extends AbstractRaceSelectMenu implements Suppli
 	private BlockEntity boundBlockEntity = null;
 
 	public WerewolfSelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.WEREWOLF_SELECT.get(), id);
+		super(SimpleracesModMenus.WEREWOLF_SELECT.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

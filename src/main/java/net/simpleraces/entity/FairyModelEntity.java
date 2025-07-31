@@ -23,7 +23,7 @@ public class FairyModelEntity extends Monster {
 		this(SimpleracesModEntities.FAIRY_MODEL.get(), world);
 	}
 
-	public FairyModelEntity(EntityType<FairyModelEntity> type, Level world) {
+	public FairyModelEntity(EntityType<Monster> type, Level world) {
 		super(type, world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;

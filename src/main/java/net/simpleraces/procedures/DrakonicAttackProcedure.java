@@ -32,7 +32,7 @@ public class DrakonicAttackProcedure {
 		if ((sourceentity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).dragon && SimpleRPGRacesConfiguration.DRAK_FIRE.get()) {
 			player.getCapability(SimpleracesModVariables.HEAT).ifPresent(data -> {
 				if (data.isOverheated()) {
-					entity.setSecondsOnFire(SimpleRPGRacesConfiguration.DRAKONID_OVERHEAT_FIRE_TIME);
+					entity.setSecondsOnFire(SimpleRPGRacesConfiguration.DRAKONID_OVERHEAT_FIRE_TIME.get());
 				}
 			});
 		}

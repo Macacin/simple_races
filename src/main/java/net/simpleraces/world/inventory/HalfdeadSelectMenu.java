@@ -35,7 +35,7 @@ public class HalfdeadSelectMenu extends AbstractRaceSelectMenu implements Suppli
 	private BlockEntity boundBlockEntity = null;
 
 	public HalfdeadSelectMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(SimpleracesModMenus.HALFDEAD_SELECT.get(), id);
+		super(SimpleracesModMenus.HALFDEAD_SELECT.get(), id, inv);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

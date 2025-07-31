@@ -25,7 +25,7 @@ public class DragonModelEntity extends Monster {
 		this(SimpleracesModEntities.DRAGON_MODEL.get(), world);
 	}
 
-	public DragonModelEntity(EntityType<DragonModelEntity> type, Level world) {
+	public DragonModelEntity(EntityType<Monster> type, Level world) {
 		super(type, world);
 		setMaxUpStep(0.6f);
 		xpReward = 0;
