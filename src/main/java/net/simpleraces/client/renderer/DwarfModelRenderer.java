@@ -1,6 +1,8 @@
 
 package net.simpleraces.client.renderer;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.entity.monster.Monster;
 import net.simpleraces.entity.DwarfModelEntity;
 
@@ -20,5 +22,13 @@ public class DwarfModelRenderer extends HumanoidMobRenderer<Monster, HumanoidMod
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
 		return new ResourceLocation("simpleraces:textures/entities/2024_10_07_dwarf-22808312.png");
+	}
+
+	@Override
+	public void render(Monster p_115455_, float p_115456_, float p_115457_, PoseStack poseStack, MultiBufferSource p_115459_, int p_115460_) {
+		poseStack.pushPose();
+		poseStack.scale(0.8f, 0.8f, 0.8f);
+		super.render(p_115455_, p_115456_, p_115457_, poseStack, p_115459_, p_115460_);
+		poseStack.popPose();
 	}
 }

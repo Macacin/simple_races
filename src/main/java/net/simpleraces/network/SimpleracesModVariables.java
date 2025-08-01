@@ -26,6 +26,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.client.Minecraft;
 import net.simpleraces.heat.IHeat;
 
+import java.util.UUID;
 import java.util.function.Supplier;
 import java.util.ArrayList;
 
@@ -141,6 +142,10 @@ public class SimpleracesModVariables {
 		public boolean aracha = false;
 		public boolean selected = false;
 
+		public int fervorStacks = 0;
+		public UUID lastTarget = null;
+		public int previousFoodLevel = 20;
+
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayer serverPlayer)
 				ModMessages.INSTANCE.send(PacketDistributor.DIMENSION.with(entity.level()::dimension), new PlayerVariablesSyncMessage(this, entity.getId()));
@@ -190,6 +195,13 @@ public class SimpleracesModVariables {
 			this.data = new PlayerVariables();
 			this.data.readNBT(buffer.readNbt());
 			this.target = buffer.readInt();
+
+			this.data.fervorStacks = buffer.readInt();
+			if (buffer.readBoolean()) {
+				this.data.lastTarget = buffer.readUUID();
+			} else {
+				this.data.lastTarget = null;
+			}
 		}
 
 		public PlayerVariablesSyncMessage(PlayerVariables data, int entityid) {
@@ -200,6 +212,13 @@ public class SimpleracesModVariables {
 		public static void buffer(PlayerVariablesSyncMessage message, FriendlyByteBuf buffer) {
 			buffer.writeNbt((CompoundTag) message.data.writeNBT());
 			buffer.writeInt(message.target);
+
+			// Запись новых полей (encode)
+			buffer.writeInt(message.data.fervorStacks);
+			buffer.writeBoolean(message.data.lastTarget != null);
+			if (message.data.lastTarget != null) {
+				buffer.writeUUID(message.data.lastTarget);
+			}
 		}
 
 		public static void handler(PlayerVariablesSyncMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
@@ -218,6 +237,9 @@ public class SimpleracesModVariables {
 					variables.serpentin = message.data.serpentin;
 					variables.werewolf = message.data.werewolf;
 					variables.aracha = message.data.aracha;
+
+					variables.fervorStacks = message.data.fervorStacks;
+					variables.lastTarget = message.data.lastTarget;
 				}
 			});
 			context.setPacketHandled(true);

@@ -1,4 +1,0 @@
-net/simpleraces/mixin/AnvilMenuMixin cost f_39002_
-net/simpleraces/mixin/AnvilMenuMixin repairItemCountCost f_39000_
-net/simpleraces/mixin/AnvilMenuMixin itemName f_39001_
-net/simpleraces/mixin/PlayerMixin interactOn (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult; m_36157_

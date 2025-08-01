@@ -9,6 +9,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.PacketDistributor;
 import net.simpleraces.SimpleracesMod;
+import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
 import net.simpleraces.effect.ModEffects;
 import net.simpleraces.network.ModMessages;
 import net.simpleraces.network.SyncWerewolfPacket;
@@ -52,11 +53,6 @@ public class WerewolfState {
         WerewolfState.setForm(player, WerewolfState.Form.BEAST);
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.WOLF_HOWL, player.getSoundSource(), 2.0F, 2.0F);
-        AttributeInstance maxHealthAttr = player.getAttribute(Attributes.MAX_HEALTH);
-        if (maxHealthAttr != null) {
-            double newMax = 24;
-            maxHealthAttr.setBaseValue(newMax);
-        }
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 4));
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 1));
         player.addEffect(new MobEffectInstance(MobEffects.JUMP, 100, 128));
@@ -65,11 +61,6 @@ public class WerewolfState {
     public static void transformToHuman(Player player) {
         if(player.hasEffect(ModEffects.WEREWOLF_TRANSFORMATION.get())) return;
         WerewolfState.setForm(player, WerewolfState.Form.HUMAN);
-        AttributeInstance maxHealthAttr = player.getAttribute(Attributes.MAX_HEALTH);
-        if (maxHealthAttr != null) {
-            double newMax = 16;
-            maxHealthAttr.setBaseValue(newMax);
-        }
         player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 1));
         player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 0));
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 3));

@@ -1,0 +1,45 @@
+{
+  "dragon_overheat": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "simpleraces:dragon_overheat",
+        "stream": false
+      }
+    ]
+  },
+  "fairy_recover": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "simpleraces:fairy_recover",
+        "stream": false
+      }
+    ]
+  },
+  "orc_roar": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:roar_1", "stream": false},
+      {"name": "simpleraces:roar_2", "stream": false},
+      {"name": "simpleraces:roar_3", "stream": false},
+      {"name": "simpleraces:roar_4", "stream": false},
+      {"name": "simpleraces:roar_5", "stream": false},
+      {"name": "simpleraces:roar_6", "stream": false},
+      {"name": "simpleraces:roar_7", "stream": false}
+    ]
+  },
+  "orc_rage": {
+    "category": "player",
+    "sounds": [{"name": "simpleraces:rage", "stream": false}]
+  },
+  "orc_exhaustion": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "simpleraces:orc_exhaustion",
+        "stream": false
+      }
+    ]
+  }
+}

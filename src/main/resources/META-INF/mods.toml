@@ -5,12 +5,11 @@ license="All Rights Reserved"
 [[mods]]
 modId="simpleraces"
 version="1.0.2"
-displayName="Simple RPG Races"
+displayName="Maledictom RPG Races"
 displayURL="https://www.curseforge.com/members/minobanana/projects"
-logoFile="logo.png"
-credits="MinoBanana"
-authors="MinoBanana"
-description="Pick From Fantasy Races Including - Dwarves, Elves, Orcs, Merfolk, and Drakonics"
+credits="Jabroni"
+authors="Jabroni"
+description="Pick From Fantasy Races"
 
 # Start of user code block mod configuration
 # End of user code block mod configuration
@@ -35,7 +34,12 @@ description="Pick From Fantasy Races Including - Dwarves, Elves, Orcs, Merfolk, 
     versionRange="[0,)"
     ordering="NONE"
     side="BOTH"
-
+[[dependencies.simpleraces]]
+    modId="irons_spellbooks"
+    mandatory=false
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
 
 # Start of user code block dependencies configuration
 # End of user code block dependencies configuration

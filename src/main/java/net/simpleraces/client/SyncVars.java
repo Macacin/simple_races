@@ -5,6 +5,9 @@ public class SyncVars {
     public static boolean overheated = false;
     public static boolean werewolf;
     public static int maxHeat = 100;
+    public static int fairyFlightBar = 0;
+    public static int maxFairyFlight = 0;
+    public static boolean isFairyRecovering = false;
 
     public static void reset() {
         heat = 0;

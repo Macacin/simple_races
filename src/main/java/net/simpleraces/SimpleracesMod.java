@@ -3,7 +3,12 @@ package net.simpleraces;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import net.simpleraces.effect.ModEffects;
 import net.simpleraces.network.ModMessages;
 import net.simpleraces.network.SyncHeatPacket;
@@ -43,13 +48,19 @@ import java.util.AbstractMap;
 
 @Mod("simpleraces")
 public class SimpleracesMod {
+	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, SimpleracesMod.MODID);
+
 	public static final Logger LOGGER = LogManager.getLogger(SimpleracesMod.class);
 	public static final String MODID = "simpleraces";
 
+	public static final RegistryObject<SoundEvent> DRAGON_OVERHEAT = SOUNDS.register("dragon_overheat", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(SimpleracesMod.MODID, "dragon_overheat")));
+	public static final RegistryObject<SoundEvent> FAIRY_RECOVER = SOUNDS.register("fairy_recover", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(SimpleracesMod.MODID, "fairy_recover")));
+	public static final RegistryObject<SoundEvent> ORC_ROAR = SOUNDS.register("orc_roar", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "orc_roar")));
+	public static final RegistryObject<SoundEvent> ORC_RAGE = SOUNDS.register("orc_rage", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "orc_rage")));
+	public static final RegistryObject<SoundEvent> ORC_EXHAUSTION = SOUNDS.register("orc_exhaustion", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "orc_exhaustion")));
+
 	public static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Player.class, EntityDataSerializers.BYTE);
 	public SimpleracesMod() {
-		// Start of user code block mod constructor
-		// End of user code block mod constructor
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(AttributeDeathFixProcedure.class);
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -63,9 +74,7 @@ public class SimpleracesMod {
 
 		ModEffects.register(bus);
 		ModMessages.register();
-
-		// Start of user code block mod init
-		// End of user code block mod init
+		SOUNDS.register(bus);
 	}
 
 	// Start of user code block mod methods

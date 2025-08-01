@@ -7,9 +7,9 @@ Description: Ticking player
 java.lang.NullPointerException: Cannot invoke "net.minecraft.world.entity.Entity.getCapability(net.minecraftforge.common.capabilities.Capability)" because "entity" is null
 	at net.minecraft.world.entity.player.Player.addEffect(Player.java:2756) ~[forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23181!/:?] {re:mixin,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:pehkui.mixins.json:reach.PlayerEntityMixin,pl:mixin:APP:mixins.simpleraces.json:PlayerMixin,pl:mixin:APP:pehkui.mixins.json:EntityVehicleHeightOffsetMixin,pl:mixin:APP:pehkui.mixins.json:PlayerEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat115plus.PlayerEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat117plus.PlayerEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat1194plus.PlayerEntityMixin,pl:mixin:A}
 	at net.minecraft.world.entity.LivingEntity.addEffect(LivingEntity.java:921) ~[forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23181!/:?] {re:computing_frames,re:mixin,re:classloading,pl:mixin:APP:pehkui.mixins.json:LivingEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat117plus.LivingEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat1194plus.LivingEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat115plus.LivingEntityMixin,pl:mixin:A}
-	at net.simpleraces.procedures.ResistanceAddProcedure.lambda$onPlayerTick$1(ResistanceAddProcedure.java:196) ~[%23186!/:?] {re:classloading}
+	at net.simpleraces.procedures.RaceMechanicsProcedure.lambda$onPlayerTick$1(ResistanceAddProcedure.java:196) ~[%23186!/:?] {re:classloading}
 	at net.minecraftforge.common.util.LazyOptional.ifPresent(LazyOptional.java:137) ~[forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23180%23187!/:?] {re:mixin,re:classloading}
-	at net.simpleraces.procedures.ResistanceAddProcedure.onPlayerTick(ResistanceAddProcedure.java:179) ~[%23186!/:?] {re:classloading}
+	at net.simpleraces.procedures.RaceMechanicsProcedure.onPlayerTick(ResistanceAddProcedure.java:179) ~[%23186!/:?] {re:classloading}
 	at net.simpleraces.procedures.__ResistanceAddProcedure_onPlayerTick_PlayerTickEvent.invoke(.dynamic) ~[%23186!/:?] {re:classloading,pl:eventbus:B}
 	at net.minecraftforge.eventbus.ASMEventHandler.invoke(ASMEventHandler.java:73) ~[eventbus-6.0.5.jar%23102!/:?] {}
 	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:315) ~[eventbus-6.0.5.jar%23102!/:?] {}
@@ -41,9 +41,9 @@ Suspected Mod:
 Stacktrace:
 	at net.minecraft.world.entity.player.Player.addEffect(Player.java:2756) ~[forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23181!/:?] {re:mixin,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:pehkui.mixins.json:reach.PlayerEntityMixin,pl:mixin:APP:mixins.simpleraces.json:PlayerMixin,pl:mixin:APP:pehkui.mixins.json:EntityVehicleHeightOffsetMixin,pl:mixin:APP:pehkui.mixins.json:PlayerEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat115plus.PlayerEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat117plus.PlayerEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat1194plus.PlayerEntityMixin,pl:mixin:A}
 	at net.minecraft.world.entity.LivingEntity.addEffect(LivingEntity.java:921) ~[forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23181!/:?] {re:computing_frames,re:mixin,re:classloading,pl:mixin:APP:pehkui.mixins.json:LivingEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat117plus.LivingEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat1194plus.LivingEntityMixin,pl:mixin:APP:pehkui.mixins.json:compat115plus.LivingEntityMixin,pl:mixin:A}
-	at net.simpleraces.procedures.ResistanceAddProcedure.lambda$onPlayerTick$1(ResistanceAddProcedure.java:196) ~[%23186!/:?] {re:classloading}
+	at net.simpleraces.procedures.RaceMechanicsProcedure.lambda$onPlayerTick$1(ResistanceAddProcedure.java:196) ~[%23186!/:?] {re:classloading}
 	at net.minecraftforge.common.util.LazyOptional.ifPresent(LazyOptional.java:137) ~[forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23180%23187!/:?] {re:mixin,re:classloading}
-	at net.simpleraces.procedures.ResistanceAddProcedure.onPlayerTick(ResistanceAddProcedure.java:179) ~[%23186!/:?] {re:classloading}
+	at net.simpleraces.procedures.RaceMechanicsProcedure.onPlayerTick(ResistanceAddProcedure.java:179) ~[%23186!/:?] {re:classloading}
 	at net.simpleraces.procedures.__ResistanceAddProcedure_onPlayerTick_PlayerTickEvent.invoke(.dynamic) ~[%23186!/:?] {re:classloading,pl:eventbus:B}
 	at net.minecraftforge.eventbus.ASMEventHandler.invoke(ASMEventHandler.java:73) ~[eventbus-6.0.5.jar%23102!/:?] {}
 	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:315) ~[eventbus-6.0.5.jar%23102!/:?] {}

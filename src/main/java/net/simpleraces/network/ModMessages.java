@@ -37,5 +37,6 @@ public class ModMessages {
 		INSTANCE.registerMessage(nextId(), SimpleracesModVariables.PlayerVariablesSyncMessage.class, SimpleracesModVariables.PlayerVariablesSyncMessage::buffer,
 				SimpleracesModVariables.PlayerVariablesSyncMessage::new, SimpleracesModVariables.PlayerVariablesSyncMessage::handler);
 		INSTANCE.registerMessage(nextId(), ArachaSelectButtonMessage.class, ArachaSelectButtonMessage::buffer, ArachaSelectButtonMessage::new, ArachaSelectButtonMessage::handler);
+		INSTANCE.registerMessage(nextId(), SyncFairyFlightPacket.class, SyncFairyFlightPacket::encode, SyncFairyFlightPacket::decode, SyncFairyFlightPacket::handle);
 	}
 }

@@ -11,29 +11,22 @@ public class SimpleRPGRacesConfiguration {
 	public static final ForgeConfigSpec.ConfigValue<Boolean> JOIN_MESSAGE;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DESELECT;
 	public static final ForgeConfigSpec.ConfigValue<String> JOIN_MESSAGE_TEXT;
-	public static final ForgeConfigSpec.ConfigValue<Boolean> ELF_NIGHT_VISION;
 	public static final ForgeConfigSpec.ConfigValue<Double> ELF_MAX_HEALTH;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ELF_BOW_SIGHT;
-	public static final ForgeConfigSpec.ConfigValue<Boolean> ELF_PICKAXE_RESTRICT;
 	public static final ForgeConfigSpec.ConfigValue<Double> ELF_BOW_BONUS_DAMAGE;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ELF_MEAT_RESTRICT;
-	public static final ForgeConfigSpec.ConfigValue<Double> ORC_RES_LEVEL;
-	public static final ForgeConfigSpec.ConfigValue<Double> ORC_ATTACK_DAMAGE;
-	public static final ForgeConfigSpec.ConfigValue<Boolean> ORC_RAGE;
-	public static final ForgeConfigSpec.ConfigValue<Double> ORC_KNOCKBACK_RES;
-	public static final ForgeConfigSpec.ConfigValue<Double> ORC_ARMOR_VALUE_SLOW;
-	public static final ForgeConfigSpec.ConfigValue<Boolean> ORC_MINI_RAGE;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DWARF_HASTE;
 	public static final ForgeConfigSpec.ConfigValue<Double> DWARF_MAX_HEALTH;
 	public static final ForgeConfigSpec.ConfigValue<Double> DWARF_RES_LEVEL;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DWARF_SUBZERO_EFFECTS;
-	public static final ForgeConfigSpec.ConfigValue<Double> DWARF_PICKAXE_STRENGTH;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DWARF_BOW_RESTRICT;
 	public static final ForgeConfigSpec.ConfigValue<Double> MERFOLK_SWIM_SPEED;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> MERFOLK_CONDUIT_EFFECT;
-	public static final ForgeConfigSpec.ConfigValue<Double> MERFOLK_ATTACK_DAMAGE;
+	public static final ForgeConfigSpec.ConfigValue<Double> MERFOLK_DAMAGE_PENALTY_SURFACE;
+	public static final ForgeConfigSpec.ConfigValue<Double> MERFOLK_ATTACK_DAMAGE_WATER;
+	public static final ForgeConfigSpec.ConfigValue<Double> MERFOLK_SURFACE_HEALTH;
+	public static final ForgeConfigSpec.ConfigValue<Double> MERFOLK_SURFACE_SPEED_PENALTY;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DRAK_FIRE;
-	public static final ForgeConfigSpec.ConfigValue<Double> DRAK_ATTACK_DAMAGE;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DRAK_FIRE_RES;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DRAKONID_ARMOR_MELT;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DRAKONID_WATER_HURT;
@@ -48,16 +41,54 @@ public class SimpleRPGRacesConfiguration {
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ELF_EARS;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ORC_TUSKS;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> MERFOLK_FORM;
-	public static final ForgeConfigSpec.ConfigValue<Double> MERFOLK_MAX_HEALTH;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DWARF_RESIZE;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ELF_RESIZE;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ORC_RESIZE;
 	public static final ForgeConfigSpec.ConfigValue<Double> ARACHA_MAX_HEALTH;
 	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_MAX_HEALTH;
-	public static final ForgeConfigSpec.ConfigValue<Double> WEREFOLF_MAX_HEALTH;
+	public static final ForgeConfigSpec.ConfigValue<Double> WEREWOLF_BEAST_DAMAGE_BONUS;
+	public static final ForgeConfigSpec.ConfigValue<Double> WEREWOLF_HUMAN_DAMAGE_PENALTY;
+	public static final ForgeConfigSpec.ConfigValue<Double> WEREWOLF_BEAST_SPEED_BONUS;
+	public static final ForgeConfigSpec.ConfigValue<Double> WEREWOLF_HUMAN_SPEED_PENALTY;
+	public static final ForgeConfigSpec.ConfigValue<Double> WEREWOLF_BEAST_HEALTH_BONUS;
+	public static final ForgeConfigSpec.ConfigValue<Double> WEREWOLF_HUMAN_HEALTH_PENALTY;
 	public static final ForgeConfigSpec.ConfigValue<Double> SERPENTIN_MAX_HEALTH;
+	public static final ForgeConfigSpec.ConfigValue<Double> ORC_DAMAGE_PENALTY;
+	public static final ForgeConfigSpec.ConfigValue<Double> ORC_MAGIC_DAMAGE_PENALTY;
+	public static final ForgeConfigSpec.ConfigValue<Double> ORC_RAGE;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ORC_FERVOR_DEBUFF_DURATION;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ORC_FERVOR_SLOWDOWN_LEVEL;
+	public static final ForgeConfigSpec.ConfigValue<Double> ORC_FERVOR_INCOMING_DAMAGE_MULTIPLIER;
+	public static final ForgeConfigSpec.ConfigValue<Double> MERFOLK_WATER_HEALTH_BOOST;
+	public static final ForgeConfigSpec.ConfigValue<Integer> MERFOLK_DIG_SPEED_WATER;
+	public static final ForgeConfigSpec.ConfigValue<Double> SERPENTIN_DAMAGE_BONUS_WITH_DEBUFF;
+	public static final ForgeConfigSpec.ConfigValue<Double> SERPENTIN_DAMAGE_PENALTY_WITHOUT_DEBUFF;
+	public static final ForgeConfigSpec.ConfigValue<Double> SERPENTIN_POTION_DURATION_MULTIPLIER;
+	public static final ForgeConfigSpec.ConfigValue<Integer> SERPENTIN_STRENGTH_AMPLIFIER_BONUS;
+	public static final ForgeConfigSpec.ConfigValue<Integer> SERPENTIN_SPEED_AMPLIFIER_BONUS;
+	public static final ForgeConfigSpec.ConfigValue<Integer> SERPENTIN_JUMP_AMPLIFIER_BONUS;
+
+	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_WATER_SLOWDOWN_DURATION;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_WATER_SLOWDOWN_AMPLIFIER;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_HEAVY_ARMOR_SLOWDOWN_DURATION;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_HEAVY_ARMOR_SLOWDOWN_AMPLIFIER;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_BITE_COUNT_THRESHOLD;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_POISON_DURATION;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_POISON_AMPLIFIER;
+	public static final ForgeConfigSpec.ConfigValue<Double> ARACHA_FIRE_DAMAGE_MULTIPLIER;
+
+	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_HEAL_MULTIPLIER;
+	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_HEAL_ON_KILL;
+	public static final ForgeConfigSpec.ConfigValue<Integer> HALFDEAD_DEATH_MARK_DURATION;
+	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_DAMAGE_BONUS_VS_UNDEAD;
+	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_DAMAGE_REDUCTION_FROM_MARK;
+	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_DAMAGE_INCREASE_TO_MARKED;
+
+	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_DEATH_MARK_RADIUS;
 
 	public static final ForgeConfigSpec.ConfigValue<Integer> FAIRY_MAX_FLYING_TIME;
+
+	public static final ForgeConfigSpec.ConfigValue<Double> RANGED_WEAPON_DAMAGE_PENALTY;
 
 
 	static {
@@ -68,45 +99,48 @@ public class SimpleRPGRacesConfiguration {
 		JOIN_MESSAGE_TEXT = BUILDER.comment("Enter Join Message Text").define("join_message_text", "Click the Assigned Key [M] To Open the RPG Race Selection Menu");
 		BUILDER.pop();
 		BUILDER.push("Elf Class Attributes");
-		ELF_NIGHT_VISION = BUILDER.comment("Whether or not elves have night vision").define("elf_night_vision", false);
 		ELF_MAX_HEALTH = BUILDER.comment("Set elf max health").define("elf_max_health", 16.0);
 		ELF_BOW_SIGHT = BUILDER.comment("Add glowing effect when drawing bow").define("elf_bow_sight", true);
-		ELF_PICKAXE_RESTRICT = BUILDER.comment("Elf gains mining fatigue while holding a pickaxe").define("elf_pickaxe_restrict", true);
-		ELF_BOW_BONUS_DAMAGE = BUILDER.comment("Bonus damage elves deal with bows").define("elf_bow_bonus_damage", 2.0);
+		ELF_BOW_BONUS_DAMAGE = BUILDER.comment("Bonus percent of damage elves deal with bows").defineInRange("elf_bow_multiplyer", 0.35, -1.0, 2.0);
 		ELF_MEAT_RESTRICT = BUILDER.comment("Whether or not elves can eat meat without being poisoned").define("elf_meat_restrict", true);
 		BUILDER.pop();
 		BUILDER.push("Orc Class Attributes");
-		ORC_RES_LEVEL = BUILDER.comment("Level of resistance effect").define("orc_res_level", 0.0);
-		ORC_ATTACK_DAMAGE = BUILDER.comment("Orc attack damage bonus").define("orc_attack_damage", 1.5);
-		ORC_RAGE = BUILDER.comment("Increased strength on low health").define("orc_rage", true);
-		ORC_KNOCKBACK_RES = BUILDER.comment("Knockback resistance bonus").define("orc_knockback_res", 1.1);
-		ORC_ARMOR_VALUE_SLOW = BUILDER.comment("Armor value at which the Orc class begins to be slowed").define("orc_armor_value_slow", 0.0);
-		ORC_MINI_RAGE = BUILDER.comment("Orc gains minor strength boost at less than 5 health").define("orc_mini_rage", true);
+		ORC_RAGE = BUILDER.comment("Increased strength on low health").defineInRange("orc_damage_rage", 0.3, 0.0, 1.0);
+		ORC_DAMAGE_PENALTY = BUILDER.comment("Penalty to orc attack damage (negative value for decrease, e.g. -0.4 for 60% damage)").defineInRange("orc_damage_penalty", -0.5, -1.0, 0.0);
+		ORC_MAGIC_DAMAGE_PENALTY = BUILDER.comment("Penalty to orc magic damage").defineInRange("orc_magic_damage_penalty", -0.6, -1.0, 0.0);
+		ORC_FERVOR_DEBUFF_DURATION = BUILDER.comment("Duration in ticks of debuff after fervor fades (default 100 for 5 seconds)")
+				.defineInRange("orc_fervor_debuff_duration", 100, 0, 600);
+		ORC_FERVOR_SLOWDOWN_LEVEL = BUILDER.comment("Level of slowdown effect after fervor fades (e.g., 2 for strong slowdown)")
+				.defineInRange("orc_fervor_slowdown_level", 4, 0, 5);
+		ORC_FERVOR_INCOMING_DAMAGE_MULTIPLIER = BUILDER.comment("Incoming damage multiplier during debuff after fervor fades (e.g., 1.2 for 20% more damage)")
+				.defineInRange("orc_fervor_incoming_damage_multiplier", 1.2, 1.0, 2.0);
 		BUILDER.pop();
 		BUILDER.push("Dwarf Class Attributes");
 		DWARF_HASTE = BUILDER.comment("Increased mining speed underground").define("dwarf_haste", true);
 		DWARF_MAX_HEALTH = BUILDER.define("dwarf_max_health", 10.0);
 		DWARF_RES_LEVEL = BUILDER.comment("Level of resistance effect").define("dwarf_res_level", 1.0);
-		DWARF_SUBZERO_EFFECTS = BUILDER.comment("Dwarf gains nightvision + haste 2 at subzero levels (underground only)").define("dwarf_subzero_effects", false);
-		DWARF_PICKAXE_STRENGTH = BUILDER.comment("Dwarf strength level while holding a pickaxe").define("dwarf_pickaxe_strength", 0.0);
+		DWARF_SUBZERO_EFFECTS = BUILDER.comment("Dwarf gains nightvision + haste 2 at subzero levels (underground only)").define("dwarf_subzero_effects", true);
 		DWARF_BOW_RESTRICT = BUILDER.comment("Dwarf cant use bows").define("dwarf_bow_restrict", true);
 		BUILDER.pop();
 		BUILDER.push("Merfolk Class Attributes");
-		MERFOLK_SWIM_SPEED = BUILDER.comment("Swim speed").define("merfolk_swim_speed", 2.0);
+		MERFOLK_SWIM_SPEED = BUILDER.comment("Swim speed").define("merfolk_swim_speed", 2.5);
 		MERFOLK_CONDUIT_EFFECT = BUILDER.comment("Whether or not the conduit effect is applied").define("merfolk_conduit_effect", true);
-		MERFOLK_ATTACK_DAMAGE = BUILDER.comment("Merfolk attack damage level").define("merfolk_attack_damage", 0.8);
-		MERFOLK_MAX_HEALTH = BUILDER.comment("Merfolk max health").define("merfolk_max_health", 18.0);
+		MERFOLK_DAMAGE_PENALTY_SURFACE = BUILDER.comment("Penalty to merfolk damage on surface (negative value for decrease, e.g. -0.4 for 60% damage)").defineInRange("merfolk_surface_penalty", -0.33, -1.0, 0.0);
+		MERFOLK_ATTACK_DAMAGE_WATER = BUILDER.comment("Increased merfolk damage in water").defineInRange("merfolk_water_damage", 0.2, 0.0, 1.0);
+		MERFOLK_SURFACE_HEALTH = BUILDER.comment("Merfolk max health on surface").define("merfolk_max_health_surface", 10.0);
+		MERFOLK_SURFACE_SPEED_PENALTY = BUILDER.comment("Penalty for merfolk's movement speed on surface").define("merfolk_surface_speed", -0.33);
+		MERFOLK_WATER_HEALTH_BOOST = BUILDER.comment("Health boost multiplier for merfolk in water (e.g. 1.0 for +100% health)").define("merfolk_water_health_boost", 1.0);
+		MERFOLK_DIG_SPEED_WATER = BUILDER.comment("Dig speed level for merfolk in water (Haste level, 0 = no, 1 = Haste I)").defineInRange("merfolk_dig_speed_water", 1, 0, 5);
 		BUILDER.pop();
 		BUILDER.push("Drakonid Class Attributes");
 		DRAK_FIRE = BUILDER.comment("Apply fire aspect to attacks").define("drak_fire", true);
-		DRAK_ATTACK_DAMAGE = BUILDER.comment("Drakonid attack damage bonus").define("drak_attack_damage", 1.25);
 		DRAK_FIRE_RES = BUILDER.comment("Whether or not to resist damage from fire sources").define("drak_fire_res", true);
 		DRAKONID_ARMOR_MELT = BUILDER.comment("Drakonid (gold/leather armor) melts").define("drakonid_armor_mel", true);
 		DRAKONID_WATER_HURT = BUILDER.comment("Drakonid hurt by water").define("drakonid_water_hurt", true);
 		DRAKONID_HEAT_PER_ATTACK = BUILDER.comment("Heat generated per attack").define("drakonid_heat_per_attack", 4);
 		DRAKONID_MAX_HEAT = BUILDER.comment("Maximum heat level before overheating").define("drakonid_max_heat", 100);
-		DRAKONID_OVERHEAT_TIME = BUILDER.comment("Time in seconds of overheating").define("drakonid_overheat_time", 20 * 30);
-		DRAKONID_FALL_MULTIPLY = BUILDER.comment("Drakonid fall damage multiplier").define("drakonid_fall_multiply", 0.85f);
+		DRAKONID_OVERHEAT_TIME = BUILDER.comment("Time in seconds of overheating").define("drakonid_overheat_time", 20);
+		DRAKONID_FALL_MULTIPLY = BUILDER.comment("Drakonid fall damage multiplier").define("drakonid_fall_multiply", 0.80f);
 		DRAKONID_OVERHEAT_FIRE_TIME = BUILDER.comment("Time in seconds fire duration after overheating").define("drakonid_overheat_fire_time", 5);
 		BUILDER.pop();
 		BUILDER.push("Fairy Class Attributes");
@@ -115,11 +149,43 @@ public class SimpleRPGRacesConfiguration {
 		FAIRY_MAX_HEALTH = BUILDER.comment("Fairy max health").define("fairy_max_health", 8.0);
 		FAIRY_MAX_FLYING_TIME = BUILDER.comment("Fairy flying time(seconds)").define("fairy_max_flying_time", 10);
 		BUILDER.pop();
-		BUILDER.push("Another Class Attributes");
-		ARACHA_MAX_HEALTH = BUILDER.comment("Aracha max health").define("aracha_max_health", 16.0);
-		HALFDEAD_MAX_HEALTH = BUILDER.comment("Halfdead max health").define("halfdead_max_health", 23.0);
-		WEREFOLF_MAX_HEALTH = BUILDER.comment("Werewolf max health").define("werewolf_max_health", 20.0);
+		BUILDER.push("Werewolf Class Attributes");
+		WEREWOLF_BEAST_DAMAGE_BONUS = BUILDER.comment("Werewolf damage bonus in beast form (multiplicative)").defineInRange("werewolf_beast_damage_bonus", 0.2, 0.0, 1.0);
+		WEREWOLF_HUMAN_DAMAGE_PENALTY = BUILDER.comment("Werewolf damage penalty in human form (multiplicative)").defineInRange("werewolf_human_damage_penalty", -0.3, -1.0, 0.0);
+		WEREWOLF_BEAST_SPEED_BONUS = BUILDER.comment("Werewolf speed bonus in beast form (multiplicative)").defineInRange("werewolf_beast_speed_bonus", 0.2, 0.0, 1.0);
+		WEREWOLF_HUMAN_SPEED_PENALTY = BUILDER.comment("Werewolf speed penalty in human form (multiplicative)").defineInRange("werewolf_human_speed_penalty", -0.3, -1.0, 0.0);
+		WEREWOLF_BEAST_HEALTH_BONUS = BUILDER.comment("Werewolf health bonus in beast form (additive)").defineInRange("werewolf_beast_health_bonus", 4.0, 0.0, 20.0);
+		WEREWOLF_HUMAN_HEALTH_PENALTY = BUILDER.comment("Werewolf health penalty in human form (additive)").defineInRange("werewolf_human_health_penalty", -4.0, -20.0, 0.0);
+		BUILDER.pop();
+		BUILDER.push("Serpentine Class Attributes");
 		SERPENTIN_MAX_HEALTH = BUILDER.comment("Serpentin max health").define("serpentin_max_health", 20.0);
+		SERPENTIN_DAMAGE_BONUS_WITH_DEBUFF = BUILDER.comment("Damage multiplier for serpentin when target has debuff").defineInRange("serpentin_damage_bonus_with_debuff", 1.25, 1.0, 2.0);
+		SERPENTIN_DAMAGE_PENALTY_WITHOUT_DEBUFF = BUILDER.comment("Damage multiplier for serpentin when target has no debuff").defineInRange("serpentin_damage_penalty_without_debuff", 0.65, 0.0, 1.0);
+		SERPENTIN_POTION_DURATION_MULTIPLIER = BUILDER.comment("Potion duration multiplier for serpentin").defineInRange("serpentin_potion_duration_multiplier", 1.5, 1.0, 3.0);
+		SERPENTIN_STRENGTH_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Strength potion").defineInRange("serpentin_strength_amplifier_bonus", 1, 0, 5);
+		SERPENTIN_SPEED_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Speed potion").defineInRange("serpentin_speed_amplifier_bonus", 1, 0, 5);
+		SERPENTIN_JUMP_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Jump potion").defineInRange("serpentin_jump_amplifier_bonus", 2, 0, 5);
+		BUILDER.pop();
+		BUILDER.push("Arachna Class Attributes");
+		ARACHA_MAX_HEALTH = BUILDER.comment("Arachna max health").define("aracha_max_health", 16.0);
+		ARACHA_WATER_SLOWDOWN_DURATION = BUILDER.comment("Duration of slowdown effect in water for aracha").defineInRange("aracha_water_slowdown_duration", 2, 1, 100);
+		ARACHA_WATER_SLOWDOWN_AMPLIFIER = BUILDER.comment("Amplifier of slowdown in water").defineInRange("aracha_water_slowdown_amplifier", 2, 0, 10);
+		ARACHA_HEAVY_ARMOR_SLOWDOWN_DURATION = BUILDER.comment("Duration of slowdown with heavy armor").defineInRange("aracha_heavy_armor_slowdown_duration", 3, 1, 100);
+		ARACHA_HEAVY_ARMOR_SLOWDOWN_AMPLIFIER = BUILDER.comment("Amplifier of slowdown with heavy armor").defineInRange("aracha_heavy_armor_slowdown_amplifier", 0, 0, 10);
+		ARACHA_BITE_COUNT_THRESHOLD = BUILDER.comment("Number of bites to trigger fangs and poison").defineInRange("aracha_bite_count_threshold", 3, 1, 10);
+		ARACHA_POISON_DURATION = BUILDER.comment("Duration of poison effect after bites").defineInRange("aracha_poison_duration", 40, 20, 200);
+		ARACHA_POISON_AMPLIFIER = BUILDER.comment("Amplifier of poison effect").defineInRange("aracha_poison_amplifier", 0, 0, 5);
+		ARACHA_FIRE_DAMAGE_MULTIPLIER = BUILDER.comment("Fire damage multiplier for aracha").defineInRange("aracha_fire_damage_multiplier", 1.5, 1.0, 3.0);
+		BUILDER.pop();
+		BUILDER.push("Halfdead Class Attributes");
+		HALFDEAD_MAX_HEALTH = BUILDER.comment("Halfdead max health").define("halfdead_max_health", 26.0);
+		HALFDEAD_HEAL_MULTIPLIER = BUILDER.comment("Heal multiplier for halfdead").defineInRange("halfdead_heal_multiplier", 0.2, 0.0, 1.0);
+		HALFDEAD_HEAL_ON_KILL = BUILDER.comment("Heal amount on kill for halfdead").defineInRange("halfdead_heal_on_kill", 2.0f, 0.0f, 40.0f);
+		HALFDEAD_DEATH_MARK_DURATION = BUILDER.comment("Duration of death mark effect in ticks").defineInRange("halfdead_death_mark_duration", 200, 100, 600);
+		HALFDEAD_DAMAGE_BONUS_VS_UNDEAD = BUILDER.comment("Damage bonus vs undead for halfdead").defineInRange("halfdead_damage_bonus_vs_undead", 1.2, 1.0, 2.0);
+		HALFDEAD_DAMAGE_REDUCTION_FROM_MARK = BUILDER.comment("Damage reduction when attacker has death mark").defineInRange("halfdead_damage_reduction_from_mark", 0.67, 0.0, 1.0);
+		HALFDEAD_DAMAGE_INCREASE_TO_MARKED = BUILDER.comment("Damage increase to marked targets").defineInRange("halfdead_damage_increase_to_marked", 1.33, 1.0, 2.0);
+		HALFDEAD_DEATH_MARK_RADIUS = BUILDER.comment("Radius to search for nearby entities to apply death mark").defineInRange("halfdead_death_mark_radius", 10.0, 1.0, 50.0);
 		BUILDER.pop();
 		BUILDER.push("Cosmetics");
 		ELF_EARS = BUILDER.define("elf_ears", true);
@@ -129,17 +195,9 @@ public class SimpleRPGRacesConfiguration {
 		ELF_RESIZE = BUILDER.define("elf_resize", true);
 		ORC_RESIZE = BUILDER.define("orc_resize", true);
 		BUILDER.pop();
+		BUILDER.push("Others");
+		RANGED_WEAPON_DAMAGE_PENALTY = BUILDER.comment("Damage penalty for ranged weapons (bows/crossbows) for non-elf races (multiplicative, e.g., -0.6 for 60% less damage)")
+				.defineInRange("ranged_weapon_damage_penalty", -0.6, -1.0, 0.0);
 		SPEC = BUILDER.build();
 	}
 }
-
-//public class SimpleRPGRacesConfiguration {
-//	public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-//	public static final ForgeConfigSpec SPEC;
-//
-//	static {
-//
-//		SPEC = BUILDER.build();
-//	}
-//
-//}

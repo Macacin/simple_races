@@ -10,9 +10,7 @@ import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.simpleraces.client.SyncVars;
-import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
 import net.simpleraces.network.SimpleracesModVariables;
-import net.simpleraces.procedures.ResistanceAddProcedure;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = "simpleraces", bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
@@ -21,38 +19,82 @@ public class OverlayRenderer {
     public static void onRenderOverlay(RenderGuiOverlayEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
+        SimpleracesModVariables.PlayerVariables vars = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables());
         if (player == null) return;
-        if((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables()).dragon)){
+        if (vars.dragon) {
             GuiGraphics gui = event.getGuiGraphics();
 
-            int x = 11;
-            int y = 11;
+            int width = mc.getWindow().getGuiScaledWidth();
+            int height = mc.getWindow().getGuiScaledHeight();
+
+            int hotbarHeight = 22;
+            int offsetY = 30;
+
+            int maxWidth = 99;
+            int x = (width - maxWidth) / 2;
+            int y = height - hotbarHeight - 18 - offsetY;
 
             float procents = SyncVars.heat / (float) SyncVars.maxHeat;
-            int maxWidth = 97;
             int barWidth = (int) (procents * maxWidth);
-            gui.blit(new ResourceLocation("simpleraces","textures/screens/overheat.png"), x, y, 0, 0, maxWidth, 18);
-            gui.blit(new ResourceLocation("simpleraces","textures/screens/overheat.png"), x, y + 10, 0, 25, barWidth, 5);
-            if(procents <= 0.25f){
-                gui.blit(new ResourceLocation("simpleraces","textures/screens/overheat.png"), maxWidth / 2 + 5, y + 1, 100, 3, 10, 14);
-            } else if(procents <= 0.5f){
-                gui.blit(new ResourceLocation("simpleraces","textures/screens/overheat.png"), maxWidth / 2 + 5, y + 1, 100, 19, 10, 14);
-            } else if(procents <= 0.75f){
-                gui.blit(new ResourceLocation("simpleraces","textures/screens/overheat.png"), maxWidth / 2 + 5, y + 1, 117, 3, 10, 14);
-            } else if(procents <= 1.0f){
-                gui.blit(new ResourceLocation("simpleraces","textures/screens/overheat.png"), maxWidth / 2 + 5, y + 1, 117, 19, 10, 14);
+            int backgroundV = SyncVars.overheated ? 46 : 0;
+            gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x, y, 0, backgroundV, maxWidth, 19);
+            gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x, y + 10, 0, 25, barWidth, 5);
+            if (!SyncVars.overheated) {
+                if (procents <= 0.3f) {
+                    gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x + maxWidth / 2 - 6, y, 101, 3, 10, 14);
+                } else if (procents <= 0.6f) {
+                    gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x + maxWidth / 2 - 6, y, 101, 19, 10, 14);
+                } else if (procents <= 0.8f) {
+                    gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x + maxWidth / 2 - 6, y, 118, 3, 10, 14);
+                } else if (procents <= 1.0f) {
+                    gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x + maxWidth / 2 - 6, y, 118, 19, 10, 14);
+                }
+            } else {
+                gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x + maxWidth / 2 - 6, y, 134, 20, 10, 14);
             }
 
-        } else if((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables()).fairy)){
+        } else if (vars.fairy) {
             GuiGraphics gui = event.getGuiGraphics();
-            int maxWidth = 70;
-            int x = event.getWindow().getGuiScaledWidth() / 2 - maxWidth / 2 - 50;
-            int y = event.getWindow().getGuiScaledHeight() - 60;
-            int maxFlyingTicks =  SimpleRPGRacesConfiguration.FAIRY_MAX_FLYING_TIME.get() * 20;
-            float procentWidth = Math.min(ResistanceAddProcedure.FAIRY_FLYING_BAR / (float) maxFlyingTicks, 1.0f);
-            int width = (int) ((procentWidth) * maxWidth);
-            gui.fill(x, y, x + maxWidth, y + 10, 0xFF000000);
-            gui.fill(x, y, x + width, y + 10, 0xFFFFFF00);
+
+            int width = mc.getWindow().getGuiScaledWidth();
+            int height = mc.getWindow().getGuiScaledHeight();
+
+            int hotbarHeight = 22;
+            int offsetY = 30;
+
+            int maxWidth = 99;
+            int x = (width - maxWidth) / 2;
+            int y = height - hotbarHeight - 18 - offsetY;
+
+            float procents;
+            if (SyncVars.isFairyRecovering) {
+                procents = SyncVars.fairyFlightBar / (float) SyncVars.maxFairyFlight;
+            } else {
+                procents = 1f - (SyncVars.fairyFlightBar / (float) SyncVars.maxFairyFlight);
+            }
+
+            int barWidth = (int) (procents * maxWidth);
+            int backgroundV = SyncVars.isFairyRecovering ? 0 : 43;
+
+            gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), x, y, 0, backgroundV, maxWidth, 19);
+            gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), x, y + 10, 0, 25, barWidth, 5);
+            int iconWidth = 13;
+            int iconX = x + (maxWidth - iconWidth) / 2;
+            int iconY = y + 2;
+
+            if (!SyncVars.isFairyRecovering) {
+                if (procents <= 0.3f) {
+                    gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), iconX, iconY, 100, 19, iconWidth, 16);
+                } else if (procents <= 0.6f) {
+                    gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), iconX, iconY, 117, 3, iconWidth, 16);
+                } else if (procents <= 0.8f) {
+                    gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), iconX, iconY, 117, 19, iconWidth, 16);
+                } else if (procents <= 1.0f) {
+                    gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), iconX, iconY, 135, 19, iconWidth, 16);
+                }
+            } else {
+                gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), iconX, iconY, 100, 3, iconWidth, 16);
+            }
         }
     }
 }
