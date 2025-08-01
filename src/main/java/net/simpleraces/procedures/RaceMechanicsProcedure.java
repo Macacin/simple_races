@@ -1,7 +1,11 @@
 package net.simpleraces.procedures;
 
 import net.minecraft.core.particles.*;
-import org.apache.logging.log4j.LogManager;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.ThrownPotion;
+import net.minecraft.world.phys.AABB;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -65,9 +69,7 @@ import net.minecraftforge.common.ForgeMod;
 import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Mod.EventBusSubscriber
 public class RaceMechanicsProcedure {
@@ -88,6 +90,8 @@ public class RaceMechanicsProcedure {
     private static final UUID WEREWOLF_BEAST_HEALTH_UUID = UUID.fromString("9809562a-faa3-45f9-83a7-4eb9228b9c5b");
     private static final UUID WEREWOLF_HUMAN_HEALTH_UUID = UUID.fromString("c561d21a-47fd-40ed-ab8b-8d457f4c6557");
     private static final UUID ORC_FERVOR_DEBUFF_DAMAGE_UUID = UUID.fromString("f27e1bbe-6f03-4089-a379-1747280ad46f");
+
+    private static final Map<UUID, Map<MobEffect, Integer>> preAttackDebuffs = new HashMap<>();
 
     private static final Set<ResourceKey<Biome>> FOREST_BIOMES = Set.of(
             Biomes.FOREST,
@@ -534,6 +538,25 @@ public class RaceMechanicsProcedure {
                     persistentData.putInt("orc_fervor_debuff_ticks", debuffTicks - 1);
                 }
             }
+        } else if (vars.serpentin) {
+
+            CompoundTag persistentData = player.getPersistentData();
+            for (MobEffectInstance inst : new ArrayList<>(player.getActiveEffects())) {
+                if (!inst.getEffect().isBeneficial() && inst.getEffect() != MobEffects.POISON && inst.getEffect() != MobEffects.WITHER) {  // Негативный, кроме уже снимаемых
+                    String effectKey = "serpentin_shortened_" + ForgeRegistries.MOB_EFFECTS.getKey(inst.getEffect()).toString();
+                    if (!persistentData.getBoolean(effectKey)) {
+                        int newDuration = inst.getDuration() / 2;
+                        if (newDuration > 0) {
+                            player.removeEffect(inst.getEffect());
+                            player.addEffect(new MobEffectInstance(inst.getEffect(), newDuration, inst.getAmplifier(), inst.isAmbient(), inst.isVisible(), inst.showIcon()));
+                        }
+                        persistentData.putBoolean(effectKey, true);
+                    }
+                } else {
+                    String effectKey = "serpentin_shortened_" + ForgeRegistries.MOB_EFFECTS.getKey(inst.getEffect()).toString();
+                    persistentData.remove(effectKey);
+                }
+            }
         }
     }
 
@@ -774,9 +797,25 @@ public class RaceMechanicsProcedure {
     @SubscribeEvent
     public static void onAttackEntity(AttackEntityEvent event) {
         Player player = event.getEntity();
+        SimpleracesModVariables.PlayerVariables vars = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                .orElse(new SimpleracesModVariables.PlayerVariables());
         if (player.level().isClientSide()) return;
         if (!(event.getTarget() instanceof LivingEntity target)) return;
-        if ((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables()).aracha)) {
+        if (vars.serpentin && event.getTarget() instanceof LivingEntity livingTarget) {
+            Map<MobEffect, Integer> currentDebuffs = new HashMap<>();
+            for (MobEffectInstance inst : livingTarget.getActiveEffects()) {
+                if (!inst.getEffect().isBeneficial()) {
+                    currentDebuffs.put(inst.getEffect(), inst.getDuration());
+                }
+            }
+            preAttackDebuffs.put(livingTarget.getUUID(), currentDebuffs);
+
+            SimpleracesMod.queueServerWork(1, () -> {
+                adjustDebuffDurations(livingTarget);
+                preAttackDebuffs.remove(livingTarget.getUUID());
+            });
+        }
+        if (vars.aracha) {
             CompoundTag persistentData = player.getPersistentData();
             CompoundTag data;
             if (!persistentData.contains(Player.PERSISTED_NBT_TAG)) {
@@ -803,12 +842,11 @@ public class RaceMechanicsProcedure {
             } else {
                 data.putInt("bite_count", count);
             }
-        } else if ((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables()).werewolf)) {
+        } else if (vars.werewolf) {
             if (player.getRandom().nextInt(10) == 0) {
                 target.addEffect(new MobEffectInstance(ModEffects.BLEEDING.get(), 100, 0, true, true));
             }
-        } else if ((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables()).orc)) {
-            SimpleracesModVariables.PlayerVariables vars = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables());
+        } else if (vars.orc) {
 
             if (player.getPersistentData().getBoolean("orc_rage_strike")) {
                 player.getPersistentData().remove("orc_rage_strike");
@@ -1124,6 +1162,30 @@ public class RaceMechanicsProcedure {
                 if (dmgAttr != null) {
                     dmgAttr.removeModifier(ELF_BOW_BOOST_UUID);
                 }
+            }
+        }
+    }
+    private static void adjustDebuffDurations(LivingEntity target) {
+        if (target == null || !target.isAlive()) return;
+
+        Map<MobEffect, Integer> pre = preAttackDebuffs.get(target.getUUID());
+        if (pre == null) return;
+
+        for (MobEffectInstance inst : new ArrayList<>(target.getActiveEffects())) {
+            if (inst.getEffect().isBeneficial()) continue; // Только дебафы
+
+            MobEffect effect = inst.getEffect();
+            int preDuration = pre.getOrDefault(effect, 0);
+            int currentDuration = inst.getDuration();
+
+            if (currentDuration > preDuration) {
+                int added = currentDuration - preDuration;
+                int newAdded = added * 2; // Удваиваем добавленную часть
+                int newDuration = preDuration + newAdded;
+
+                target.removeEffect(effect);
+                target.addEffect(new MobEffectInstance(effect, newDuration, inst.getAmplifier(),
+                        inst.isAmbient(), inst.isVisible(), inst.showIcon()));
             }
         }
     }

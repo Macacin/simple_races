@@ -862,5 +862,11 @@
     },
     "done": true
   },
+  "irons_spellbooks:grant_patchouli": {
+    "criteria": {
+      "tick": "2025-08-02 00:10:24 +0300"
+    },
+    "done": true
+  },
   "DataVersion": 3465
 }

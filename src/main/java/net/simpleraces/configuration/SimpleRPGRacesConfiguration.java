@@ -93,7 +93,7 @@ public class SimpleRPGRacesConfiguration {
 
 	static {
 		BUILDER.push("Class Select");
-		FORCE_PICK = BUILDER.comment("Force player to pick a class after joining").define("force_pick", false);
+		FORCE_PICK = BUILDER.comment("Force player to pick a class after joining").define("force_pick", true);
 		JOIN_MESSAGE = BUILDER.comment("Message players who haven't selected a class").define("join_message", true);
 		DESELECT = BUILDER.comment("Ability to deselect classes (survival) via /classreset").define("deselect", false);
 		JOIN_MESSAGE_TEXT = BUILDER.comment("Enter Join Message Text").define("join_message_text", "Click the Assigned Key [M] To Open the RPG Race Selection Menu");
@@ -160,8 +160,8 @@ public class SimpleRPGRacesConfiguration {
 		BUILDER.push("Serpentine Class Attributes");
 		SERPENTIN_MAX_HEALTH = BUILDER.comment("Serpentin max health").define("serpentin_max_health", 20.0);
 		SERPENTIN_DAMAGE_BONUS_WITH_DEBUFF = BUILDER.comment("Damage multiplier for serpentin when target has debuff").defineInRange("serpentin_damage_bonus_with_debuff", 1.25, 1.0, 2.0);
-		SERPENTIN_DAMAGE_PENALTY_WITHOUT_DEBUFF = BUILDER.comment("Damage multiplier for serpentin when target has no debuff").defineInRange("serpentin_damage_penalty_without_debuff", 0.65, 0.0, 1.0);
-		SERPENTIN_POTION_DURATION_MULTIPLIER = BUILDER.comment("Potion duration multiplier for serpentin").defineInRange("serpentin_potion_duration_multiplier", 1.5, 1.0, 3.0);
+		SERPENTIN_DAMAGE_PENALTY_WITHOUT_DEBUFF = BUILDER.comment("Damage multiplier for serpentin when target has no debuff").defineInRange("serpentin_damage_penalty_without_debuff", 0.75, 0.0, 1.0);
+		SERPENTIN_POTION_DURATION_MULTIPLIER = BUILDER.comment("Potion duration multiplier for serpentin").defineInRange("serpentin_potion_duration_multiplier", 2.0, 1.0, 3.0);
 		SERPENTIN_STRENGTH_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Strength potion").defineInRange("serpentin_strength_amplifier_bonus", 1, 0, 5);
 		SERPENTIN_SPEED_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Speed potion").defineInRange("serpentin_speed_amplifier_bonus", 1, 0, 5);
 		SERPENTIN_JUMP_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Jump potion").defineInRange("serpentin_jump_amplifier_bonus", 2, 0, 5);

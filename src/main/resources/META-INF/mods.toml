@@ -35,10 +35,34 @@ description="Pick From Fantasy Races"
     ordering="NONE"
     side="BOTH"
 [[dependencies.simpleraces]]
-    modId="irons_spellbooks"
+    modId="geckolib"
     mandatory=false
     versionRange="[0,)"
     ordering="NONE"
+    side="BOTH"
+[[dependencies.simpleraces]]
+    modId="playeranimator"
+    mandatory=false
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.simpleraces]]
+    modId="curios"
+    mandatory=false
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.simpleraces]]
+    modId="caelus"
+    mandatory=false
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.simpleraces]]
+    modId="irons_spellbooks"
+    mandatory=false
+    versionRange="[0,)"
+    ordering="AFTER"
     side="BOTH"
 
 # Start of user code block dependencies configuration
