@@ -1,7 +1,6 @@
 package net.simpleraces.configuration;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.simpleraces.world.inventory.ArachaSelectMenu;
 
 
 public class SimpleRPGRacesConfiguration {
@@ -52,6 +51,8 @@ public class SimpleRPGRacesConfiguration {
 	public static final ForgeConfigSpec.ConfigValue<Double> WEREWOLF_HUMAN_SPEED_PENALTY;
 	public static final ForgeConfigSpec.ConfigValue<Double> WEREWOLF_BEAST_HEALTH_BONUS;
 	public static final ForgeConfigSpec.ConfigValue<Double> WEREWOLF_HUMAN_HEALTH_PENALTY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> WEREWOLF_BEAST_DURATION;
+	public static final ForgeConfigSpec.ConfigValue<Integer> WEREWOLF_BLEEDING_DURATION;
 	public static final ForgeConfigSpec.ConfigValue<Double> SERPENTIN_MAX_HEALTH;
 	public static final ForgeConfigSpec.ConfigValue<Double> ORC_DAMAGE_PENALTY;
 	public static final ForgeConfigSpec.ConfigValue<Double> ORC_MAGIC_DAMAGE_PENALTY;
@@ -75,10 +76,11 @@ public class SimpleRPGRacesConfiguration {
 	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_BITE_COUNT_THRESHOLD;
 	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_POISON_DURATION;
 	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_POISON_AMPLIFIER;
+	public static final ForgeConfigSpec.ConfigValue<Double> ARACHA_ATTACK_SPEED_BONUS;
 	public static final ForgeConfigSpec.ConfigValue<Double> ARACHA_FIRE_DAMAGE_MULTIPLIER;
 
 	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_HEAL_MULTIPLIER;
-	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_HEAL_ON_KILL;
+	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_AURA_DAMAGE;
 	public static final ForgeConfigSpec.ConfigValue<Integer> HALFDEAD_DEATH_MARK_DURATION;
 	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_DAMAGE_BONUS_VS_UNDEAD;
 	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_DAMAGE_REDUCTION_FROM_MARK;
@@ -113,7 +115,7 @@ public class SimpleRPGRacesConfiguration {
 		ORC_FERVOR_SLOWDOWN_LEVEL = BUILDER.comment("Level of slowdown effect after fervor fades (e.g., 2 for strong slowdown)")
 				.defineInRange("orc_fervor_slowdown_level", 4, 0, 5);
 		ORC_FERVOR_INCOMING_DAMAGE_MULTIPLIER = BUILDER.comment("Incoming damage multiplier during debuff after fervor fades (e.g., 1.2 for 20% more damage)")
-				.defineInRange("orc_fervor_incoming_damage_multiplier", 1.2, 1.0, 2.0);
+				.defineInRange("orc_fervor_incoming_damage_multiplier", 1.3, 1.0, 2.0);
 		BUILDER.pop();
 		BUILDER.push("Dwarf Class Attributes");
 		DWARF_HASTE = BUILDER.comment("Increased mining speed underground").define("dwarf_haste", true);
@@ -156,11 +158,13 @@ public class SimpleRPGRacesConfiguration {
 		WEREWOLF_HUMAN_SPEED_PENALTY = BUILDER.comment("Werewolf speed penalty in human form (multiplicative)").defineInRange("werewolf_human_speed_penalty", -0.3, -1.0, 0.0);
 		WEREWOLF_BEAST_HEALTH_BONUS = BUILDER.comment("Werewolf health bonus in beast form (additive)").defineInRange("werewolf_beast_health_bonus", 4.0, 0.0, 20.0);
 		WEREWOLF_HUMAN_HEALTH_PENALTY = BUILDER.comment("Werewolf health penalty in human form (additive)").defineInRange("werewolf_human_health_penalty", -4.0, -20.0, 0.0);
+		WEREWOLF_BEAST_DURATION = BUILDER.comment("Duration of beast mod after randomly turning into it, defined in ticks").defineInRange("werewolf_beast_duration", 400, 100, 1200);
+		WEREWOLF_BLEEDING_DURATION = BUILDER.comment("Bleeding duration of werewolf, defined in ticks").defineInRange("werewolf_beast_duration", 200, 100, 1200);
 		BUILDER.pop();
 		BUILDER.push("Serpentine Class Attributes");
 		SERPENTIN_MAX_HEALTH = BUILDER.comment("Serpentin max health").define("serpentin_max_health", 20.0);
 		SERPENTIN_DAMAGE_BONUS_WITH_DEBUFF = BUILDER.comment("Damage multiplier for serpentin when target has debuff").defineInRange("serpentin_damage_bonus_with_debuff", 1.25, 1.0, 2.0);
-		SERPENTIN_DAMAGE_PENALTY_WITHOUT_DEBUFF = BUILDER.comment("Damage multiplier for serpentin when target has no debuff").defineInRange("serpentin_damage_penalty_without_debuff", 0.75, 0.0, 1.0);
+		SERPENTIN_DAMAGE_PENALTY_WITHOUT_DEBUFF = BUILDER.comment("Damage multiplier for serpentin when target has no debuff").defineInRange("serpentin_damage_penalty_without_debuff", 0.65, 0.0, 1.0);
 		SERPENTIN_POTION_DURATION_MULTIPLIER = BUILDER.comment("Potion duration multiplier for serpentin").defineInRange("serpentin_potion_duration_multiplier", 2.0, 1.0, 3.0);
 		SERPENTIN_STRENGTH_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Strength potion").defineInRange("serpentin_strength_amplifier_bonus", 1, 0, 5);
 		SERPENTIN_SPEED_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Speed potion").defineInRange("serpentin_speed_amplifier_bonus", 1, 0, 5);
@@ -176,11 +180,12 @@ public class SimpleRPGRacesConfiguration {
 		ARACHA_POISON_DURATION = BUILDER.comment("Duration of poison effect after bites").defineInRange("aracha_poison_duration", 40, 20, 200);
 		ARACHA_POISON_AMPLIFIER = BUILDER.comment("Amplifier of poison effect").defineInRange("aracha_poison_amplifier", 0, 0, 5);
 		ARACHA_FIRE_DAMAGE_MULTIPLIER = BUILDER.comment("Fire damage multiplier for aracha").defineInRange("aracha_fire_damage_multiplier", 1.5, 1.0, 3.0);
+		ARACHA_ATTACK_SPEED_BONUS = BUILDER.comment("Attack speed bonus for aracha").defineInRange("aracha_attack_speed_bonus", 0.25, 0.0, 1.0);
 		BUILDER.pop();
 		BUILDER.push("Halfdead Class Attributes");
 		HALFDEAD_MAX_HEALTH = BUILDER.comment("Halfdead max health").define("halfdead_max_health", 26.0);
 		HALFDEAD_HEAL_MULTIPLIER = BUILDER.comment("Heal multiplier for halfdead").defineInRange("halfdead_heal_multiplier", 0.2, 0.0, 1.0);
-		HALFDEAD_HEAL_ON_KILL = BUILDER.comment("Heal amount on kill for halfdead").defineInRange("halfdead_heal_on_kill", 2.0f, 0.0f, 40.0f);
+		HALFDEAD_AURA_DAMAGE = BUILDER.comment("Heal amount on kill for halfdead").defineInRange("halfdead_heal_on_kill", 2.0f, 0.0f, 40.0f);
 		HALFDEAD_DEATH_MARK_DURATION = BUILDER.comment("Duration of death mark effect in ticks").defineInRange("halfdead_death_mark_duration", 200, 100, 600);
 		HALFDEAD_DAMAGE_BONUS_VS_UNDEAD = BUILDER.comment("Damage bonus vs undead for halfdead").defineInRange("halfdead_damage_bonus_vs_undead", 1.2, 1.0, 2.0);
 		HALFDEAD_DAMAGE_REDUCTION_FROM_MARK = BUILDER.comment("Damage reduction when attacker has death mark").defineInRange("halfdead_damage_reduction_from_mark", 0.67, 0.0, 1.0);

@@ -89,7 +89,7 @@ public class RaceMechanicsProcedure {
     private static final UUID WEREWOLF_HUMAN_SPEED_UUID = UUID.fromString("99044fb5-f130-41ea-9124-dc3d9a773586");
     private static final UUID WEREWOLF_BEAST_HEALTH_UUID = UUID.fromString("9809562a-faa3-45f9-83a7-4eb9228b9c5b");
     private static final UUID WEREWOLF_HUMAN_HEALTH_UUID = UUID.fromString("c561d21a-47fd-40ed-ab8b-8d457f4c6557");
-    private static final UUID ORC_FERVOR_DEBUFF_DAMAGE_UUID = UUID.fromString("f27e1bbe-6f03-4089-a379-1747280ad46f");
+    private static final UUID ARACHA_ATTACK_SPEED_BOOST_UUID = UUID.fromString("76557286-c292-421d-8c2e-f7b7bc77abd9");
 
     private static final Map<UUID, Map<MobEffect, Integer>> preAttackDebuffs = new HashMap<>();
 
@@ -326,13 +326,22 @@ public class RaceMechanicsProcedure {
                         SimpleRPGRacesConfiguration.ARACHA_WATER_SLOWDOWN_DURATION.get(),
                         SimpleRPGRacesConfiguration.ARACHA_WATER_SLOWDOWN_AMPLIFIER.get(), false, false));
             }
+            AttributeInstance attackSpeedAttr = player.getAttribute(Attributes.ATTACK_SPEED);
+            if (attackSpeedAttr != null) {
+                attackSpeedAttr.removeModifier(ARACHA_ATTACK_SPEED_BOOST_UUID);
+                attackSpeedAttr.addTransientModifier(new AttributeModifier(
+                        ARACHA_ATTACK_SPEED_BOOST_UUID,
+                        "Aracha attack speed boost",
+                        SimpleRPGRacesConfiguration.ARACHA_ATTACK_SPEED_BONUS.get(),
+                        AttributeModifier.Operation.MULTIPLY_TOTAL
+                ));
+            }
         } else if (vars.werewolf) {
             AttributeInstance dmgAttr = player.getAttribute(Attributes.ATTACK_DAMAGE);
             AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
             AttributeInstance healthAttr = player.getAttribute(Attributes.MAX_HEALTH);
 
             if (WerewolfState.isBeast(player)) {
-                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 2, 0, false, true));
                 player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 2, 0, false, true));
 
                 // Damage modifier
@@ -542,7 +551,7 @@ public class RaceMechanicsProcedure {
 
             CompoundTag persistentData = player.getPersistentData();
             for (MobEffectInstance inst : new ArrayList<>(player.getActiveEffects())) {
-                if (!inst.getEffect().isBeneficial() && inst.getEffect() != MobEffects.POISON && inst.getEffect() != MobEffects.WITHER) {  // Негативный, кроме уже снимаемых
+                if (!inst.getEffect().isBeneficial() && inst.getEffect() != MobEffects.POISON && inst.getEffect() != MobEffects.WITHER) {
                     String effectKey = "serpentin_shortened_" + ForgeRegistries.MOB_EFFECTS.getKey(inst.getEffect()).toString();
                     if (!persistentData.getBoolean(effectKey)) {
                         int newDuration = inst.getDuration() / 2;
@@ -555,6 +564,16 @@ public class RaceMechanicsProcedure {
                 } else {
                     String effectKey = "serpentin_shortened_" + ForgeRegistries.MOB_EFFECTS.getKey(inst.getEffect()).toString();
                     persistentData.remove(effectKey);
+                }
+            }
+        } else if (vars.halfdead) {
+            if (player.tickCount % 100 == 0) {
+                AABB aabb = new AABB(player.getX() - 5, player.getY() - 5, player.getZ() - 5, player.getX() + 5, player.getY() + 5, player.getZ() + 5);
+                List<LivingEntity> nearbyMobs = level.getEntitiesOfClass(LivingEntity.class, aabb, e -> e != player && e.isAlive() && !(e instanceof Player));
+                for (LivingEntity mob : nearbyMobs) {
+                    mob.hurt(player.damageSources().magic(), SimpleRPGRacesConfiguration.HALFDEAD_AURA_DAMAGE.get().floatValue());
+                    Vec3 direction = mob.position().subtract(player.position()).normalize();
+                    mob.knockback(1.0, direction.x, direction.z);
                 }
             }
         }
@@ -759,7 +778,7 @@ public class RaceMechanicsProcedure {
         } else if (event.getEntity() instanceof Player player && player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
                 .orElse(new SimpleracesModVariables.PlayerVariables()).werewolf) {
             if (player.getRandom().nextInt(20) == 0) {
-                player.addEffect(new MobEffectInstance(ModEffects.WEREWOLF_TRANSFORMATION.get(), 260));
+                player.addEffect(new MobEffectInstance(ModEffects.WEREWOLF_TRANSFORMATION.get(), SimpleRPGRacesConfiguration.WEREWOLF_BEAST_DURATION.get()));
             }
         } else if (event.getEntity() instanceof Player player && player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
                 .orElse(new SimpleracesModVariables.PlayerVariables()).dragon) {
@@ -787,8 +806,19 @@ public class RaceMechanicsProcedure {
                 int debuffTicks = persistentData.getInt("orc_fervor_debuff_ticks");
 
                 if (debuffTicks > 0) {
-                    // Во время дебаффа урон по орку увеличен
                     event.setAmount((float) (event.getAmount() * SimpleRPGRacesConfiguration.ORC_FERVOR_INCOMING_DAMAGE_MULTIPLIER.get()));
+                }
+            }
+        }
+        if (event.getEntity() instanceof Player player) {
+            SimpleracesModVariables.PlayerVariables vars = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                    .orElse(new SimpleracesModVariables.PlayerVariables());
+            if (vars.halfdead && player.getRandom().nextFloat() < 0.15f) {
+                float drainAmount = event.getAmount() * 0.3f;
+                Entity sourceEntity = event.getSource().getEntity();
+                if (sourceEntity instanceof LivingEntity attacker) {
+                    attacker.hurt(player.damageSources().magic(), drainAmount);
+                    player.heal(drainAmount * 10);  // Восстановить себе
                 }
             }
         }
@@ -844,7 +874,7 @@ public class RaceMechanicsProcedure {
             }
         } else if (vars.werewolf) {
             if (player.getRandom().nextInt(10) == 0) {
-                target.addEffect(new MobEffectInstance(ModEffects.BLEEDING.get(), 100, 0, true, true));
+                target.addEffect(new MobEffectInstance(ModEffects.BLEEDING.get(), SimpleRPGRacesConfiguration.WEREWOLF_BLEEDING_DURATION.get(), 0, true, true));
             }
         } else if (vars.orc) {
 
@@ -903,7 +933,8 @@ public class RaceMechanicsProcedure {
         killer.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(vars -> {
             if (!vars.halfdead) return;
 
-            killer.heal(SimpleRPGRacesConfiguration.HALFDEAD_HEAL_ON_KILL.get().floatValue());
+            float healAmount = event.getEntity().getMaxHealth() * 0.1f * 10f;
+            killer.heal(healAmount);
 
             Level level = killer.level();
             double radius = SimpleRPGRacesConfiguration.HALFDEAD_DEATH_MARK_RADIUS.get();
