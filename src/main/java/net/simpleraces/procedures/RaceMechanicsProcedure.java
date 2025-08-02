@@ -808,6 +808,9 @@ public class RaceMechanicsProcedure {
                 if (debuffTicks > 0) {
                     event.setAmount((float) (event.getAmount() * SimpleRPGRacesConfiguration.ORC_FERVOR_INCOMING_DAMAGE_MULTIPLIER.get()));
                 }
+                if (event.getSource().typeHolder().is(DamageTypes.MAGIC)) {
+                    event.setAmount((float) (event.getAmount() * SimpleRPGRacesConfiguration.ORC_INCOMING_MAGIC_DAMAGE_PENALTY.get()));
+                }
             }
         }
         if (event.getEntity() instanceof Player player) {

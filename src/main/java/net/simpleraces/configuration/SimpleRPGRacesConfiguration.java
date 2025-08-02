@@ -56,6 +56,7 @@ public class SimpleRPGRacesConfiguration {
 	public static final ForgeConfigSpec.ConfigValue<Double> SERPENTIN_MAX_HEALTH;
 	public static final ForgeConfigSpec.ConfigValue<Double> ORC_DAMAGE_PENALTY;
 	public static final ForgeConfigSpec.ConfigValue<Double> ORC_MAGIC_DAMAGE_PENALTY;
+	public static final ForgeConfigSpec.ConfigValue<Double> ORC_INCOMING_MAGIC_DAMAGE_PENALTY;
 	public static final ForgeConfigSpec.ConfigValue<Double> ORC_RAGE;
 	public static final ForgeConfigSpec.ConfigValue<Integer> ORC_FERVOR_DEBUFF_DURATION;
 	public static final ForgeConfigSpec.ConfigValue<Integer> ORC_FERVOR_SLOWDOWN_LEVEL;
@@ -109,7 +110,8 @@ public class SimpleRPGRacesConfiguration {
 		BUILDER.push("Orc Class Attributes");
 		ORC_RAGE = BUILDER.comment("Increased strength on low health").defineInRange("orc_damage_rage", 0.3, 0.0, 1.0);
 		ORC_DAMAGE_PENALTY = BUILDER.comment("Penalty to orc attack damage (negative value for decrease, e.g. -0.4 for 60% damage)").defineInRange("orc_damage_penalty", -0.5, -1.0, 0.0);
-		ORC_MAGIC_DAMAGE_PENALTY = BUILDER.comment("Penalty to orc magic damage").defineInRange("orc_magic_damage_penalty", -0.6, -1.0, 0.0);
+		ORC_MAGIC_DAMAGE_PENALTY = BUILDER.comment("Penalty to orc magic damage").defineInRange("orc_magic_damage_penalty", -0.75, -1.0, 0.0);
+		ORC_INCOMING_MAGIC_DAMAGE_PENALTY = BUILDER.comment("Multiplier for incoming magic damage to Orcs").defineInRange("orc_incoming_magic_damage_penalty", 0.3, 0.0, 1.0);
 		ORC_FERVOR_DEBUFF_DURATION = BUILDER.comment("Duration in ticks of debuff after fervor fades (default 100 for 5 seconds)")
 				.defineInRange("orc_fervor_debuff_duration", 100, 0, 600);
 		ORC_FERVOR_SLOWDOWN_LEVEL = BUILDER.comment("Level of slowdown effect after fervor fades (e.g., 2 for strong slowdown)")
@@ -186,8 +188,8 @@ public class SimpleRPGRacesConfiguration {
 		HALFDEAD_MAX_HEALTH = BUILDER.comment("Halfdead max health").define("halfdead_max_health", 26.0);
 		HALFDEAD_HEAL_MULTIPLIER = BUILDER.comment("Heal multiplier for halfdead").defineInRange("halfdead_heal_multiplier", 0.2, 0.0, 1.0);
 		HALFDEAD_AURA_DAMAGE = BUILDER.comment("Heal amount on kill for halfdead").defineInRange("halfdead_heal_on_kill", 2.0f, 0.0f, 40.0f);
-		HALFDEAD_DEATH_MARK_DURATION = BUILDER.comment("Duration of death mark effect in ticks").defineInRange("halfdead_death_mark_duration", 200, 100, 600);
-		HALFDEAD_DAMAGE_BONUS_VS_UNDEAD = BUILDER.comment("Damage bonus vs undead for halfdead").defineInRange("halfdead_damage_bonus_vs_undead", 1.2, 1.0, 2.0);
+		HALFDEAD_DEATH_MARK_DURATION = BUILDER.comment("Duration of death mark effect in ticks").defineInRange("halfdead_death_mark_duration", 600, 100, 600);
+		HALFDEAD_DAMAGE_BONUS_VS_UNDEAD = BUILDER.comment("Damage bonus vs undead for halfdead").defineInRange("halfdead_damage_bonus_vs_undead", 1.3, 1.0, 2.0);
 		HALFDEAD_DAMAGE_REDUCTION_FROM_MARK = BUILDER.comment("Damage reduction when attacker has death mark").defineInRange("halfdead_damage_reduction_from_mark", 0.67, 0.0, 1.0);
 		HALFDEAD_DAMAGE_INCREASE_TO_MARKED = BUILDER.comment("Damage increase to marked targets").defineInRange("halfdead_damage_increase_to_marked", 1.33, 1.0, 2.0);
 		HALFDEAD_DEATH_MARK_RADIUS = BUILDER.comment("Radius to search for nearby entities to apply death mark").defineInRange("halfdead_death_mark_radius", 10.0, 1.0, 50.0);

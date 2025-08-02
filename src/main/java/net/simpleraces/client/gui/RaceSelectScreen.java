@@ -21,7 +21,9 @@ import net.simpleraces.network.*;
 import net.simpleraces.world.AbstractRaceSelectMenu;
 import net.simpleraces.world.inventory.ElfSelectMenu;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
@@ -61,44 +63,41 @@ public abstract class RaceSelectScreen<T extends AbstractRaceSelectMenu> extends
 				(float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
 				new ArachaModelEntity(SimpleracesModEntities.getByName(title.getString()), world));
 
-		this.renderTooltip(guiGraphics, mouseX, mouseY);
-
 		Rect2i tooltipTrait1 = new Rect2i(leftPos - 3, topPos - 23, 34, 11);
 		Rect2i tooltipTrait2 = new Rect2i(leftPos + 33, topPos - 23, 34, 11);
 
-		if (tooltipNext.contains(mouseX, mouseY)) {
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_next"), mouseX, mouseY);
-		}
-
-		if (tooltipPrevious.contains(mouseX, mouseY)) {
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_previous"), mouseX, mouseY);
-		}
-
 		if (tooltipTrait1.contains(mouseX, mouseY)) {
-			if (Screen.hasShiftDown()) {
-				guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces." + title.getString() +"_select.tooltip_dwarves_are_stout_skilled_craft.extended"), mouseX, mouseY);
-			} else {
-				guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces." + title.getString() + "_select.tooltip_dwarves_are_stout_skilled_craft"), mouseX, mouseY);
-			}
+			String key = Screen.hasShiftDown() ?
+					"gui.simpleraces." + title.getString() + "_select.tooltip_dwarves_are_stout_skilled_craft.extended" :
+					"gui.simpleraces." + title.getString() + "_select.tooltip_dwarves_are_stout_skilled_craft";
+			List<Component> lines = splitComponent(Component.translatable(key));
+			guiGraphics.renderComponentTooltip(font, lines, mouseX, mouseY);
 		}
 
 		if (tooltipTrait2.contains(mouseX, mouseY)) {
-			if (Screen.hasShiftDown()) {
-				guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces." + title.getString() + "_select.tooltip_passive_mine_faster_in_dark.extended"), mouseX, mouseY);
-			} else {
-				guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces." + title.getString()+ "_select.tooltip_passive_mine_faster_in_dark"), mouseX, mouseY);
-			}
+			String key = Screen.hasShiftDown() ?
+					"gui.simpleraces." + title.getString() + "_select.tooltip_passive_mine_faster_in_dark.extended" :
+					"gui.simpleraces." + title.getString() + "_select.tooltip_passive_mine_faster_in_dark";
+			List<Component> lines = splitComponent(Component.translatable(key));
+			guiGraphics.renderComponentTooltip(font, lines, mouseX, mouseY);
 		}
 
 		if (tooltipConfirm.contains(mouseX, mouseY)) {
-			guiGraphics.renderTooltip(font, Component.translatable("gui.simpleraces.elf_select.tooltip_confirm"), mouseX, mouseY);
+			List<Component> lines = splitComponent(Component.translatable("gui.simpleraces.elf_select.tooltip_confirm"));
+			guiGraphics.renderComponentTooltip(font, lines, mouseX, mouseY);
 		}
 
-//		guiGraphics.fill(tooltipNext.getX(), tooltipNext.getY(), tooltipNext.getX() + tooltipNext.getWidth(), tooltipNext.getY() + tooltipNext.getHeight(), 0x8000FF00);
-//		guiGraphics.fill(tooltipPrevious.getX(), tooltipPrevious.getY(), tooltipPrevious.getX() + tooltipPrevious.getWidth(), tooltipPrevious.getY() + tooltipPrevious.getHeight(), 0x8000FF00);
-//		guiGraphics.fill(tooltipTrait1.getX(), tooltipTrait1.getY(), tooltipTrait1.getX() + tooltipTrait1.getWidth(), tooltipTrait1.getY() + tooltipTrait1.getHeight(), 0x8000FF00);
-//		guiGraphics.fill(tooltipTrait2.getX(), tooltipTrait2.getY(), tooltipTrait2.getX() + tooltipTrait2.getWidth(), tooltipTrait2.getY() + tooltipTrait2.getHeight(), 0x8000FF00);
-//		guiGraphics.fill(tooltipConfirm.getX(), tooltipConfirm.getY(), tooltipConfirm.getX() + tooltipConfirm.getWidth(), tooltipConfirm.getY() + tooltipConfirm.getHeight(), 0x8000FF00);
+		if (tooltipNext.contains(mouseX, mouseY)) {
+			List<Component> lines = splitComponent(Component.translatable("gui.simpleraces.elf_select.tooltip_next"));
+			guiGraphics.renderComponentTooltip(font, lines, mouseX, mouseY);
+		}
+
+		if (tooltipPrevious.contains(mouseX, mouseY)) {
+			List<Component> lines = splitComponent(Component.translatable("gui.simpleraces.elf_select.tooltip_previous"));
+			guiGraphics.renderComponentTooltip(font, lines, mouseX, mouseY);
+		}
+
+		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
 	@Override
 	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
@@ -193,5 +192,13 @@ public abstract class RaceSelectScreen<T extends AbstractRaceSelectMenu> extends
 		} else {
 			System.out.println("Нет кнопки для расы: " + raceName);
 		}
+	}
+	private List<Component> splitComponent(Component component) {
+		String[] lines = component.getString().split("\n");
+		List<Component> components = new ArrayList<>();
+		for (String line : lines) {
+			components.add(Component.literal(line));
+		}
+		return components;
 	}
 }
