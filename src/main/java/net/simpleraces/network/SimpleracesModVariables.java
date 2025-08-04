@@ -89,6 +89,10 @@ public class SimpleracesModVariables {
 			clone.serpentin = original.serpentin;
 			clone.werewolf = original.werewolf;
 			clone.aracha = original.aracha;
+			clone.raceCapacityInitialized = original.raceCapacityInitialized;
+			clone.fervorStacks = original.fervorStacks;
+			clone.lastTarget = original.lastTarget;
+			clone.previousFoodLevel = original.previousFoodLevel;
 			if (!event.isWasDeath()) {
 			}
 			if (!event.getEntity().level().isClientSide()) {
@@ -145,6 +149,7 @@ public class SimpleracesModVariables {
 		public int fervorStacks = 0;
 		public UUID lastTarget = null;
 		public int previousFoodLevel = 20;
+		public boolean raceCapacityInitialized = false;
 
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayer serverPlayer)
@@ -164,6 +169,12 @@ public class SimpleracesModVariables {
 			nbt.putBoolean("Serpentin", serpentin);
 			nbt.putBoolean("werewolf", werewolf);
 			nbt.putBoolean("aracha", aracha);
+			nbt.putBoolean("raceCapacityInitialized", raceCapacityInitialized);
+			nbt.putInt("fervorStacks", fervorStacks);
+			if (lastTarget != null) {
+				nbt.putUUID("lastTarget", lastTarget);
+			}
+			nbt.putInt("previousFoodLevel", previousFoodLevel);
 			return nbt;
 		}
 
@@ -180,6 +191,14 @@ public class SimpleracesModVariables {
 			serpentin = nbt.getBoolean("Serpentin");
 			werewolf = nbt.getBoolean("werewolf");
 			aracha = nbt.getBoolean("aracha");
+			raceCapacityInitialized = nbt.getBoolean("raceCapacityInitialized");
+			fervorStacks = nbt.getInt("fervorStacks");
+			if (nbt.hasUUID("lastTarget")) {
+				lastTarget = nbt.getUUID("lastTarget");
+			} else {
+				lastTarget = null;
+			}
+			previousFoodLevel = nbt.getInt("previousFoodLevel");
 		}
 	}
 
@@ -202,6 +221,9 @@ public class SimpleracesModVariables {
 			} else {
 				this.data.lastTarget = null;
 			}
+
+			this.data.raceCapacityInitialized = buffer.readBoolean();
+			this.data.previousFoodLevel = buffer.readInt();
 		}
 
 		public PlayerVariablesSyncMessage(PlayerVariables data, int entityid) {
@@ -219,6 +241,8 @@ public class SimpleracesModVariables {
 			if (message.data.lastTarget != null) {
 				buffer.writeUUID(message.data.lastTarget);
 			}
+			buffer.writeBoolean(message.data.raceCapacityInitialized);
+			buffer.writeInt(message.data.previousFoodLevel);
 		}
 
 		public static void handler(PlayerVariablesSyncMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
@@ -237,6 +261,8 @@ public class SimpleracesModVariables {
 					variables.serpentin = message.data.serpentin;
 					variables.werewolf = message.data.werewolf;
 					variables.aracha = message.data.aracha;
+					variables.raceCapacityInitialized = message.data.raceCapacityInitialized;
+					variables.previousFoodLevel = message.data.previousFoodLevel;
 
 					variables.fervorStacks = message.data.fervorStacks;
 					variables.lastTarget = message.data.lastTarget;
