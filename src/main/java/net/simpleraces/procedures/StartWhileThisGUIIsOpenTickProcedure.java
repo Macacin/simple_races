@@ -1,5 +1,6 @@
 package net.simpleraces.procedures;
 
+import net.simpleraces.network.SimpleracesModVariables;
 import net.simpleraces.world.inventory.DwarfSelectMenu;
 import net.simpleraces.SimpleracesMod;
 
@@ -20,6 +21,13 @@ import io.netty.buffer.Unpooled;
 
 public class StartWhileThisGUIIsOpenTickProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+		SimpleracesModVariables.PlayerVariables vars = entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new SimpleracesModVariables.PlayerVariables());
+
+		if (vars.selected) {
+			if (entity instanceof Player _player) _player.closeContainer();
+			return;
+		}
 		if (entity == null)
 			return;
 		SimpleracesMod.queueServerWork(1, () -> {
