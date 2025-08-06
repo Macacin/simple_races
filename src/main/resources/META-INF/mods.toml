@@ -20,6 +20,8 @@ description="Pick From Fantasy Races"
     versionRange="[1.20.1]"
     ordering="AFTER"
     side="BOTH"
+
+
 [[dependencies.simpleraces]]
     modId="kleidersplayerrenderer"
     mandatory=false
@@ -62,9 +64,6 @@ description="Pick From Fantasy Races"
     versionRange="[0,)"
     ordering="AFTER"
     side="BOTH"
-[[dependencies.simpleraces]]
-    modId="weightmod"
-    mandatory=true
-    versionRange="[1.0,)"
-    ordering="AFTER"
-    side="BOTH"
+
+# Start of user code block dependencies configuration
+# End of user code block dependencies configuration
