@@ -30,7 +30,7 @@ public class StartWhileThisGUIIsOpenTickProcedure {
 		}
 		if (entity == null)
 			return;
-		SimpleracesMod.queueServerWork(1, () -> {
+		SimpleracesMod.queueServerWork(10, () -> {
 			if (entity instanceof Player _player)
 				_player.closeContainer();
 			if (entity instanceof ServerPlayer _ent) {
