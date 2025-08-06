@@ -32,243 +32,243 @@ import java.util.ArrayList;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SimpleracesModVariables {
-	public static final Capability<IHeat> HEAT = CapabilityManager.get(new CapabilityToken<>() {});
-	@SubscribeEvent
-	public static void init(FMLCommonSetupEvent event) {
+    public static final Capability<IHeat> HEAT = CapabilityManager.get(new CapabilityToken<>() {});
+    @SubscribeEvent
+    public static void init(FMLCommonSetupEvent event) {
 
-	}
+    }
 
-	@SubscribeEvent
-	public static void init(RegisterCapabilitiesEvent event) {
-		event.register(PlayerVariables.class);
+    @SubscribeEvent
+    public static void init(RegisterCapabilitiesEvent event) {
+        event.register(PlayerVariables.class);
 
-	}
+    }
 
-	@Mod.EventBusSubscriber
-	public static class EventBusVariableHandlers {
-		@SubscribeEvent
-		public static void onPlayerLoggedInSyncPlayerVariables(PlayerEvent.PlayerLoggedInEvent event) {
-			if (!event.getEntity().level().isClientSide()) {
-				for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
-					((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
-				}
-			}
-		}
+    @Mod.EventBusSubscriber
+    public static class EventBusVariableHandlers {
+        @SubscribeEvent
+        public static void onPlayerLoggedInSyncPlayerVariables(PlayerEvent.PlayerLoggedInEvent event) {
+            if (!event.getEntity().level().isClientSide()) {
+                for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
+                    ((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
+                }
+            }
+        }
 
-		@SubscribeEvent
-		public static void onPlayerRespawnedSyncPlayerVariables(PlayerEvent.PlayerRespawnEvent event) {
-			if (!event.getEntity().level().isClientSide()) {
-				for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
-					((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
-				}
-			}
-		}
+        @SubscribeEvent
+        public static void onPlayerRespawnedSyncPlayerVariables(PlayerEvent.PlayerRespawnEvent event) {
+            if (!event.getEntity().level().isClientSide()) {
+                for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
+                    ((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
+                }
+            }
+        }
 
-		@SubscribeEvent
-		public static void onPlayerChangedDimensionSyncPlayerVariables(PlayerEvent.PlayerChangedDimensionEvent event) {
-			if (!event.getEntity().level().isClientSide()) {
-				for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
-					((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
-				}
-			}
-		}
+        @SubscribeEvent
+        public static void onPlayerChangedDimensionSyncPlayerVariables(PlayerEvent.PlayerChangedDimensionEvent event) {
+            if (!event.getEntity().level().isClientSide()) {
+                for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
+                    ((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
+                }
+            }
+        }
 
-		@SubscribeEvent
-		public static void clonePlayer(PlayerEvent.Clone event) {
-			event.getOriginal().revive();
-			PlayerVariables original = ((PlayerVariables) event.getOriginal().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
-			PlayerVariables clone = ((PlayerVariables) event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
-			clone.dwarf = original.dwarf;
-			clone.elf = original.elf;
-			clone.orc = original.orc;
-			clone.merfolk = original.merfolk;
-			clone.dragon = original.dragon;
-			clone.selected = original.selected;
-			clone.fairy = original.fairy;
-			clone.halfdead = original.halfdead;
-			clone.serpentin = original.serpentin;
-			clone.werewolf = original.werewolf;
-			clone.aracha = original.aracha;
-			clone.raceCapacityInitialized = original.raceCapacityInitialized;
-			clone.fervorStacks = original.fervorStacks;
-			clone.lastTarget = original.lastTarget;
-			clone.previousFoodLevel = original.previousFoodLevel;
-			if (!event.isWasDeath()) {
-			}
-			if (!event.getEntity().level().isClientSide()) {
-				for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
-					((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
-				}
-			}
-		}
-	}
+        @SubscribeEvent
+        public static void clonePlayer(PlayerEvent.Clone event) {
+            event.getOriginal().revive();
+            PlayerVariables original = ((PlayerVariables) event.getOriginal().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
+            PlayerVariables clone = ((PlayerVariables) event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
+            clone.dwarf = original.dwarf;
+            clone.elf = original.elf;
+            clone.orc = original.orc;
+            clone.merfolk = original.merfolk;
+            clone.dragon = original.dragon;
+            clone.selected = original.selected;
+            clone.fairy = original.fairy;
+            clone.halfdead = original.halfdead;
+            clone.serpentin = original.serpentin;
+            clone.werewolf = original.werewolf;
+            clone.aracha = original.aracha;
+            clone.raceCapacityInitialized = original.raceCapacityInitialized;
+            clone.fervorStacks = original.fervorStacks;
+            clone.lastTarget = original.lastTarget;
+            clone.previousFoodLevel = original.previousFoodLevel;
+            if (!event.isWasDeath()) {
+            }
+            if (!event.getEntity().level().isClientSide()) {
+                for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
+                    ((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
+                }
+            }
+        }
+    }
 
-	public static final Capability<PlayerVariables> PLAYER_VARIABLES_CAPABILITY = CapabilityManager.get(new CapabilityToken<PlayerVariables>() {
-	});
+    public static final Capability<PlayerVariables> PLAYER_VARIABLES_CAPABILITY = CapabilityManager.get(new CapabilityToken<PlayerVariables>() {
+    });
 
-	@Mod.EventBusSubscriber
-	private static class PlayerVariablesProvider implements ICapabilitySerializable<Tag> {
-		@SubscribeEvent
-		public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
-			if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer))
-				event.addCapability(new ResourceLocation("simpleraces", "player_variables"), new PlayerVariablesProvider());
-		}
+    @Mod.EventBusSubscriber
+    private static class PlayerVariablesProvider implements ICapabilitySerializable<Tag> {
+        @SubscribeEvent
+        public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
+            if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer))
+                event.addCapability(new ResourceLocation("simpleraces", "player_variables"), new PlayerVariablesProvider());
+        }
 
-		private final PlayerVariables playerVariables = new PlayerVariables();
-		private final LazyOptional<PlayerVariables> instance = LazyOptional.of(() -> playerVariables);
+        private final PlayerVariables playerVariables = new PlayerVariables();
+        private final LazyOptional<PlayerVariables> instance = LazyOptional.of(() -> playerVariables);
 
-		@Override
-		public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
-			return cap == PLAYER_VARIABLES_CAPABILITY ? instance.cast() : LazyOptional.empty();
-		}
+        @Override
+        public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
+            return cap == PLAYER_VARIABLES_CAPABILITY ? instance.cast() : LazyOptional.empty();
+        }
 
-		@Override
-		public Tag serializeNBT() {
-			return playerVariables.writeNBT();
-		}
+        @Override
+        public Tag serializeNBT() {
+            return playerVariables.writeNBT();
+        }
 
-		@Override
-		public void deserializeNBT(Tag nbt) {
-			playerVariables.readNBT(nbt);
-		}
-	}
+        @Override
+        public void deserializeNBT(Tag nbt) {
+            playerVariables.readNBT(nbt);
+        }
+    }
 
-	public static class PlayerVariables {
-		public boolean dwarf = false;
-		public boolean elf = false;
-		public boolean orc = false;
-		public boolean merfolk = false;
-		public boolean dragon = false;
-		public boolean fairy = false;
-		public boolean halfdead = false;
-		public boolean serpentin = false;
-		public boolean werewolf = false;
-		public boolean aracha = false;
-		public boolean selected = false;
+    public static class PlayerVariables {
+        public boolean dwarf = false;
+        public boolean elf = false;
+        public boolean orc = false;
+        public boolean merfolk = false;
+        public boolean dragon = false;
+        public boolean fairy = false;
+        public boolean halfdead = false;
+        public boolean serpentin = false;
+        public boolean werewolf = false;
+        public boolean aracha = false;
+        public boolean selected = false;
 
-		public int fervorStacks = 0;
-		public UUID lastTarget = null;
-		public int previousFoodLevel = 20;
-		public boolean raceCapacityInitialized = false;
+        public int fervorStacks = 0;
+        public UUID lastTarget = null;
+        public int previousFoodLevel = 20;
+        public boolean raceCapacityInitialized = false;
 
-		public void syncPlayerVariables(Entity entity) {
-			if (entity instanceof ServerPlayer serverPlayer)
-				ModMessages.INSTANCE.send(PacketDistributor.DIMENSION.with(entity.level()::dimension), new PlayerVariablesSyncMessage(this, entity.getId()));
-		}
+        public void syncPlayerVariables(Entity entity) {
+            if (entity instanceof ServerPlayer serverPlayer)
+                ModMessages.INSTANCE.send(PacketDistributor.DIMENSION.with(entity.level()::dimension), new PlayerVariablesSyncMessage(this, entity.getId()));
+        }
 
-		public Tag writeNBT() {
-			CompoundTag nbt = new CompoundTag();
-			nbt.putBoolean("dwarf", dwarf);
-			nbt.putBoolean("elf", elf);
-			nbt.putBoolean("orc", orc);
-			nbt.putBoolean("merfolk", merfolk);
-			nbt.putBoolean("dragon", dragon);
-			nbt.putBoolean("selected", selected);
-			nbt.putBoolean("fairy", fairy);
-			nbt.putBoolean("halfdead", halfdead);
-			nbt.putBoolean("Serpentin", serpentin);
-			nbt.putBoolean("werewolf", werewolf);
-			nbt.putBoolean("aracha", aracha);
-			nbt.putBoolean("raceCapacityInitialized", raceCapacityInitialized);
-			nbt.putInt("fervorStacks", fervorStacks);
-			if (lastTarget != null) {
-				nbt.putUUID("lastTarget", lastTarget);
-			}
-			nbt.putInt("previousFoodLevel", previousFoodLevel);
-			return nbt;
-		}
+        public Tag writeNBT() {
+            CompoundTag nbt = new CompoundTag();
+            nbt.putBoolean("dwarf", dwarf);
+            nbt.putBoolean("elf", elf);
+            nbt.putBoolean("orc", orc);
+            nbt.putBoolean("merfolk", merfolk);
+            nbt.putBoolean("dragon", dragon);
+            nbt.putBoolean("selected", selected);
+            nbt.putBoolean("fairy", fairy);
+            nbt.putBoolean("halfdead", halfdead);
+            nbt.putBoolean("Serpentin", serpentin);
+            nbt.putBoolean("werewolf", werewolf);
+            nbt.putBoolean("aracha", aracha);
+            nbt.putBoolean("raceCapacityInitialized", raceCapacityInitialized);
+            nbt.putInt("fervorStacks", fervorStacks);
+            if (lastTarget != null) {
+                nbt.putUUID("lastTarget", lastTarget);
+            }
+            nbt.putInt("previousFoodLevel", previousFoodLevel);
+            return nbt;
+        }
 
-		public void readNBT(Tag Tag) {
-			CompoundTag nbt = (CompoundTag) Tag;
-			dwarf = nbt.getBoolean("dwarf");
-			elf = nbt.getBoolean("elf");
-			orc = nbt.getBoolean("orc");
-			merfolk = nbt.getBoolean("merfolk");
-			dragon = nbt.getBoolean("dragon");
-			selected = nbt.getBoolean("selected");
-			fairy = nbt.getBoolean("fairy");
-			halfdead = nbt.getBoolean("halfdead");
-			serpentin = nbt.getBoolean("Serpentin");
-			werewolf = nbt.getBoolean("werewolf");
-			aracha = nbt.getBoolean("aracha");
-			raceCapacityInitialized = nbt.getBoolean("raceCapacityInitialized");
-			fervorStacks = nbt.getInt("fervorStacks");
-			if (nbt.hasUUID("lastTarget")) {
-				lastTarget = nbt.getUUID("lastTarget");
-			} else {
-				lastTarget = null;
-			}
-			previousFoodLevel = nbt.getInt("previousFoodLevel");
-		}
-	}
+        public void readNBT(Tag Tag) {
+            CompoundTag nbt = (CompoundTag) Tag;
+            dwarf = nbt.getBoolean("dwarf");
+            elf = nbt.getBoolean("elf");
+            orc = nbt.getBoolean("orc");
+            merfolk = nbt.getBoolean("merfolk");
+            dragon = nbt.getBoolean("dragon");
+            selected = nbt.getBoolean("selected");
+            fairy = nbt.getBoolean("fairy");
+            halfdead = nbt.getBoolean("halfdead");
+            serpentin = nbt.getBoolean("Serpentin");
+            werewolf = nbt.getBoolean("werewolf");
+            aracha = nbt.getBoolean("aracha");
+            raceCapacityInitialized = nbt.getBoolean("raceCapacityInitialized");
+            fervorStacks = nbt.getInt("fervorStacks");
+            if (nbt.hasUUID("lastTarget")) {
+                lastTarget = nbt.getUUID("lastTarget");
+            } else {
+                lastTarget = null;
+            }
+            previousFoodLevel = nbt.getInt("previousFoodLevel");
+        }
+    }
 
-	@SubscribeEvent
-	public static void registerMessage(FMLCommonSetupEvent event) {
-	}
+    @SubscribeEvent
+    public static void registerMessage(FMLCommonSetupEvent event) {
+    }
 
-	public static class PlayerVariablesSyncMessage {
-		private final int target;
-		private final PlayerVariables data;
+    public static class PlayerVariablesSyncMessage {
+        private final int target;
+        private final PlayerVariables data;
 
-		public PlayerVariablesSyncMessage(FriendlyByteBuf buffer) {
-			this.data = new PlayerVariables();
-			this.data.readNBT(buffer.readNbt());
-			this.target = buffer.readInt();
+        public PlayerVariablesSyncMessage(FriendlyByteBuf buffer) {
+            this.data = new PlayerVariables();
+            this.data.readNBT(buffer.readNbt());
+            this.target = buffer.readInt();
 
-			this.data.fervorStacks = buffer.readInt();
-			if (buffer.readBoolean()) {
-				this.data.lastTarget = buffer.readUUID();
-			} else {
-				this.data.lastTarget = null;
-			}
+            this.data.fervorStacks = buffer.readInt();
+            if (buffer.readBoolean()) {
+                this.data.lastTarget = buffer.readUUID();
+            } else {
+                this.data.lastTarget = null;
+            }
 
-			this.data.raceCapacityInitialized = buffer.readBoolean();
-			this.data.previousFoodLevel = buffer.readInt();
-		}
+            this.data.raceCapacityInitialized = buffer.readBoolean();
+            this.data.previousFoodLevel = buffer.readInt();
+        }
 
-		public PlayerVariablesSyncMessage(PlayerVariables data, int entityid) {
-			this.data = data;
-			this.target = entityid;
-		}
+        public PlayerVariablesSyncMessage(PlayerVariables data, int entityid) {
+            this.data = data;
+            this.target = entityid;
+        }
 
-		public static void buffer(PlayerVariablesSyncMessage message, FriendlyByteBuf buffer) {
-			buffer.writeNbt((CompoundTag) message.data.writeNBT());
-			buffer.writeInt(message.target);
+        public static void buffer(PlayerVariablesSyncMessage message, FriendlyByteBuf buffer) {
+            buffer.writeNbt((CompoundTag) message.data.writeNBT());
+            buffer.writeInt(message.target);
 
-			// Запись новых полей (encode)
-			buffer.writeInt(message.data.fervorStacks);
-			buffer.writeBoolean(message.data.lastTarget != null);
-			if (message.data.lastTarget != null) {
-				buffer.writeUUID(message.data.lastTarget);
-			}
-			buffer.writeBoolean(message.data.raceCapacityInitialized);
-			buffer.writeInt(message.data.previousFoodLevel);
-		}
+            // Запись новых полей (encode)
+            buffer.writeInt(message.data.fervorStacks);
+            buffer.writeBoolean(message.data.lastTarget != null);
+            if (message.data.lastTarget != null) {
+                buffer.writeUUID(message.data.lastTarget);
+            }
+            buffer.writeBoolean(message.data.raceCapacityInitialized);
+            buffer.writeInt(message.data.previousFoodLevel);
+        }
 
-		public static void handler(PlayerVariablesSyncMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
-			NetworkEvent.Context context = contextSupplier.get();
-			context.enqueueWork(() -> {
-				if (!context.getDirection().getReceptionSide().isServer()) {
-					PlayerVariables variables = ((PlayerVariables) Minecraft.getInstance().player.level().getEntity(message.target).getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
-					variables.dwarf = message.data.dwarf;
-					variables.elf = message.data.elf;
-					variables.orc = message.data.orc;
-					variables.merfolk = message.data.merfolk;
-					variables.dragon = message.data.dragon;
-					variables.selected = message.data.selected;
-					variables.fairy = message.data.fairy;
-					variables.halfdead = message.data.halfdead;
-					variables.serpentin = message.data.serpentin;
-					variables.werewolf = message.data.werewolf;
-					variables.aracha = message.data.aracha;
-					variables.raceCapacityInitialized = message.data.raceCapacityInitialized;
-					variables.previousFoodLevel = message.data.previousFoodLevel;
+        public static void handler(PlayerVariablesSyncMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
+            NetworkEvent.Context context = contextSupplier.get();
+            context.enqueueWork(() -> {
+                if (!context.getDirection().getReceptionSide().isServer()) {
+                    PlayerVariables variables = ((PlayerVariables) Minecraft.getInstance().player.level().getEntity(message.target).getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
+                    variables.dwarf = message.data.dwarf;
+                    variables.elf = message.data.elf;
+                    variables.orc = message.data.orc;
+                    variables.merfolk = message.data.merfolk;
+                    variables.dragon = message.data.dragon;
+                    variables.selected = message.data.selected;
+                    variables.fairy = message.data.fairy;
+                    variables.halfdead = message.data.halfdead;
+                    variables.serpentin = message.data.serpentin;
+                    variables.werewolf = message.data.werewolf;
+                    variables.aracha = message.data.aracha;
+                    variables.raceCapacityInitialized = message.data.raceCapacityInitialized;
+                    variables.previousFoodLevel = message.data.previousFoodLevel;
 
-					variables.fervorStacks = message.data.fervorStacks;
-					variables.lastTarget = message.data.lastTarget;
-				}
-			});
-			context.setPacketHandled(true);
-		}
-	}
+                    variables.fervorStacks = message.data.fervorStacks;
+                    variables.lastTarget = message.data.lastTarget;
+                }
+            });
+            context.setPacketHandled(true);
+        }
+    }
 }
