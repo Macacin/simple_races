@@ -1,6 +1,8 @@
 
 package net.simpleraces.world.inventory;
 
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.simpleraces.procedures.StartWhileThisGUIIsOpenTickProcedure;
 import net.simpleraces.init.SimpleracesModMenus;
 
@@ -73,5 +75,12 @@ public class StartMenu extends AbstractRaceSelectMenu implements Supplier<Map<In
 
 	public Map<Integer, Slot> get() {
 		return customSlots;
+	}
+
+	@SubscribeEvent
+	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+		if (event.phase == TickEvent.Phase.END && event.player.containerMenu instanceof StartMenu) {
+			StartWhileThisGUIIsOpenTickProcedure.execute(event.player.level(), event.player.getX(), event.player.getY(), event.player.getZ(), event.player);
+		}
 	}
 }

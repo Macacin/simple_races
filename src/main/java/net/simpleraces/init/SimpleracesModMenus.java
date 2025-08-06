@@ -18,7 +18,6 @@ public class SimpleracesModMenus {
 	public static final DeferredRegister<MenuType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.MENU_TYPES, SimpleracesMod.MODID);
 	public static final RegistryObject<MenuType<DwarfSelectMenu>> DWARF_SELECT = REGISTRY.register("dwarf_select", () -> IForgeMenuType.create(DwarfSelectMenu::new));
 	public static final RegistryObject<MenuType<StartMenu>> START = REGISTRY.register("start", () -> IForgeMenuType.create(StartMenu::new));
-	public static final RegistryObject<MenuType<Start2Menu>> START_2 = REGISTRY.register("start_2", () -> IForgeMenuType.create(Start2Menu::new));
 	public static final RegistryObject<MenuType<ElfSelectMenu>> ELF_SELECT = REGISTRY.register("elf_select", () -> IForgeMenuType.create(ElfSelectMenu::new));
 	public static final RegistryObject<MenuType<MerfolkSelectMenu>> MERFOLK_SELECT = REGISTRY.register("merfolk_select", () -> IForgeMenuType.create(MerfolkSelectMenu::new));
 	public static final RegistryObject<MenuType<OrcSelectMenu>> ORC_SELECT = REGISTRY.register("orc_select", () -> IForgeMenuType.create(OrcSelectMenu::new));

@@ -22,7 +22,7 @@ public class StartWhileThisGUIIsOpenTickProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		SimpleracesMod.queueServerWork(1, () -> {
+		SimpleracesMod.queueServerWork(10, () -> {
 			if (entity instanceof Player _player)
 				_player.closeContainer();
 			if (entity instanceof ServerPlayer _ent) {
