@@ -20,6 +20,7 @@ public class SimpleracesModScreens {
 		event.enqueueWork(() -> {
 			MenuScreens.register(SimpleracesModMenus.DWARF_SELECT.get(), DwarfSelectScreen::new);
 			MenuScreens.register(SimpleracesModMenus.START.get(), StartScreen::new);
+			MenuScreens.register(SimpleracesModMenus.START_2.get(), Start2Screen::new);
 			MenuScreens.register(SimpleracesModMenus.ELF_SELECT.get(), ElfSelectScreen::new);
 			MenuScreens.register(SimpleracesModMenus.MERFOLK_SELECT.get(), MerfolkSelectScreen::new);
 			MenuScreens.register(SimpleracesModMenus.ORC_SELECT.get(), OrcSelectScreen::new);
