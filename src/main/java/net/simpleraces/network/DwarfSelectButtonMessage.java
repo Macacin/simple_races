@@ -1,6 +1,7 @@
 
 package net.simpleraces.network;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.simpleraces.procedures.OpenArachaProcedure;
 import net.simpleraces.world.inventory.DwarfSelectMenu;
 import net.simpleraces.procedures.SelectedDwarfProcedure;
@@ -48,7 +49,7 @@ public class DwarfSelectButtonMessage {
 	public static void handler(DwarfSelectButtonMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
 		NetworkEvent.Context context = contextSupplier.get();
 		context.enqueueWork(() -> {
-			Player entity = context.getSender();
+			ServerPlayer entity = context.getSender();
 			int buttonID = message.buttonID;
 			int x = message.x;
 			int y = message.y;
@@ -58,22 +59,17 @@ public class DwarfSelectButtonMessage {
 		context.setPacketHandled(true);
 	}
 
-	public static void handleButtonAction(Player entity, int buttonID, int x, int y, int z) {
+	public static void handleButtonAction(ServerPlayer entity, int buttonID, int x, int y, int z) {
 		Level world = entity.level();
 		HashMap guistate = DwarfSelectMenu.guistate;
 		// security measure to prevent arbitrary chunk generation
-		if (!world.hasChunkAt(new BlockPos(x, y, z)))
-			return;
 		if (buttonID == 0) {
-
 			SelectedDwarfProcedure.execute(entity);
 		}
 		if (buttonID == 1) {
-
 			OpenElfProcedure.execute(world, x, y, z, entity);
 		}
 		if (buttonID == 2) {
-
 			OpenArachaProcedure.execute(world, x, y, z, entity);
 		}
 	}

@@ -61,8 +61,7 @@ public class ElfSelectButtonMessage {
 		Level world = entity.level();
 		HashMap guistate = ElfSelectMenu.guistate;
 		// security measure to prevent arbitrary chunk generation
-		if (!world.hasChunkAt(new BlockPos(x, y, z)))
-			return;
+
 		if (buttonID == 0) {
 
 			SelectedElfProcedure.execute(entity);
