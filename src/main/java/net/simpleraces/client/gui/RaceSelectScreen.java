@@ -133,7 +133,6 @@ public abstract class RaceSelectScreen<T extends AbstractRaceSelectMenu> extends
 		button_conf = new PlainTextButton(tooltipPrevious.getX(), tooltipPrevious.getY(), tooltipPrevious.getWidth(), tooltipPrevious.getHeight(), Component.translatable("gui.simpleraces.elf_select.button_conf"), e -> {
 			if (true) {
 				ModMessages.INSTANCE.sendToServer(getPacketForRace(title.getString(), 2));
-				execute(title.getString(), 2, entity);
 			}
 		}, this.font);
 		guistate.put("button:button_conf", button_conf);
@@ -141,7 +140,6 @@ public abstract class RaceSelectScreen<T extends AbstractRaceSelectMenu> extends
 		button_empty = new PlainTextButton(tooltipConfirm.getX(), tooltipConfirm.getY(), tooltipConfirm.getWidth(), tooltipConfirm.getHeight(), Component.translatable("gui.simpleraces.elf_select.button_empty"), e -> {
 			if (true) {
 				ModMessages.INSTANCE.sendToServer(getPacketForRace(title.getString(), 0));
-				execute(title.getString(), 0, entity);
 			}
 		}, this.font);
 		guistate.put("button:button_empty", button_empty);
@@ -149,24 +147,10 @@ public abstract class RaceSelectScreen<T extends AbstractRaceSelectMenu> extends
 		button_empty1 = new PlainTextButton(tooltipNext.getX(), tooltipNext.getY(), tooltipNext.getWidth(), tooltipNext.getHeight(), Component.translatable("gui.simpleraces.elf_select.button_empty1"), e -> {
 			if (true) {
 				ModMessages.INSTANCE.sendToServer(getPacketForRace(title.getString(), 1));
-				execute(title.getString(), 1, entity);
 			}
 		}, this.font);
 		guistate.put("button:button_empty1", button_empty1);
 		this.addRenderableWidget(button_empty1);
-	}
-
-	static {
-		actions.put("dwarf", (player, id) -> DwarfSelectButtonMessage.handleButtonAction(player, id, 0, 0, 0));
-		actions.put("elf",  (player, id) -> ElfSelectButtonMessage.handleButtonAction(player, id, 0, 0, 0));
-		actions.put("orc", (player, id) -> OrcSelectButtonMessage.handleButtonAction(player, id, 0, 0, 0));
-		actions.put("merfolk", (player, id) -> MerfolkSelectButtonMessage.handleButtonAction(player, id, 0, 0, 0));
-		actions.put("dragon", (player, id) -> DragonSelectButtonMessage.handleButtonAction(player, id, 0, 0, 0));
-		actions.put("fairy", (player, id) -> FairySelectButtonMessage.handleButtonAction(player, id, 0, 0, 0));
-		actions.put("halfdead", (player, id) -> HalfdeadSelectButtonMessage.handleButtonAction(player, id, 0, 0, 0));
-		actions.put("serpentin", (player, id) -> SerpentinSelectButtonMessage.handleButtonAction(player, id, 0, 0, 0));
-		actions.put("werewolf", (player, id) -> WerewolfSelectButtonMessage.handleButtonAction(player, id, 0, 0, 0));
-		actions.put("arachna", (player, id) -> ArachaSelectButtonMessage.handleButtonAction(player, id, 0, 0, 0));
 	}
 
 	public Object getPacketForRace(String name, int id){
@@ -185,14 +169,6 @@ public abstract class RaceSelectScreen<T extends AbstractRaceSelectMenu> extends
 		};
 	}
 
-	public static void execute(String raceName, int id, Player entity) {
-		BiConsumer<Player, Integer> action = actions.get(raceName.toLowerCase());
-		if (action != null) {
-			action.accept(entity, id);
-		} else {
-			System.out.println("Нет кнопки для расы: " + raceName);
-		}
-	}
 	private List<Component> splitComponent(Component component) {
 		String[] lines = component.getString().split("\n");
 		List<Component> components = new ArrayList<>();
