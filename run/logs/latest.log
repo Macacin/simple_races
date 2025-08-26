@@ -1,110 +1,778 @@
-[07Aug2025 14:47:47.471] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, /home/nespisnikersni/.gradle/caches/forge_gradle/assets, --gameDir, ., --fml.forgeVersion, 47.4.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, mixins.simpleraces.json]
-[07Aug2025 14:47:47.474] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.15 by Arch Linux; OS Linux arch amd64 version 6.14.7-arch2-1
-[07Aug2025 14:47:47.551] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
-[07Aug2025 14:47:47.663] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
-[07Aug2025 14:47:47.813] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
-[07Aug2025 14:47:47.882] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/home/nespisnikersni/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23116!/ Service=ModLauncher Env=CLIENT
-[07Aug2025 14:47:47.910] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce RTX 2060/PCIe/SSE2 GL version 4.6.0 NVIDIA 570.153.02, NVIDIA Corporation
-[07Aug2025 14:47:48.131] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/nespisnikersni/.gradle/caches/modules-2/files-2.1/net.minecraftforge/javafmllanguage/1.20.1-47.4.0/f0c0b352173d0a378cbdcec9cfc4ba65899a721/javafmllanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[07Aug2025 14:47:48.132] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/nespisnikersni/.gradle/caches/modules-2/files-2.1/net.minecraftforge/lowcodelanguage/1.20.1-47.4.0/e862740d8c84d08dbfedea412bef88fe42e727c5/lowcodelanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[07Aug2025 14:47:48.133] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/nespisnikersni/.gradle/caches/modules-2/files-2.1/net.minecraftforge/mclanguage/1.20.1-47.4.0/5719b3a297a33f877ed5dde4cb4bd75c859096af/mclanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[07Aug2025 14:47:48.134] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file /home/nespisnikersni/.gradle/caches/modules-2/files-2.1/net.minecraftforge/fmlcore/1.20.1-47.4.0/235975dafa4309945b59c56b53f31dc5b65a6051/fmlcore-1.20.1-47.4.0.jar is missing mods.toml file
-[07Aug2025 14:47:48.285] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
-[07Aug2025 14:47:49.378] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[07Aug2025 14:47:49.403] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, /home/nespisnikersni/.gradle/caches/forge_gradle/assets, --assetIndex, 5]
-[07Aug2025 14:47:49.440] [main/WARN] [mixin/]: Reference map 'mixins.simpleraces.refmap.json' for mixins.simpleraces.json could not be read. If this is a development environment you can ignore this message
-[07Aug2025 14:47:49.834] [main/INFO] [mixin/]: Remapping refMap Pehkui-refmap.json using /home/nespisnikersni/Projects/java/simple_races/build/createSrgToMcp/output.srg
-[07Aug2025 14:47:49.835] [main/INFO] [mixin/]: Remapping refMap caelus.refmap.json using /home/nespisnikersni/Projects/java/simple_races/build/createSrgToMcp/output.srg
-[07Aug2025 14:47:49.836] [main/INFO] [mixin/]: Remapping refMap curios.refmap.json using /home/nespisnikersni/Projects/java/simple_races/build/createSrgToMcp/output.srg
-[07Aug2025 14:47:49.837] [main/WARN] [mixin/]: Reference map 'mixins.kleiders_custom_renderer.refmap.json' for mixins.kleiders_custom_renderer.json could not be read. If this is a development environment you can ignore this message
-[07Aug2025 14:47:49.838] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using /home/nespisnikersni/Projects/java/simple_races/build/createSrgToMcp/output.srg
-[07Aug2025 14:47:49.839] [main/INFO] [mixin/]: Remapping refMap player-animation-lib-minecraft_common-refmap.json using /home/nespisnikersni/Projects/java/simple_races/build/createSrgToMcp/output.srg
-[07Aug2025 14:47:49.840] [main/INFO] [mixin/]: Remapping refMap irons_spellbooks.refmap.json using /home/nespisnikersni/Projects/java/simple_races/build/createSrgToMcp/output.srg
-[07Aug2025 14:47:53.769] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 87 milliseconds
-[07Aug2025 14:47:55.402] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/nespisnikersni/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23181!/assets/.mcassetsroot' uses unexpected schema
-[07Aug2025 14:47:55.403] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/home/nespisnikersni/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23181!/data/.mcassetsroot' uses unexpected schema
-[07Aug2025 14:47:55.413] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
-[07Aug2025 14:47:55.417] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
-[07Aug2025 14:47:55.486] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
-[07Aug2025 14:47:55.624] [modloading-worker-0/WARN] [net.minecraft.network.syncher.SynchedEntityData/]: defineId called for: class net.minecraft.world.entity.player.Player from class net.simpleraces.SimpleracesMod
-[07Aug2025 14:47:55.630] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.0, for MC 1.20.1 with MCP 20230612.114412
-[07Aug2025 14:47:55.630] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.0 Initialized
-[07Aug2025 14:47:56.833] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [simpleraces]
-[07Aug2025 14:47:57.093] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
-[07Aug2025 14:47:57.125] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file /home/nespisnikersni/Projects/java/simple_races/run/config/Simple RPG Races.toml is not correct. Correcting
-[07Aug2025 14:47:57.125] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key Drakonid Class Attributes.drakonid_fall_multiply was corrected from 0.8 to its default, 0.8. 
-[07Aug2025 14:47:57.126] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key Fairy Class Attributes.fairy_fall_multiply was corrected from 0.75 to its default, 0.75. 
-[07Aug2025 14:47:57.126] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key Fairy Class Attributes.fairy_fly_speed_multiply was corrected from 1.0 to its default, 1.0. 
-[07Aug2025 14:47:57.132] [Thread-3/WARN] [net.minecraftforge.fml.config.ConfigFileTypeHandler/CONFIG]: Configuration file /home/nespisnikersni/Projects/java/simple_races/run/config/Simple RPG Races.toml is not correct. Correcting
-[07Aug2025 14:47:57.199] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
-[07Aug2025 14:47:57.293] [Worker-Main-6/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
-[07Aug2025 14:47:57.392] [Worker-Main-9/WARN] [net.minecraft.client.sounds.SoundManager/]: File irons_spellbooks:sounds/dead_king/music/drums.ogg does not exist, cannot add it to event irons_spellbooks:entity.dead_king.music.drum_loop
-[07Aug2025 14:47:57.393] [Worker-Main-9/WARN] [net.minecraft.client.sounds.SoundManager/]: File irons_spellbooks:sounds/dead_king/music/finale.ogg does not exist, cannot add it to event irons_spellbooks:entity.dead_king.music.finale
-[07Aug2025 14:47:57.490] [Worker-Main-1/WARN] [net.minecraft.client.renderer.texture.SpriteContents/]: Unused frames in sprite irons_spellbooks:item/upgrade_orb_ender: [1, 5, 6, 7]
-[07Aug2025 14:47:57.492] [Worker-Main-7/WARN] [net.minecraft.client.renderer.texture.SpriteContents/]: Unused frames in sprite irons_spellbooks:item/energized_core_energy: [11]
-[07Aug2025 14:47:58.004] [Worker-Main-5/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/magehunter_normal' referenced from: irons_spellbooks:item/magehunter_normal: java.io.FileNotFoundException: irons_spellbooks:models/item/magehunter_normal.json
-[07Aug2025 14:47:58.004] [Worker-Main-5/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/truthseeker_gui' referenced from: irons_spellbooks:item/truthseeker_gui: java.io.FileNotFoundException: irons_spellbooks:models/item/truthseeker_gui.json
-[07Aug2025 14:47:58.005] [Worker-Main-5/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/keeper_flamberge_normal' referenced from: irons_spellbooks:item/keeper_flamberge_normal: java.io.FileNotFoundException: irons_spellbooks:models/item/keeper_flamberge_normal.json
-[07Aug2025 14:47:58.005] [Worker-Main-5/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/magehunter_gui' referenced from: irons_spellbooks:item/magehunter_gui: java.io.FileNotFoundException: irons_spellbooks:models/item/magehunter_gui.json
-[07Aug2025 14:47:58.005] [Worker-Main-5/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/truthseeker_normal' referenced from: irons_spellbooks:item/truthseeker_normal: java.io.FileNotFoundException: irons_spellbooks:models/item/truthseeker_normal.json
-[07Aug2025 14:47:58.005] [Worker-Main-5/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/keeper_flamberge_gui' referenced from: irons_spellbooks:item/keeper_flamberge_gui: java.io.FileNotFoundException: irons_spellbooks:models/item/keeper_flamberge_gui.json
-[07Aug2025 14:47:58.500] [Worker-Main-8/INFO] [io.redspace.ironsspellbooks.IronsSpellbooks/]: Got IMC []
-[07Aug2025 14:47:58.584] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: UP_TO_DATE Current: 47.4.0 Target: null
-[07Aug2025 14:47:59.259] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
-[07Aug2025 14:47:59.259] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
-[07Aug2025 14:47:59.273] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device JACK Default
-[07Aug2025 14:47:59.274] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
-[07Aug2025 14:47:59.384] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/blocks.png-atlas
-[07Aug2025 14:47:59.394] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
-[07Aug2025 14:47:59.395] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
-[07Aug2025 14:47:59.395] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
-[07Aug2025 14:47:59.396] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
-[07Aug2025 14:47:59.398] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
-[07Aug2025 14:47:59.399] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
-[07Aug2025 14:47:59.399] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
-[07Aug2025 14:47:59.399] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
-[07Aug2025 14:47:59.548] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
-[07Aug2025 14:47:59.583] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[07Aug2025 14:47:59.584] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
-[07Aug2025 14:47:59.585] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/mob_effects.png-atlas
-[07Aug2025 14:48:00.304] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: 0
-[07Aug2025 14:48:03.553] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
-[07Aug2025 14:48:04.801] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
-[07Aug2025 14:48:04.874] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1299 advancements
-[07Aug2025 14:48:04.878] [Render thread/INFO] [top.theillusivec4.curios.Curios/]: Loaded 11 curio slots
-[07Aug2025 14:48:04.880] [Render thread/INFO] [top.theillusivec4.curios.Curios/]: Loaded 1 curio entities
-[07Aug2025 14:48:05.229] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
-[07Aug2025 14:48:05.229] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
-[07Aug2025 14:48:06.319] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[07Aug2025 14:48:08.381] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
-[07Aug2025 14:48:08.382] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
-[07Aug2025 14:48:08.382] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
-[07Aug2025 14:48:08.382] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
-[07Aug2025 14:48:08.382] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
-[07Aug2025 14:48:08.825] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 57%
-[07Aug2025 14:48:08.942] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
-[07Aug2025 14:48:08.945] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 2621 ms
-[07Aug2025 14:48:09.030] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
-[07Aug2025 14:48:09.032] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 5, from 0
-[07Aug2025 14:48:09.089] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
-[07Aug2025 14:48:09.478] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
-[07Aug2025 14:48:09.522] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:89cd84c2] logged in with entity id 160 at (-180.7168734226901, 69.0, 333.41830038837196)
-[07Aug2025 14:48:09.603] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev присоединился к игре
-[07Aug2025 14:48:10.229] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 3 advancements
-[07Aug2025 14:48:19.742] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[07Aug2025 14:48:19.746] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:overworld
-[07Aug2025 14:48:19.759] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_nether
-[07Aug2025 14:48:19.759] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_end
-[07Aug2025 14:48:20.892] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
-[07Aug2025 14:48:20.892] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
-[07Aug2025 14:48:20.897] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: Отключение
-[07Aug2025 14:48:20.897] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev покинул игру
-[07Aug2025 14:48:20.902] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
-[07Aug2025 14:48:20.902] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
-[07Aug2025 14:48:21.374] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:overworld
-[07Aug2025 14:48:21.611] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_nether
-[07Aug2025 14:48:21.612] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_end
-[07Aug2025 14:48:21.625] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (Новый мир): All chunks are saved
-[07Aug2025 14:48:21.625] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[07Aug2025 14:48:21.626] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[07Aug2025 14:48:21.626] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[25авг.2025 17:18:41.112] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 5, --assetsDir, C:\Users\Масим\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.4.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin.config, mixins.simpleraces.json]
+[25авг.2025 17:18:41.117] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.12 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[25авг.2025 17:18:41.197] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
+[25авг.2025 17:18:41.246] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
+[25авг.2025 17:18:41.366] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
+[25авг.2025 17:18:41.407] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Масим/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[25авг.2025 17:18:41.451] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce RTX 5080/PCIe/SSE2 GL version 4.6.0 NVIDIA 576.88, NVIDIA Corporation
+[25авг.2025 17:18:41.638] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Масим\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.4.0\f0c0b352173d0a378cbdcec9cfc4ba65899a721\javafmllanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[25авг.2025 17:18:41.640] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Масим\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.4.0\e862740d8c84d08dbfedea412bef88fe42e727c5\lowcodelanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[25авг.2025 17:18:41.641] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Масим\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.4.0\5719b3a297a33f877ed5dde4cb4bd75c859096af\mclanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[25авг.2025 17:18:41.642] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Масим\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.4.0\235975dafa4309945b59c56b53f31dc5b65a6051\fmlcore-1.20.1-47.4.0.jar is missing mods.toml file
+[25авг.2025 17:18:41.774] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
+[25авг.2025 17:18:42.735] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[25авг.2025 17:18:42.744] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Масим\.gradle\caches\forge_gradle\assets, --assetIndex, 5]
+[25авг.2025 17:18:42.817] [main/WARN] [mixin/]: Reference map 'mixins.simpleraces.refmap.json' for mixins.simpleraces.json could not be read. If this is a development environment you can ignore this message
+[25авг.2025 17:18:42.936] [main/INFO] [mixin/]: Remapping refMap Pehkui-refmap.json using C:\Users\Масим\Projects\simple_races\build\createSrgToMcp\output.srg
+[25авг.2025 17:18:42.937] [main/INFO] [mixin/]: Remapping refMap caelus.refmap.json using C:\Users\Масим\Projects\simple_races\build\createSrgToMcp\output.srg
+[25авг.2025 17:18:42.937] [main/INFO] [mixin/]: Remapping refMap curios.refmap.json using C:\Users\Масим\Projects\simple_races\build\createSrgToMcp\output.srg
+[25авг.2025 17:18:42.938] [main/WARN] [mixin/]: Reference map 'mixins.kleiders_custom_renderer.refmap.json' for mixins.kleiders_custom_renderer.json could not be read. If this is a development environment you can ignore this message
+[25авг.2025 17:18:42.938] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using C:\Users\Масим\Projects\simple_races\build\createSrgToMcp\output.srg
+[25авг.2025 17:18:42.940] [main/INFO] [mixin/]: Remapping refMap player-animation-lib-minecraft_common-refmap.json using C:\Users\Масим\Projects\simple_races\build\createSrgToMcp\output.srg
+[25авг.2025 17:18:42.941] [main/INFO] [mixin/]: Remapping refMap irons_spellbooks.refmap.json using C:\Users\Масим\Projects\simple_races\build\createSrgToMcp\output.srg
+[25авг.2025 17:18:46.187] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 188 Datafixer optimizations took 68 milliseconds
+[25авг.2025 17:18:47.259] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Масим/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[25авг.2025 17:18:47.259] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Масим/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[25авг.2025 17:18:47.267] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[25авг.2025 17:18:47.271] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[25авг.2025 17:18:47.327] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.1 build 7
+[25авг.2025 17:18:47.492] [modloading-worker-0/WARN] [net.minecraft.network.syncher.SynchedEntityData/]: defineId called for: class net.minecraft.world.entity.player.Player from class net.simpleraces.SimpleracesMod
+[25авг.2025 17:18:47.530] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.0, for MC 1.20.1 with MCP 20230612.114412
+[25авг.2025 17:18:47.530] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.0 Initialized
+[25авг.2025 17:18:48.331] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [simpleraces]
+[25авг.2025 17:18:48.605] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources
+[25авг.2025 17:18:48.645] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file C:\Users\Масим\Projects\simple_races\run\config\Simple RPG Races.toml is not correct. Correcting
+[25авг.2025 17:18:48.648] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key Drakonid Class Attributes.drakonid_fall_multiply was corrected from 0.8 to its default, 0.8. 
+[25авг.2025 17:18:48.648] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key Fairy Class Attributes.fairy_fall_multiply was corrected from 0.75 to its default, 0.75. 
+[25авг.2025 17:18:48.648] [modloading-worker-0/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key Fairy Class Attributes.fairy_fly_speed_multiply was corrected from 1.0 to its default, 1.0. 
+[25авг.2025 17:18:48.653] [Thread-3/WARN] [net.minecraftforge.fml.config.ConfigFileTypeHandler/CONFIG]: Configuration file C:\Users\Масим\Projects\simple_races\run\config\Simple RPG Races.toml is not correct. Correcting
+[25авг.2025 17:18:48.739] [Worker-Main-17/WARN] [net.minecraft.client.sounds.SoundManager/]: File irons_spellbooks:sounds/dead_king/music/drums.ogg does not exist, cannot add it to event irons_spellbooks:entity.dead_king.music.drum_loop
+[25авг.2025 17:18:48.739] [Worker-Main-17/WARN] [net.minecraft.client.sounds.SoundManager/]: File irons_spellbooks:sounds/dead_king/music/finale.ogg does not exist, cannot add it to event irons_spellbooks:entity.dead_king.music.finale
+[25авг.2025 17:18:48.795] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[25авг.2025 17:18:48.850] [Worker-Main-28/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.0.06.hex, loading
+[25авг.2025 17:18:48.937] [Worker-Main-4/WARN] [net.minecraft.client.renderer.texture.SpriteContents/]: Unused frames in sprite irons_spellbooks:item/upgrade_orb_ender: [1, 5, 6, 7]
+[25авг.2025 17:18:48.941] [Worker-Main-4/WARN] [net.minecraft.client.renderer.texture.SpriteContents/]: Unused frames in sprite irons_spellbooks:item/energized_core_energy: [11]
+[25авг.2025 17:18:49.213] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/magehunter_normal' referenced from: irons_spellbooks:item/magehunter_normal: java.io.FileNotFoundException: irons_spellbooks:models/item/magehunter_normal.json
+[25авг.2025 17:18:49.214] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/truthseeker_gui' referenced from: irons_spellbooks:item/truthseeker_gui: java.io.FileNotFoundException: irons_spellbooks:models/item/truthseeker_gui.json
+[25авг.2025 17:18:49.214] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/keeper_flamberge_normal' referenced from: irons_spellbooks:item/keeper_flamberge_normal: java.io.FileNotFoundException: irons_spellbooks:models/item/keeper_flamberge_normal.json
+[25авг.2025 17:18:49.214] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/magehunter_gui' referenced from: irons_spellbooks:item/magehunter_gui: java.io.FileNotFoundException: irons_spellbooks:models/item/magehunter_gui.json
+[25авг.2025 17:18:49.214] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/truthseeker_normal' referenced from: irons_spellbooks:item/truthseeker_normal: java.io.FileNotFoundException: irons_spellbooks:models/item/truthseeker_normal.json
+[25авг.2025 17:18:49.214] [Worker-Main-7/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'irons_spellbooks:item/keeper_flamberge_gui' referenced from: irons_spellbooks:item/keeper_flamberge_gui: java.io.FileNotFoundException: irons_spellbooks:models/item/keeper_flamberge_gui.json
+[25авг.2025 17:18:49.589] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: UP_TO_DATE Current: 47.4.0 Target: null
+[25авг.2025 17:18:49.596] [Worker-Main-6/INFO] [io.redspace.ironsspellbooks.IronsSpellbooks/]: Got IMC []
+[25авг.2025 17:18:50.189] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
+[25авг.2025 17:18:50.189] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[25авг.2025 17:18:50.214] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on Наушники (LE_WH-XB900N)
+[25авг.2025 17:18:50.214] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
+[25авг.2025 17:18:50.278] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/blocks.png-atlas
+[25авг.2025 17:18:50.283] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[25авг.2025 17:18:50.283] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[25авг.2025 17:18:50.283] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[25авг.2025 17:18:50.283] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[25авг.2025 17:18:50.284] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[25авг.2025 17:18:50.285] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[25авг.2025 17:18:50.285] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[25авг.2025 17:18:50.285] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[25авг.2025 17:18:50.384] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[25авг.2025 17:18:50.419] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[25авг.2025 17:18:50.421] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
+[25авг.2025 17:18:50.422] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/mob_effects.png-atlas
+[25авг.2025 17:18:51.054] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: 0
+[25авг.2025 17:19:24.085] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
+[25авг.2025 17:19:25.029] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
+[25авг.2025 17:19:25.074] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1299 advancements
+[25авг.2025 17:19:25.076] [Render thread/INFO] [top.theillusivec4.curios.Curios/]: Loaded 11 curio slots
+[25авг.2025 17:19:25.078] [Render thread/INFO] [top.theillusivec4.curios.Curios/]: Loaded 1 curio entities
+[25авг.2025 17:19:25.315] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
+[25авг.2025 17:19:25.315] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
+[25авг.2025 17:19:25.769] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[25авг.2025 17:19:26.952] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
+[25авг.2025 17:19:26.969] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
+[25авг.2025 17:19:26.969] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
+[25авг.2025 17:19:27.282] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 5%
+[25авг.2025 17:19:27.566] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[25авг.2025 17:19:27.575] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 1796 ms
+[25авг.2025 17:19:27.636] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
+[25авг.2025 17:19:27.638] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 5, from 0
+[25авг.2025 17:19:27.771] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
+[25авг.2025 17:19:28.529] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
+[25авг.2025 17:19:28.571] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:ccb0b571] logged in with entity id 227 at (-21.30000001192093, 63.04870241004826, 61.49649122800466)
+[25авг.2025 17:19:28.628] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev присоединился к игре
+[25авг.2025 17:19:29.087] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 50 advancements
+[25авг.2025 17:19:29.087] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.089] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.089] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.089] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.089] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.089] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.278] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.299] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.344] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.405] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.444] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.536] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.549] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.601] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.654] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.698] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.754] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.804] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.842] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.928] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:29.968] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.016] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.053] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.099] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.144] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.199] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.269] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.304] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.403] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.404] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.512] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.597] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.598] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.598] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.652] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.723] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.796] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.796] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.841] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.905] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:30.968] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.020] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.052] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.089] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.136] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.183] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.240] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.299] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.336] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.388] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.431] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.480] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.534] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.598] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.700] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.701] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.739] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.783] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.825] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.893] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:31.942] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.002] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.038] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.075] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.132] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.184] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.225] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.281] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.329] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.375] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.430] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.476] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.529] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.576] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.630] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.673] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.726] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.780] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.824] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.880] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.929] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:32.974] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.024] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.075] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.125] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.177] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.222] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.276] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.324] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.378] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.423] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.473] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.525] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.574] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.625] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.935] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.935] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.935] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.935] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.935] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.936] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:33.977] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.026] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.077] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.124] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.177] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.229] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.277] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.329] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.374] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.423] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.473] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.526] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.575] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.631] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.674] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.732] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.780] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.825] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.872] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.931] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:34.976] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.028] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.073] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.122] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.179] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.227] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.279] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.322] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.374] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.426] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.476] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.528] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.580] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.626] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.678] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.725] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.778] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.822] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.872] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.923] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:35.974] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.026] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.076] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.127] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.177] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.228] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.273] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.326] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.376] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.426] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.478] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.522] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.573] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.626] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.678] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.722] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.774] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.825] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.878] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.922] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:36.974] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.025] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.076] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.125] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.172] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.224] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.275] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.322] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.373] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.424] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.475] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.524] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.574] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.626] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.676] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.728] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.779] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.824] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.875] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.928] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:37.979] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.024] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.075] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.128] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.172] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.223] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.273] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.324] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.376] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.428] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.473] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.524] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.579] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.623] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.674] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.726] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.776] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.826] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.879] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.926] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:38.974] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.026] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.076] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.128] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.172] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.223] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.274] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.325] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.376] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.426] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.477] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.522] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.572] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.623] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.673] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.723] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.773] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.823] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.875] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.925] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:39.976] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.026] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.077] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.127] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.178] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.228] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.277] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.323] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.372] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.423] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.473] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.523] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.574] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.623] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.674] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.724] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.774] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.826] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.877] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.927] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:40.977] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.023] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.074] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.126] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.177] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.227] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.277] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.328] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.377] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.424] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.475] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.526] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.576] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.628] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.675] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.727] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.773] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.823] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.876] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.927] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:41.978] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.027] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.077] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.122] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.173] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.225] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.276] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.328] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.378] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.423] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.473] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.524] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.575] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.627] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.674] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.725] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.777] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.823] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.874] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.924] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:42.979] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.024] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.075] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.127] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.179] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.224] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.275] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.327] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.378] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.428] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.473] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.525] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.578] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.624] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.675] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.726] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.777] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.827] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.877] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.928] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:43.973] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.025] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.075] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.127] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.172] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.221] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.272] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.321] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.374] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.426] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.472] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.521] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.573] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.623] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.675] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.725] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.775] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.825] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.878] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.928] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:44.979] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.026] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.079] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.131] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.178] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.225] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.282] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.325] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.375] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.426] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.477] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.527] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.572] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.623] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.673] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.725] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.775] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.825] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.875] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.926] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:45.977] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.028] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.078] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.128] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.173] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.224] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.275] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.325] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.375] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.425] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.476] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.526] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:46.567] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[25авг.2025 17:19:46.572] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:overworld
+[25авг.2025 17:19:46.583] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_end
+[25авг.2025 17:19:46.584] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_nether
+[25авг.2025 17:19:54.533] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:54.576] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:54.627] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:54.677] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:54.721] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:54.772] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:54.822] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:54.872] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:54.922] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:54.973] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.023] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.074] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.128] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.178] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.228] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.272] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.328] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.381] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.435] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.477] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.524] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.574] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.624] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.674] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.726] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.777] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.823] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.870] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.923] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:55.976] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.026] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.077] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.127] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.177] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.228] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.271] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.323] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.374] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.424] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.474] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.525] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.575] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.626] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.673] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.722] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.772] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.823] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.873] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.928] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:56.972] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.022] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.074] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.125] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.176] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.226] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.276] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.326] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.377] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.427] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.470] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.521] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.573] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.622] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.673] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.722] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.775] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.827] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.877] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.927] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:57.978] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.028] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.070] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.127] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.172] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.239] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.291] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.322] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.380] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.434] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.478] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.521] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.571] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.628] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.674] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.724] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.774] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.825] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.875] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.925] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:58.974] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.025] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.078] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.128] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.172] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.222] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.278] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.322] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.371] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.429] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.472] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.521] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.572] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.622] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.672] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.722] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.772] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.822] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.872] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.922] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:19:59.972] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.023] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.073] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.123] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.172] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.224] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.274] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.324] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.374] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.425] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.475] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.525] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.574] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.625] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.674] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.724] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.775] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.825] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.875] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.925] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:00.975] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.025] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.076] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.125] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.177] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.226] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.277] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.327] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.376] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.426] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.476] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.527] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.578] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.622] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.672] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.722] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.773] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.823] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.873] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.923] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:01.973] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.023] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.074] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.124] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.173] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.224] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.274] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.323] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.374] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.424] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.474] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.524] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.575] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.625] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.675] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.725] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.776] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.827] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.876] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.927] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:02.976] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.027] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.077] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.127] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.177] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.228] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.277] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.327] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.377] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.428] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.477] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.521] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.571] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.628] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.671] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.722] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.772] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.822] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.872] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.923] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:03.979] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.022] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.073] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.123] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.175] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.224] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.275] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.325] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.375] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.425] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.476] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.526] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.578] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.628] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.677] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.727] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.777] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.828] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.877] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.928] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:04.978] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.020] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.071] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.122] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.172] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.222] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.272] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.323] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.373] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.423] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.473] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.523] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.573] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.624] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.676] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.728] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.778] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.821] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.828] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.878] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.921] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:05.972] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.022] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.072] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.123] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.173] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.224] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.275] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.275] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.325] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.376] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.427] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.476] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.526] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.577] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.627] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.677] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.727] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.777] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.778] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.828] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.877] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.928] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:06.973] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.023] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.073] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.124] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.173] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.225] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.275] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.275] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.326] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.376] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.425] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.476] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.526] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.576] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.621] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.678] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.722] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.772] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.772] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.822] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.871] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.922] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:20:07.967] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[25авг.2025 17:20:07.972] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:overworld
+[25авг.2025 17:20:07.977] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_end
+[25авг.2025 17:20:07.977] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_nether
+[25авг.2025 17:22:33.528] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:33.572] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:33.622] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:33.674] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:33.724] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:33.774] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:33.824] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:33.824] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:33.875] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:33.927] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:33.977] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.022] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.072] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.123] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.174] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.224] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.274] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.324] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.324] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.375] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.425] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.475] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.525] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.575] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.625] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.676] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.726] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.775] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.826] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.826] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.877] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.927] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:34.977] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:35.027] [Render thread/WARN] [net.minecraft.client.multiplayer.ClientPacketListener/]: Unknown custom packet identifier: simpleraces:main
+[25авг.2025 17:22:35.067] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[25авг.2025 17:22:35.070] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:overworld
+[25авг.2025 17:22:35.075] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_end
+[25авг.2025 17:22:35.075] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_nether
+[25авг.2025 17:22:35.420] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: Отключение
+[25авг.2025 17:22:35.420] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev покинул игру
+[25авг.2025 17:22:35.425] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
+[25авг.2025 17:22:35.467] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[25авг.2025 17:22:35.467] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[25авг.2025 17:22:35.467] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[25авг.2025 17:22:35.518] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:overworld
+[25авг.2025 17:22:35.559] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_end
+[25авг.2025 17:22:35.559] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_nether
+[25авг.2025 17:22:35.569] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (Новый мир (21)): All chunks are saved
+[25авг.2025 17:22:35.569] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[25авг.2025 17:22:35.569] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[25авг.2025 17:22:35.569] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[25авг.2025 17:22:36.172] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!

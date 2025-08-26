@@ -421,24 +421,40 @@ public class RaceMechanicsProcedure {
                 }
             }
         } else if (vars.elf) {
-            if (level.getBrightness(LightLayer.SKY, player.getOnPos().above(2)) > 0 && FOREST_BIOMES.contains(level.getBiome(player.getOnPos()).unwrapKey().get())) {
-                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 5, 0, false, true));
-                AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
-                if (speedAttr != null && speedAttr.getModifier(ELF_SPEED_UUID) == null) {
-                    speedAttr.addTransientModifier(new AttributeModifier(
-                            ELF_SPEED_UUID,
-                            "Elf speed boost",
-                            0.5,
-                            AttributeModifier.Operation.MULTIPLY_BASE
-                    ));
-                }
-            } else {
-                AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
-                if (speedAttr != null) {
-                    speedAttr.removeModifier(ELF_SPEED_UUID);
+        if (level.getBrightness(LightLayer.SKY, player.getOnPos().above(2)) > 0 && FOREST_BIOMES.contains(level.getBiome(player.getOnPos()).unwrapKey().get())) {
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 5, 0, false, true));
+            AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
+            if (speedAttr != null && speedAttr.getModifier(ELF_SPEED_UUID) == null) {
+                speedAttr.addTransientModifier(new AttributeModifier(
+                        ELF_SPEED_UUID,
+                        "Elf speed boost",
+                        SimpleRPGRacesConfiguration.ELF_FOREST_SPEED_BUFF.get(),
+                        AttributeModifier.Operation.MULTIPLY_BASE
+                ));
+            }
+        } else {
+            AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
+            if (speedAttr != null) {
+                speedAttr.removeModifier(ELF_SPEED_UUID);
+            }
+        }
+
+        boolean inForest = FOREST_BIOMES.contains(level.getBiome(player.getOnPos()).unwrapKey().get()); // Переиспользуем существующую проверку биома
+        double cooldownStep = inForest ? SimpleRPGRacesConfiguration.ELF_FOREST_COOLDOWN_MULTIPLIER.get() : 1;
+
+        for (int i = 0; i < SimpleRPGRacesConfiguration.ELF_MAX_FOREST_SPIRITS.get(); i++) {
+            if (vars.spiritCooldowns[i] > 0) {
+                vars.spiritCooldowns[i] -= (int) cooldownStep;
+                if (vars.spiritCooldowns[i] <= 0) {
+                    vars.spiritCooldowns[i] = 0;
+                    vars.forestSpirits = Math.min(SimpleRPGRacesConfiguration.ELF_MAX_FOREST_SPIRITS.get(), vars.forestSpirits + 1); // Восстанавливаем дух
+
+                    player.level().playSound(null, player.blockPosition(), SimpleracesMod.FAIRY_RECOVER.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
                 }
             }
-        } else if (vars.orc) {
+        }
+        vars.syncPlayerVariables(player); // Синхронизируем изменения (это уже было в твоей инструкции, но если синхронизация нужна только при изменениях, можно оптимизировать)
+    } else if (vars.orc) {
             AttributeInstance dmgAttr = player.getAttribute(Attributes.ATTACK_DAMAGE);
             if (dmgAttr != null) {
                 dmgAttr.removeModifier(ORC_DAMAGE_PENALTY_UUID);
@@ -906,6 +922,43 @@ public class RaceMechanicsProcedure {
                 player.addEffect(new MobEffectInstance(ModEffects.FERVOR.get(), 200, vars.fervorStacks - 1, false, false));
             }
             vars.syncPlayerVariables(player);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingAttack(LivingAttackEvent event) {
+        if (!(event.getEntity() instanceof Player player) || player.level().isClientSide()) return;
+
+        DamageSource source = event.getSource();
+        if (source.typeHolder().is(DamageTypes.FALL) || source.typeHolder().is(DamageTypes.DROWN) || source.typeHolder().is(DamageTypes.IN_FIRE)) {
+            return;
+        }
+
+        SimpleracesModVariables.PlayerVariables vars = player.getCapability(
+                SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null
+        ).orElse(new SimpleracesModVariables.PlayerVariables());
+
+        if (vars.elf && vars.forestSpirits > 0) {
+            double dodgeChance = SimpleRPGRacesConfiguration.ELF_DODGE_CHANCE_PER_SPIRIT.get() * vars.forestSpirits;
+            RandomSource random = player.getRandom();
+            if (random.nextDouble() < dodgeChance) {
+                event.setCanceled(true);
+
+                for (int i = 0; i < SimpleRPGRacesConfiguration.ELF_MAX_FOREST_SPIRITS.get(); i++) {
+                    if (vars.spiritCooldowns[i] == 0) {
+                        vars.spiritCooldowns[i] = SimpleRPGRacesConfiguration.ELF_SPIRIT_COOLDOWN_SECONDS.get() * 20; // *20 для тиков
+                        vars.forestSpirits = Math.max(0, vars.forestSpirits - 1);
+                        break;
+                    }
+                }
+
+                player.level().playSound(null, player.blockPosition(), SimpleracesMod.ELF_DODGE.get(), SoundSource.PLAYERS, 1.0f, 1.0f); // Убедитесь, что ELF_DODGE существует
+                if (player.level() instanceof ServerLevel serverLevel) {
+                    serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, player.getX(), player.getY() + 1, player.getZ(), 10, 0.5, 0.5, 0.5, 0.1); // Зеленые частицы или другие
+                }
+
+                vars.syncPlayerVariables(player);
+            }
         }
     }
 

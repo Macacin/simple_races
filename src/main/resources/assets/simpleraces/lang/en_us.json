@@ -93,7 +93,7 @@
   "gui.simpleraces.halfdead_select.tooltip_dwarves_are_stout_skilled_craft": "§8Devourer of Rotting Flesh§r",
   "gui.simpleraces.halfdead_select.tooltip_passive_mine_faster_in_dark": "§4Arbiters of the Undying Realm§r",
 
-  "gui.simpleraces.elf_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- §aFleet-footed in forests§r, dancing among leaves\n- §aEyes aglow with nocturnal sight§r amid the trees\n- §cShunners of flesh§r, attuned to nature's pure essence",
+  "gui.simpleraces.elf_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Has 3 forest spirits\n- Each spirit gives a 15% chance to dodge any damage except fire and void\n- After receiving damage, the spirit goes on recharge for 30 seconds\n- Recharge of the spirit in the forest is 2 times faster\n- §aFleet-footed in forests§r, dancing among leaves\n- §aEyes aglow with nocturnal sight§r amid the trees\n- §cShunners of flesh§r, attuned to nature's pure essence",
   "gui.simpleraces.elf_select.tooltip_passive_mine_faster_in_dark.extended": "§aSole masters of the bow's arcane art§r\n- Arrows strike with §e35%§r greater fury\n- §bStruck foes shimmer§r, revealed in ethereal light",
 
   "gui.simpleraces.fairy_select.tooltip_next": "",

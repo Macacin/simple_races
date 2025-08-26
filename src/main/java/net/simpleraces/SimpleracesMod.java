@@ -56,6 +56,7 @@ public class SimpleracesMod {
 	public static final RegistryObject<SoundEvent> DRAGON_OVERHEAT = SOUNDS.register("dragon_overheat", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(SimpleracesMod.MODID, "dragon_overheat")));
 	public static final RegistryObject<SoundEvent> FAIRY_RECOVER = SOUNDS.register("fairy_recover", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(SimpleracesMod.MODID, "fairy_recover")));
 	public static final RegistryObject<SoundEvent> ORC_ROAR = SOUNDS.register("orc_roar", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "orc_roar")));
+	public static final RegistryObject<SoundEvent> ELF_DODGE = SOUNDS.register("elf_dodge", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "elf_dodge")));
 	public static final RegistryObject<SoundEvent> ORC_RAGE = SOUNDS.register("orc_rage", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "orc_rage")));
 	public static final RegistryObject<SoundEvent> ORC_EXHAUSTION = SOUNDS.register("orc_exhaustion", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "orc_exhaustion")));
 

@@ -93,7 +93,7 @@
   "gui.simpleraces.halfdead_select.tooltip_dwarves_are_stout_skilled_craft": "§8Пожирающий труп§r",
   "gui.simpleraces.halfdead_select.tooltip_passive_mine_faster_in_dark": "§4Судия мёртвых§r",
 
-  "gui.simpleraces.elf_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Передвигаются быстрее в лесу (§a+50%§r)\n- Имеют §aНочное Видение§r в лесу\n- §cНе любят мясо§r",
+  "gui.simpleraces.elf_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Имеет 3 §aдуха леса§r\n- Каждый дух дает §e15%§r шанс уворота от любого урона, кроме §cогня§r и §9пустоты§r \n- После получения урона, дух уходит на перезарядку на §c30§r секунд\n- Перезарядка духа в лесу в §a2§r раза быстрее\n- Передвигаются быстрее в лесу (§a+20%§r)\n- Имеют §aНочное Видение§r в лесу\n- §cНе любят мясо§r",
   "gui.simpleraces.elf_select.tooltip_passive_mine_faster_in_dark.extended": "- Единственная раса, §aумело обращающаяся с луками§r\n- Урон от луков §aувеличен§r на §e35%§r\n- Попадание стрелой подсвечивает врага (§bGlowing§r)",
 
   "gui.simpleraces.fairy_select.tooltip_next": "",

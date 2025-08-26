@@ -41,5 +41,16 @@
         "stream": false
       }
     ]
+  },
+  "elf_dodge": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:dodge_1", "stream": false},
+      {"name": "simpleraces:dodge_2", "stream": false},
+      {"name": "simpleraces:dodge_3", "stream": false},
+      {"name": "simpleraces:dodge_4", "stream": false},
+      {"name": "simpleraces:dodge_5", "stream": false},
+      {"name": "simpleraces:dodge_6", "stream": false}
+    ]
   }
 }

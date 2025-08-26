@@ -14,6 +14,11 @@ public class SimpleRPGRacesConfiguration {
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ELF_BOW_SIGHT;
 	public static final ForgeConfigSpec.ConfigValue<Double> ELF_BOW_BONUS_DAMAGE;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ELF_MEAT_RESTRICT;
+	public static final ForgeConfigSpec.ConfigValue<Double> ELF_FOREST_SPEED_BUFF;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ELF_MAX_FOREST_SPIRITS;
+	public static final ForgeConfigSpec.ConfigValue<Double> ELF_DODGE_CHANCE_PER_SPIRIT;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ELF_SPIRIT_COOLDOWN_SECONDS;
+	public static final ForgeConfigSpec.ConfigValue<Double> ELF_FOREST_COOLDOWN_MULTIPLIER;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> DWARF_HASTE;
 	public static final ForgeConfigSpec.ConfigValue<Double> DWARF_MAX_HEALTH;
 	public static final ForgeConfigSpec.ConfigValue<Double> DWARF_RES_LEVEL;
@@ -106,6 +111,11 @@ public class SimpleRPGRacesConfiguration {
 		ELF_BOW_SIGHT = BUILDER.comment("Add glowing effect when drawing bow").define("elf_bow_sight", true);
 		ELF_BOW_BONUS_DAMAGE = BUILDER.comment("Bonus percent of damage elves deal with bows").defineInRange("elf_bow_multiplyer", 0.35, -1.0, 2.0);
 		ELF_MEAT_RESTRICT = BUILDER.comment("Whether or not elves can eat meat without being poisoned").define("elf_meat_restrict", true);
+		ELF_FOREST_SPEED_BUFF = BUILDER.comment("Addition to elves speed in forests in percentage").define("elf_speed_buff", 0.2);
+		ELF_MAX_FOREST_SPIRITS = BUILDER.comment("Maximum number of forest spirits for elves").defineInRange("elf_max_forest_spirits", 3, 1, 10);
+		ELF_DODGE_CHANCE_PER_SPIRIT = BUILDER.comment("Dodge chance per spirit (e.g., 0.15 for 15%)").defineInRange("elf_dodge_chance_per_spirit", 0.15, 0.0, 1.0);
+		ELF_SPIRIT_COOLDOWN_SECONDS = BUILDER.comment("Cooldown time for each spirit in seconds").defineInRange("elf_spirit_cooldown_seconds", 30, 1, 300);
+		ELF_FOREST_COOLDOWN_MULTIPLIER = BUILDER.comment("Cooldown speed multiplier in forest biomes (e.g., 2.0 for twice as fast)").defineInRange("elf_forest_cooldown_multiplier", 2.0, 1.0, 5.0);
 		BUILDER.pop();
 		BUILDER.push("Orc Class Attributes");
 		ORC_RAGE = BUILDER.comment("Increased strength on low health").defineInRange("orc_damage_rage", 0.3, 0.0, 1.0);

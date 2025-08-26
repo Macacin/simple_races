@@ -24,6 +24,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.Direction;
 import net.minecraft.client.Minecraft;
+import net.simpleraces.heat.HeatProvider;
 import net.simpleraces.heat.IHeat;
 
 import java.util.UUID;
@@ -93,6 +94,8 @@ public class SimpleracesModVariables {
             clone.fervorStacks = original.fervorStacks;
             clone.lastTarget = original.lastTarget;
             clone.previousFoodLevel = original.previousFoodLevel;
+            clone.forestSpirits = original.forestSpirits;
+            System.arraycopy(original.spiritCooldowns, 0, clone.spiritCooldowns, 0, 3);
             if (!event.isWasDeath()) {
             }
             if (!event.getEntity().level().isClientSide()) {
@@ -105,6 +108,16 @@ public class SimpleracesModVariables {
 
     public static final Capability<PlayerVariables> PLAYER_VARIABLES_CAPABILITY = CapabilityManager.get(new CapabilityToken<PlayerVariables>() {
     });
+
+    @Mod.EventBusSubscriber
+    private static class HeatCapabilityProvider {
+        @SubscribeEvent
+        public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
+            if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer)) {
+                event.addCapability(new ResourceLocation("simpleraces", "heat"), new HeatProvider());
+            }
+        }
+    }
 
     @Mod.EventBusSubscriber
     private static class PlayerVariablesProvider implements ICapabilitySerializable<Tag> {
@@ -149,6 +162,8 @@ public class SimpleracesModVariables {
         public int fervorStacks = 0;
         public UUID lastTarget = null;
         public int previousFoodLevel = 20;
+        public int forestSpirits = 3;
+        public int[] spiritCooldowns = new int[3];
         public boolean raceCapacityInitialized = false;
 
         public void syncPlayerVariables(Entity entity) {
@@ -171,6 +186,8 @@ public class SimpleracesModVariables {
             nbt.putBoolean("aracha", aracha);
             nbt.putBoolean("raceCapacityInitialized", raceCapacityInitialized);
             nbt.putInt("fervorStacks", fervorStacks);
+            nbt.putInt("forestSpirits", forestSpirits);
+            nbt.putIntArray("spiritCooldowns", spiritCooldowns);
             if (lastTarget != null) {
                 nbt.putUUID("lastTarget", lastTarget);
             }
@@ -199,6 +216,11 @@ public class SimpleracesModVariables {
                 lastTarget = null;
             }
             previousFoodLevel = nbt.getInt("previousFoodLevel");
+            forestSpirits = nbt.getInt("forestSpirits");
+            spiritCooldowns = nbt.getIntArray("spiritCooldowns");
+            if (spiritCooldowns.length != 3) {
+                spiritCooldowns = new int[3];
+            }
         }
     }
 
@@ -224,6 +246,10 @@ public class SimpleracesModVariables {
 
             this.data.raceCapacityInitialized = buffer.readBoolean();
             this.data.previousFoodLevel = buffer.readInt();
+            this.data.forestSpirits = buffer.readInt();
+            for (int i = 0; i < 3; i++) {
+                this.data.spiritCooldowns[i] = buffer.readInt();
+            }
         }
 
         public PlayerVariablesSyncMessage(PlayerVariables data, int entityid) {
@@ -243,6 +269,10 @@ public class SimpleracesModVariables {
             }
             buffer.writeBoolean(message.data.raceCapacityInitialized);
             buffer.writeInt(message.data.previousFoodLevel);
+            buffer.writeInt(message.data.forestSpirits);
+            for (int i = 0; i < 3; i++) {
+                buffer.writeInt(message.data.spiritCooldowns[i]);
+            }
         }
 
         public static void handler(PlayerVariablesSyncMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
@@ -263,6 +293,10 @@ public class SimpleracesModVariables {
                     variables.aracha = message.data.aracha;
                     variables.raceCapacityInitialized = message.data.raceCapacityInitialized;
                     variables.previousFoodLevel = message.data.previousFoodLevel;
+                    variables.forestSpirits = message.data.forestSpirits;
+                    for (int i = 0; i < 3; i++) {
+                        variables.spiritCooldowns[i] = message.data.spiritCooldowns[i];
+                    }
 
                     variables.fervorStacks = message.data.fervorStacks;
                     variables.lastTarget = message.data.lastTarget;
