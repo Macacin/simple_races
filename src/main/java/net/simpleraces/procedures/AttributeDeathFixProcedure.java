@@ -47,6 +47,12 @@ public class AttributeDeathFixProcedure {
                 ((Player) entity).setHealth((float) newMax);
             }
         } else if ((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).elf) {
+            AttributeInstance maxHealthAttr = ((Player) entity).getAttribute(Attributes.MAX_HEALTH);
+            if (maxHealthAttr != null) {
+                double newMax = SimpleRPGRacesConfiguration.ELF_MAX_HEALTH.get();
+                maxHealthAttr.setBaseValue(newMax);
+                ((Player) entity).setHealth((float) newMax);
+            }
             if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                 _entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20, 10, false, false));
         } else if ((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).orc) {

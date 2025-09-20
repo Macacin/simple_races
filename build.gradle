@@ -81,6 +81,7 @@ dependencies {
     implementation fg.deobf("curse.maven:playeranimator-658587:4587214")
     implementation fg.deobf("curse.maven:caelus-308989:5281700")
     implementation fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:6833927")
+    implementation fg.deobf(files('run/libs/weightmod-1.0.0-deobf.jar'))
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 

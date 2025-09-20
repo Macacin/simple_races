@@ -77,13 +77,12 @@ public class SimpleRPGRacesConfiguration {
 
 	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_WATER_SLOWDOWN_DURATION;
 	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_WATER_SLOWDOWN_AMPLIFIER;
-	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_HEAVY_ARMOR_SLOWDOWN_DURATION;
-	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_HEAVY_ARMOR_SLOWDOWN_AMPLIFIER;
 	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_BITE_COUNT_THRESHOLD;
 	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_POISON_DURATION;
 	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_POISON_AMPLIFIER;
 	public static final ForgeConfigSpec.ConfigValue<Double> ARACHA_ATTACK_SPEED_BONUS;
 	public static final ForgeConfigSpec.ConfigValue<Double> ARACHA_FIRE_DAMAGE_MULTIPLIER;
+	public static final ForgeConfigSpec.DoubleValue ARACHA_WEIGHT_MULTIPLIER;
 
 	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_HEAL_MULTIPLIER;
 	public static final ForgeConfigSpec.ConfigValue<Double> HALFDEAD_AURA_DAMAGE;
@@ -96,7 +95,16 @@ public class SimpleRPGRacesConfiguration {
 
 	public static final ForgeConfigSpec.ConfigValue<Integer> FAIRY_MAX_FLYING_TIME;
 
-	public static final ForgeConfigSpec.ConfigValue<Double> RANGED_WEAPON_DAMAGE_PENALTY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ELF_CARRY_CAPACITY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ORC_CARRY_CAPACITY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> DWARF_CARRY_CAPACITY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> MERFOLK_CARRY_CAPACITY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> DRAKONID_CARRY_CAPACITY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> FAIRY_CARRY_CAPACITY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> WEREWOLF_CARRY_CAPACITY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> SERPENTIN_CARRY_CAPACITY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> ARACHA_CARRY_CAPACITY;
+	public static final ForgeConfigSpec.ConfigValue<Integer> HALFDEAD_CARRY_CAPACITY;
 
 
 	static {
@@ -116,6 +124,7 @@ public class SimpleRPGRacesConfiguration {
 		ELF_DODGE_CHANCE_PER_SPIRIT = BUILDER.comment("Dodge chance per spirit (e.g., 0.15 for 15%)").defineInRange("elf_dodge_chance_per_spirit", 0.15, 0.0, 1.0);
 		ELF_SPIRIT_COOLDOWN_SECONDS = BUILDER.comment("Cooldown time for each spirit in seconds").defineInRange("elf_spirit_cooldown_seconds", 30, 1, 300);
 		ELF_FOREST_COOLDOWN_MULTIPLIER = BUILDER.comment("Cooldown speed multiplier in forest biomes (e.g., 2.0 for twice as fast)").defineInRange("elf_forest_cooldown_multiplier", 2.0, 1.0, 5.0);
+		ELF_CARRY_CAPACITY = BUILDER.comment("Base carry capacity for Elf race").defineInRange("elf_carry_capacity", 18, 0, 1000);
 		BUILDER.pop();
 		BUILDER.push("Orc Class Attributes");
 		ORC_RAGE = BUILDER.comment("Increased strength on low health").defineInRange("orc_damage_rage", 0.3, 0.0, 1.0);
@@ -128,6 +137,7 @@ public class SimpleRPGRacesConfiguration {
 				.defineInRange("orc_fervor_slowdown_level", 4, 0, 5);
 		ORC_FERVOR_INCOMING_DAMAGE_MULTIPLIER = BUILDER.comment("Incoming damage multiplier during debuff after fervor fades (e.g., 1.2 for 20% more damage)")
 				.defineInRange("orc_fervor_incoming_damage_multiplier", 1.3, 1.0, 2.0);
+		ORC_CARRY_CAPACITY = BUILDER.comment("Base carry capacity for Orc race").defineInRange("orc_carry_capacity", 22, 0, 1000);
 		BUILDER.pop();
 		BUILDER.push("Dwarf Class Attributes");
 		DWARF_HASTE = BUILDER.comment("Increased mining speed underground").define("dwarf_haste", true);
@@ -135,6 +145,7 @@ public class SimpleRPGRacesConfiguration {
 		DWARF_RES_LEVEL = BUILDER.comment("Level of resistance effect").define("dwarf_res_level", 1.0);
 		DWARF_SUBZERO_EFFECTS = BUILDER.comment("Dwarf gains nightvision + haste 2 at subzero levels (underground only)").define("dwarf_subzero_effects", true);
 		DWARF_BOW_RESTRICT = BUILDER.comment("Dwarf cant use bows").define("dwarf_bow_restrict", true);
+		DWARF_CARRY_CAPACITY = BUILDER.comment("Base carry capacity for Dwarf race").defineInRange("dwarf_carry_capacity", 15, 0, 1000);
 		BUILDER.pop();
 		BUILDER.push("Merfolk Class Attributes");
 		MERFOLK_SWIM_SPEED = BUILDER.comment("Swim speed").define("merfolk_swim_speed", 2.5);
@@ -145,6 +156,7 @@ public class SimpleRPGRacesConfiguration {
 		MERFOLK_SURFACE_SPEED_PENALTY = BUILDER.comment("Penalty for merfolk's movement speed on surface").define("merfolk_surface_speed", -0.33);
 		MERFOLK_WATER_HEALTH_BOOST = BUILDER.comment("Health boost multiplier for merfolk in water (e.g. 1.0 for +100% health)").define("merfolk_water_health_boost", 1.0);
 		MERFOLK_DIG_SPEED_WATER = BUILDER.comment("Dig speed level for merfolk in water (Haste level, 0 = no, 1 = Haste I)").defineInRange("merfolk_dig_speed_water", 1, 0, 5);
+		MERFOLK_CARRY_CAPACITY = BUILDER.comment("Base carry capacity for Merfolk race").defineInRange("merfolk_carry_capacity", 20, 0, 1000);
 		BUILDER.pop();
 		BUILDER.push("Drakonid Class Attributes");
 		DRAK_FIRE = BUILDER.comment("Apply fire aspect to attacks").define("drak_fire", true);
@@ -156,12 +168,14 @@ public class SimpleRPGRacesConfiguration {
 		DRAKONID_OVERHEAT_TIME = BUILDER.comment("Time in seconds of overheating").define("drakonid_overheat_time", 20);
 		DRAKONID_FALL_MULTIPLY = BUILDER.comment("Drakonid fall damage multiplier").define("drakonid_fall_multiply", 0.80f);
 		DRAKONID_OVERHEAT_FIRE_TIME = BUILDER.comment("Time in seconds fire duration after overheating").define("drakonid_overheat_fire_time", 5);
+		DRAKONID_CARRY_CAPACITY = BUILDER.comment("Base carry capacity for Drakonid race").defineInRange("drakonid_carry_capacity", 19, 0, 1000);
 		BUILDER.pop();
 		BUILDER.push("Fairy Class Attributes");
 		FAIRY_FALL_MULTIPLY = BUILDER.comment("Fairy fall damage multiplier").define("fairy_fall_multiply", 0.75f);
 		FAIRY_FLY_SPEED_MULTIPLY = BUILDER.comment("Fairy fly speed multiplier").define("fairy_fly_speed_multiply", 1.0f);
 		FAIRY_MAX_HEALTH = BUILDER.comment("Fairy max health").define("fairy_max_health", 8.0);
 		FAIRY_MAX_FLYING_TIME = BUILDER.comment("Fairy flying time(seconds)").define("fairy_max_flying_time", 10);
+		FAIRY_CARRY_CAPACITY = BUILDER.comment("Base carry capacity for Fairy race").defineInRange("fairy_carry_capacity", 13, 0, 1000);
 		BUILDER.pop();
 		BUILDER.push("Werewolf Class Attributes");
 		WEREWOLF_BEAST_DAMAGE_BONUS = BUILDER.comment("Werewolf damage bonus in beast form (multiplicative)").defineInRange("werewolf_beast_damage_bonus", 0.2, 0.0, 1.0);
@@ -172,6 +186,7 @@ public class SimpleRPGRacesConfiguration {
 		WEREWOLF_HUMAN_HEALTH_PENALTY = BUILDER.comment("Werewolf health penalty in human form (additive)").defineInRange("werewolf_human_health_penalty", -4.0, -20.0, 0.0);
 		WEREWOLF_BEAST_DURATION = BUILDER.comment("Duration of beast mod after randomly turning into it, defined in ticks").defineInRange("werewolf_beast_duration", 400, 100, 1200);
 		WEREWOLF_BLEEDING_DURATION = BUILDER.comment("Bleeding duration of werewolf, defined in ticks").defineInRange("werewolf_beast_duration", 200, 100, 1200);
+		WEREWOLF_CARRY_CAPACITY = BUILDER.comment("Base carry capacity for Werewolf race").defineInRange("werewolf_carry_capacity", 24, 0, 1000);
 		BUILDER.pop();
 		BUILDER.push("Serpentine Class Attributes");
 		SERPENTIN_MAX_HEALTH = BUILDER.comment("Serpentin max health").define("serpentin_max_health", 20.0);
@@ -181,18 +196,20 @@ public class SimpleRPGRacesConfiguration {
 		SERPENTIN_STRENGTH_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Strength potion").defineInRange("serpentin_strength_amplifier_bonus", 1, 0, 5);
 		SERPENTIN_SPEED_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Speed potion").defineInRange("serpentin_speed_amplifier_bonus", 1, 0, 5);
 		SERPENTIN_JUMP_AMPLIFIER_BONUS = BUILDER.comment("Amplifier bonus for Jump potion").defineInRange("serpentin_jump_amplifier_bonus", 2, 0, 5);
+		SERPENTIN_CARRY_CAPACITY = BUILDER.comment("Base carry capacity for Serpentin race").defineInRange("serpentin_carry_capacity", 18, 0, 1000);
 		BUILDER.pop();
 		BUILDER.push("Arachna Class Attributes");
 		ARACHA_MAX_HEALTH = BUILDER.comment("Arachna max health").define("aracha_max_health", 16.0);
 		ARACHA_WATER_SLOWDOWN_DURATION = BUILDER.comment("Duration of slowdown effect in water for aracha").defineInRange("aracha_water_slowdown_duration", 2, 1, 100);
 		ARACHA_WATER_SLOWDOWN_AMPLIFIER = BUILDER.comment("Amplifier of slowdown in water").defineInRange("aracha_water_slowdown_amplifier", 2, 0, 10);
-		ARACHA_HEAVY_ARMOR_SLOWDOWN_DURATION = BUILDER.comment("Duration of slowdown with heavy armor").defineInRange("aracha_heavy_armor_slowdown_duration", 3, 1, 100);
-		ARACHA_HEAVY_ARMOR_SLOWDOWN_AMPLIFIER = BUILDER.comment("Amplifier of slowdown with heavy armor").defineInRange("aracha_heavy_armor_slowdown_amplifier", 0, 0, 10);
 		ARACHA_BITE_COUNT_THRESHOLD = BUILDER.comment("Number of bites to trigger fangs and poison").defineInRange("aracha_bite_count_threshold", 3, 1, 10);
 		ARACHA_POISON_DURATION = BUILDER.comment("Duration of poison effect after bites").defineInRange("aracha_poison_duration", 40, 20, 200);
 		ARACHA_POISON_AMPLIFIER = BUILDER.comment("Amplifier of poison effect").defineInRange("aracha_poison_amplifier", 0, 0, 5);
 		ARACHA_FIRE_DAMAGE_MULTIPLIER = BUILDER.comment("Fire damage multiplier for aracha").defineInRange("aracha_fire_damage_multiplier", 1.5, 1.0, 3.0);
 		ARACHA_ATTACK_SPEED_BONUS = BUILDER.comment("Attack speed bonus for aracha").defineInRange("aracha_attack_speed_bonus", 0.25, 0.0, 1.0);
+		ARACHA_CARRY_CAPACITY = BUILDER.comment("Base carry capacity for Aracha race").defineInRange("aracha_carry_capacity", 17, 0, 1000);
+		ARACHA_WEIGHT_MULTIPLIER = BUILDER.comment("Weight multiplier for Aracha race (increases calculated armor weight by this factor, e.g. 1.2 for +20%)")
+				.defineInRange("aracha_weight_multiplier", 1.2, 1.0, 2.0);
 		BUILDER.pop();
 		BUILDER.push("Halfdead Class Attributes");
 		HALFDEAD_MAX_HEALTH = BUILDER.comment("Halfdead max health").define("halfdead_max_health", 26.0);
@@ -203,6 +220,7 @@ public class SimpleRPGRacesConfiguration {
 		HALFDEAD_DAMAGE_REDUCTION_FROM_MARK = BUILDER.comment("Damage reduction when attacker has death mark").defineInRange("halfdead_damage_reduction_from_mark", 0.67, 0.0, 1.0);
 		HALFDEAD_DAMAGE_INCREASE_TO_MARKED = BUILDER.comment("Damage increase to marked targets").defineInRange("halfdead_damage_increase_to_marked", 1.33, 1.0, 2.0);
 		HALFDEAD_DEATH_MARK_RADIUS = BUILDER.comment("Radius to search for nearby entities to apply death mark").defineInRange("halfdead_death_mark_radius", 10.0, 1.0, 50.0);
+		HALFDEAD_CARRY_CAPACITY = BUILDER.comment("Base carry capacity for Halfdead race").defineInRange("halfdead_carry_capacity", 23, 0, 1000);
 		BUILDER.pop();
 		BUILDER.push("Cosmetics");
 		ELF_EARS = BUILDER.define("elf_ears", true);
@@ -212,9 +230,6 @@ public class SimpleRPGRacesConfiguration {
 		ELF_RESIZE = BUILDER.define("elf_resize", true);
 		ORC_RESIZE = BUILDER.define("orc_resize", true);
 		BUILDER.pop();
-		BUILDER.push("Others");
-		RANGED_WEAPON_DAMAGE_PENALTY = BUILDER.comment("Damage penalty for ranged weapons (bows/crossbows) for non-elf races (multiplicative, e.g., -0.6 for 60% less damage)")
-				.defineInRange("ranged_weapon_damage_penalty", -0.6, -1.0, 0.0);
 		SPEC = BUILDER.build();
 	}
 }
