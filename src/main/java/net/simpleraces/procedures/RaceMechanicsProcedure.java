@@ -1,5 +1,7 @@
 package net.simpleraces.procedures;
 
+import com.jabroni.weightmod.capability.WeightCapabilities;
+import com.jabroni.weightmod.event.ArmorWeightCalculationEvent;
 import net.minecraft.core.particles.*;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ThrownPotion;
@@ -143,6 +145,32 @@ public class RaceMechanicsProcedure {
         SimpleracesModVariables.PlayerVariables vars = player.getCapability(
                 SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null
         ).orElse(new SimpleracesModVariables.PlayerVariables());
+
+        player.getCapability(WeightCapabilities.CAPABILITY).ifPresent(cap -> {
+            if (vars.elf) {
+                cap.setCapacity(SimpleRPGRacesConfiguration.ELF_CARRY_CAPACITY.get());
+            } else if (vars.orc) {
+                cap.setCapacity(SimpleRPGRacesConfiguration.ORC_CARRY_CAPACITY.get());
+            } else if (vars.dwarf) {
+                cap.setCapacity(SimpleRPGRacesConfiguration.DWARF_CARRY_CAPACITY.get());
+            } else if (vars.merfolk) {
+                cap.setCapacity(SimpleRPGRacesConfiguration.MERFOLK_CARRY_CAPACITY.get());
+            } else if (vars.dragon) {
+                cap.setCapacity(SimpleRPGRacesConfiguration.DRAKONID_CARRY_CAPACITY.get());
+            } else if (vars.fairy) {
+                cap.setCapacity(SimpleRPGRacesConfiguration.FAIRY_CARRY_CAPACITY.get());
+            } else if (vars.werewolf) {
+                cap.setCapacity(SimpleRPGRacesConfiguration.WEREWOLF_CARRY_CAPACITY.get());
+            } else if (vars.serpentin) {
+                cap.setCapacity(SimpleRPGRacesConfiguration.SERPENTIN_CARRY_CAPACITY.get());
+            } else if (vars.aracha) {
+                cap.setCapacity(SimpleRPGRacesConfiguration.ARACHA_CARRY_CAPACITY.get());
+            } else if (vars.halfdead) {
+                cap.setCapacity(SimpleRPGRacesConfiguration.HALFDEAD_CARRY_CAPACITY.get());
+            } else {
+                cap.setCapacity(10);
+            }
+        });
 
         if (vars.merfolk) {
             AttributeInstance healthAttr = player.getAttribute(Attributes.MAX_HEALTH);
@@ -705,13 +733,6 @@ public class RaceMechanicsProcedure {
             if (entity.hasEffect(MobEffects.WITHER)) {
                 entity.removeEffect(MobEffects.WITHER);
             }
-        } else if ((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).map(playerVariables -> playerVariables.aracha).orElse(false))) {
-            boolean hasHeavyArmor = isWearingHeavyArmor(player);
-            if (hasHeavyArmor) {
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
-                        SimpleRPGRacesConfiguration.ARACHA_HEAVY_ARMOR_SLOWDOWN_DURATION.get(),
-                        SimpleRPGRacesConfiguration.ARACHA_HEAVY_ARMOR_SLOWDOWN_AMPLIFIER.get(), true, false, false));
-            }
         } else if ((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).map(playerVariables -> playerVariables.werewolf)
                 .orElse(false))) {
             if (player.level().isNight() && WerewolfState.isHuman(player)) {
@@ -807,11 +828,6 @@ public class RaceMechanicsProcedure {
         if (event.getSource().getDirectEntity() instanceof AbstractArrow && event.getSource().getEntity() instanceof Player player) {
             SimpleracesModVariables.PlayerVariables vars = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
                     .orElse(new SimpleracesModVariables.PlayerVariables());
-
-            if (!vars.elf) {
-                double penalty = SimpleRPGRacesConfiguration.RANGED_WEAPON_DAMAGE_PENALTY.get();
-                event.setAmount((float) (event.getAmount() * (1 + penalty)));
-            }
         }
         if (event.getEntity() instanceof Player player) {
             SimpleracesModVariables.PlayerVariables vars = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
@@ -1075,7 +1091,7 @@ public class RaceMechanicsProcedure {
         if (!(event.getEntity() instanceof Player player)) return;
         if ((player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables()).dragon)) {
             Vec3 velocity = player.getDeltaMovement();
-            player.setDeltaMovement(velocity.x, 0.60, velocity.z);
+            player.setDeltaMovement(velocity.x, 0.57, velocity.z);
         }
     }
 
@@ -1274,6 +1290,20 @@ public class RaceMechanicsProcedure {
                 target.addEffect(new MobEffectInstance(effect, newDuration, inst.getAmplifier(),
                         inst.isAmbient(), inst.isVisible(), inst.showIcon()));
             }
+        }
+    }
+    @SubscribeEvent
+    public static void onArmorWeightCalculation(ArmorWeightCalculationEvent event) {
+        Player player = event.getPlayer();
+        if (player == null) return;
+
+        SimpleracesModVariables.PlayerVariables vars = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                .orElse(new SimpleracesModVariables.PlayerVariables());
+
+        if (vars.aracha) {
+            double multiplier = SimpleRPGRacesConfiguration.ARACHA_WEIGHT_MULTIPLIER.get();
+            int modifiedWeight = (int) Math.round(event.getWeight() * multiplier);
+            event.setWeight(modifiedWeight);
         }
     }
 }

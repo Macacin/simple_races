@@ -37,9 +37,9 @@ public class OverlayRenderer {
 
             float procents = SyncVars.heat / (float) SyncVars.maxHeat;
             int barWidth = (int) (procents * maxWidth);
-            int backgroundV = SyncVars.overheated ? 45 : 0;
+            int backgroundV = SyncVars.overheated ? 46 : 0;
             gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x, y, 0, backgroundV, maxWidth, 19);
-            gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x, y + 10, 0, 25, barWidth, 5);
+            gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x, y + 10, 0, 25, barWidth, 6);
             if (!SyncVars.overheated) {
                 if (procents <= 0.3f) {
                     gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x + maxWidth / 2 - 6, y, 101, 3, 10, 14);
@@ -51,7 +51,7 @@ public class OverlayRenderer {
                     gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x + maxWidth / 2 - 6, y, 118, 19, 10, 14);
                 }
             } else {
-                gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x + maxWidth / 2 - 6, y, 134, 20, 10, 14);
+                gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x + maxWidth / 2 - 6, y - 2, 134, 18, 10, 17);
             }
 
         } else if (vars.fairy) {
@@ -78,7 +78,7 @@ public class OverlayRenderer {
             int backgroundV = SyncVars.isFairyRecovering ? 0 : 43;
 
             gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), x, y, 0, backgroundV, maxWidth, 19);
-            gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), x, y + 10, 0, 25, barWidth, 5);
+            gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), x, y + 10, 0, 25, barWidth, 6);
             int iconWidth = 13;
             int iconX = x + (maxWidth - iconWidth) / 2;
             int iconY = y + 2;
