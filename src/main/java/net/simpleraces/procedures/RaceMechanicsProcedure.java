@@ -255,13 +255,23 @@ public class RaceMechanicsProcedure {
                 player.hurt(player.damageSources().fellOutOfWorld(), 2.0F);
             }
             player.getCapability(SimpleracesModVariables.HEAT).ifPresent(data -> {
+                int maxHeat = SimpleRPGRacesConfiguration.DRAKONID_MAX_HEAT.get();
+                int maxOverheatTicks = SimpleRPGRacesConfiguration.DRAKONID_OVERHEAT_TIME.get() * 20;
+
                 ModMessages.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
-                        new SyncHeatPacket(player.getUUID(), data.getHeat(), SimpleRPGRacesConfiguration.DRAKONID_MAX_HEAT.get(), data.isOverheated()));
+                        new SyncHeatPacket(
+                                player.getUUID(),
+                                data.getHeat(),
+                                maxHeat,
+                                data.isOverheated(),
+                                data.getOverheatTicks(),
+                                maxOverheatTicks
+                        ));
                 if (data.isOverheated()) {
                     int ticks = data.getOverheatTicks() - 1;
                     data.setOverheatTicks(ticks);
 
-                    float maxHeat = SimpleRPGRacesConfiguration.DRAKONID_MAX_HEAT.get();
+                    maxHeat = SimpleRPGRacesConfiguration.DRAKONID_MAX_HEAT.get();
                     if (ticks % 10 == 0) {
                         float stepAmount = maxHeat / 40f;
                         data.setHeat((int) (data.getHeat() - stepAmount));
@@ -270,7 +280,14 @@ public class RaceMechanicsProcedure {
 
                     if (ticks % 10 == 0 || ticks <= 0) {
                         ModMessages.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
-                                new SyncHeatPacket(player.getUUID(), data.getHeat(), SimpleRPGRacesConfiguration.DRAKONID_MAX_HEAT.get(), data.isOverheated()));
+                                new SyncHeatPacket(
+                                        player.getUUID(),
+                                        data.getHeat(),
+                                        maxHeat,
+                                        data.isOverheated(),
+                                        data.getOverheatTicks(),
+                                        maxOverheatTicks
+                                ));
                     }
 
                     if (player.tickCount % 60 == 0) {
@@ -449,40 +466,40 @@ public class RaceMechanicsProcedure {
                 }
             }
         } else if (vars.elf) {
-        if (level.getBrightness(LightLayer.SKY, player.getOnPos().above(2)) > 0 && FOREST_BIOMES.contains(level.getBiome(player.getOnPos()).unwrapKey().get())) {
-            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 5, 0, false, true));
-            AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
-            if (speedAttr != null && speedAttr.getModifier(ELF_SPEED_UUID) == null) {
-                speedAttr.addTransientModifier(new AttributeModifier(
-                        ELF_SPEED_UUID,
-                        "Elf speed boost",
-                        SimpleRPGRacesConfiguration.ELF_FOREST_SPEED_BUFF.get(),
-                        AttributeModifier.Operation.MULTIPLY_BASE
-                ));
-            }
-        } else {
-            AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
-            if (speedAttr != null) {
-                speedAttr.removeModifier(ELF_SPEED_UUID);
-            }
-        }
-
-        boolean inForest = FOREST_BIOMES.contains(level.getBiome(player.getOnPos()).unwrapKey().get()); // Переиспользуем существующую проверку биома
-        double cooldownStep = inForest ? SimpleRPGRacesConfiguration.ELF_FOREST_COOLDOWN_MULTIPLIER.get() : 1;
-
-        for (int i = 0; i < SimpleRPGRacesConfiguration.ELF_MAX_FOREST_SPIRITS.get(); i++) {
-            if (vars.spiritCooldowns[i] > 0) {
-                vars.spiritCooldowns[i] -= (int) cooldownStep;
-                if (vars.spiritCooldowns[i] <= 0) {
-                    vars.spiritCooldowns[i] = 0;
-                    vars.forestSpirits = Math.min(SimpleRPGRacesConfiguration.ELF_MAX_FOREST_SPIRITS.get(), vars.forestSpirits + 1); // Восстанавливаем дух
-
-                    player.level().playSound(null, player.blockPosition(), SimpleracesMod.FAIRY_RECOVER.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
+            if (level.getBrightness(LightLayer.SKY, player.getOnPos().above(2)) > 0 && FOREST_BIOMES.contains(level.getBiome(player.getOnPos()).unwrapKey().get())) {
+                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 5, 0, false, true));
+                AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
+                if (speedAttr != null && speedAttr.getModifier(ELF_SPEED_UUID) == null) {
+                    speedAttr.addTransientModifier(new AttributeModifier(
+                            ELF_SPEED_UUID,
+                            "Elf speed boost",
+                            SimpleRPGRacesConfiguration.ELF_FOREST_SPEED_BUFF.get(),
+                            AttributeModifier.Operation.MULTIPLY_BASE
+                    ));
+                }
+            } else {
+                AttributeInstance speedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
+                if (speedAttr != null) {
+                    speedAttr.removeModifier(ELF_SPEED_UUID);
                 }
             }
-        }
-        vars.syncPlayerVariables(player); // Синхронизируем изменения (это уже было в твоей инструкции, но если синхронизация нужна только при изменениях, можно оптимизировать)
-    } else if (vars.orc) {
+
+            boolean inForest = FOREST_BIOMES.contains(level.getBiome(player.getOnPos()).unwrapKey().get()); // Переиспользуем существующую проверку биома
+            double cooldownStep = inForest ? SimpleRPGRacesConfiguration.ELF_FOREST_COOLDOWN_MULTIPLIER.get() : 1;
+
+            for (int i = 0; i < SimpleRPGRacesConfiguration.ELF_MAX_FOREST_SPIRITS.get(); i++) {
+                if (vars.spiritCooldowns[i] > 0) {
+                    vars.spiritCooldowns[i] -= (int) cooldownStep;
+                    if (vars.spiritCooldowns[i] <= 0) {
+                        vars.spiritCooldowns[i] = 0;
+                        vars.forestSpirits = Math.min(SimpleRPGRacesConfiguration.ELF_MAX_FOREST_SPIRITS.get(), vars.forestSpirits + 1); // Восстанавливаем дух
+
+                        player.level().playSound(null, player.blockPosition(), SimpleracesMod.FAIRY_RECOVER.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
+                    }
+                }
+            }
+            vars.syncPlayerVariables(player); // Синхронизируем изменения (это уже было в твоей инструкции, но если синхронизация нужна только при изменениях, можно оптимизировать)
+        } else if (vars.orc) {
             AttributeInstance dmgAttr = player.getAttribute(Attributes.ATTACK_DAMAGE);
             if (dmgAttr != null) {
                 dmgAttr.removeModifier(ORC_DAMAGE_PENALTY_UUID);
@@ -565,21 +582,37 @@ public class RaceMechanicsProcedure {
                 persistentData.remove("orc_fervor_desync_fixed");
             }
 
-            if ((!hasFervorNow && vars.fervorStacks > 0)) {
-                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
-                        SimpleRPGRacesConfiguration.ORC_FERVOR_DEBUFF_DURATION.get(),
-                        SimpleRPGRacesConfiguration.ORC_FERVOR_SLOWDOWN_LEVEL.get(),
-                        false, true));
+            boolean exitingFervor = (!hasFervorNow && vars.fervorStacks > 0);
 
-                persistentData = player.getPersistentData();
-                persistentData.putInt("orc_fervor_debuff_ticks", SimpleRPGRacesConfiguration.ORC_FERVOR_DEBUFF_DURATION.get());
+            if (exitingFervor) {
+
+                CompoundTag data = player.getPersistentData();
+                boolean skipStupor = data.getBoolean("pst_orc_skip_stupor");
+
+                if (!skipStupor) {
+                    player.addEffect(new MobEffectInstance(
+                            MobEffects.MOVEMENT_SLOWDOWN,
+                            SimpleRPGRacesConfiguration.ORC_FERVOR_DEBUFF_DURATION.get(),
+                            SimpleRPGRacesConfiguration.ORC_FERVOR_SLOWDOWN_LEVEL.get(),
+                            false, true
+                    ));
+                    data.putInt("orc_fervor_debuff_ticks",
+                            SimpleRPGRacesConfiguration.ORC_FERVOR_DEBUFF_DURATION.get()
+                    );
+                }
 
                 vars.fervorStacks = 0;
                 vars.syncPlayerVariables(player);
 
-                player.level().playSound(null, player.blockPosition(), SimpleracesMod.ORC_EXHAUSTION.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                if (!skipStupor) {
+                    player.level().playSound(null, player.blockPosition(),
+                            SimpleracesMod.ORC_EXHAUSTION.get(),
+                            SoundSource.PLAYERS, 1.0F, 1.0F);
+                }
 
+                data.remove("pst_orc_skip_stupor");
             }
+
 
             int debuffTicks = persistentData.getInt("orc_fervor_debuff_ticks");
             if (debuffTicks > 0) {
@@ -634,8 +667,17 @@ public class RaceMechanicsProcedure {
         if (vars.fairy) {
             event.setDamageMultiplier(SimpleRPGRacesConfiguration.FAIRY_FALL_MULTIPLY.get());
         } else if (vars.dragon) {
+            // Базовый порог: урон начинается только после 4 блоков
+            float d = event.getDistance();
+            if (d <= 4.0f) {
+                event.setCanceled(true); // полностью отменяем урон от падения
+                return;
+            }
+
+            // если >4 — применяем твой мультипликатор
             event.setDamageMultiplier(SimpleRPGRacesConfiguration.DRAKONID_FALL_MULTIPLY.get());
         }
+
     }
 
     @SubscribeEvent
@@ -1067,8 +1109,19 @@ public class RaceMechanicsProcedure {
 
                 player.level().playSound(null, player.blockPosition(), SimpleracesMod.DRAGON_OVERHEAT.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
+                int maxHeat = SimpleRPGRacesConfiguration.DRAKONID_MAX_HEAT.get();
+                int maxOverheatTicks = SimpleRPGRacesConfiguration.DRAKONID_OVERHEAT_TIME.get() * 20;
+
                 ModMessages.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
-                        new SyncHeatPacket(player.getUUID(), data.getHeat(), SimpleRPGRacesConfiguration.DRAKONID_MAX_HEAT.get(), data.isOverheated()));
+                        new SyncHeatPacket(
+                                player.getUUID(),
+                                data.getHeat(),
+                                maxHeat,
+                                data.isOverheated(),
+                                data.getOverheatTicks(),
+                                maxOverheatTicks
+                        ));
+
             }
         });
     }

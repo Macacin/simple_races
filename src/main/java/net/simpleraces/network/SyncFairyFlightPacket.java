@@ -26,11 +26,11 @@ public class SyncFairyFlightPacket {
         buf.writeUUID(msg.playerUUID);
         buf.writeInt(msg.flightBar);
         buf.writeInt(msg.maxFlight);
-        buf.writeBoolean(msg.isRecovering);  // Добавьте
+        buf.writeBoolean(msg.isRecovering);
     }
 
     public static SyncFairyFlightPacket decode(FriendlyByteBuf buf) {
-        return new SyncFairyFlightPacket(buf.readUUID(), buf.readInt(), buf.readInt(), buf.readBoolean());  // Добавьте
+        return new SyncFairyFlightPacket(buf.readUUID(), buf.readInt(), buf.readInt(), buf.readBoolean());
     }
 
     public static void handle(SyncFairyFlightPacket msg, Supplier<NetworkEvent.Context> ctx) {
@@ -39,7 +39,7 @@ public class SyncFairyFlightPacket {
             if (player != null && player.getUUID().equals(msg.playerUUID)) {
                 SyncVars.fairyFlightBar = msg.flightBar;
                 SyncVars.maxFairyFlight = msg.maxFlight;
-                SyncVars.isFairyRecovering = msg.isRecovering;  // Добавьте
+                SyncVars.isFairyRecovering = msg.isRecovering;
             }
         });
         ctx.get().setPacketHandled(true);

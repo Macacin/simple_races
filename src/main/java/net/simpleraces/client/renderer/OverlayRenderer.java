@@ -35,7 +35,14 @@ public class OverlayRenderer {
             int x = (width - maxWidth) / 2;
             int y = height - hotbarHeight - 32 - offsetY;
 
-            float procents = SyncVars.heat / (float) SyncVars.maxHeat;
+            float procents;
+            if (!SyncVars.overheated) {
+                procents = SyncVars.heat / (float) SyncVars.maxHeat; // накопление
+            } else {
+                procents = SyncVars.overheatTicks / (float) SyncVars.maxOverheatTicks; // сколько осталось перегрева
+            }
+            procents = Math.max(0f, Math.min(1f, procents));
+
             int barWidth = (int) (procents * maxWidth);
             int backgroundV = SyncVars.overheated ? 46 : 0;
             gui.blit(new ResourceLocation("simpleraces", "textures/screens/overheat.png"), x, y, 0, backgroundV, maxWidth, 19);
