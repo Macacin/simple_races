@@ -603,7 +603,15 @@ public class RaceMechanicsProcedure {
 
                 vars.syncPlayerVariables(player);
 
-                player.addEffect(new MobEffectInstance(ModEffects.FERVOR.get(), 200, vars.fervorStacks - 1, false, false));
+                int visualAmplifier = Math.min(vars.fervorStacks - 1, 9);
+
+                player.addEffect(new MobEffectInstance(
+                        ModEffects.FERVOR.get(),
+                        200,
+                        visualAmplifier,
+                        false,
+                        false
+                ));
 
                 persistentData.putBoolean("orc_fervor_desync_fixed", true);
 
@@ -1024,7 +1032,15 @@ public class RaceMechanicsProcedure {
             vars.lastTarget = currentTarget;
 
             if (vars.fervorStacks > 0) {
-                player.addEffect(new MobEffectInstance(ModEffects.FERVOR.get(), 200, vars.fervorStacks - 1, false, false));
+                int visualAmplifier = Math.min(vars.fervorStacks - 1, 9);
+
+                player.addEffect(new MobEffectInstance(
+                        ModEffects.FERVOR.get(),
+                        200,
+                        visualAmplifier,
+                        false,
+                        false
+                ));
             }
             vars.syncPlayerVariables(player);
         }
