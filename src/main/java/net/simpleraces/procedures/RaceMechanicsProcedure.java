@@ -593,29 +593,22 @@ public class RaceMechanicsProcedure {
             boolean hasFervorNow = player.hasEffect(ModEffects.FERVOR.get());
 
             if (hasFervorNow && vars.fervorStacks == 0 && !persistentData.getBoolean("orc_fervor_desync_fixed")) {
-                MobEffectInstance fervorInstance = player.getEffect(ModEffects.FERVOR.get());
-                if (fervorInstance != null) {
-                    int amplifier = fervorInstance.getAmplifier();
-                    vars.fervorStacks = amplifier + 1;
-                } else {
-                    vars.fervorStacks = 1;
-                }
+
+                // НЕ читаем amplifier вообще
+                vars.fervorStacks = 1;
 
                 vars.syncPlayerVariables(player);
-
-                int visualAmplifier = Math.min(vars.fervorStacks - 1, 9);
 
                 player.addEffect(new MobEffectInstance(
                         ModEffects.FERVOR.get(),
                         200,
-                        visualAmplifier,
-                        false,
-                        false
+                        0, // первый стак всегда 0
+                        false, false
                 ));
 
                 persistentData.putBoolean("orc_fervor_desync_fixed", true);
-
-            } else if (!hasFervorNow) {
+            }
+            else if (!hasFervorNow) {
                 persistentData.remove("orc_fervor_desync_fixed");
             }
 
