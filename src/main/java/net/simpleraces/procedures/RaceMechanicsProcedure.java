@@ -590,27 +590,8 @@ public class RaceMechanicsProcedure {
             vars.previousFoodLevel = currentHunger;
             vars.syncPlayerVariables(player);
             CompoundTag persistentData = player.getPersistentData();
+
             boolean hasFervorNow = player.hasEffect(ModEffects.FERVOR.get());
-
-            if (hasFervorNow && vars.fervorStacks == 0 && !persistentData.getBoolean("orc_fervor_desync_fixed")) {
-
-                // НЕ читаем amplifier вообще
-                vars.fervorStacks = 1;
-
-                vars.syncPlayerVariables(player);
-
-                player.addEffect(new MobEffectInstance(
-                        ModEffects.FERVOR.get(),
-                        200,
-                        0, // первый стак всегда 0
-                        false, false
-                ));
-
-                persistentData.putBoolean("orc_fervor_desync_fixed", true);
-            }
-            else if (!hasFervorNow) {
-                persistentData.remove("orc_fervor_desync_fixed");
-            }
 
             boolean exitingFervor = (!hasFervorNow && vars.fervorStacks > 0);
 
