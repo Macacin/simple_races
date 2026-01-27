@@ -972,7 +972,15 @@ public class RaceMechanicsProcedure {
                 vars.fervorStacks = 0;
                 player.removeEffect(ModEffects.FERVOR.get());
             } else {
-                vars.fervorStacks = Math.min(10, vars.fervorStacks + 1);
+                CompoundTag pst = player.getPersistentData();
+                long gt = player.level().getGameTime();
+
+                int maxFervor = 10;
+                if (pst.getLong("pst_orc_berserk_power_until") >= gt) {
+                    maxFervor = 13;
+                }
+
+                vars.fervorStacks = Math.min(maxFervor, vars.fervorStacks + 1);
             }
             vars.lastTarget = currentTarget;
 
