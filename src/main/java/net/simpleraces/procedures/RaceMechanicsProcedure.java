@@ -513,18 +513,26 @@ public class RaceMechanicsProcedure {
             String[] spellSchools = {"spell_power", "fire_spell_power", "ice_spell_power", "lightning_spell_power", "holy_spell_power", "ender_spell_power",
                     "blood_spell_power", "evocation_spell_power", "nature_spell_power", "eldritch_spell_power"};
 
+            CompoundTag pst = player.getPersistentData();
+            long gt = player.level().getGameTime();
+            boolean shamanRage = pst.getLong("pst_orc_shaman_rage_until") >= gt;
+
             for (String attrName : spellSchools) {
                 Attribute attribute = ForgeRegistries.ATTRIBUTES.getValue(new ResourceLocation("irons_spellbooks", attrName));
                 if (attribute != null) {
                     AttributeInstance instance = player.getAttribute(attribute);
                     if (instance != null) {
                         instance.removeModifier(ORC_MAGIC_PENALTY_UUID);
-                        instance.addTransientModifier(new AttributeModifier(
-                                ORC_MAGIC_PENALTY_UUID,
-                                "Orc magic penalty",
-                                SimpleRPGRacesConfiguration.ORC_MAGIC_DAMAGE_PENALTY.get(),
-                                AttributeModifier.Operation.MULTIPLY_TOTAL
-                        ));
+
+                        // если камня нет — штраф остаётся
+                        if (!shamanRage) {
+                            instance.addTransientModifier(new AttributeModifier(
+                                    ORC_MAGIC_PENALTY_UUID,
+                                    "Orc magic penalty",
+                                    SimpleRPGRacesConfiguration.ORC_MAGIC_DAMAGE_PENALTY.get(),
+                                    AttributeModifier.Operation.MULTIPLY_TOTAL
+                            ));
+                        }
                     }
                 }
             }
@@ -549,8 +557,29 @@ public class RaceMechanicsProcedure {
                 player.level().playSound(null, player.blockPosition(), SimpleracesMod.ORC_RAGE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
                 List<LivingEntity> enemies = player.level().getEntitiesOfClass(LivingEntity.class, player.getBoundingBox().inflate(10), e -> e != player && e.isAlive());
+                pst = player.getPersistentData();
+                gt = player.level().getGameTime();
+                boolean dumbPlan = pst.getLong("pst_orc_dumb_plan_until") >= gt;
+
+                int stunDuration = 60 + (dumbPlan ? 40 : 0); // +2 секунды
+
                 for (LivingEntity e : enemies) {
-                    e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 255, false, false));
+                    e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, stunDuration, 255, false, false));
+                }
+                if (dumbPlan && player.getRandom().nextFloat() < 0.20f) {
+                    List<Player> allies = player.level().getEntitiesOfClass(
+                            Player.class,
+                            player.getBoundingBox().inflate(10),
+                            p -> p != player && p.isAlive()
+                    );
+
+                    for (Player ally : allies) {
+                        ally.getActiveEffects().stream()
+                                .filter(eff -> !eff.getEffect().isBeneficial())
+                                .map(MobEffectInstance::getEffect)
+                                .toList()
+                                .forEach(ally::removeEffect);
+                    }
                 }
 
                 player.getActiveEffects().stream().filter(effectInstance -> !effectInstance.getEffect().isBeneficial()).forEach(effectInstance -> player.removeEffect(effectInstance.getEffect()));
@@ -883,8 +912,18 @@ public class RaceMechanicsProcedure {
                     event.setAmount((float) (event.getAmount() * SimpleRPGRacesConfiguration.ORC_FERVOR_INCOMING_DAMAGE_MULTIPLIER.get()));
                 }
                 if (event.getSource().typeHolder().is(DamageTypes.MAGIC)) {
-                    event.setAmount((float) (event.getAmount() * SimpleRPGRacesConfiguration.ORC_INCOMING_MAGIC_DAMAGE_PENALTY.get()));
+                    float amount = event.getAmount();
+                    amount *= SimpleRPGRacesConfiguration.ORC_INCOMING_MAGIC_DAMAGE_PENALTY.get();
+
+                    CompoundTag pst = player.getPersistentData();
+                    long gt = player.level().getGameTime();
+                    if (pst.getLong("pst_orc_shaman_rage_until") >= gt) {
+                        amount *= 0.7f; // -30% магического урона
+                    }
+
+                    event.setAmount(amount);
                 }
+
             }
         }
         if (event.getEntity() instanceof Player player) {
