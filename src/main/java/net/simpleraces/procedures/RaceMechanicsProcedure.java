@@ -93,6 +93,11 @@ public class RaceMechanicsProcedure {
     private static final UUID WEREWOLF_HUMAN_HEALTH_UUID = UUID.fromString("c561d21a-47fd-40ed-ab8b-8d457f4c6557");
     private static final UUID ARACHA_ATTACK_SPEED_BOOST_UUID = UUID.fromString("76557286-c292-421d-8c2e-f7b7bc77abd9");
 
+    private static final String TAG_PST_FAIRY_EXTRA = "pst_fairy_extra_flight_ticks";
+    private static final String TAG_PST_FAIRY_EXTRA_SPENT = "pst_fairy_extra_spent_ticks";
+
+    private static final int PST_FAIRY_TOTAL_MAX_TICKS = 30 * 20; // 30 секунд
+
     private static final Map<UUID, Map<MobEffect, Integer>> preAttackDebuffs = new HashMap<>();
 
     private static final Set<ResourceKey<Biome>> FOREST_BIOMES = Set.of(
@@ -309,50 +314,115 @@ public class RaceMechanicsProcedure {
                 }
             });
 
+            // ===== FAIRY (НОВАЯ ЛОГИКА: единый spentTicks, фикс бесконечного полёта) =====
+            // ===== FAIRY (цельный блок для вставки ВМЕСТО твоего текущего `} else if (vars.fairy) { ... }` ) =====
         } else if (vars.fairy) {
             CompoundTag data = player.getPersistentData();
 
+            // --- базовые тики ---
             int flightTime = data.getInt("fairy_flight_ticks");
-            if (player.getAbilities().flying) {
-                flightTime++;
-            }
             int fallingTime = data.getInt("fairy_falling_ticks");
-            int maxFlight = SimpleRPGRacesConfiguration.FAIRY_MAX_FLYING_TIME.get() * 20;
 
-            boolean isRecovering = (flightTime > maxFlight);  // Флаг фазы: true во время восстановления
+            // base max (из конфига)
+            int baseMax = SimpleRPGRacesConfiguration.FAIRY_MAX_FLYING_TIME.get() * 20;
 
+            // WindWings: общий cap 30 сек (если включено)
+            final String TAG_PST_WIND_WINGS = "pst_fairy_wind_wings";
+            final String TAG_PST_EXTRA_SPENT = "pst_fairy_extra_spent_ticks";
+            final int PST_FAIRY_TOTAL_MAX_TICKS = 30 * 20;
+
+            boolean windWingsEnabled = data.getBoolean(TAG_PST_WIND_WINGS);
+
+            int extraCap = Math.max(0, PST_FAIRY_TOTAL_MAX_TICKS - baseMax); // сколько “доп. тиков” максимум можно потратить
+            int effectiveMax = windWingsEnabled ? (baseMax + extraCap) : baseMax;
+
+            int extraSpent = data.getInt(TAG_PST_EXTRA_SPENT);
+            if (extraSpent < 0) extraSpent = 0;
+            if (extraSpent > extraCap) extraSpent = extraCap;
+
+            // --- расход полёта ---
+            // Базовое время тратим через flightTime, а доп. время тратим через extraSpent (чтобы не было “67%” скачков).
+            if (player.getAbilities().flying) {
+                // тратим базу
+                if (flightTime < baseMax) {
+                    flightTime++;
+                } else {
+                    // база уже исчерпана — тратим extra
+                    if (windWingsEnabled && extraSpent < extraCap) {
+                        extraSpent++;
+                        data.putInt(TAG_PST_EXTRA_SPENT, extraSpent);
+                    }
+                }
+            }
+
+            int spent = Math.min(flightTime, baseMax) + extraSpent;
+
+            // recovery включаем по реальному потраченному ресурсу, а не по flightTime
+            boolean isRecovering = (spent >= effectiveMax);
+
+            // --- HUD значения для Sync пакета ---
+            int hudBar;
+            int hudMax;
+
+            if (isRecovering) {
+                // фаза восстановления: бар “зарядки”
+                hudBar = fallingTime;
+                hudMax = baseMax; // как было у тебя: восстановление по базовому времени (20с)
+            } else {
+                // фаза траты: бар “расхода”
+                hudBar = spent;
+                hudMax = effectiveMax; // 20с или 30с (если windwings)
+            }
+
+            // --- геймплей: восстановление / полёт ---
             if (isRecovering) {
                 player.getAbilities().mayfly = false;
                 player.getAbilities().flying = false;
                 player.onUpdateAbilities();
-                FAIRY_FLYING_BAR = fallingTime;  // От 0 к max (для увеличения бара в рендере)
+
+                // логика падения/восстановления как у тебя
                 if (!data.getBoolean("falled") && player.getY() < player.yo) {
                     if (player.onGround()) {
                         data.putBoolean("falled", true);
-                        data.putInt("fairy_flight_ticks", Math.max(0, maxFlight - fallingTime));
+
+                        // ❗️ВАЖНО: больше НЕ делаем "рефанд" flightTime при касании земли (он и создавал ~67% при windwings).
+                        // Ничего не трогаем тут.
+
                     } else {
                         player.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 2, 0, false, true));
                         fallingTime++;
                     }
                 }
+
                 if (data.getBoolean("falled")) {
                     fallingTime++;
                 }
-                if (fallingTime >= maxFlight) {
+
+                // когда восстановление завершено
+                if (fallingTime >= baseMax) {
                     flightTime = 0;
                     fallingTime = 0;
+                    extraSpent = 0;
+                    data.putInt(TAG_PST_EXTRA_SPENT, 0);
+
                     player.level().playSound(null, player.blockPosition(), SimpleracesMod.FAIRY_RECOVER.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 }
             } else {
-                FAIRY_FLYING_BAR = flightTime;
+                // не recovering — фея может летать
                 player.getAbilities().mayfly = true;
                 data.putBoolean("falled", false);
+
                 player.getAbilities().setFlyingSpeed(0.025f * SimpleRPGRacesConfiguration.FAIRY_FLY_SPEED_MULTIPLY.get());
                 player.onUpdateAbilities();
+
+                // (опционально) если ты хочешь ускорять восстановление brightmind — это должно быть отдельно
             }
+
+            // --- сохраняем тики ---
             data.putInt("fairy_flight_ticks", flightTime);
             data.putInt("fairy_falling_ticks", fallingTime);
 
+            // --- частицы ---
             ((ServerLevel) player.level()).sendParticles(
                     new DustColorTransitionOptions(
                             new Vector3f(1f, 1f, 1f),
@@ -362,10 +432,13 @@ public class RaceMechanicsProcedure {
                     player.getX(), player.getY(), player.getZ(), 1, 0, 0, 0, 0
             );
 
-            // Синхронизация с флагом фазы
+            // --- синхронизация HUD ---
             ModMessages.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player),
-                    new SyncFairyFlightPacket(player.getUUID(), FAIRY_FLYING_BAR, maxFlight, isRecovering));
-        } else if (vars.aracha) {
+                    new SyncFairyFlightPacket(player.getUUID(), hudBar, hudMax, isRecovering));
+        }
+// ===== /FAIRY =====
+
+        else if (vars.aracha) {
             if (player.isInWater()) {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
                         SimpleRPGRacesConfiguration.ARACHA_WATER_SLOWDOWN_DURATION.get(),
@@ -1358,6 +1431,7 @@ public class RaceMechanicsProcedure {
             }
         }
     }
+
     private static void adjustDebuffDurations(LivingEntity target) {
         if (target == null || !target.isAlive()) return;
 
@@ -1382,6 +1456,7 @@ public class RaceMechanicsProcedure {
             }
         }
     }
+
     @SubscribeEvent
     public static void onArmorWeightCalculation(ArmorWeightCalculationEvent event) {
         Player player = event.getPlayer();

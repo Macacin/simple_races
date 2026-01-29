@@ -20,8 +20,8 @@ public class OverlayRenderer {
     public static void onRenderOverlay(RenderGuiOverlayEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
-        SimpleracesModVariables.PlayerVariables vars = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables());
         if (player == null) return;
+        SimpleracesModVariables.PlayerVariables vars = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables());
         if (vars.dragon) {
             GuiGraphics gui = event.getGuiGraphics();
 
@@ -85,7 +85,8 @@ public class OverlayRenderer {
             int backgroundV = SyncVars.isFairyRecovering ? 0 : 43;
 
             gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), x, y, 0, backgroundV, maxWidth, 19);
-            gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), x, y + 10, 0, 25, barWidth, 6);
+            gui.blit(new ResourceLocation("simpleraces", "textures/screens/fairy_flight.png"), x, y + 9, 0, 25, barWidth, 6);
+
             int iconWidth = 13;
             int iconX = x + (maxWidth - iconWidth) / 2;
             int iconY = y + 2;
