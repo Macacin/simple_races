@@ -1151,6 +1151,50 @@ public class RaceMechanicsProcedure {
     }
 
     @SubscribeEvent
+    public static void onSerpentinEffectRemoved(MobEffectEvent.Remove event) {
+        LivingEntity entity = event.getEntity();
+        if (!(entity instanceof Player player)) return;
+        if (player.level().isClientSide) return;
+
+        boolean serpentin = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(v -> v.serpentin)
+                .orElse(false);
+        if (!serpentin) return;
+
+        MobEffectInstance inst = event.getEffectInstance();
+        if (inst == null) return;
+
+        // чистим флаг независимо от beneficial/poison/wither — безопасно
+        var key = ForgeRegistries.MOB_EFFECTS.getKey(inst.getEffect());
+        if (key == null) return;
+
+        String effectKey = "serpentin_shortened_" + key.toString();
+        player.getPersistentData().remove(effectKey);
+    }
+
+    @SubscribeEvent
+    public static void onSerpentinEffectExpired(MobEffectEvent.Expired event) {
+        LivingEntity entity = event.getEntity();
+        if (!(entity instanceof Player player)) return;
+        if (player.level().isClientSide) return;
+
+        boolean serpentin = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(v -> v.serpentin)
+                .orElse(false);
+        if (!serpentin) return;
+
+        MobEffectInstance inst = event.getEffectInstance();
+        if (inst == null) return;
+
+        var key = ForgeRegistries.MOB_EFFECTS.getKey(inst.getEffect());
+        if (key == null) return;
+
+        String effectKey = "serpentin_shortened_" + key.toString();
+        player.getPersistentData().remove(effectKey);
+    }
+
+
+    @SubscribeEvent
     public static void onMobKilled(LivingDeathEvent event) {
         if (!(event.getSource().getEntity() instanceof Player killer)) return;
 
