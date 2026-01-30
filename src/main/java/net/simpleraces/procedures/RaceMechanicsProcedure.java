@@ -733,8 +733,22 @@ public class RaceMechanicsProcedure {
                 List<LivingEntity> nearbyMobs = level.getEntitiesOfClass(LivingEntity.class, aabb, e -> e != player && e.isAlive() && !(e instanceof Player));
                 for (LivingEntity mob : nearbyMobs) {
                     mob.hurt(player.damageSources().magic(), SimpleRPGRacesConfiguration.HALFDEAD_AURA_DAMAGE.get().floatValue());
-                    Vec3 direction = mob.position().subtract(player.position()).normalize();
-                    mob.knockback(1.0, direction.x, direction.z);
+                    double dx = mob.getX() - player.getX();
+                    double dz = mob.getZ() - player.getZ();
+
+                    double d2 = dx * dx + dz * dz;
+                    if (d2 < 1.0e-6) {
+                        // можно чуть-чуть толкнуть в сторону взгляда игрока, чтобы гарантированно "отлипало"
+                        var look = player.getLookAngle();
+                        mob.knockback(0.1f, look.x, look.z);
+                    } else {
+                        double invLen = 1.0 / Math.sqrt(d2);
+                        double nx = dx * invLen;
+                        double nz = dz * invLen;
+
+                        // сила — подбери по вкусу (обычно 0.3–0.8 комфортно)
+                        mob.knockback(0.25f, nx, nz);
+                    }
                 }
             }
         }
@@ -1231,6 +1245,15 @@ public class RaceMechanicsProcedure {
         ));
     }
 
+    private static void addHealthDirect(ServerPlayer p, float amount) {
+        if (amount <= 0f) return;
+        float hp = p.getHealth() + amount;
+        float max = p.getMaxHealth();
+        if (hp > max) hp = max;
+        p.setHealth(hp);
+    }
+
+
     @SubscribeEvent
     public static void onBleedRemoved(MobEffectEvent.Remove event) {
         if (event.getEntity().level().isClientSide()) return;
@@ -1256,13 +1279,15 @@ public class RaceMechanicsProcedure {
 
     @SubscribeEvent
     public static void onMobKilled(LivingDeathEvent event) {
-        if (!(event.getSource().getEntity() instanceof Player killer)) return;
+        if (event.getEntity().level().isClientSide()) return;
+        if (!(event.getSource().getEntity() instanceof ServerPlayer killer)) return;
 
         killer.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(vars -> {
             if (!vars.halfdead) return;
 
-            float healAmount = event.getEntity().getMaxHealth() * 0.1f * 10f;
-            killer.heal(healAmount);
+            // 10% от maxHP жертвы, ИГНОРИРУЕТ штрафы лечения
+            float killHeal = event.getEntity().getMaxHealth() * 0.10f;
+            addHealthDirect(killer, killHeal);
 
             Level level = killer.level();
             double radius = SimpleRPGRacesConfiguration.HALFDEAD_DEATH_MARK_RADIUS.get();
@@ -1279,11 +1304,12 @@ public class RaceMechanicsProcedure {
                         ModEffects.DEATH_MARK.get(),
                         SimpleRPGRacesConfiguration.HALFDEAD_DEATH_MARK_DURATION.get()
                 ));
-
                 level.playSound(null, target.blockPosition(), SoundEvents.WITHER_SPAWN, SoundSource.PLAYERS, 0.5f, 1f);
             }
         });
     }
+
+
 
     @SubscribeEvent
     public static void onAttack(LivingHurtEvent event) {
