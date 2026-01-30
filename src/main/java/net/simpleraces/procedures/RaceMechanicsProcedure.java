@@ -1043,10 +1043,6 @@ public class RaceMechanicsProcedure {
             } else {
                 data.putInt("bite_count", count);
             }
-        } else if (vars.werewolf) {
-            if (player.getRandom().nextInt(10) == 0) {
-                target.addEffect(new MobEffectInstance(ModEffects.BLEEDING.get(), SimpleRPGRacesConfiguration.WEREWOLF_BLEEDING_DURATION.get(), 0, true, true));
-            }
         } else if (vars.orc) {
 
             if (player.getPersistentData().getBoolean("orc_rage_strike")) {
@@ -1191,6 +1187,62 @@ public class RaceMechanicsProcedure {
 
         String effectKey = "serpentin_shortened_" + key.toString();
         player.getPersistentData().remove(effectKey);
+    }
+
+    @SubscribeEvent
+    public static void onLivingHurtForBleed(LivingHurtEvent event) {
+        if (event.getEntity().level().isClientSide()) return;
+
+        // кто ударил
+        if (!(event.getSource().getEntity() instanceof Player player)) return;
+
+        // атакующий — оборотень?
+        var vars = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                .orElse(new SimpleracesModVariables.PlayerVariables());
+        if (!vars.werewolf) return;
+
+        // цель
+        LivingEntity target = event.getEntity();
+
+        // шанс прока (у тебя 1/10)
+        if (player.getRandom().nextInt(10) != 0) return;
+
+        // считаем DOT = 15% от урона удара
+        float bleedDot = event.getAmount() * 0.15f;
+
+        // записываем в NBT цели (важно: до наложения эффекта или сразу после — не критично)
+        target.getPersistentData().putFloat("simpleraces_bleed_dot", bleedDot);
+
+        // накладываем эффект (длительность как у тебя в конфиге)
+        target.addEffect(new MobEffectInstance(
+                ModEffects.BLEEDING.get(),
+                SimpleRPGRacesConfiguration.WEREWOLF_BLEEDING_DURATION.get(),
+                0,
+                true,
+                true
+        ));
+    }
+
+    @SubscribeEvent
+    public static void onBleedRemoved(MobEffectEvent.Remove event) {
+        if (event.getEntity().level().isClientSide()) return;
+        var inst = event.getEffectInstance();
+        if (inst == null) return;
+
+        if (inst.getEffect() == ModEffects.BLEEDING.get()) {
+            event.getEntity().getPersistentData().remove("simpleraces_bleed_dot");
+        }
+    }
+
+    @SubscribeEvent
+    public static void onBleedExpired(MobEffectEvent.Expired event) {
+        if (event.getEntity().level().isClientSide()) return;
+        var inst = event.getEffectInstance();
+        if (inst == null) return;
+
+        if (inst.getEffect() == ModEffects.BLEEDING.get()) {
+            event.getEntity().getPersistentData().remove("simpleraces_bleed_dot");
+        }
     }
 
 
