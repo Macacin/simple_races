@@ -941,7 +941,15 @@ public class RaceMechanicsProcedure {
         } else if (event.getEntity() instanceof Player player && player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
                 .orElse(new SimpleracesModVariables.PlayerVariables()).werewolf) {
             if (player.getRandom().nextInt(20) == 0) {
-                player.addEffect(new MobEffectInstance(ModEffects.WEREWOLF_TRANSFORMATION.get(), SimpleRPGRacesConfiguration.WEREWOLF_BEAST_DURATION.get()));
+                player.addEffect(new MobEffectInstance(
+                        ModEffects.WEREWOLF_TRANSFORMATION.get(),
+                        SimpleRPGRacesConfiguration.WEREWOLF_BEAST_DURATION.get(),
+                        0,
+                        true,   // ambient (можно false, не критично)
+                        false,  // visible = частицы выключены
+                        false   // showIcon = иконка выключена
+                ));
+
             }
         } else if (event.getEntity() instanceof Player player && player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
                 .orElse(new SimpleracesModVariables.PlayerVariables()).dragon) {
