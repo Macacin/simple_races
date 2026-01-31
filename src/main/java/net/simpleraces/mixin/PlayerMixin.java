@@ -27,15 +27,15 @@ public abstract class PlayerMixin extends LivingEntity {
         super(entityType, level);
     }
 
-    @Override
-    public boolean onClimbable() {
-        var vars = ((Player)(Object) this).getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-                .orElse(new SimpleracesModVariables.PlayerVariables());
-        if (this.horizontalCollision && this.isAlive() && vars.aracha) {
-            return true;
-        }
-        return super.onClimbable();
-    }
+//    @Override
+//    public boolean onClimbable() {
+//        var vars = ((Player)(Object) this).getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+//                .orElse(new SimpleracesModVariables.PlayerVariables());
+//        if (this.horizontalCollision && this.isAlive() && vars.aracha) {
+//            return true;
+//        }
+//        return super.onClimbable();
+//    }
 
     @Override
     public boolean addEffect(MobEffectInstance oldInstance, @Nullable Entity entity) {

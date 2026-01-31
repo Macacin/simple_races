@@ -1050,22 +1050,36 @@ public class RaceMechanicsProcedure {
 
             int count = data.getInt("bite_count") + 1;
 
-            if (count >= SimpleRPGRacesConfiguration.ARACHA_BITE_COUNT_THRESHOLD.get()) {
+            // --- НОВОЕ: Mandible Cunning (skilltree камень) ---
+            int threshold = SimpleRPGRacesConfiguration.ARACHA_BITE_COUNT_THRESHOLD.get(); // дефолт из конфига (у тебя это "каждые 3")
+            CompoundTag pst = player.getPersistentData();
+            if (pst.getBoolean("pst_aracha_mandible_cunning")) {
+                threshold = 2; // каждая 2-я атака
+            }
+            // --- /НОВОЕ ---
+
+            if (count >= threshold) {
                 data.putInt("bite_count", 0);
+
                 spawnFangs(player.level(), target.getX(), target.getY(), target.getZ(), player.getYRot(), player);
-                target.addEffect(new MobEffectInstance(MobEffects.POISON,
+
+                target.addEffect(new MobEffectInstance(
+                        MobEffects.POISON,
                         SimpleRPGRacesConfiguration.ARACHA_POISON_DURATION.get(),
-                        SimpleRPGRacesConfiguration.ARACHA_POISON_AMPLIFIER.get()));
+                        SimpleRPGRacesConfiguration.ARACHA_POISON_AMPLIFIER.get()
+                ));
 
                 target.level().playSound(null, target.blockPosition(), SoundEvents.BEE_STING, SoundSource.PLAYERS, 1.0f, 1.0f);
 
                 if (target.level() instanceof ServerLevel serverLevel) {
-                    serverLevel.sendParticles(ParticleTypes.CRIT, target.getX(), target.getY() + 1, target.getZ(), 10, 0.2, 0.2, 0.2, 0.1);
+                    serverLevel.sendParticles(ParticleTypes.CRIT, target.getX(), target.getY() + 1, target.getZ(),
+                            10, 0.2, 0.2, 0.2, 0.1);
                 }
             } else {
                 data.putInt("bite_count", count);
             }
-        } else if (vars.orc) {
+        }
+        else if (vars.orc) {
 
             if (player.getPersistentData().getBoolean("orc_rage_strike")) {
                 player.getPersistentData().remove("orc_rage_strike");

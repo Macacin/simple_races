@@ -7,6 +7,7 @@
   "mixins": [
     "AnvilMenuMixin",
     "EnchantmentHelperMixin",
+    "LivingEntityMixin",
     "PlayerMixin",
     "ThrownPotionMixin",
     "WebBlockMixin"
