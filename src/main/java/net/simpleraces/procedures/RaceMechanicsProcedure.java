@@ -732,7 +732,7 @@ public class RaceMechanicsProcedure {
                 AABB aabb = new AABB(player.getX() - 5, player.getY() - 5, player.getZ() - 5, player.getX() + 5, player.getY() + 5, player.getZ() + 5);
                 List<LivingEntity> nearbyMobs = level.getEntitiesOfClass(LivingEntity.class, aabb, e -> e != player && e.isAlive() && !(e instanceof Player));
                 for (LivingEntity mob : nearbyMobs) {
-                    mob.hurt(player.damageSources().magic(), SimpleRPGRacesConfiguration.HALFDEAD_AURA_DAMAGE.get().floatValue());
+                    mob.hurt(player.damageSources().indirectMagic(player, player), SimpleRPGRacesConfiguration.HALFDEAD_AURA_DAMAGE.get().floatValue());
                     double dx = mob.getX() - player.getX();
                     double dz = mob.getZ() - player.getZ();
 
