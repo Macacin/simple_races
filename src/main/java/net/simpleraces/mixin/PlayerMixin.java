@@ -21,21 +21,19 @@ import java.util.OptionalInt;
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity {
 
-    @Shadow public abstract InteractionResult interactOn(Entity p_36158_, InteractionHand p_36159_);
-
     public PlayerMixin(EntityType<? extends LivingEntity> entityType, Level level) {
         super(entityType, level);
     }
 
-//    @Override
-//    public boolean onClimbable() {
-//        var vars = ((Player)(Object) this).getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-//                .orElse(new SimpleracesModVariables.PlayerVariables());
-//        if (this.horizontalCollision && this.isAlive() && vars.aracha) {
-//            return true;
-//        }
-//        return super.onClimbable();
-//    }
+    @Override
+    public boolean onClimbable() {
+        var vars = ((Player)(Object) this).getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                .orElse(new SimpleracesModVariables.PlayerVariables());
+        if (this.horizontalCollision && this.isAlive() && vars.aracha) {
+            return true;
+        }
+        return super.onClimbable();
+    }
 
     @Override
     public boolean addEffect(MobEffectInstance oldInstance, @Nullable Entity entity) {
