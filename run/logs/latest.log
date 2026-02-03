@@ -66,3 +66,43 @@
 [03февр.2026 21:27:37.292] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
 [03февр.2026 21:27:37.293] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x0 minecraft:textures/atlas/paintings.png-atlas
 [03февр.2026 21:27:37.294] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/mob_effects.png-atlas
+[03февр.2026 21:27:47.855] [Render thread/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
+[03февр.2026 21:27:48.626] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
+[03февр.2026 21:27:48.662] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1299 advancements
+[03февр.2026 21:27:48.665] [Render thread/INFO] [top.theillusivec4.curios.Curios/]: Loaded 11 curio slots
+[03февр.2026 21:27:48.666] [Render thread/INFO] [top.theillusivec4.curios.Curios/]: Loaded 1 curio entities
+[03февр.2026 21:27:48.804] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: 0
+[03февр.2026 21:27:48.865] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.20.1
+[03февр.2026 21:27:48.865] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
+[03февр.2026 21:27:49.483] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[03февр.2026 21:27:50.983] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
+[03февр.2026 21:27:51.001] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
+[03февр.2026 21:27:51.035] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
+[03февр.2026 21:27:51.035] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Подготовка области возрождения: 0%
+[03февр.2026 21:27:51.405] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[03февр.2026 21:27:51.416] [Render thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 1915 ms
+[03февр.2026 21:27:51.466] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
+[03февр.2026 21:27:51.467] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 5, from 0
+[03февр.2026 21:27:51.576] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
+[03февр.2026 21:27:52.214] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
+[03февр.2026 21:27:52.245] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:9faf00b2] logged in with entity id 181 at (-136.26083712008267, 71.25220334025373, 87.10574086779704)
+[03февр.2026 21:27:52.289] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev присоединился к игре
+[03февр.2026 21:27:52.711] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 51 advancements
+[03февр.2026 21:28:10.755] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[03февр.2026 21:28:10.760] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:overworld
+[03февр.2026 21:28:10.768] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_end
+[03февр.2026 21:28:10.769] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_nether
+[03февр.2026 21:28:11.808] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: Отключение
+[03февр.2026 21:28:11.808] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev покинул игру
+[03февр.2026 21:28:11.812] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Stopping singleplayer server as player logged out
+[03февр.2026 21:28:11.854] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[03февр.2026 21:28:11.854] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[03февр.2026 21:28:11.854] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[03февр.2026 21:28:12.118] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:overworld
+[03февр.2026 21:28:12.352] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_end
+[03февр.2026 21:28:12.353] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Новый мир]'/minecraft:the_nether
+[03февр.2026 21:28:12.363] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (Новый мир (25)): All chunks are saved
+[03февр.2026 21:28:12.363] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[03февр.2026 21:28:12.363] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[03февр.2026 21:28:12.363] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[03февр.2026 21:28:13.152] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
