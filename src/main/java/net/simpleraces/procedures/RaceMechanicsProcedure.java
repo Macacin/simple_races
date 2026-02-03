@@ -1050,36 +1050,81 @@ public class RaceMechanicsProcedure {
 
             int count = data.getInt("bite_count") + 1;
 
-            // --- НОВОЕ: Mandible Cunning (skilltree камень) ---
-            int threshold = SimpleRPGRacesConfiguration.ARACHA_BITE_COUNT_THRESHOLD.get(); // дефолт из конфига (у тебя это "каждые 3")
-            CompoundTag pst = player.getPersistentData();
-            if (pst.getBoolean("pst_aracha_mandible_cunning")) {
-                threshold = 2; // каждая 2-я атака
+            // ===== Mandible Cunning (skilltree) =====
+            int threshold = SimpleRPGRacesConfiguration.ARACHA_BITE_COUNT_THRESHOLD.get(); // дефолт
+            if (persistentData.getBoolean("pst_aracha_mandible_cunning")) {
+                threshold = 2;
             }
-            // --- /НОВОЕ ---
+            // ===== /Mandible Cunning =====
 
             if (count >= threshold) {
                 data.putInt("bite_count", 0);
 
+                // --- визуал / база укуса ---
                 spawnFangs(player.level(), target.getX(), target.getY(), target.getZ(), player.getYRot(), player);
 
+                int poisonDuration = SimpleRPGRacesConfiguration.ARACHA_POISON_DURATION.get();
+                int poisonAmplifier = SimpleRPGRacesConfiguration.ARACHA_POISON_AMPLIFIER.get();
+
+                // ===== Venomous Fangs =====
+                if (persistentData.getBoolean("pst_aracha_venom_fangs")) {
+                    poisonDuration *= 2;
+
+                    // +30% урона от атаки
+                    float extraDamage = (float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.30f);
+                    if (extraDamage > 0.0f) {
+                        target.hurt(player.damageSources().playerAttack(player), extraDamage);
+                    }
+                }
+                // ===== /Venomous Fangs =====
+
+                // Яд
                 target.addEffect(new MobEffectInstance(
                         MobEffects.POISON,
-                        SimpleRPGRacesConfiguration.ARACHA_POISON_DURATION.get(),
-                        SimpleRPGRacesConfiguration.ARACHA_POISON_AMPLIFIER.get()
+                        poisonDuration,
+                        poisonAmplifier
                 ));
 
-                target.level().playSound(null, target.blockPosition(), SoundEvents.BEE_STING, SoundSource.PLAYERS, 1.0f, 1.0f);
+                // ===== Spider Magic =====
+                if (persistentData.getBoolean("pst_aracha_spider_magic")) {
+                    target.addEffect(new MobEffectInstance(
+                            MobEffects.WEAKNESS,
+                            20 * 6,
+                            1
+                    ));
+                    target.addEffect(new MobEffectInstance(
+                            MobEffects.MOVEMENT_SLOWDOWN,
+                            20 * 6,
+                            1
+                    ));
+                }
+                // ===== /Spider Magic =====
+
+                target.level().playSound(
+                        null,
+                        target.blockPosition(),
+                        SoundEvents.BEE_STING,
+                        SoundSource.PLAYERS,
+                        1.0f,
+                        1.0f
+                );
 
                 if (target.level() instanceof ServerLevel serverLevel) {
-                    serverLevel.sendParticles(ParticleTypes.CRIT, target.getX(), target.getY() + 1, target.getZ(),
-                            10, 0.2, 0.2, 0.2, 0.1);
+                    serverLevel.sendParticles(
+                            ParticleTypes.CRIT,
+                            target.getX(),
+                            target.getY() + 1,
+                            target.getZ(),
+                            10,
+                            0.2, 0.2, 0.2,
+                            0.1
+                    );
                 }
+
             } else {
                 data.putInt("bite_count", count);
             }
-        }
-        else if (vars.orc) {
+        } else if (vars.orc) {
 
             if (player.getPersistentData().getBoolean("orc_rage_strike")) {
                 player.getPersistentData().remove("orc_rage_strike");
@@ -1322,7 +1367,6 @@ public class RaceMechanicsProcedure {
             }
         });
     }
-
 
 
     @SubscribeEvent

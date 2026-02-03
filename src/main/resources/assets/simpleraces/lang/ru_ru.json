@@ -99,7 +99,7 @@
   "gui.simpleraces.fairy_select.tooltip_next": "",
   "gui.simpleraces.fairy_select.tooltip_previous": "",
   "gui.simpleraces.fairy_select.tooltip_confirm": "",
-  "gui.simpleraces.fairy_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Имеет низкий запас здоровья (§c4 сердца§r)\n- Может летать, пока крылья не истощатся (§e10 секунд§r)\n- Истощение не восстанавливается, пока полёт не потрачен полностью\n- После истощения §dплавно приземляется§r\n- Истощённая, получает урон от падения с высоты (§cSlow Falling§r)\n- Неистощённая, не получает урон от падения",
+  "gui.simpleraces.fairy_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Имеет низкий запас здоровья (§c4 сердца§r)\n- Может летать, пока крылья не истощатся (§e10 секунд§r)\n- Истощение не восстанавливается, пока полёт не потрачен полностью\n- После истощения §dплавно приземляется§r(§cSlow Falling§r)\n- Истощённая, получает урон от падения с высоты\n- Неистощённая, не получает урон от падения",
   "gui.simpleraces.fairy_select.tooltip_passive_mine_faster_in_dark.extended": "- §dЖивотные обожают фей, не смотря ни на что!§r\n- Посевы растут быстрее рядом с феей (§a+10%§r)",
 
   "gui.simpleraces.dragon_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Уникальная механика: §cперегрев§r, каждый удар заполняет шкалу на §e4%§r\n- При §c100%§r переходит в состояние перегрева, который длится §e20 секунд§r:\n* Получает §afire resistance§r\n* Удары поджигают врагов на §e4 секунды§r\n* Хаотично поджигает землю под собой\n* Поджигает атакующих на §e4 секунды§r\n* Постепенно теряет здоровье (§c-1 HP/3 сек§r)",
