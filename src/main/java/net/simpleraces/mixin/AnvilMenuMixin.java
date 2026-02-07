@@ -120,7 +120,10 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
                             if (this.player.getAbilities().instabuild || itemstack.is(Items.ENCHANTED_BOOK)) {
                                 flag1 = true;
                             }
-                            if(player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).map(vars -> vars.dwarf).orElse(false)) {
+                            boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
+                                    .map(v -> v.dwarf).orElse(false);
+
+                            if (!dwarf) {
                                 for (Enchantment enchantment : map.keySet()) {
                                     if (enchantment != enchantment1 && !enchantment1.isCompatibleWith(enchantment)) {
                                         flag1 = false;

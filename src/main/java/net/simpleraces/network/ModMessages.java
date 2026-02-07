@@ -44,5 +44,13 @@ public class ModMessages {
 				SimpleracesModVariables.PlayerVariablesSyncMessage::new, SimpleracesModVariables.PlayerVariablesSyncMessage::handler);
 		INSTANCE.registerMessage(nextId(), ArachaSelectButtonMessage.class, ArachaSelectButtonMessage::buffer, ArachaSelectButtonMessage::new, ArachaSelectButtonMessage::handler);
 		INSTANCE.registerMessage(nextId(), SyncFairyFlightPacket.class, SyncFairyFlightPacket::encode, SyncFairyFlightPacket::decode, SyncFairyFlightPacket::handle);
+		// В твоём ModMessages или аналогичном классе
+		INSTANCE.registerMessage(
+				nextId(), // следующий ID
+				StopEatingPacket.class,
+				StopEatingPacket::encode,
+				StopEatingPacket::decode,
+				StopEatingPacket::handle
+		);
 	}
 }

@@ -9,6 +9,7 @@ import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.simpleraces.data.WerewolfForbiddenItems;
 import net.simpleraces.effect.ModEffects;
 import net.simpleraces.network.ModMessages;
 import net.simpleraces.network.SyncHeatPacket;
@@ -62,6 +63,7 @@ public class SimpleracesMod {
 
 	public static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Player.class, EntityDataSerializers.BYTE);
 	public SimpleracesMod() {
+		WerewolfForbiddenItems.load();
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(AttributeDeathFixProcedure.class);
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

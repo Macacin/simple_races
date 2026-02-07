@@ -131,5 +131,7 @@
 
   "gui.simpleraces.werewolf_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Ночью в форме зверя:\n* Наносит на §e20%§r больше урона\n* Двигается на §e20%§r быстрее\n* Имеет §aпостоянную спешку§r\n* С шансом §e10%§r накладывает §cкровотечение§r на §e10 секунд§r\n* Имеет §a12 сердец§r\n* Ест только §cмясо§r",
   "gui.simpleraces.werewolf_select.tooltip_passive_mine_faster_in_dark.extended": "- Днём в форме человека:\n* Наносит на §c30%§r меньше урона\n* Двигается на §c30%§r медленнее\n* Имеет §c8 сердец§r\n* Может нанести §cкровотечение§r\n* С шансом §e5%§r при уроне превращается в зверя\n* Трансформации вызывают потерю контроля на §e5 секунд§r",
-  "effect.simpleraces.fervor": "Рвение"
+  "effect.simpleraces.fervor": "Рвение",
+  "message.simpleraces.dwarf.no_bow": "Дварфы не умеют пользоваться этим мусором!",
+  "message.simpleraces.werewolf.bad_food": "Зверь не станет есть эту мерзость."
 }

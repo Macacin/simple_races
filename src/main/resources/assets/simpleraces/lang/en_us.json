@@ -132,6 +132,10 @@
   "gui.simpleraces.werewolf_select.tooltip_dwarves_are_stout_skilled_craft.extended": "Nocturnal §cbeast form§r:\n- §e20%§r fiercer strikes\n- §e20%§r swifter strides\n- §aEternal haste§r\n- §e10%§r chance to §cbleed foes§r for §e10 seconds§r\n- §a12 hearts§r strong\n- §cDevours only flesh§r",
   "gui.simpleraces.werewolf_select.tooltip_passive_mine_faster_in_dark.extended": "Diurnal §chuman frailty§r:\n- §c30%§r weaker blows\n- §c30%§r slower pace\n- §c8 hearts§r meager\n- Still may §cbleed§r with luck\n- §e5%§r chance injury §aawakens the beast§r\n- Agonizing shifts §cseize control§r for §e5 seconds§r",
 
-  "effect.simpleraces.fervor": "Fervor"
+  "effect.simpleraces.fervor": "Fervor",
+
+  "message.simpleraces.dwarf.no_bow": "Dwarves can’t use these junk!",
+
+  "message.simpleraces.werewolf.bad_food": "The beast refuses to consume this crap."
 
 }

@@ -2,7 +2,9 @@ package net.simpleraces.procedures;
 
 import com.jabroni.weightmod.capability.WeightCapabilities;
 import com.jabroni.weightmod.event.ArmorWeightCalculationEvent;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.*;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.phys.AABB;
@@ -39,6 +41,7 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import net.simpleraces.effect.ModEffects;
@@ -92,11 +95,14 @@ public class RaceMechanicsProcedure {
     private static final UUID WEREWOLF_BEAST_HEALTH_UUID = UUID.fromString("9809562a-faa3-45f9-83a7-4eb9228b9c5b");
     private static final UUID WEREWOLF_HUMAN_HEALTH_UUID = UUID.fromString("c561d21a-47fd-40ed-ab8b-8d457f4c6557");
     private static final UUID ARACHA_ATTACK_SPEED_BOOST_UUID = UUID.fromString("76557286-c292-421d-8c2e-f7b7bc77abd9");
+    private static final net.minecraft.tags.TagKey<Item> FORGE_MEATS =
+            ItemTags.create(new ResourceLocation("forge", "meats"));
+    private static final net.minecraft.tags.TagKey<Item> FORGE_RAW_MEATS =
+            ItemTags.create(new ResourceLocation("forge", "raw_meats"));
+    private static final net.minecraft.tags.TagKey<Item> FORGE_COOKED_MEATS =
+            ItemTags.create(new ResourceLocation("forge", "cooked_meats"));
 
-    private static final String TAG_PST_FAIRY_EXTRA = "pst_fairy_extra_flight_ticks";
-    private static final String TAG_PST_FAIRY_EXTRA_SPENT = "pst_fairy_extra_spent_ticks";
-
-    private static final int PST_FAIRY_TOTAL_MAX_TICKS = 30 * 20; // 30 секунд
+    private static final String WW_MSG_CD = "sr_ww_badfood_msg_cd";
 
     private static final Map<UUID, Map<MobEffect, Integer>> preAttackDebuffs = new HashMap<>();
 
@@ -144,6 +150,11 @@ public class RaceMechanicsProcedure {
         if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide()) return;
 
         Player player = event.player;
+        // werewolf msg cooldown tickdown
+        CompoundTag pstTick = player.getPersistentData();
+        int cd = pstTick.getInt(WW_MSG_CD);
+        if (cd > 0) pstTick.putInt(WW_MSG_CD, cd - 1);
+
         Level level = player.level();
         execute(event, player.level(), player.getX(), player.getY(), player.getZ(), player);
 
@@ -804,26 +815,74 @@ public class RaceMechanicsProcedure {
 
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
 
-        for (ServerLevel level : server.getAllLevels()) {
-            for (Player player : level.players()) {
+        // ===== Fairy growth aura =====
+        final int RADIUS_XZ = 20;        // для теста 10-16; для игры 6-10
+        final int Y_DOWN = 4;            // насколько ниже центра проверяем
+        final int Y_UP = 4;              // насколько выше центра проверяем
+        final int PERIOD = 6;            // 5 = 4 раза/сек. Для теста можно 1
+        final boolean USE_CIRCLE = true;
 
+        // ускорение "процента роста" (через доп randomTick)
+        final int SPEED_MULT = 2;        // тест: 6-12, игра: 3-4
+        final int EXTRA_RANDOM_TICKS = Math.max(0, SPEED_MULT - 1);
+        // ============================
+
+        for (ServerLevel level : server.getAllLevels()) {
+            RandomSource rand = level.random;
+
+            for (Player player : level.players()) {
                 boolean isFairy = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
-                        .map(vars -> vars.fairy)
-                        .orElse(false);
+                        .map(v -> v.fairy).orElse(false);
                 if (!isFairy) continue;
 
-                BlockPos playerPos = player.blockPosition();
-                BlockPos.betweenClosedStream(playerPos.offset(-6, -2, -6), playerPos.offset(6, 2, 6)).forEach(pos -> {
-                    BlockState state = level.getBlockState(pos);
+                if ((level.getGameTime() + player.getId()) % PERIOD != 0) continue;
 
-                    if (state.getBlock() instanceof CropBlock crop) {
-                        if (!crop.isMaxAge(state)) {
-                            if (level.random.nextInt(1000) == 0) {
-                                level.setBlock(pos, crop.getStateForAge(crop.getAge(state) + 1), 2);
+                BlockPos center = player.blockPosition().below(2); // чуть ниже игрока
+                int cx = center.getX();
+                int cy = center.getY();
+                int cz = center.getZ();
+
+                BlockPos.MutableBlockPos mp = new BlockPos.MutableBlockPos();
+
+                for (int dx = -RADIUS_XZ; dx <= RADIUS_XZ; dx++) {
+                    for (int dz = -RADIUS_XZ; dz <= RADIUS_XZ; dz++) {
+                        if (USE_CIRCLE && (dx * dx + dz * dz) > (RADIUS_XZ * RADIUS_XZ)) continue;
+
+                        int x = cx + dx;
+                        int z = cz + dz;
+
+                        // не грузим чанки
+                        if (!level.hasChunkAt(new BlockPos(x, cy, z))) continue;
+
+                        for (int dy = -Y_DOWN; dy <= Y_UP; dy++) {
+                            mp.set(x, cy + dy, z);
+
+                            BlockState state = level.getBlockState(mp);
+
+                            if (state.is(Blocks.GRASS) || state.is(Blocks.TALL_GRASS) || state.is(Blocks.GRASS_BLOCK)) {
+                                continue;
+                            }
+
+                            // 1) основной путь — ускоряем любой блок с randomTick логикой (посевы, саженцы и т.д.)
+                            if (state.isRandomlyTicking()) {
+                                for (int t = 0; t < EXTRA_RANDOM_TICKS; t++) {
+                                    state.randomTick(level, mp, rand);
+                                }
+                                continue;
+                            }
+
+                            // 2) запасной путь — bonemealable (на случай модовых растений без randomTick)
+                            if (state.getBlock() instanceof net.minecraft.world.level.block.BonemealableBlock grow) {
+                                for (int t = 0; t < EXTRA_RANDOM_TICKS; t++) {
+                                    if (grow.isValidBonemealTarget(level, mp, state, false)
+                                            && grow.isBonemealSuccess(level, rand, mp, state)) {
+                                        grow.performBonemeal(level, rand, mp, state);
+                                    }
+                                }
                             }
                         }
                     }
-                });
+                }
             }
         }
     }
@@ -898,27 +957,13 @@ public class RaceMechanicsProcedure {
         return false;
     }
 
-    @SubscribeEvent
-    public static void onUseItem(PlayerInteractEvent.RightClickItem event) {
-        Player player = event.getEntity();
+    public static boolean isForbiddenByJson(ItemStack stack) {
+        if (stack.isEmpty()) return false;
 
-        player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(vars -> {
-            if (vars.werewolf && WerewolfState.isBeast(player)) {
-                ItemStack stack = event.getItemStack();
+        var id = ForgeRegistries.ITEMS.getKey(stack.getItem());
+        if (id == null) return false;
 
-                if (!isMeat(stack.getItem())) {
-                    if (!player.level().isClientSide) {
-                        player.displayClientMessage(Component.literal("В форме зверя ты можешь есть только мясо!"), true);
-                        player.level().playSound(null, player.blockPosition(), SoundEvents.WOLF_GROWL, SoundSource.PLAYERS, 0.5f, 1f);
-                    }
-                    event.setCanceled(true);
-                }
-            }
-        });
-    }
-
-    private static boolean isMeat(Item item) {
-        return item.isEdible() && item.getFoodProperties() != null && item.getFoodProperties().isMeat();
+        return net.simpleraces.data.WerewolfForbiddenItems.ITEMS.contains(id);
     }
 
     @SubscribeEvent
@@ -1437,6 +1482,20 @@ public class RaceMechanicsProcedure {
         });
     }
 
+    private static boolean isWerewolfAllowedFood(Player player, ItemStack stack) {
+        if (stack.isEmpty()) return false;
+
+        // еда ли это вообще
+        var food = stack.getFoodProperties(player);
+        if (food == null) return false;
+
+        // основной способ (vanilla + большинство модов)
+        if (food.isMeat()) return true;
+
+        // запасной способ (если мод не проставил meat-флаг)
+        return stack.is(FORGE_MEATS) || stack.is(FORGE_RAW_MEATS) || stack.is(FORGE_COOKED_MEATS);
+    }
+
     @SubscribeEvent
     public static void onJump(LivingEvent.LivingJumpEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
@@ -1644,6 +1703,77 @@ public class RaceMechanicsProcedure {
             }
         }
     }
+
+    @SubscribeEvent
+    public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
+        Player player = event.getEntity();
+        ItemStack stack = event.getItemStack();
+
+        boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(v -> v.dwarf).orElse(false);
+        if (!dwarf) return;
+
+        if (!SimpleRPGRacesConfiguration.DWARF_BOW_RESTRICT.get()) return;
+
+        if (!isBowLike(stack)) return;
+
+        // ВАЖНО: отменяем и на клиенте и на сервере -> ПКМ не начнёт "use" вообще
+        event.setCanceled(true);
+        event.setCancellationResult(InteractionResult.FAIL);
+
+        // сообщение лучше слать только с сервера, чтобы не было дубля
+        if (!player.level().isClientSide) {
+            player.displayClientMessage(
+                    Component.translatable("message.simpleraces.dwarf.no_bow")
+                            .withStyle(ChatFormatting.RED),
+                    true
+            );
+        }
+    }
+
+    private static boolean isBowLike(ItemStack stack) {
+        UseAnim anim = stack.getUseAnimation();
+        return anim == UseAnim.BOW || anim == UseAnim.CROSSBOW;
+    }
+
+    @SubscribeEvent
+    public static void onUseItemStart(LivingEntityUseItemEvent.Start event) {
+        if (!(event.getEntity() instanceof Player player)) return;
+        if (player.level().isClientSide) return;
+
+        boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(v -> v.dwarf).orElse(false);
+        if (!dwarf) return;
+        if (!SimpleRPGRacesConfiguration.DWARF_BOW_RESTRICT.get()) return;
+
+        ItemStack stack = event.getItem();
+        if (stack.getItem() instanceof BowItem) {
+            event.setCanceled(true);
+            player.stopUsingItem(); // на всякий случай
+            player.displayClientMessage(
+                    Component.translatable("message.simpleraces.dwarf.no_bow")
+                            .withStyle(ChatFormatting.RED),
+                    true
+            );
+        }
+    }
+
+    @SubscribeEvent
+    public static void onArrowLoose(net.minecraftforge.event.entity.player.ArrowLooseEvent event) {
+        Player player = event.getEntity();
+        if (player.level().isClientSide) return;
+
+        boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(v -> v.dwarf).orElse(false);
+        if (!dwarf) return;
+        if (!SimpleRPGRacesConfiguration.DWARF_BOW_RESTRICT.get()) return;
+
+        if (event.getBow().getItem() instanceof BowItem) {
+            event.setCanceled(true);
+            event.setCharge(0);
+        }
+    }
+
 
     @SubscribeEvent
     public static void onArmorWeightCalculation(ArmorWeightCalculationEvent event) {

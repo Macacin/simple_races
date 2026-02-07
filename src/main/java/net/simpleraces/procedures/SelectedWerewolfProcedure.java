@@ -29,12 +29,7 @@ public class SelectedWerewolfProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-			AttributeInstance maxHealthAttr = ((Player) entity).getAttribute(Attributes.MAX_HEALTH);
-			if (maxHealthAttr != null) {
-				double newMax = SimpleRPGRacesConfiguration.DWARF_MAX_HEALTH.get();
-				maxHealthAttr.setBaseValue(newMax);
-				((Player) entity).setHealth((float) newMax);
-			}
+
 			if (entity instanceof Player _player && !_player.level().isClientSide())
 				_player.displayClientMessage(Component.literal("\u00A7e Selected Werewolf"), true);
 		} else {
