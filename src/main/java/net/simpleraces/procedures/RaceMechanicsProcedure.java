@@ -8,6 +8,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.core.registries.Registries;
@@ -38,6 +39,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
 import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -169,6 +171,17 @@ public class RaceMechanicsProcedure {
                 cap.setCapacity(SimpleRPGRacesConfiguration.ORC_CARRY_CAPACITY.get());
             } else if (vars.dwarf) {
                 cap.setCapacity(SimpleRPGRacesConfiguration.DWARF_CARRY_CAPACITY.get());
+
+                // === Эффекты опьянения при прицеливании ===
+                if (player.isUsingItem()) {
+                    ItemStack using = player.getUseItem();
+                    if (using.getItem() instanceof BowItem || using.getItem() instanceof CrossbowItem) {
+                        // Эффект опьянения (крутится экран)
+                        player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 60, 0, false, false));
+                        // Медленная скорость натяжения
+                        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 60, 1, false, false));
+                    }
+                }
             } else if (vars.merfolk) {
                 cap.setCapacity(SimpleRPGRacesConfiguration.MERFOLK_CARRY_CAPACITY.get());
             } else if (vars.dragon) {
@@ -1705,77 +1718,6 @@ public class RaceMechanicsProcedure {
     }
 
     @SubscribeEvent
-    public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
-        Player player = event.getEntity();
-        ItemStack stack = event.getItemStack();
-
-        boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
-                .map(v -> v.dwarf).orElse(false);
-        if (!dwarf) return;
-
-        if (!SimpleRPGRacesConfiguration.DWARF_BOW_RESTRICT.get()) return;
-
-        if (!isBowLike(stack)) return;
-
-        // ВАЖНО: отменяем и на клиенте и на сервере -> ПКМ не начнёт "use" вообще
-        event.setCanceled(true);
-        event.setCancellationResult(InteractionResult.FAIL);
-
-        // сообщение лучше слать только с сервера, чтобы не было дубля
-        if (!player.level().isClientSide) {
-            player.displayClientMessage(
-                    Component.translatable("message.simpleraces.dwarf.no_bow")
-                            .withStyle(ChatFormatting.RED),
-                    true
-            );
-        }
-    }
-
-    private static boolean isBowLike(ItemStack stack) {
-        UseAnim anim = stack.getUseAnimation();
-        return anim == UseAnim.BOW || anim == UseAnim.CROSSBOW;
-    }
-
-    @SubscribeEvent
-    public static void onUseItemStart(LivingEntityUseItemEvent.Start event) {
-        if (!(event.getEntity() instanceof Player player)) return;
-        if (player.level().isClientSide) return;
-
-        boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
-                .map(v -> v.dwarf).orElse(false);
-        if (!dwarf) return;
-        if (!SimpleRPGRacesConfiguration.DWARF_BOW_RESTRICT.get()) return;
-
-        ItemStack stack = event.getItem();
-        if (stack.getItem() instanceof BowItem) {
-            event.setCanceled(true);
-            player.stopUsingItem(); // на всякий случай
-            player.displayClientMessage(
-                    Component.translatable("message.simpleraces.dwarf.no_bow")
-                            .withStyle(ChatFormatting.RED),
-                    true
-            );
-        }
-    }
-
-    @SubscribeEvent
-    public static void onArrowLoose(net.minecraftforge.event.entity.player.ArrowLooseEvent event) {
-        Player player = event.getEntity();
-        if (player.level().isClientSide) return;
-
-        boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
-                .map(v -> v.dwarf).orElse(false);
-        if (!dwarf) return;
-        if (!SimpleRPGRacesConfiguration.DWARF_BOW_RESTRICT.get()) return;
-
-        if (event.getBow().getItem() instanceof BowItem) {
-            event.setCanceled(true);
-            event.setCharge(0);
-        }
-    }
-
-
-    @SubscribeEvent
     public static void onArmorWeightCalculation(ArmorWeightCalculationEvent event) {
         Player player = event.getPlayer();
         if (player == null) return;
@@ -1787,6 +1729,131 @@ public class RaceMechanicsProcedure {
             double multiplier = SimpleRPGRacesConfiguration.ARACHA_WEIGHT_MULTIPLIER.get();
             int modifiedWeight = (int) Math.round(event.getWeight() * multiplier);
             event.setWeight(modifiedWeight);
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onDwarfShoot(ArrowLooseEvent event) {
+        Player player = event.getEntity();
+        if (player == null || player.level().isClientSide()) return;
+
+        boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(v -> v.dwarf).orElse(false);
+        if (!dwarf) return;
+
+        // Уменьшаем дальность полёта стрелы (70% потери скорости)
+        float originalCharge = event.getCharge();
+        event.setCharge((int) (originalCharge * 0.3f));
+
+        // Запоминаем игрока для добавления разброса при спавне стрелы
+        // Используем NBT игрока как флаг
+        player.getPersistentData().putBoolean("dwarf_shot_arrow", true);
+        player.getPersistentData().putInt("dwarf_arrow_tick", player.tickCount);
+    }
+
+    @SubscribeEvent
+    public static void onArrowSpawn(EntityJoinLevelEvent event) {
+        if (!(event.getEntity() instanceof AbstractArrow arrow)) return;
+        if (!(arrow.getOwner() instanceof Player player)) return;
+        if (player.level().isClientSide()) return;
+
+        boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(v -> v.dwarf).orElse(false);
+        if (!dwarf) return;
+
+        // Проверяем флаг от лука
+        CompoundTag playerData = player.getPersistentData();
+        if (!playerData.getBoolean("dwarf_shot_arrow")) return;
+
+        int shotTick = playerData.getInt("dwarf_arrow_tick");
+        if (player.tickCount - shotTick > 5) {
+            // Слишком старый выстрел, сбрасываем
+            playerData.remove("dwarf_shot_arrow");
+            playerData.remove("dwarf_arrow_tick");
+            return;
+        }
+
+        // Сбрасываем флаг
+        playerData.remove("dwarf_shot_arrow");
+        playerData.remove("dwarf_arrow_tick");
+
+        // Применяем сильный разброс для лука
+        double spread = 0.35D; // ~20 градусов разброс
+        Vec3 motion = arrow.getDeltaMovement();
+
+        double offsetX = (player.getRandom().nextDouble() - 0.5) * spread;
+        double offsetY = (player.getRandom().nextDouble() - 0.5) * spread * 0.7;
+        double offsetZ = (player.getRandom().nextDouble() - 0.5) * spread;
+
+        arrow.setDeltaMovement(
+                motion.x + offsetX,
+                motion.y + offsetY,
+                motion.z + offsetZ
+        );
+    }
+
+    @SubscribeEvent
+    public static void onDwarfCrossbowShoot(EntityJoinLevelEvent event) {
+        if (!(event.getEntity() instanceof AbstractArrow arrow)) return;
+        if (!(arrow.getOwner() instanceof Player player)) return;
+        if (player.level().isClientSide()) return;
+
+        boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(v -> v.dwarf).orElse(false);
+        if (!dwarf) return;
+
+        // Проверяем скорость - арбалет стреляет быстрее 2.5 блоков/тик
+        Vec3 velocity = arrow.getDeltaMovement();
+        double speed = velocity.length();
+
+        if (speed > 2.5) {
+            // Уменьшаем скорость на 60% для арбалета
+            arrow.setDeltaMovement(velocity.scale(0.3));
+
+            // Очень сильный "пьяный" разброс для арбалета (хуже чем у лука)
+            double spread = 0.45D; // ~25 градусов разброс
+            Vec3 motion = arrow.getDeltaMovement();
+
+            arrow.setDeltaMovement(
+                    motion.x + (player.getRandom().nextDouble() - 0.5) * spread,
+                    motion.y + (player.getRandom().nextDouble() - 0.5) * spread * 0.6,
+                    motion.z + (player.getRandom().nextDouble() - 0.5) * spread
+            );
+        }
+    }
+
+    @SubscribeEvent
+    public static void onDwarfAiming(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        if (event.player.level().isClientSide()) return;
+
+        Player player = event.player;
+        boolean dwarf = player.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(v -> v.dwarf).orElse(false);
+        if (!dwarf) return;
+
+        if (!player.isUsingItem()) return;
+
+        ItemStack using = player.getUseItem();
+        if (!(using.getItem() instanceof BowItem || using.getItem() instanceof CrossbowItem)) return;
+
+        // Постоянный эффект опьянения во время прицеливания (обновляем каждые 5 тиков)
+        if (player.tickCount % 5 == 0) {
+            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 80, 0, false, false));
+        }
+
+        // Замедление натяжения тетивы
+        if (player.tickCount % 20 == 0) {
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 60, 1, false, false));
+        }
+
+        // Каждые 3 тика дергаем прицел сильнее
+        if (player.tickCount % 3 == 0) {
+            float yawJitter = (player.getRandom().nextFloat() - 0.5f) * 8.0f;   // ±4 градуса
+            float pitchJitter = (player.getRandom().nextFloat() - 0.5f) * 5.0f; // ±2.5 градуса
+
+            player.setYRot(player.getYRot() + yawJitter);
+            player.setXRot(net.minecraft.util.Mth.clamp(player.getXRot() + pitchJitter, -90, 90));
         }
     }
 }
