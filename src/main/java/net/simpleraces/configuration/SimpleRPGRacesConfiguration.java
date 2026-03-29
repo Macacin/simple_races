@@ -62,6 +62,7 @@ public class SimpleRPGRacesConfiguration {
 	public static final ForgeConfigSpec.ConfigValue<Double> ORC_DAMAGE_PENALTY;
 	public static final ForgeConfigSpec.ConfigValue<Double> ORC_MAGIC_DAMAGE_PENALTY;
 	public static final ForgeConfigSpec.ConfigValue<Double> ORC_INCOMING_MAGIC_DAMAGE_PENALTY;
+	public static final ForgeConfigSpec.ConfigValue<Double> ORC_EXHAUSTION_MULTIPLIER;
 	public static final ForgeConfigSpec.ConfigValue<Double> ORC_RAGE;
 	public static final ForgeConfigSpec.ConfigValue<Integer> ORC_FERVOR_DEBUFF_DURATION;
 	public static final ForgeConfigSpec.ConfigValue<Integer> ORC_FERVOR_SLOWDOWN_LEVEL;
@@ -131,6 +132,7 @@ public class SimpleRPGRacesConfiguration {
 		ORC_DAMAGE_PENALTY = BUILDER.comment("Penalty to orc attack damage (negative value for decrease, e.g. -0.4 for 60% damage)").defineInRange("orc_damage_penalty", -0.5, -1.0, 0.0);
 		ORC_MAGIC_DAMAGE_PENALTY = BUILDER.comment("Penalty to orc magic damage").defineInRange("orc_magic_damage_penalty", -0.75, -1.0, 0.0);
 		ORC_INCOMING_MAGIC_DAMAGE_PENALTY = BUILDER.comment("Multiplier for incoming magic damage to Orcs").defineInRange("orc_incoming_magic_damage_penalty", 0.3, 0.0, 1.0);
+		ORC_EXHAUSTION_MULTIPLIER = BUILDER.comment("Multiplier for Orc exhaustion gain (1.0 = vanilla, 1.05 = 5% faster hunger)").defineInRange("orc_exhaustion_multiplier", 1.05, 1.0, 3.0);
 		ORC_FERVOR_DEBUFF_DURATION = BUILDER.comment("Duration in ticks of debuff after fervor fades (default 100 for 5 seconds)")
 				.defineInRange("orc_fervor_debuff_duration", 100, 0, 600);
 		ORC_FERVOR_SLOWDOWN_LEVEL = BUILDER.comment("Level of slowdown effect after fervor fades (e.g., 2 for strong slowdown)")

@@ -134,4 +134,5 @@
   "effect.simpleraces.fervor": "Рвение",
   "message.simpleraces.dwarf.no_bow": "Дварфы не умеют пользоваться этим мусором!",
   "message.simpleraces.werewolf.bad_food": "Зверь не станет есть эту мерзость."
+  ,"death.attack.halfdead_magic_aura": "%1$s погибает в ауре смерти"
 }

@@ -9,9 +9,7 @@
     "EnchantmentHelperMixin",
     "PlayerMixin",
     "ThrownPotionMixin",
-    "WebBlockMixin",
-    "WerewolfEatRestrictionMixin",
-    "WerewolfStartUsingMixin"
+    "WebBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
