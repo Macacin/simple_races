@@ -2,12 +2,13 @@ package net.simpleraces.procedures;
 
 import net.simpleraces.network.SimpleracesModVariables;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.client.event.RenderArmEvent;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.api.distmarker.Dist;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.bus.api.Event;
+import net.neoforged.neoforge.client.event.RenderArmEvent;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
 
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.Entity;
@@ -27,7 +28,7 @@ import javax.annotation.Nullable;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-@Mod.EventBusSubscriber(value = {Dist.CLIENT})
+@EventBusSubscriber(value = {Dist.CLIENT})
 public class KleidersArmProcedure {
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
@@ -59,11 +60,11 @@ public class KleidersArmProcedure {
 		playerModel.leftArm.xRot = 0.0F;
 		playerModel.rightArm.xRot = 0.0F;
 		HumanoidArm arm = _evt.getArm();
-		if ((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).merfolk && entity.isInWater()) {
+		if (SimpleracesModVariables.getPlayerVariables(entity).merfolk && entity.isInWater()) {
 			{
-				ResourceLocation _texture = new ResourceLocation("kleiders_custom_renderer:textures/entities/default.png");
+				ResourceLocation _texture = ResourceLocation.parse("kleiders_custom_renderer:textures/entities/default.png");
 				if (ResourceLocation.tryParse("simpleraces:textures/entities/merfolk.png") != null) {
-					_texture = new ResourceLocation("simpleraces:textures/entities/merfolk.png");
+					_texture = ResourceLocation.parse("simpleraces:textures/entities/merfolk.png");
 				}
 				PlayerModel<AbstractClientPlayer> newModel = new PlayerModel<>(context.bakeLayer(false ? ModelLayers.PLAYER_SLIM : ModelLayers.PLAYER), false);
 				newModel.leftArm.copyFrom(playerModel.leftArm);
@@ -78,3 +79,8 @@ public class KleidersArmProcedure {
 		}
 	}
 }
+
+
+
+
+

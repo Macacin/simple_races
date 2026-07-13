@@ -2,7 +2,7 @@ package net.simpleraces.procedures;
 
 import net.simpleraces.world.inventory.OrcSelectMenu;
 
-import net.minecraftforge.network.NetworkHooks;
+import net.simpleraces.compat.neoforge.network.NetworkHooks;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -37,3 +37,8 @@ public class OpenOrcProcedure {
 		}
 	}
 }
+
+
+
+
+

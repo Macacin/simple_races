@@ -18,6 +18,10 @@ public class DragonModelRenderer extends HumanoidMobRenderer<Monster, HumanoidMo
 
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
-		return new ResourceLocation("simpleraces:textures/entities/2024_09_02_fantasy-mc-dragonborn--red---fixed-for-3d-pixels--22745241.png");
+		return ResourceLocation.parse("simpleraces:textures/entities/2024_09_02_fantasy-mc-dragonborn--red---fixed-for-3d-pixels--22745241.png");
 	}
 }
+
+
+
+

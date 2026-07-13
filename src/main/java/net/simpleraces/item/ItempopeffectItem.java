@@ -9,3 +9,7 @@ public class ItempopeffectItem extends Item {
 		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON));
 	}
 }
+
+
+
+

@@ -1,47 +1,21 @@
-
 package net.simpleraces.entity;
 
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Witch;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.simpleraces.init.SimpleracesModEntities;
-import org.jetbrains.annotations.Nullable;
 
-public class SerpentinModelEntity extends Witch {
-	public SerpentinModelEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(SimpleracesModEntities.SERPENTIN_MODEL.get(), world);
-		setNoAi(true);
-	}
-
-	public SerpentinModelEntity(EntityType<Monster> type, Level world) {
-		super(tryCastToWitch(type), world);
-		setMaxUpStep(0.6f);
+public class SerpentinModelEntity extends Monster {
+	public SerpentinModelEntity(EntityType<? extends Monster> type, Level world) {
+		super(type, world);
 		xpReward = 0;
 		setNoAi(true);
 		setPersistenceRequired();
-	}
-
-	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
-	}
-
-	@Override
-	public MobType getMobType() {
-		return MobType.UNDEFINED;
 	}
 
 	@Override
@@ -49,19 +23,18 @@ public class SerpentinModelEntity extends Witch {
 		return false;
 	}
 
-	@Override
 	public double getMyRidingOffset() {
 		return -0.35D;
 	}
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
+		return SoundEvents.GENERIC_HURT;
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.death"));
+		return SoundEvents.GENERIC_DEATH;
 	}
 
 	public static void init() {
@@ -76,13 +49,10 @@ public class SerpentinModelEntity extends Witch {
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
 		return builder;
 	}
-
-	public static EntityType<Witch> tryCastToWitch(EntityType<?> type) {
-		if (Witch.class.isAssignableFrom(type.getBaseClass())) {
-			@SuppressWarnings("unchecked")
-			EntityType<Witch> witchType = (EntityType<Witch>) type;
-			return witchType;
-		}
-		return EntityType.WITCH;
-	}
 }
+
+
+
+
+
+

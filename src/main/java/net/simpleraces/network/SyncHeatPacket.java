@@ -1,7 +1,7 @@
 package net.simpleraces.network;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
+import net.simpleraces.compat.neoforge.network.NetworkEvent;
 import net.simpleraces.client.SyncVars;
 
 import java.util.UUID;
@@ -54,3 +54,8 @@ public class SyncHeatPacket {
         ctx.get().setPacketHandled(true);
     }
 }
+
+
+
+
+

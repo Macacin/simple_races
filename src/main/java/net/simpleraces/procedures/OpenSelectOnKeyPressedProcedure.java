@@ -1,8 +1,9 @@
 package net.simpleraces.procedures;
 
+import net.simpleraces.network.SimpleracesModVariables;
 import net.simpleraces.world.inventory.StartMenu;
 
-import net.minecraftforge.network.NetworkHooks;
+import net.simpleraces.compat.neoforge.network.NetworkHooks;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -21,19 +22,64 @@ public class OpenSelectOnKeyPressedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if (entity instanceof ServerPlayer _ent) {
-			BlockPos _bpos = BlockPos.containing(x, y, z);
-			NetworkHooks.openScreen((ServerPlayer) _ent, new MenuProvider() {
-				@Override
-				public Component getDisplayName() {
-					return Component.literal("Start");
-				}
-
-				@Override
-				public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-					return new StartMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(_bpos));
-				}
-			}, _bpos);
+		SimpleracesModVariables.PlayerVariables vars = SimpleracesModVariables.getPlayerVariables(entity);
+		if (vars.selected) {
+			if (vars.dwarf) {
+				OpenDwarfProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.elf) {
+				OpenElfProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.orc) {
+				OpenOrcProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.merfolk) {
+				OpenMerfolkProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.dragon) {
+				OpenDragonProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.fairy) {
+				OpenFairyProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.werewolf) {
+				OpenWerewolfProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.serpentin) {
+				OpenSerpentinProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.aracha) {
+				OpenArachaProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.halfdead) {
+				OpenHalfdeadProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.gargoyle) {
+				OpenGargoyleProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+			if (vars.human) {
+				OpenHumanProcedure.execute(world, x, y, z, entity);
+				return;
+			}
+		}
+		if (entity instanceof ServerPlayer) {
+			OpenDwarfProcedure.execute(world, x, y, z, entity);
 		}
 	}
 }
+
+
+
+
+

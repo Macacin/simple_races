@@ -1,7 +1,8 @@
 package net.simpleraces.client.gui;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.simpleraces.SimpleracesMod;
 import net.simpleraces.world.inventory.StartMenu;
 
 import net.minecraft.world.level.Level;
@@ -22,6 +23,7 @@ public class StartScreen extends AbstractContainerScreen<StartMenu> {
 	private final Level world;
 	private final int x, y, z;
 	private final Player entity;
+	private boolean loggedFirstRender;
 
 	public StartScreen(StartMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
@@ -32,13 +34,18 @@ public class StartScreen extends AbstractContainerScreen<StartMenu> {
 		this.entity = container.entity;
 		this.imageWidth = 0;
 		this.imageHeight = 0;
+		SimpleracesMod.LOGGER.info("[SR-RACE-LOAD] client StartScreen ctor player={}", entity.getName().getString());
 	}
 
-	private static final ResourceLocation texture = new ResourceLocation("simpleraces:textures/screens/start.png");
+	private static final ResourceLocation texture = ResourceLocation.parse("simpleraces:textures/screens/start.png");
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics);
+		if (!loggedFirstRender) {
+			loggedFirstRender = true;
+			SimpleracesMod.LOGGER.info("[SR-RACE-LOAD] client StartScreen first render");
+		}
+		this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
@@ -50,7 +57,7 @@ public class StartScreen extends AbstractContainerScreen<StartMenu> {
 		RenderSystem.defaultBlendFunc();
 		guiGraphics.blit(texture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
 
-		guiGraphics.blit(new ResourceLocation("simpleraces:textures/screens/start_1.png"), this.leftPos + -89, this.topPos + -84, 0, 0, 256, 256, 256, 256);
+		guiGraphics.blit(ResourceLocation.parse("simpleraces:textures/screens/start_1.png"), this.leftPos + -89, this.topPos + -84, 0, 0, 256, 256, 256, 256);
 
 		RenderSystem.disableBlend();
 	}
@@ -70,6 +77,12 @@ public class StartScreen extends AbstractContainerScreen<StartMenu> {
 
 	@Override
 	public void init() {
+		long start = System.nanoTime();
 		super.init();
+		SimpleracesMod.LOGGER.info("[SR-RACE-LOAD] client StartScreen init finished in {} ms", (System.nanoTime() - start) / 1_000_000.0);
 	}
 }
+
+
+
+

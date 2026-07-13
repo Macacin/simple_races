@@ -10,3 +10,7 @@ public class ArachnaSelectScreen extends RaceSelectScreen<ArachaSelectMenu>{
         super(container, inventory, Component.literal("arachna"));
     }
 }
+
+
+
+

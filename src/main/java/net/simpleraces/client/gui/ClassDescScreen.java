@@ -1,7 +1,7 @@
 package net.simpleraces.client.gui;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.simpleraces.network.ModMessages;
 import net.simpleraces.world.inventory.ClassDescMenu;
 import net.simpleraces.procedures.DwarfReturnProcedure;
@@ -45,14 +45,14 @@ public class ClassDescScreen extends AbstractContainerScreen<ClassDescMenu> {
 		this.imageHeight = 0;
 	}
 
-	private static final ResourceLocation texture = new ResourceLocation("simpleraces:textures/screens/class_desc.png");
+	private static final ResourceLocation texture = ResourceLocation.parse("simpleraces:textures/screens/class_desc.png");
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics);
+		this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		if (DwarfReturnProcedure.execute(world) instanceof LivingEntity livingEntity) {
-			InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + -37, this.topPos + 32, 20, 0f + (float) Math.atan((this.leftPos + -37 - mouseX) / 40.0), (float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
+			InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos - 57, this.topPos + 12, this.leftPos - 17, this.topPos + 52, 20, 0.0f, 0f + (float) Math.atan((this.leftPos + -37 - mouseX) / 40.0), (float) Math.atan((this.topPos + -17 - mouseY) / 40.0),
 					livingEntity);
 		}
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
@@ -75,7 +75,7 @@ public class ClassDescScreen extends AbstractContainerScreen<ClassDescMenu> {
 		RenderSystem.defaultBlendFunc();
 		guiGraphics.blit(texture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
 
-		guiGraphics.blit(new ResourceLocation("simpleraces:textures/screens/dwarf.png"), this.leftPos + -89, this.topPos + -84, 0, 0, 256, 256, 256, 256);
+		guiGraphics.blit(ResourceLocation.parse("simpleraces:textures/screens/dwarf.png"), this.leftPos + -89, this.topPos + -84, 0, 0, 256, 256, 256, 256);
 
 		RenderSystem.disableBlend();
 	}
@@ -122,3 +122,8 @@ public class ClassDescScreen extends AbstractContainerScreen<ClassDescMenu> {
 		this.addRenderableWidget(button_empty1);
 	}
 }
+
+
+
+
+

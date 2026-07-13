@@ -2,10 +2,11 @@ package net.simpleraces.procedures;
 
 import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.bus.api.Event;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,7 +19,7 @@ import net.simpleraces.network.SimpleracesModVariables;
 
 import javax.annotation.Nullable;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class ElfEatsMeatProcedure {
 	@SubscribeEvent
 	public static void onUseItemFinish(LivingEntityUseItemEvent.Finish event) {
@@ -34,10 +35,14 @@ public class ElfEatsMeatProcedure {
 	private static void execute(@Nullable Event event, Entity entity, ItemStack itemstack) {
 		if (entity == null)
 			return;
-		if (SimpleRPGRacesConfiguration.ELF_MEAT_RESTRICT.get() && itemstack.is(ItemTags.create(new ResourceLocation("minecraft:meat")))) {
-			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide() && (entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).map(playerVariables -> playerVariables.elf)
-				.orElse(false)))
+		if (SimpleRPGRacesConfiguration.ELF_MEAT_RESTRICT.get() && itemstack.is(ItemTags.create(ResourceLocation.parse("minecraft:meat")))) {
+			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide() && SimpleracesModVariables.getPlayerVariables(entity).elf)
 				_entity.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 0, false, false));
 		}
 	}
 }
+
+
+
+
+

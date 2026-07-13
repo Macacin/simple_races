@@ -10,16 +10,16 @@ import org.lwjgl.glfw.GLFW;
 import net.simpleraces.network.OpenSelectMessage;
 import net.simpleraces.SimpleracesMod;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
-import net.minecraftforge.api.distmarker.Dist;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.api.distmarker.Dist;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.KeyMapping;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
+@EventBusSubscriber(modid = SimpleracesMod.MODID, value = Dist.CLIENT)
 public class SimpleracesModKeyMappings {
 	public static final KeyMapping OPEN_SELECT = new KeyMapping("key.simpleraces.open_select", GLFW.GLFW_KEY_M, "key.categories.simpleraces") {
 		private boolean isDownOld = false;
@@ -40,13 +40,19 @@ public class SimpleracesModKeyMappings {
 		event.register(OPEN_SELECT);
 	}
 
-	@Mod.EventBusSubscriber({Dist.CLIENT})
+	@EventBusSubscriber(modid = SimpleracesMod.MODID, value = Dist.CLIENT)
 	public static class KeyEventListener {
 		@SubscribeEvent
-		public static void onClientTick(TickEvent.ClientTickEvent event) {
-			if (Minecraft.getInstance().screen == null) {
+		public static void onClientTick(ClientTickEvent.Post event) {
+			Minecraft minecraft = Minecraft.getInstance();
+			if (minecraft.screen == null) {
 				OPEN_SELECT.consumeClick();
 			}
 		}
 	}
 }
+
+
+
+
+

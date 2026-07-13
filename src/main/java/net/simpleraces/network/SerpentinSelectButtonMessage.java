@@ -5,7 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkEvent;
+import net.simpleraces.compat.neoforge.network.NetworkEvent;
 import net.simpleraces.procedures.*;
 import net.simpleraces.world.inventory.DragonSelectMenu;
 
@@ -68,3 +68,8 @@ public class SerpentinSelectButtonMessage {
 	}
 
 }
+
+
+
+
+

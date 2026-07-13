@@ -19,7 +19,7 @@ public class ArachaModelRenderer extends HumanoidMobRenderer<Monster, HumanoidMo
 
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
-		return new ResourceLocation("simpleraces:textures/entities/arachna.png");
+		return ResourceLocation.parse("simpleraces:textures/entities/arachna.png");
 	}
 
 	@Override
@@ -30,3 +30,7 @@ public class ArachaModelRenderer extends HumanoidMobRenderer<Monster, HumanoidMo
 		poseStack.popPose();
 	}
 }
+
+
+
+

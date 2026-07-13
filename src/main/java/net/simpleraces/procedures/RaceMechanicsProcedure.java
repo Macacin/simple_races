@@ -7,75 +7,76 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.living.LivingHealEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.ArrowLooseEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEvent;
+import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
+import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.player.ArrowLooseEvent;
+import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.simpleraces.network.SimpleracesModVariables;
 import net.simpleraces.procedures.race.ArachaRaceMechanics;
+import net.simpleraces.procedures.race.DragonRaceMechanics;
 import net.simpleraces.procedures.race.DwarfRaceMechanics;
 import net.simpleraces.procedures.race.FairyRaceMechanics;
+import net.simpleraces.procedures.race.HumanRaceMechanics;
 import net.simpleraces.procedures.race.RaceDelegateDispatcher;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class RaceMechanicsProcedure {
-    private RaceMechanicsProcedure() {
-    }
+	private RaceMechanicsProcedure() {
+	}
 
-    @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide()) {
-            return;
-        }
+	@SubscribeEvent
+	public static void onPlayerTick(PlayerTickEvent.Post event) {
+		Player player = event.getEntity();
+		if (player.level().isClientSide()) {
+			return;
+		}
+		Level level = player.level();
+		execute(level, player.getX(), player.getY(), player.getZ(), player);
 
-        Player player = event.player;
-        Level level = player.level();
-        execute(level, player.getX(), player.getY(), player.getZ(), player);
-
-        SimpleracesModVariables.PlayerVariables vars = player.getCapability(
-                SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null
-        ).orElse(new SimpleracesModVariables.PlayerVariables());
+        SimpleracesModVariables.PlayerVariables vars = SimpleracesModVariables.getPlayerVariables(player);
         RaceDelegateDispatcher.handlePlayerTick(player, level, vars);
     }
 
     @SubscribeEvent
     public static void onLivingFall(LivingFallEvent event) {
         LivingEntity entity = event.getEntity();
-        SimpleracesModVariables.PlayerVariables vars = entity.getCapability(
-                SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null
-        ).orElse(new SimpleracesModVariables.PlayerVariables());
+        SimpleracesModVariables.PlayerVariables vars = SimpleracesModVariables.getPlayerVariables(entity);
         RaceDelegateDispatcher.handleLivingFall(event, vars);
     }
 
     @SubscribeEvent
     public static void onEntityAttributeModification(EntityAttributeModificationEvent event) {
-        event.add(EntityType.PLAYER, ForgeMod.ENTITY_REACH.get());
+        event.add(EntityType.PLAYER, NeoForgeMod.SWIM_SPEED);
     }
 
     @SubscribeEvent
     public static void onTargetSet(LivingChangeTargetEvent event) {
         FairyRaceMechanics.onTargetSet(event);
-    }
+        DragonRaceMechanics.onTargetSet(event);
+	}
 
-    @SubscribeEvent
-    public static void onServerTick(TickEvent.ServerTickEvent event) {
-        FairyRaceMechanics.onServerTick(event);
-    }
+	@SubscribeEvent
+	public static void onServerTick(ServerTickEvent.Post event) {
+		FairyRaceMechanics.onServerTick(event);
+	}
 
     @SubscribeEvent
     public static void onPotionUsed(LivingEntityUseItemEvent.Finish event) {
@@ -83,12 +84,17 @@ public class RaceMechanicsProcedure {
     }
 
     @SubscribeEvent
-    public static void onLivingUpdate(LivingEvent.LivingTickEvent event) {
+    public static void onLivingUpdate(EntityTickEvent.Post event) {
         RaceLegacyStatusMechanics.onLivingUpdate(event);
     }
 
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingUpdateLate(EntityTickEvent.Post event) {
+        RaceLegacyStatusMechanics.enforceDragonExtinguish(event);
+    }
+
     @SubscribeEvent
-    public static void onLivingHurt(LivingHurtEvent event) {
+    public static void onLivingHurt(LivingDamageEvent.Pre event) {
         RaceCombatMechanics.handleLivingHurt(event);
     }
 
@@ -98,7 +104,7 @@ public class RaceMechanicsProcedure {
     }
 
     @SubscribeEvent
-    public static void onLivingAttack(LivingAttackEvent event) {
+    public static void onLivingAttack(LivingIncomingDamageEvent event) {
         RaceCombatMechanics.handleLivingAttack(event);
     }
 
@@ -118,7 +124,7 @@ public class RaceMechanicsProcedure {
     }
 
     @SubscribeEvent
-    public static void onLivingHurtForBleed(LivingHurtEvent event) {
+    public static void onLivingHurtForBleed(LivingDamageEvent.Pre event) {
         RaceCombatMechanics.handleLivingHurtForBleed(event);
     }
 
@@ -138,7 +144,7 @@ public class RaceMechanicsProcedure {
     }
 
     @SubscribeEvent
-    public static void onAttack(LivingHurtEvent event) {
+    public static void onAttack(LivingDamageEvent.Pre event) {
         RaceCombatMechanics.handleAttack(event);
     }
 
@@ -153,9 +159,9 @@ public class RaceMechanicsProcedure {
             return;
         }
 
-        SimpleracesModVariables.PlayerVariables vars = player.getCapability(
-                SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null
-        ).orElse(new SimpleracesModVariables.PlayerVariables());
+        HumanRaceMechanics.onJump(player);
+
+        SimpleracesModVariables.PlayerVariables vars = SimpleracesModVariables.getPlayerVariables(player);
         RaceDelegateDispatcher.handleJump(player, vars);
     }
 
@@ -164,9 +170,7 @@ public class RaceMechanicsProcedure {
             return;
         }
 
-        SimpleracesModVariables.PlayerVariables vars = entity.getCapability(
-                SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null
-        ).orElse(new SimpleracesModVariables.PlayerVariables());
+        SimpleracesModVariables.PlayerVariables vars = SimpleracesModVariables.getPlayerVariables(entity);
         RaceDelegateDispatcher.handleEntity(world, x, y, z, entity, vars);
     }
 
@@ -183,6 +187,7 @@ public class RaceMechanicsProcedure {
     @SubscribeEvent
     public static void onArrowSpawn(EntityJoinLevelEvent event) {
         DwarfRaceMechanics.onArrowSpawn(event);
+        HumanRaceMechanics.onArrowSpawn(event);
     }
 
     @SubscribeEvent
@@ -191,7 +196,22 @@ public class RaceMechanicsProcedure {
     }
 
     @SubscribeEvent
-    public static void onDwarfAiming(TickEvent.PlayerTickEvent event) {
-        DwarfRaceMechanics.onAiming(event);
+    public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
+        HumanRaceMechanics.onBreakSpeed(event);
     }
+
+    @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        HumanRaceMechanics.onBlockBreak(event);
+	}
+
+	@SubscribeEvent
+	public static void onDwarfAiming(PlayerTickEvent.Post event) {
+		DwarfRaceMechanics.onAiming(event);
+	}
 }
+
+
+
+
+

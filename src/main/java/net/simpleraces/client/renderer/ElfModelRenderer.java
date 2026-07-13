@@ -18,6 +18,10 @@ public class ElfModelRenderer extends HumanoidMobRenderer<Monster, HumanoidModel
 
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
-		return new ResourceLocation("simpleraces:textures/entities/2024_10_18_legolas-22827741.png");
+		return ResourceLocation.parse("simpleraces:textures/entities/2024_10_18_legolas-22827741.png");
 	}
 }
+
+
+
+

@@ -6,12 +6,13 @@ import net.simpleraces.entity.WerewolfState;
 import net.simpleraces.network.SimpleracesModVariables;
 import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.api.distmarker.Dist;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.bus.api.Event;
+import net.neoforged.neoforge.client.event.RenderLivingEvent;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.resources.ResourceLocation;
@@ -19,17 +20,18 @@ import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.client.Minecraft;
 
 import javax.annotation.Nullable;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-@Mod.EventBusSubscriber(value = {Dist.CLIENT})
+@EventBusSubscriber(value = {Dist.CLIENT})
 public class KleidersTestingProcedure {
 	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
-	public static void onEventTriggered(RenderLivingEvent event) {
+	public static void onEventTriggered(RenderLivingEvent.Pre event) {
 		execute(event, event.getEntity());
 	}
 
@@ -40,7 +42,7 @@ public class KleidersTestingProcedure {
 	private static void execute(@Nullable Event event, Entity entity) {
 		if (entity == null)
 			return;
-		RenderLivingEvent _evt = (RenderLivingEvent) event;
+		RenderLivingEvent.Pre _evt = (RenderLivingEvent.Pre) event;
 		Minecraft mc = Minecraft.getInstance();
 		EntityRenderDispatcher dis = Minecraft.getInstance().getEntityRenderDispatcher();
 		EntityRendererProvider.Context context = new EntityRendererProvider.Context(dis, mc.getItemRenderer(), mc.getBlockRenderer(), dis.getItemInHandRenderer(), mc.getResourceManager(), mc.getEntityModels(), mc.font);
@@ -48,48 +50,53 @@ public class KleidersTestingProcedure {
 		PlayerRenderer _pr = null;
 		PoseStack poseStack = _evt.getPoseStack();
 		if (_evt.getRenderer() instanceof PlayerRenderer && !(_evt.getRenderer() instanceof com.kleiders.kleidersplayerrenderer.KleidersIgnoreCancel)) {
-			ResourceLocation _texture = new ResourceLocation("kleiders_custom_renderer:textures/entities/empty.png");
+			ResourceLocation _texture = ResourceLocation.parse("kleiders_custom_renderer:textures/entities/empty.png");
 			com.kleiders.kleidersplayerrenderer.KleidersSkinRenderer emptyRenderer = new com.kleiders.kleidersplayerrenderer.KleidersSkinRenderer(context,
-					(_evtEntity instanceof AbstractClientPlayer ? ((AbstractClientPlayer) _evtEntity).getModelName().equals("slim") : false), _texture);
+					(_evtEntity instanceof AbstractClientPlayer clientPlayer ? clientPlayer.getSkin().model() == PlayerSkin.Model.SLIM : false), _texture);
 			_pr = emptyRenderer;
 			emptyRenderer.clearLayers();
 			emptyRenderer.render((AbstractClientPlayer) _evt.getEntity(), _evt.getEntity().getYRot(), _evt.getPartialTick(), _evt.getPoseStack(), _evt.getMultiBufferSource(), _evt.getPackedLight());
 		}
-		if ((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).orc && SimpleRPGRacesConfiguration.ORC_TUSKS.get()) {
+		if (SimpleracesModVariables.getPlayerVariables(entity).orc && SimpleRPGRacesConfiguration.ORC_TUSKS.get()) {
 			if (_evt.getRenderer() instanceof PlayerRenderer && !(_evt.getRenderer() instanceof com.kleiders.kleidersplayerrenderer.KleidersIgnoreCancel)) {
-				ResourceLocation _texture = new ResourceLocation("kleiders_custom_renderer:textures/entities/default.png");
+				ResourceLocation _texture = ResourceLocation.parse("kleiders_custom_renderer:textures/entities/default.png");
 				if (ResourceLocation.tryParse("simpleraces:textures/entities/tusks.png") != null) {
-					_texture = new ResourceLocation("simpleraces:textures/entities/tusks.png");
+					_texture = ResourceLocation.parse("simpleraces:textures/entities/tusks.png");
 				}
 				new com.kleiders.kleidersplayerrenderer.KleidersSkinRenderer(context, false, _texture).render((AbstractClientPlayer) _evt.getEntity(), _evt.getEntity().getYRot(), _evt.getPartialTick(), _evt.getPoseStack(),
 						_evt.getMultiBufferSource(), _evt.getPackedLight());
 			}
-		} else if ((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).elf && SimpleRPGRacesConfiguration.ELF_EARS.get()) {
+		} else if (SimpleracesModVariables.getPlayerVariables(entity).elf && SimpleRPGRacesConfiguration.ELF_EARS.get()) {
 			if (_evt.getRenderer() instanceof PlayerRenderer && !(_evt.getRenderer() instanceof com.kleiders.kleidersplayerrenderer.KleidersIgnoreCancel)) {
-				ResourceLocation _texture = new ResourceLocation("kleiders_custom_renderer:textures/entities/default.png");
+				ResourceLocation _texture = ResourceLocation.parse("kleiders_custom_renderer:textures/entities/default.png");
 				if (ResourceLocation.tryParse("simpleraces:textures/entities/elf_ears.png") != null) {
-					_texture = new ResourceLocation("simpleraces:textures/entities/elf_ears.png");
+					_texture = ResourceLocation.parse("simpleraces:textures/entities/elf_ears.png");
 				}
 				new com.kleiders.kleidersplayerrenderer.KleidersSkinRenderer(context, false, _texture).render((AbstractClientPlayer) _evt.getEntity(), _evt.getEntity().getYRot(), _evt.getPartialTick(), _evt.getPoseStack(),
 						_evt.getMultiBufferSource(), _evt.getPackedLight());
 			}
-		} else if ((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).merfolk && entity.isInWater() && SimpleRPGRacesConfiguration.MERFOLK_FORM.get()) {
+		} else if (SimpleracesModVariables.getPlayerVariables(entity).merfolk && entity.isInWater() && SimpleRPGRacesConfiguration.MERFOLK_FORM.get()) {
 			if (_evt.getRenderer() instanceof PlayerRenderer && !(_evt.getRenderer() instanceof com.kleiders.kleidersplayerrenderer.KleidersIgnoreCancel)) {
-				ResourceLocation _texture = new ResourceLocation("kleiders_custom_renderer:textures/entities/default.png");
+				ResourceLocation _texture = ResourceLocation.parse("kleiders_custom_renderer:textures/entities/default.png");
 				if (ResourceLocation.tryParse("simpleraces:textures/entities/merfolk.png") != null) {
-					_texture = new ResourceLocation("simpleraces:textures/entities/merfolk.png");
+					_texture = ResourceLocation.parse("simpleraces:textures/entities/merfolk.png");
 				}
 				new com.kleiders.kleidersplayerrenderer.KleidersSkinRenderer(context, false, _texture).render((AbstractClientPlayer) _evt.getEntity(), _evt.getEntity().getYRot(), _evt.getPartialTick(), _evt.getPoseStack(),
 						_evt.getMultiBufferSource(), _evt.getPackedLight());
 			}
-		} else if((entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).werewolf
+		} else if (SimpleracesModVariables.getPlayerVariables(entity).werewolf
 				&& SyncVars.werewolf){
 			if (_evt.getRenderer() instanceof PlayerRenderer && !(_evt.getRenderer() instanceof com.kleiders.kleidersplayerrenderer.KleidersIgnoreCancel)) {
-				event.setCanceled(true);
-				ResourceLocation _texture = new ResourceLocation("simpleraces:textures/entities/werewolf.png");
+				_evt.setCanceled(true);
+				ResourceLocation _texture = ResourceLocation.parse("simpleraces:textures/entities/werewolf.png");
 				new com.kleiders.kleidersplayerrenderer.KleidersSkinRenderer(context, false, _texture).render((AbstractClientPlayer) _evt.getEntity(), _evt.getEntity().getYRot(), _evt.getPartialTick(), _evt.getPoseStack(),
 						_evt.getMultiBufferSource(), _evt.getPackedLight());
 			}
 		}
 	}
 }
+
+
+
+
+

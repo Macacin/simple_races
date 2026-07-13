@@ -1,19 +1,13 @@
 package net.simpleraces.procedures;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.simpleraces.network.SimpleracesModVariables;
-import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
-
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.network.chat.Component;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.CommandSource;
+import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
+import net.simpleraces.network.SimpleracesModVariables;
 
 public class SelectedElfProcedure {
 	public static void execute(Entity entity) {
@@ -21,21 +15,9 @@ public class SelectedElfProcedure {
 			return;
 		if (entity instanceof Player _player)
 			_player.closeContainer();
-		if (!(entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).selected) {
-			{
-				boolean _setval = true;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.elf = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = true;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.selected = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
+		if (!SimpleracesModVariables.getPlayerVariables((entity)).selected) {
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.elf = true); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.selected = true); }
 			AttributeInstance maxHealthAttr = ((Player) entity).getAttribute(Attributes.MAX_HEALTH);
 			if (maxHealthAttr != null) {
 				double newMax = SimpleRPGRacesConfiguration.ELF_MAX_HEALTH.get();
@@ -43,10 +25,15 @@ public class SelectedElfProcedure {
 				((Player) entity).setHealth((float) newMax);
 			}
 			if (entity instanceof Player _player && !_player.level().isClientSide())
-				_player.displayClientMessage(Component.literal("\u00A7e Selected Elf"), true);
+				_player.displayClientMessage(Component.translatable("message.simpleraces.race_selected.elf").withStyle(ChatFormatting.YELLOW), true);
 		} else {
 			if (entity instanceof Player _player && !_player.level().isClientSide())
-				_player.displayClientMessage(Component.literal("\u00A74 Class Previously Set"), true);
+				_player.displayClientMessage(Component.translatable("message.simpleraces.class_previously_set").withStyle(ChatFormatting.DARK_RED), true);
 		}
 	}
 }
+
+
+
+
+

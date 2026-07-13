@@ -20,7 +20,7 @@ public class OrcModelRenderer extends HumanoidMobRenderer<Monster, HumanoidModel
 
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
-		return new ResourceLocation("simpleraces:textures/entities/2024_10_07_orc-22808309.png");
+		return ResourceLocation.parse("simpleraces:textures/entities/2024_10_07_orc-22808309.png");
 	}
 
 	@Override
@@ -31,3 +31,7 @@ public class OrcModelRenderer extends HumanoidMobRenderer<Monster, HumanoidModel
 		poseStack.popPose();
 	}
 }
+
+
+
+

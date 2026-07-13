@@ -6,12 +6,13 @@ package net.simpleraces.init;
 
 import net.simpleraces.client.renderer.*;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.api.distmarker.Dist;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.api.distmarker.Dist;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SimpleracesModEntityRenderers {
 	@SubscribeEvent
 	public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -25,5 +26,12 @@ public class SimpleracesModEntityRenderers {
 		event.registerEntityRenderer(SimpleracesModEntities.WEREWOLF_MODEL.get(), WerewolfModelRenderer::new);
 		event.registerEntityRenderer(SimpleracesModEntities.HALFDEAD_MODEL.get(), HalfdeadModelRenderer::new);
 		event.registerEntityRenderer(SimpleracesModEntities.ARACHA_MODEL.get(), ArachaModelRenderer::new);
+		event.registerEntityRenderer(SimpleracesModEntities.GARGOYLE_MODEL.get(), GargoyleModelRenderer::new);
+		event.registerEntityRenderer(SimpleracesModEntities.HUMAN_MODEL.get(), HumanModelRenderer::new);
 	}
 }
+
+
+
+
+

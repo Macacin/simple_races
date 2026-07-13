@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.network.NetworkHooks;
+import net.simpleraces.compat.neoforge.network.NetworkHooks;
 import net.simpleraces.world.inventory.OrcSelectMenu;
 import net.simpleraces.world.inventory.WerewolfSelectMenu;
 
@@ -35,3 +35,8 @@ public class OpenWerewolfProcedure {
 		}
 	}
 }
+
+
+
+
+

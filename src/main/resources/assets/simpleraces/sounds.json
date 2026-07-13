@@ -42,6 +42,48 @@
       }
     ]
   },
+  "gargoyle_stoneguard_enter": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:stoneguard", "stream": false}
+    ]
+  },
+  "gargoyle_talon_enter": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:talon", "stream": false}
+    ]
+  },
+  "gargoyle_spirewing_enter": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:spirewing", "stream": false}
+    ]
+  },
+  "gargoyle_grotesque_enter": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:grotesque", "stream": false}
+    ]
+  },
+  "gargoyle_parry": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:parry", "stream": false}
+    ]
+  },
+  "gargoyle_petrify_stage_1": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:petrify_1", "stream": false}
+    ]
+  },
+  "gargoyle_petrify_stage_2": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:petrify_2", "stream": false}
+    ]
+  },
   "elf_dodge": {
     "category": "player",
     "sounds": [
@@ -51,6 +93,18 @@
       {"name": "simpleraces:dodge_4", "stream": false},
       {"name": "simpleraces:dodge_5", "stream": false},
       {"name": "simpleraces:dodge_6", "stream": false}
+    ]
+  },
+  "gargoyle_talon_correct": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:rake", "stream": false}
+    ]
+  },
+  "gargoyle_talon_wrong": {
+    "category": "player",
+    "sounds": [
+      {"name": "simpleraces:orc_exhaustion", "stream": false}
     ]
   }
 }

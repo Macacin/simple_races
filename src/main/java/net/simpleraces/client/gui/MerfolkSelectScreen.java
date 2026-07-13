@@ -2,8 +2,8 @@ package net.simpleraces.client.gui;
 
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.simpleraces.network.ModMessages;
 import net.simpleraces.world.inventory.MerfolkSelectMenu;
 import net.simpleraces.procedures.MerfolkReturnProcedure;
@@ -32,3 +32,7 @@ public class MerfolkSelectScreen extends RaceSelectScreen<MerfolkSelectMenu> {
 		super(container, inventory, Component.literal("merfolk"));
 	}
 }
+
+
+
+

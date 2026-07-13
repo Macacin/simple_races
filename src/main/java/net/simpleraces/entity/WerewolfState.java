@@ -7,7 +7,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.network.PacketDistributor;
 import net.simpleraces.SimpleracesMod;
 import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
 import net.simpleraces.effect.ModEffects;
@@ -26,7 +25,7 @@ public class WerewolfState {
     public static void setForm(Player player, Form form) {
         CompoundTag tag = player.getPersistentData();
         tag.putString(NBT_KEY, form.name());
-        ModMessages.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (net.minecraft.server.level.ServerPlayer) player),
+        ModMessages.sendToPlayer((net.minecraft.server.level.ServerPlayer) player,
                 new SyncWerewolfPacket(form == Form.BEAST));
     }
 
@@ -59,10 +58,14 @@ public class WerewolfState {
     }
 
     public static void transformToHuman(Player player) {
-        if(player.hasEffect(ModEffects.WEREWOLF_TRANSFORMATION.get())) return;
+        if(player.hasEffect(ModEffects.WEREWOLF_TRANSFORMATION)) return;
         WerewolfState.setForm(player, WerewolfState.Form.HUMAN);
         player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 1));
         player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 0));
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 3));
     }
 }
+
+
+
+

@@ -9,4 +9,11 @@ public interface IHeat {
 
     int getOverheatTicks();
     void setOverheatTicks(int ticks);
+
+    int getPostOverheatExtinguishTicks();
+    void setPostOverheatExtinguishTicks(int ticks);
 }
+
+
+
+

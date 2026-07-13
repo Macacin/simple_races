@@ -1,0 +1,26 @@
+# Gradle output and local caches
+.gradle/
+build/
+
+# IDE files
+.idea/
+*.iml
+
+# Minecraft development instances
+run/
+run-data/
+
+# Keep the local compile-time library required by build.gradle
+!run/
+run/*
+!run/libs/
+run/libs/*
+!run/libs/weightmod-1.0.0-deobf.jar
+
+# Local logs and crash output
+*.log
+crash-reports/
+
+# OS metadata
+.DS_Store
+Thumbs.db

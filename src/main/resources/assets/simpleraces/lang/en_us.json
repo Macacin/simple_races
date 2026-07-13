@@ -94,19 +94,19 @@
   "gui.simpleraces.halfdead_select.tooltip_passive_mine_faster_in_dark": "§4Arbiters of the Undying Realm§r",
 
   "gui.simpleraces.elf_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Has 3 forest spirits\n- Each spirit gives a 15% chance to dodge any damage except fire and void\n- After receiving damage, the spirit goes on recharge for 30 seconds\n- Recharge of the spirit in the forest is 2 times faster\n- §aFleet-footed in forests§r, dancing among leaves\n- §aEyes aglow with nocturnal sight§r amid the trees\n- §cShunners of flesh§r, attuned to nature's pure essence",
-  "gui.simpleraces.elf_select.tooltip_passive_mine_faster_in_dark.extended": "§aSole masters of the bow's arcane art§r\n- Arrows strike with §e35%§r greater fury\n- §bStruck foes shimmer§r, revealed in ethereal light",
+  "gui.simpleraces.elf_select.tooltip_passive_mine_faster_in_dark.extended": "§aSole masters of the bow's arcane art§r\n- §aNo damage penalty§r when using bows\n- §bStruck foes shimmer§r, revealed in ethereal light",
 
   "gui.simpleraces.fairy_select.tooltip_next": "",
   "gui.simpleraces.fairy_select.tooltip_previous": "",
   "gui.simpleraces.fairy_select.tooltip_confirm": "",
-  "gui.simpleraces.fairy_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Frail with but §c4 hearts§r of life\n- §aSoar until wings weary§r after §e10 seconds§r\n- Flight depletes fully ere §crecovery begins§r\n- Exhaustion brings §agentle descent§r\n- §cHeights terrify§r in weary state\n- Unweary, §afalls bring no harm§r",
-  "gui.simpleraces.fairy_select.tooltip_passive_mine_faster_in_dark.extended": "- §aAnimals adore thee§r unconditionally!\n- §aCrops flourish faster§r in thy gentle aura",
+  "gui.simpleraces.fairy_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Frail with but §c4 hearts§r of life\n- §aSoar until wings weary§r after §e10 seconds§r\n- Once flight is fully exhausted, recovery starts only after the fairy has landed at least once\n- Exhaustion brings §agentle descent§r\n- §cHeights terrify§r in weary state\n- Unweary, §afalls bring no harm§r",
+  "gui.simpleraces.fairy_select.tooltip_passive_mine_faster_in_dark.extended": "- Peaceful animal mobs usually ignore the fairy, but may retaliate after being struck\n- §aCrops flourish faster§r in thy gentle aura",
 
-  "gui.simpleraces.dragon_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Harness the §cheat gauge§r: each blow fills it by §e4%§r\n- At §c100%§r, overheat engulfs for §e20 seconds§r:\n* Clad in §afire resistance§r;\n* Strikes §aignite foes for 4 seconds§r;\n* §cFlames dance wildly§r at thy feet;\n* §aRetaliate with blaze§r upon assailants;\n* §Life drains slowly§r in the blaze",
-  "gui.simpleraces.dragon_select.tooltip_passive_mine_faster_in_dark.extended": "- §aLeap heavensward§r by an extra block\n- §aFalls softened§r, as if cradled by winds\n- §cWaters wound§r like ancient curses\n- §cLeather or gold armor melts§r in draconic fury",
+  "gui.simpleraces.dragon_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Harness the §cheat gauge§r: each blow fills it by §e4%§r\n- At §c100%§r, overheat engulfs for §e20 seconds§r:\n* Strikes §aignite foes for 4 seconds§r;\n* §aRetaliate with blaze§r upon assailants;\n* Gradually loses health (§c-1 HP / 5 sec§r)",
+  "gui.simpleraces.dragon_select.tooltip_passive_mine_faster_in_dark.extended": "- Passively takes §a50% less§r damage from fire, lava, and hot blocks\n- §aLeap heavensward§r by an extra block\n- §aFalls softened§r, as if cradled by winds\n- §cWaters wound§r like ancient curses (§c1 HP/sec§r)\n- §cLeather or gold armor melts§r in draconic fury",
 
-  "gui.simpleraces.arachna_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- §aCling endlessly§r to any wall\n- §cHeavy armor burdens doubly§r\n- §cWaters halve§r thy speed\n- §cFlames scorch 50%§r deeper",
-  "gui.simpleraces.arachna_select.tooltip_passive_mine_faster_in_dark.extended": "- Attacks hasten by §e25%§r\n- Every third §cbite:\n* Rends§r through armor\n* Inflicts §2potent poison§r for §e2 seconds§r",
+  "gui.simpleraces.arachna_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- §aCling endlessly§r to any wall\n- Armor weighs an additional §c+15%§r of its base weight\n- §cWaters halve§r thy speed\n- §cFlames scorch 50%§r deeper",
+  "gui.simpleraces.arachna_select.tooltip_passive_mine_faster_in_dark.extended": "- Attacks hasten by §e25%§r\n- Each §esuccessful hit§r on an enemy builds the mandible counter\n- After §e3 hits§r, the mandible bite can trigger, but no more than once every §e4 seconds§r\n* Deals §cbonus damage§r\n* Inflicts §2potent poison§r for §e3 seconds§r",
 
   "gui.simpleraces.dwarf_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- §aUnlimited anvil uses§r, forging legends anew\n- §aEnchant with interchangeable enchants§r, like sharpness with smite",
   "gui.simpleraces.dwarf_select.tooltip_passive_mine_faster_in_dark.extended": "- Ale-fueled resilience grants §e20%§r less damage from all perils\n- Yet, in their merry haze, §cbows elude their grasp forever§r\n- Beneath the stone, they gain §aswiftness and haste§r\n- In depths below §bY<0§r, haste ascends to §eII§r, and §anight vision§r pierces the gloom",
@@ -137,6 +137,57 @@
   "message.simpleraces.dwarf.no_bow": "Dwarves can’t use these junk!",
 
   "message.simpleraces.werewolf.bad_food": "The beast refuses to consume this crap.",
-  "death.attack.halfdead_magic_aura": "%1$s was consumed by a death aura"
+  "death.attack.halfdead_magic_aura": "%1$s was consumed by a death aura",
+  "gui.simpleraces.random_select.tooltip": "Random race selection!",
+  "message.simpleraces.class_previously_set": "Class previously set",
+  "message.simpleraces.race_selected.aracha": "Selected Aracha",
+  "message.simpleraces.race_selected.drakonid": "Selected Drakonid",
+  "message.simpleraces.race_selected.dwarf": "Selected Dwarf",
+  "message.simpleraces.race_selected.elf": "Selected Elf",
+  "message.simpleraces.race_selected.fairy": "Selected Fairy",
+  "message.simpleraces.race_selected.halfdead": "Selected Halfdead",
+  "message.simpleraces.race_selected.gargoyle": "Selected Gargoyle",
+  "message.simpleraces.race_selected.human": "Selected Human",
+  "message.simpleraces.race_selected.merfolk": "Selected Merfolk",
+  "message.simpleraces.race_selected.orc": "Selected Orc",
+  "message.simpleraces.race_selected.serpentin": "Selected Serpentin",
+  "message.simpleraces.race_selected.werewolf": "Selected Werewolf",
+  "message.simpleraces.class_reset": "Class reset",
+  "gui.simpleraces.tooltip.hold_shift": "Hold SHIFT for more details.",
+  "menu.simpleraces.start": "Start",
+  "menu.simpleraces.dwarf_select": "Dwarf Select",
+  "menu.simpleraces.gargoyle_select": "Gargoyle Select",
+  "menu.simpleraces.human_select": "Human Select",
+  "entity.simpleraces.gargoyle_model": "Gargoyle Model",
+  "entity.simpleraces.human_model": "Human Model",
+  "gui.simpleraces.gargoyle_select.tooltip_next": "Next",
+  "gui.simpleraces.gargoyle_select.tooltip_previous": "Previous",
+  "gui.simpleraces.gargoyle_select.tooltip_confirm": "Confirm",
+  "gui.simpleraces.human_select.tooltip_next": "Next",
+  "gui.simpleraces.human_select.tooltip_previous": "Previous",
+  "gui.simpleraces.human_select.tooltip_confirm": "Confirm",
+  "gui.simpleraces.human_select.tooltip_dwarves_are_stout_skilled_craft": "§fSteady and Adaptable§r",
+  "gui.simpleraces.human_select.tooltip_passive_mine_faster_in_dark": "§7Mastery Through Habit§r",
+  "gui.simpleraces.human_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Humans have no innate magical or bodily advantages\n- Their defining trait is endurance: sprinting does not consume hunger\n- A human grows strong not through a preset racial gift, but through slowly adapting to the style they practice most",
+  "gui.simpleraces.human_select.tooltip_passive_mine_faster_in_dark.extended": "- Hidden proficiencies awaken over time as the human repeats the same kind of activity again and again\n- Digging for long enough very slowly improves mining speed\n- Repeated successful hits with the same weapon category slightly increase damage with that category\n- Frequent shooting gradually improves arrow travel and effective range\n- These bonuses grow very slowly and stay intentionally small, so they support normal progression instead of replacing it",
+  "gui.simpleraces.gargoyle_select.tooltip_dwarves_are_stout_skilled_craft": "§8Stone of Many Faces§r",
+  "gui.simpleraces.gargoyle_select.tooltip_passive_mine_faster_in_dark": "§7Mastery Through Shifting Forms§r",
+  "gui.simpleraces.gargoyle_select.tooltip_dwarves_are_stout_skilled_craft.extended": "- Changes stance through actions, not buttons\n- Switching stances grants a short body-rebuild bonus\n- Staying too long in one stance causes Petrification\n- Stoneguard turns you into a heavy statue: high defense, narrow vision and a delayed break into Talon\n- Talon is the hunting stance built around spacing, Quarry Mark and clean Rake hits",
+  "gui.simpleraces.gargoyle_select.tooltip_passive_mine_faster_in_dark.extended": "- Stoneguard activates after standing still for about 6 seconds. It heavily reduces incoming damage, narrows vision and slows movement, while breaking out into Talon takes 3 seconds.\n- Talon activates after a sprint hit or after leaving Stoneguard. The first target in this stance gets Quarry Mark, and hits change value depending on distance: weak up close, normal at mid range and strongest at long range with Rake.\n- Spirewing activates from an aerial attack. It grants elytra-like gliding on a double jump in the air, widens vision and boosts dive attacks, but leaves you fragile.\n- Grotesque activates if the gargoyle is crouching, has not attacked for about 1.5 seconds and then takes a hit. It opens a Riposte window; a successful counter frightens the target, applies Quarry Mark II and throws the gargoyle into Talon.\n- The race is strongest when it rotates stances well. Staying in one form too long builds Petrification and weakens the gargoyle."
+  ,"gui.simpleraces.race_select.tooltip_difficulty_scale": "Difficulty scale\nShows how demanding the race is to master."
+  ,"gui.simpleraces.dwarf_select.tooltip_difficulty_scale": "Difficulty: 1/4\nOne of the easiest races to learn. Dwarf relies on straightforward passive strengths and forgives mistakes well."
+  ,"gui.simpleraces.elf_select.tooltip_difficulty_scale": "Difficulty: 1/4\nA very accessible race with clear strengths. Elf works well even without precise micromanagement."
+  ,"gui.simpleraces.merfolk_select.tooltip_difficulty_scale": "Difficulty: 3/4\nRequires good positioning. Merfolk is extremely strong in water, but its weaknesses on land must be managed constantly."
+  ,"gui.simpleraces.orc_select.tooltip_difficulty_scale": "Difficulty: 3/4\nA race built around tempo and risk. Orc is powerful if you know when to enter rage and how to avoid the punishment after it."
+  ,"gui.simpleraces.dragon_select.tooltip_difficulty_scale": "Difficulty: 3/4\nDragon has explosive power spikes, but they need control. Overheat and water vulnerability punish sloppy play."
+  ,"gui.simpleraces.fairy_select.tooltip_difficulty_scale": "Difficulty: 4/4\nA very demanding race. Fairy depends on positioning, flight timing, and careful survival with a tiny health pool."
+  ,"gui.simpleraces.serpentin_select.tooltip_difficulty_scale": "Difficulty: 4/4\nSerpentin shines through effects and alchemy. Without preparation and good planning, it feels much weaker."
+  ,"gui.simpleraces.werewolf_select.tooltip_difficulty_scale": "Difficulty: 2/4\nA medium-complexity race. Werewolf asks you to respect time of day and form management, but its core gameplay is easy to grasp."
+  ,"gui.simpleraces.halfdead_select.tooltip_difficulty_scale": "Difficulty: 1/4\nOne of the most direct races. Halfdead plays through health pool, aura, and finish pressure without a complicated rotation."
+  ,"gui.simpleraces.gargoyle_select.tooltip_difficulty_scale": "Difficulty: 4/4\nOne of the hardest races in the mod. Gargoyle demands stance awareness, combat rhythm, and constant form switching."
+  ,"gui.simpleraces.human_select.tooltip_difficulty_scale": "Difficulty: 2/4\nHumans have no built-in combat tricks or strong racial bonuses, so their strength depends much more on gear, experience, and the way you play."
+  ,"gui.simpleraces.arachna_select.tooltip_difficulty_scale": "Difficulty: 2/4\nNeeds some adjustment to wall movement and positional weaknesses, but overall it is learned fairly quickly."
+  ,"options.simpleraces.visual_settings": "Race Settings"
+  ,"options.simpleraces.ambient_race_effects": "Race Screen Effects"
 
 }

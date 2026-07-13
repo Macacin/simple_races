@@ -4,6 +4,7 @@ public class Heat implements IHeat {
     private int heat = 0;
     private boolean overheated = false;
     private int overheatTicks = 0;
+    private int postOverheatExtinguishTicks = 0;
 
     @Override public int getHeat() { return heat; }
     @Override public void setHeat(int value) { heat = value; }
@@ -13,4 +14,11 @@ public class Heat implements IHeat {
 
     @Override public int getOverheatTicks() { return overheatTicks; }
     @Override public void setOverheatTicks(int ticks) { overheatTicks = ticks; }
+
+    @Override public int getPostOverheatExtinguishTicks() { return postOverheatExtinguishTicks; }
+    @Override public void setPostOverheatExtinguishTicks(int ticks) { postOverheatExtinguishTicks = ticks; }
 }
+
+
+
+

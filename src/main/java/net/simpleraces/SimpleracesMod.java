@@ -3,12 +3,12 @@ package net.simpleraces;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.simpleraces.data.WerewolfForbiddenItems;
 import net.simpleraces.effect.ModEffects;
 import net.simpleraces.network.ModMessages;
@@ -23,24 +23,16 @@ import net.simpleraces.init.SimpleracesModTabs;
 import net.simpleraces.init.SimpleracesModMenus;
 import net.simpleraces.init.SimpleracesModItems;
 import net.simpleraces.init.SimpleracesModEntities;
+import net.simpleraces.init.SimpleracesModConfigs;
 
-import net.minecraftforge.network.simple.SimpleChannel;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.fml.util.thread.SidedThreadGroups;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.util.thread.SidedThreadGroups;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.FriendlyByteBuf;
-
-import java.util.function.Supplier;
-import java.util.function.Function;
-import java.util.function.BiConsumer;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.List;
 import java.util.Collection;
@@ -49,24 +41,33 @@ import java.util.AbstractMap;
 
 @Mod("simpleraces")
 public class SimpleracesMod {
-	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, SimpleracesMod.MODID);
+	public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(Registries.SOUND_EVENT, SimpleracesMod.MODID);
 
 	public static final Logger LOGGER = LogManager.getLogger(SimpleracesMod.class);
 	public static final String MODID = "simpleraces";
 
-	public static final RegistryObject<SoundEvent> DRAGON_OVERHEAT = SOUNDS.register("dragon_overheat", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(SimpleracesMod.MODID, "dragon_overheat")));
-	public static final RegistryObject<SoundEvent> FAIRY_RECOVER = SOUNDS.register("fairy_recover", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(SimpleracesMod.MODID, "fairy_recover")));
-	public static final RegistryObject<SoundEvent> ORC_ROAR = SOUNDS.register("orc_roar", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "orc_roar")));
-	public static final RegistryObject<SoundEvent> ELF_DODGE = SOUNDS.register("elf_dodge", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "elf_dodge")));
-	public static final RegistryObject<SoundEvent> ORC_RAGE = SOUNDS.register("orc_rage", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "orc_rage")));
-	public static final RegistryObject<SoundEvent> ORC_EXHAUSTION = SOUNDS.register("orc_exhaustion", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "orc_exhaustion")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> DRAGON_OVERHEAT = SOUNDS.register("dragon_overheat", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(SimpleracesMod.MODID, "dragon_overheat")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> FAIRY_RECOVER = SOUNDS.register("fairy_recover", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(SimpleracesMod.MODID, "fairy_recover")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> ORC_ROAR = SOUNDS.register("orc_roar", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "orc_roar")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> ELF_DODGE = SOUNDS.register("elf_dodge", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "elf_dodge")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> ORC_RAGE = SOUNDS.register("orc_rage", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "orc_rage")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> ORC_EXHAUSTION = SOUNDS.register("orc_exhaustion", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "orc_exhaustion")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> GARGOYLE_STONEGUARD_ENTER = SOUNDS.register("gargoyle_stoneguard_enter", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "gargoyle_stoneguard_enter")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> GARGOYLE_TALON_ENTER = SOUNDS.register("gargoyle_talon_enter", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "gargoyle_talon_enter")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> GARGOYLE_SPIREWING_ENTER = SOUNDS.register("gargoyle_spirewing_enter", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "gargoyle_spirewing_enter")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> GARGOYLE_GROTESQUE_ENTER = SOUNDS.register("gargoyle_grotesque_enter", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "gargoyle_grotesque_enter")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> GARGOYLE_PARRY = SOUNDS.register("gargoyle_parry", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "gargoyle_parry")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> GARGOYLE_PETRIFY_STAGE_1 = SOUNDS.register("gargoyle_petrify_stage_1", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "gargoyle_petrify_stage_1")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> GARGOYLE_PETRIFY_STAGE_2 = SOUNDS.register("gargoyle_petrify_stage_2", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "gargoyle_petrify_stage_2")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> GARGOYLE_TALON_CORRECT = SOUNDS.register("gargoyle_talon_correct", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "gargoyle_talon_correct")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> GARGOYLE_TALON_WRONG = SOUNDS.register("gargoyle_talon_wrong", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MODID, "gargoyle_talon_wrong")));
 
 	public static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Player.class, EntityDataSerializers.BYTE);
-	public SimpleracesMod() {
+	public SimpleracesMod(IEventBus bus, ModContainer modContainer) {
 		WerewolfForbiddenItems.load();
-		MinecraftForge.EVENT_BUS.register(this);
-		MinecraftForge.EVENT_BUS.register(AttributeDeathFixProcedure.class);
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		NeoForge.EVENT_BUS.register(this);
+		NeoForge.EVENT_BUS.register(AttributeDeathFixProcedure.class);
+		SimpleracesModConfigs.register(modContainer);
 
 		SimpleracesModItems.REGISTRY.register(bus);
 		SimpleracesModEntities.REGISTRY.register(bus);
@@ -76,7 +77,7 @@ public class SimpleracesMod {
 		SimpleracesModMenus.REGISTRY.register(bus);
 
 		ModEffects.register(bus);
-		ModMessages.register();
+		ModMessages.register(bus);
 		SOUNDS.register(bus);
 	}
 
@@ -91,16 +92,19 @@ public class SimpleracesMod {
 	}
 
 	@SubscribeEvent
-	public void tick(TickEvent.ServerTickEvent event) {
-		if (event.phase == TickEvent.Phase.END) {
-			List<AbstractMap.SimpleEntry<Runnable, Integer>> actions = new ArrayList<>();
-			workQueue.forEach(work -> {
-				work.setValue(work.getValue() - 1);
-				if (work.getValue() == 0)
-					actions.add(work);
-			});
-			actions.forEach(e -> e.getKey().run());
-			workQueue.removeAll(actions);
-		}
+	public void tick(ServerTickEvent.Post event) {
+		List<AbstractMap.SimpleEntry<Runnable, Integer>> actions = new ArrayList<>();
+		workQueue.forEach(work -> {
+			work.setValue(work.getValue() - 1);
+			if (work.getValue() == 0)
+				actions.add(work);
+		});
+		actions.forEach(e -> e.getKey().run());
+		workQueue.removeAll(actions);
 	}
 }
+
+
+
+
+

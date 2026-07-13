@@ -13,8 +13,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.simpleraces.SimpleracesMod;
 import net.simpleraces.entity.HalfdeadModelEntity;
 import net.simpleraces.init.SimpleracesModEntities;
@@ -35,3 +35,7 @@ public class HalfdeadSelectScreen extends RaceSelectScreen<HalfdeadSelectMenu> {
         super(container, inventory, Component.literal("halfdead"));
     }
 }
+
+
+
+

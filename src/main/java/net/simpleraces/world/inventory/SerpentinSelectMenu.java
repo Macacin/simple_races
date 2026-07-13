@@ -12,8 +12,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import net.simpleraces.init.SimpleracesModMenus;
 import net.simpleraces.world.AbstractRaceSelectMenu;
 
@@ -71,3 +71,8 @@ public class SerpentinSelectMenu extends AbstractRaceSelectMenu implements Suppl
 		return customSlots;
 	}
 }
+
+
+
+
+

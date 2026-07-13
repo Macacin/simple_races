@@ -17,9 +17,13 @@ import net.minecraft.client.Minecraft;
 
 public class DeselectProcedure {
 	public static void execute(Entity entity) {
+		execute(entity, false);
+	}
+
+	public static void execute(Entity entity, boolean bypassRestrictions) {
 		if (entity == null)
 			return;
-		if (new Object() {
+		if (bypassRestrictions || new Object() {
 			public boolean checkGamemode(Entity _ent) {
 				if (_ent instanceof ServerPlayer _serverPlayer) {
 					return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
@@ -29,83 +33,19 @@ public class DeselectProcedure {
 				return false;
 			}
 		}.checkGamemode(entity) || SimpleRPGRacesConfiguration.DESELECT.get()) {
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.dwarf = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.elf = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.orc = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.merfolk = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.dragon = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.selected = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.fairy = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.serpentin = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.werewolf = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.halfdead = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = false;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.aracha = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.dwarf = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.elf = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.orc = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.merfolk = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.dragon = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.selected = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.fairy = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.serpentin = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.werewolf = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.halfdead = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.aracha = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.gargoyle = false); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.human = false); }
 			ScaleTypes.HEIGHT.getScaleData(entity).setTargetScale((float) ScaleOperations.SET.applyAsDouble(ScaleTypes.HEIGHT.getScaleData(entity).getTargetScale(), 1));
 			ScaleTypes.WIDTH.getScaleData(entity).setTargetScale((float) ScaleOperations.SET.applyAsDouble(ScaleTypes.WIDTH.getScaleData(entity).getTargetScale(), 1));
 			if (entity instanceof LivingEntity _entity)
@@ -115,15 +55,24 @@ public class DeselectProcedure {
 					_entity.setHealth(20);
 			}
 			if (entity instanceof Player _player && !_player.level().isClientSide()) {
-				_player.displayClientMessage(Component.literal("Class Reset"), false);
-				_player.getAbilities().flying = false;
-				_player.getAbilities().mayfly = false;
+				_player.displayClientMessage(Component.translatable("message.simpleraces.class_reset"), false);
+				boolean canKeepVanillaFlight = _player.getAbilities().instabuild || _player.isSpectator();
+				_player.getAbilities().flying = canKeepVanillaFlight && _player.getAbilities().flying;
+				_player.getAbilities().mayfly = canKeepVanillaFlight;
 				_player.onUpdateAbilities();
-				_player.getCapability(SimpleracesModVariables.HEAT).ifPresent(data -> {
-					data.setOverheatTicks(0);
-				});
+				entity.getPersistentData().putInt("fairy_flight_ticks", 0);
+				entity.getPersistentData().putInt("fairy_falling_ticks", 0);
+				entity.getPersistentData().remove("pst_fairy_extra_spent_ticks");
+				entity.getPersistentData().remove("pst_fairy_wind_wings");
+				entity.getPersistentData().remove("simpleraces_fairy_exhausted");
+				entity.getPersistentData().remove("simpleraces_fairy_landed_after_exhaustion");
+				SimpleracesModVariables.getHeat(_player).setOverheatTicks(0);
 			}
 		} else {
 		}
 	}
 }
+
+
+
+

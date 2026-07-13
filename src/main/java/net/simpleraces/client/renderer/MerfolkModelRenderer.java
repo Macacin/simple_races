@@ -18,6 +18,10 @@ public class MerfolkModelRenderer extends HumanoidMobRenderer<Monster, HumanoidM
 
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
-		return new ResourceLocation("simpleraces:textures/entities/2023_10_18_kuno-thalassian-22053605.png");
+		return ResourceLocation.parse("simpleraces:textures/entities/2023_10_18_kuno-thalassian-22053605.png");
 	}
 }
+
+
+
+

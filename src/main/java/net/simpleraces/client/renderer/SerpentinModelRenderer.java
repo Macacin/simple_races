@@ -17,6 +17,10 @@ public class SerpentinModelRenderer extends HumanoidMobRenderer<Monster, Humanoi
 
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
-		return new ResourceLocation("simpleraces:textures/entities/serpentin.png");
+		return ResourceLocation.parse("simpleraces:textures/entities/serpentin.png");
 	}
 }
+
+
+
+

@@ -4,8 +4,8 @@ package net.simpleraces.world.inventory;
 import net.simpleraces.procedures.StartWhileThisGUIIsOpenTickProcedure;
 import net.simpleraces.init.SimpleracesModMenus;
 
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.Level;
@@ -75,3 +75,8 @@ public class StartMenu extends AbstractRaceSelectMenu implements Supplier<Map<In
 		return customSlots;
 	}
 }
+
+
+
+
+

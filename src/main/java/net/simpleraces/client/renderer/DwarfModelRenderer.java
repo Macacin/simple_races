@@ -21,7 +21,7 @@ public class DwarfModelRenderer extends HumanoidMobRenderer<Monster, HumanoidMod
 
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
-		return new ResourceLocation("simpleraces:textures/entities/2024_10_07_dwarf-22808312.png");
+		return ResourceLocation.parse("simpleraces:textures/entities/2024_10_07_dwarf-22808312.png");
 	}
 
 	@Override
@@ -32,3 +32,7 @@ public class DwarfModelRenderer extends HumanoidMobRenderer<Monster, HumanoidMod
 		poseStack.popPose();
 	}
 }
+
+
+
+

@@ -1,148 +1,154 @@
 package net.simpleraces.network;
 
-import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.capabilities.CapabilityToken;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.Capability;
-
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.nbt.Tag;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.core.Direction;
 import net.minecraft.client.Minecraft;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.EntityCapability;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.common.util.FakePlayer;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.simpleraces.compat.neoforge.network.NetworkEvent;
 import net.simpleraces.heat.HeatProvider;
 import net.simpleraces.heat.IHeat;
+import net.simpleraces.SimpleracesMod;
 
-import java.util.UUID;
-import java.util.function.Supplier;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class SimpleracesModVariables {
-    public static final Capability<IHeat> HEAT = CapabilityManager.get(new CapabilityToken<>() {});
-    @SubscribeEvent
-    public static void init(FMLCommonSetupEvent event) {
+    private static final String PLAYER_VARS_TAG = "simpleraces_player_variables";
+    private static final Map<UUID, PlayerVariables> PLAYER_VARIABLES_CACHE = new ConcurrentHashMap<>();
 
-    }
+    public static final EntityCapability<IHeat, Void> HEAT = EntityCapability.createVoid(ResourceLocation.fromNamespaceAndPath("simpleraces", "heat"), IHeat.class);
+    public static final EntityCapability<PlayerVariables, Void> PLAYER_VARIABLES_CAPABILITY = EntityCapability.createVoid(ResourceLocation.fromNamespaceAndPath("simpleraces", "player_variables"), PlayerVariables.class);
 
     @SubscribeEvent
     public static void init(RegisterCapabilitiesEvent event) {
-        event.register(PlayerVariables.class);
-
+        event.registerEntity(HEAT, EntityType.PLAYER, (entity, context) -> entity instanceof FakePlayer ? null : HeatProvider.get((Player) entity));
+        event.registerEntity(PLAYER_VARIABLES_CAPABILITY, EntityType.PLAYER, (entity, context) -> entity instanceof FakePlayer ? null : getPlayerVariables((Player) entity));
     }
 
-    @Mod.EventBusSubscriber
+    @EventBusSubscriber
     public static class EventBusVariableHandlers {
-        @SubscribeEvent
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
         public static void onPlayerLoggedInSyncPlayerVariables(PlayerEvent.PlayerLoggedInEvent event) {
             if (!event.getEntity().level().isClientSide()) {
-                for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
-                    ((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
-                }
+                reloadPlayerVariables(event.getEntity());
+                syncAllPlayers(event.getEntity());
             }
         }
 
         @SubscribeEvent
         public static void onPlayerRespawnedSyncPlayerVariables(PlayerEvent.PlayerRespawnEvent event) {
             if (!event.getEntity().level().isClientSide()) {
-                for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
-                    ((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
-                }
+                syncAllPlayers(event.getEntity());
             }
         }
 
         @SubscribeEvent
         public static void onPlayerChangedDimensionSyncPlayerVariables(PlayerEvent.PlayerChangedDimensionEvent event) {
             if (!event.getEntity().level().isClientSide()) {
-                for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
-                    ((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
-                }
+                syncAllPlayers(event.getEntity());
             }
+        }
+
+        @SubscribeEvent
+        public static void onPlayerSave(PlayerEvent.SaveToFile event) {
+            savePlayerVariables(event.getEntity());
+            HeatProvider.save(event.getEntity());
+        }
+
+        @SubscribeEvent
+        public static void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+            savePlayerVariables(event.getEntity());
+            HeatProvider.save(event.getEntity());
+            PLAYER_VARIABLES_CACHE.remove(event.getEntity().getUUID());
+            HeatProvider.clear(event.getEntity());
         }
 
         @SubscribeEvent
         public static void clonePlayer(PlayerEvent.Clone event) {
-            event.getOriginal().revive();
-            PlayerVariables original = ((PlayerVariables) event.getOriginal().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
-            PlayerVariables clone = ((PlayerVariables) event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
-            clone.dwarf = original.dwarf;
-            clone.elf = original.elf;
-            clone.orc = original.orc;
-            clone.merfolk = original.merfolk;
-            clone.dragon = original.dragon;
-            clone.selected = original.selected;
-            clone.fairy = original.fairy;
-            clone.halfdead = original.halfdead;
-            clone.serpentin = original.serpentin;
-            clone.werewolf = original.werewolf;
-            clone.aracha = original.aracha;
-            clone.raceCapacityInitialized = original.raceCapacityInitialized;
-            clone.fervorStacks = original.fervorStacks;
-            clone.lastTarget = original.lastTarget;
-            clone.previousFoodLevel = original.previousFoodLevel;
-            clone.forestSpirits = original.forestSpirits;
-            System.arraycopy(original.spiritCooldowns, 0, clone.spiritCooldowns, 0, 3);
-            if (!event.isWasDeath()) {
-            }
+            PlayerVariables original = getPlayerVariables(event.getOriginal());
+            PlayerVariables clone = getPlayerVariables(event.getEntity());
+
+            clone.copyFrom(original);
+            savePlayerVariables(event.getEntity());
+            HeatProvider.copy(event.getOriginal(), event.getEntity());
+
             if (!event.getEntity().level().isClientSide()) {
-                for (Entity entityiterator : new ArrayList<>(event.getEntity().level().players())) {
-                    ((PlayerVariables) entityiterator.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(entityiterator);
-                }
+                syncAllPlayers(event.getEntity());
+            }
+        }
+
+        private static void syncAllPlayers(Player referencePlayer) {
+            for (Entity entityiterator : new ArrayList<>(referencePlayer.level().players())) {
+                getPlayerVariables((Player) entityiterator).syncPlayerVariables(entityiterator);
             }
         }
     }
 
-    public static final Capability<PlayerVariables> PLAYER_VARIABLES_CAPABILITY = CapabilityManager.get(new CapabilityToken<PlayerVariables>() {
-    });
-
-    @Mod.EventBusSubscriber
-    private static class HeatCapabilityProvider {
-        @SubscribeEvent
-        public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
-            if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer)) {
-                event.addCapability(new ResourceLocation("simpleraces", "heat"), new HeatProvider());
+    public static PlayerVariables getPlayerVariables(Player player) {
+        return PLAYER_VARIABLES_CACHE.computeIfAbsent(player.getUUID(), id -> {
+            PlayerVariables variables = new PlayerVariables();
+            Tag stored = player.getPersistentData().get(PLAYER_VARS_TAG);
+            if (stored != null) {
+                variables.readNBT(stored);
             }
+            return variables;
+        });
+    }
+
+    /**
+     * A reconnect creates a new ServerPlayer instance, so its saved NBT must be
+     * authoritative. Never reuse a UUID cache entry left by an older connection.
+     */
+    public static PlayerVariables reloadPlayerVariables(Player player) {
+        PlayerVariables variables = new PlayerVariables();
+        Tag stored = player.getPersistentData().get(PLAYER_VARS_TAG);
+        if (stored instanceof CompoundTag) {
+            variables.readNBT(stored);
+        }
+        PLAYER_VARIABLES_CACHE.put(player.getUUID(), variables);
+        SimpleracesMod.LOGGER.info("[SR-RACE-SAVE] Loaded race for {}: selected={}, race={}",
+                player.getGameProfile().getName(), variables.selected, variables.getRaceName());
+        return variables;
+    }
+
+    public static PlayerVariables getPlayerVariables(Entity entity) {
+        return entity instanceof Player player ? getPlayerVariables(player) : new PlayerVariables();
+    }
+
+    public static void updatePlayerVariables(Entity entity, Consumer<PlayerVariables> updater) {
+        if (entity instanceof Player player) {
+            PlayerVariables variables = getPlayerVariables(player);
+            updater.accept(variables);
+            variables.syncPlayerVariables(player);
         }
     }
 
-    @Mod.EventBusSubscriber
-    private static class PlayerVariablesProvider implements ICapabilitySerializable<Tag> {
-        @SubscribeEvent
-        public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
-            if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer))
-                event.addCapability(new ResourceLocation("simpleraces", "player_variables"), new PlayerVariablesProvider());
-        }
+    public static IHeat getHeat(Player player) {
+        return HeatProvider.get(player);
+    }
 
-        private final PlayerVariables playerVariables = new PlayerVariables();
-        private final LazyOptional<PlayerVariables> instance = LazyOptional.of(() -> playerVariables);
-
-        @Override
-        public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
-            return cap == PLAYER_VARIABLES_CAPABILITY ? instance.cast() : LazyOptional.empty();
-        }
-
-        @Override
-        public Tag serializeNBT() {
-            return playerVariables.writeNBT();
-        }
-
-        @Override
-        public void deserializeNBT(Tag nbt) {
-            playerVariables.readNBT(nbt);
+    public static void savePlayerVariables(Player player) {
+        PlayerVariables variables = PLAYER_VARIABLES_CACHE.get(player.getUUID());
+        if (variables != null) {
+            player.getPersistentData().put(PLAYER_VARS_TAG, variables.writeNBT());
         }
     }
 
@@ -157,6 +163,8 @@ public class SimpleracesModVariables {
         public boolean serpentin = false;
         public boolean werewolf = false;
         public boolean aracha = false;
+        public boolean gargoyle = false;
+        public boolean human = false;
         public boolean selected = false;
 
         public int fervorStacks = 0;
@@ -165,13 +173,29 @@ public class SimpleracesModVariables {
         public int forestSpirits = 3;
         public int[] spiritCooldowns = new int[3];
         public boolean raceCapacityInitialized = false;
+        public int humanMiningActions = 0;
+        public int humanRangedActions = 0;
+        public int humanSwordActions = 0;
+        public int humanAxeActions = 0;
+        public int humanTridentActions = 0;
+        public int humanPickaxeActions = 0;
+        public int humanShovelActions = 0;
+        public int humanHoeActions = 0;
+        public int humanDaggerActions = 0;
+        public int humanPolearmActions = 0;
+        public int humanBluntActions = 0;
+        public int humanGenericMeleeActions = 0;
 
         public void syncPlayerVariables(Entity entity) {
-            if (entity instanceof ServerPlayer serverPlayer)
-                ModMessages.INSTANCE.send(PacketDistributor.DIMENSION.with(entity.level()::dimension), new PlayerVariablesSyncMessage(this, entity.getId()));
+            if (entity instanceof Player player) {
+                savePlayerVariables(player);
+            }
+            if (entity instanceof ServerPlayer serverPlayer) {
+                ModMessages.sendToDimension((ServerLevel) entity.level(), new PlayerVariablesSyncMessage(this, entity.getId()));
+            }
         }
 
-        public Tag writeNBT() {
+        public CompoundTag writeNBT() {
             CompoundTag nbt = new CompoundTag();
             nbt.putBoolean("dwarf", dwarf);
             nbt.putBoolean("elf", elf);
@@ -184,10 +208,24 @@ public class SimpleracesModVariables {
             nbt.putBoolean("Serpentin", serpentin);
             nbt.putBoolean("werewolf", werewolf);
             nbt.putBoolean("aracha", aracha);
+            nbt.putBoolean("gargoyle", gargoyle);
+            nbt.putBoolean("human", human);
             nbt.putBoolean("raceCapacityInitialized", raceCapacityInitialized);
             nbt.putInt("fervorStacks", fervorStacks);
             nbt.putInt("forestSpirits", forestSpirits);
             nbt.putIntArray("spiritCooldowns", spiritCooldowns);
+            nbt.putInt("humanMiningActions", humanMiningActions);
+            nbt.putInt("humanRangedActions", humanRangedActions);
+            nbt.putInt("humanSwordActions", humanSwordActions);
+            nbt.putInt("humanAxeActions", humanAxeActions);
+            nbt.putInt("humanTridentActions", humanTridentActions);
+            nbt.putInt("humanPickaxeActions", humanPickaxeActions);
+            nbt.putInt("humanShovelActions", humanShovelActions);
+            nbt.putInt("humanHoeActions", humanHoeActions);
+            nbt.putInt("humanDaggerActions", humanDaggerActions);
+            nbt.putInt("humanPolearmActions", humanPolearmActions);
+            nbt.putInt("humanBluntActions", humanBluntActions);
+            nbt.putInt("humanGenericMeleeActions", humanGenericMeleeActions);
             if (lastTarget != null) {
                 nbt.putUUID("lastTarget", lastTarget);
             }
@@ -195,8 +233,8 @@ public class SimpleracesModVariables {
             return nbt;
         }
 
-        public void readNBT(Tag Tag) {
-            CompoundTag nbt = (CompoundTag) Tag;
+        public void readNBT(Tag tag) {
+            CompoundTag nbt = (CompoundTag) tag;
             dwarf = nbt.getBoolean("dwarf");
             elf = nbt.getBoolean("elf");
             orc = nbt.getBoolean("orc");
@@ -208,13 +246,23 @@ public class SimpleracesModVariables {
             serpentin = nbt.getBoolean("Serpentin");
             werewolf = nbt.getBoolean("werewolf");
             aracha = nbt.getBoolean("aracha");
+            gargoyle = nbt.getBoolean("gargoyle");
+            human = nbt.getBoolean("human");
             raceCapacityInitialized = nbt.getBoolean("raceCapacityInitialized");
             fervorStacks = nbt.getInt("fervorStacks");
-            if (nbt.hasUUID("lastTarget")) {
-                lastTarget = nbt.getUUID("lastTarget");
-            } else {
-                lastTarget = null;
-            }
+            humanMiningActions = nbt.getInt("humanMiningActions");
+            humanRangedActions = nbt.getInt("humanRangedActions");
+            humanSwordActions = nbt.getInt("humanSwordActions");
+            humanAxeActions = nbt.getInt("humanAxeActions");
+            humanTridentActions = nbt.getInt("humanTridentActions");
+            humanPickaxeActions = nbt.getInt("humanPickaxeActions");
+            humanShovelActions = nbt.getInt("humanShovelActions");
+            humanHoeActions = nbt.getInt("humanHoeActions");
+            humanDaggerActions = nbt.getInt("humanDaggerActions");
+            humanPolearmActions = nbt.getInt("humanPolearmActions");
+            humanBluntActions = nbt.getInt("humanBluntActions");
+            humanGenericMeleeActions = nbt.getInt("humanGenericMeleeActions");
+            lastTarget = nbt.hasUUID("lastTarget") ? nbt.getUUID("lastTarget") : null;
             previousFoodLevel = nbt.getInt("previousFoodLevel");
             forestSpirits = nbt.getInt("forestSpirits");
             spiritCooldowns = nbt.getIntArray("spiritCooldowns");
@@ -222,10 +270,56 @@ public class SimpleracesModVariables {
                 spiritCooldowns = new int[3];
             }
         }
-    }
 
-    @SubscribeEvent
-    public static void registerMessage(FMLCommonSetupEvent event) {
+        public void copyFrom(PlayerVariables other) {
+            dwarf = other.dwarf;
+            elf = other.elf;
+            orc = other.orc;
+            merfolk = other.merfolk;
+            dragon = other.dragon;
+            selected = other.selected;
+            fairy = other.fairy;
+            halfdead = other.halfdead;
+            serpentin = other.serpentin;
+            werewolf = other.werewolf;
+            aracha = other.aracha;
+            gargoyle = other.gargoyle;
+            human = other.human;
+            humanMiningActions = other.humanMiningActions;
+            humanRangedActions = other.humanRangedActions;
+            humanSwordActions = other.humanSwordActions;
+            humanAxeActions = other.humanAxeActions;
+            humanTridentActions = other.humanTridentActions;
+            humanPickaxeActions = other.humanPickaxeActions;
+            humanShovelActions = other.humanShovelActions;
+            humanHoeActions = other.humanHoeActions;
+            humanDaggerActions = other.humanDaggerActions;
+            humanPolearmActions = other.humanPolearmActions;
+            humanBluntActions = other.humanBluntActions;
+            humanGenericMeleeActions = other.humanGenericMeleeActions;
+            raceCapacityInitialized = other.raceCapacityInitialized;
+            fervorStacks = other.fervorStacks;
+            lastTarget = other.lastTarget;
+            previousFoodLevel = other.previousFoodLevel;
+            forestSpirits = other.forestSpirits;
+            System.arraycopy(other.spiritCooldowns, 0, spiritCooldowns, 0, 3);
+        }
+
+        public String getRaceName() {
+            if (dwarf) return "dwarf";
+            if (elf) return "elf";
+            if (orc) return "orc";
+            if (merfolk) return "merfolk";
+            if (dragon) return "dragon";
+            if (fairy) return "fairy";
+            if (halfdead) return "halfdead";
+            if (serpentin) return "serpentin";
+            if (werewolf) return "werewolf";
+            if (aracha) return "aracha";
+            if (gargoyle) return "gargoyle";
+            if (human) return "human";
+            return "none";
+        }
     }
 
     public static class PlayerVariablesSyncMessage {
@@ -258,10 +352,8 @@ public class SimpleracesModVariables {
         }
 
         public static void buffer(PlayerVariablesSyncMessage message, FriendlyByteBuf buffer) {
-            buffer.writeNbt((CompoundTag) message.data.writeNBT());
+            buffer.writeNbt(message.data.writeNBT());
             buffer.writeInt(message.target);
-
-            // Запись новых полей (encode)
             buffer.writeInt(message.data.fervorStacks);
             buffer.writeBoolean(message.data.lastTarget != null);
             if (message.data.lastTarget != null) {
@@ -279,30 +371,18 @@ public class SimpleracesModVariables {
             NetworkEvent.Context context = contextSupplier.get();
             context.enqueueWork(() -> {
                 if (!context.getDirection().getReceptionSide().isServer()) {
-                    PlayerVariables variables = ((PlayerVariables) Minecraft.getInstance().player.level().getEntity(message.target).getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
-                    variables.dwarf = message.data.dwarf;
-                    variables.elf = message.data.elf;
-                    variables.orc = message.data.orc;
-                    variables.merfolk = message.data.merfolk;
-                    variables.dragon = message.data.dragon;
-                    variables.selected = message.data.selected;
-                    variables.fairy = message.data.fairy;
-                    variables.halfdead = message.data.halfdead;
-                    variables.serpentin = message.data.serpentin;
-                    variables.werewolf = message.data.werewolf;
-                    variables.aracha = message.data.aracha;
-                    variables.raceCapacityInitialized = message.data.raceCapacityInitialized;
-                    variables.previousFoodLevel = message.data.previousFoodLevel;
-                    variables.forestSpirits = message.data.forestSpirits;
-                    for (int i = 0; i < 3; i++) {
-                        variables.spiritCooldowns[i] = message.data.spiritCooldowns[i];
+                    Entity targetEntity = Minecraft.getInstance().player.level().getEntity(message.target);
+                    if (targetEntity instanceof Player targetPlayer) {
+                        PlayerVariables variables = getPlayerVariables(targetPlayer);
+                        variables.copyFrom(message.data);
                     }
-
-                    variables.fervorStacks = message.data.fervorStacks;
-                    variables.lastTarget = message.data.lastTarget;
                 }
             });
             context.setPacketHandled(true);
         }
     }
 }
+
+
+
+

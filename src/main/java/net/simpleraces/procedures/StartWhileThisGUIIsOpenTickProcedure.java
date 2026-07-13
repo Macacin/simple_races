@@ -3,7 +3,7 @@ package net.simpleraces.procedures;
 import net.simpleraces.world.inventory.DwarfSelectMenu;
 import net.simpleraces.SimpleracesMod;
 
-import net.minecraftforge.network.NetworkHooks;
+import net.simpleraces.compat.neoforge.network.NetworkHooks;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -22,15 +22,18 @@ public class StartWhileThisGUIIsOpenTickProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
+		SimpleracesMod.LOGGER.info("[SR-RACE-LOAD] StartMenu scheduled DwarfSelect open in 10 server ticks for {}", entity.getName().getString());
 		SimpleracesMod.queueServerWork(10, () -> {
+			SimpleracesMod.LOGGER.info("[SR-RACE-LOAD] StartMenu delayed task firing for {}", entity.getName().getString());
 			if (entity instanceof Player _player)
 				_player.closeContainer();
 			if (entity instanceof ServerPlayer _ent) {
 				BlockPos _bpos = BlockPos.containing(x, y, z);
+				SimpleracesMod.LOGGER.info("[SR-RACE-LOAD] StartMenu opening DwarfSelect for {}", _ent.getGameProfile().getName());
 				NetworkHooks.openScreen((ServerPlayer) _ent, new MenuProvider() {
 					@Override
 					public Component getDisplayName() {
-						return Component.literal("DwarfSelect");
+						return Component.translatable("menu.simpleraces.dwarf_select");
 					}
 
 					@Override
@@ -42,3 +45,8 @@ public class StartWhileThisGUIIsOpenTickProcedure {
 		});
 	}
 }
+
+
+
+
+

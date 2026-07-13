@@ -19,7 +19,7 @@ public class WerewolfModelRenderer extends HumanoidMobRenderer<Monster, Humanoid
 
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
-		return new ResourceLocation("simpleraces:textures/entities/werewolf.png");
+		return ResourceLocation.parse("simpleraces:textures/entities/werewolf.png");
 	}
 
 	@Override
@@ -30,3 +30,7 @@ public class WerewolfModelRenderer extends HumanoidMobRenderer<Monster, Humanoid
 		poseStack.popPose();
 	}
 }
+
+
+
+

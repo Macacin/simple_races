@@ -3,10 +3,11 @@ package net.simpleraces.procedures;
 import net.simpleraces.network.SimpleracesModVariables;
 import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.bus.api.Event;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +19,7 @@ import net.minecraft.commands.CommandSource;
 
 import javax.annotation.Nullable;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class ElvenBowProcedure {
 	@SubscribeEvent
 	public static void onUseItemStart(LivingEntityUseItemEvent.Start event) {
@@ -35,7 +36,7 @@ public class ElvenBowProcedure {
 		if (entity == null)
 			return;
 		if (SimpleRPGRacesConfiguration.ELF_BOW_SIGHT.get() && (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Items.BOW
-				&& (entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).elf) {
+				&& SimpleracesModVariables.getPlayerVariables((entity)).elf) {
 			{
 				Entity _ent = entity;
 				if (!_ent.level().isClientSide() && _ent.getServer() != null) {
@@ -46,3 +47,8 @@ public class ElvenBowProcedure {
 		}
 	}
 }
+
+
+
+
+

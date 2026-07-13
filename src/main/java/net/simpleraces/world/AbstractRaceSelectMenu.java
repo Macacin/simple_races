@@ -17,3 +17,7 @@ public abstract class AbstractRaceSelectMenu extends AbstractContainerMenu {
         this.entity = inv.player;
     }
 }
+
+
+
+

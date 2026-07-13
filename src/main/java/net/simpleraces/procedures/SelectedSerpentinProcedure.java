@@ -1,5 +1,6 @@
 package net.simpleraces.procedures;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -13,21 +14,9 @@ public class SelectedSerpentinProcedure {
 			return;
 		if (entity instanceof Player _player)
 			_player.closeContainer();
-		if (!(entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new SimpleracesModVariables.PlayerVariables())).selected) {
-			{
-				boolean _setval = true;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.serpentin = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			{
-				boolean _setval = true;
-				entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.selected = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
+		if (!SimpleracesModVariables.getPlayerVariables((entity)).selected) {
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.serpentin = true); }
+			{ SimpleracesModVariables.updatePlayerVariables(entity, capability -> capability.selected = true); }
 			AttributeInstance maxHealthAttr = ((Player) entity).getAttribute(Attributes.MAX_HEALTH);
 			if (maxHealthAttr != null) {
 				double newMax = 18;
@@ -35,10 +24,15 @@ public class SelectedSerpentinProcedure {
 				((Player) entity).setHealth((float) newMax);
 			}
 			if (entity instanceof Player _player && !_player.level().isClientSide())
-				_player.displayClientMessage(Component.literal("\u00A7e Selected Serpentin"), true);
+				_player.displayClientMessage(Component.translatable("message.simpleraces.race_selected.serpentin").withStyle(ChatFormatting.YELLOW), true);
 		} else {
 			if (entity instanceof Player _player && !_player.level().isClientSide())
-				_player.displayClientMessage(Component.literal("\u00A74 Class Previously Set"), true);
+				_player.displayClientMessage(Component.translatable("message.simpleraces.class_previously_set").withStyle(ChatFormatting.DARK_RED), true);
 		}
 	}
 }
+
+
+
+
+

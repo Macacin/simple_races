@@ -19,6 +19,10 @@ public class HalfdeadModelRenderer extends HumanoidMobRenderer<Monster, Humanoid
 
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
-		return new ResourceLocation("simpleraces:textures/entities/halfdead.png");
+		return ResourceLocation.parse("simpleraces:textures/entities/halfdead.png");
 	}
 }
+
+
+
+

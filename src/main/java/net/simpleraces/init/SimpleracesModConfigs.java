@@ -1,20 +1,20 @@
 package net.simpleraces.init;
 
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.config.ModConfig;
 import net.simpleraces.configuration.SimpleRPGRacesConfiguration;
-import net.simpleraces.SimpleracesMod;
 
-import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+public final class SimpleracesModConfigs {
+	private static final String COMMON_CONFIG_FILE = "simpleraces-common.toml";
 
-@Mod.EventBusSubscriber(modid = SimpleracesMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class SimpleracesModConfigs {
-	@SubscribeEvent
-	public static void register(FMLConstructModEvent event) {
-		event.enqueueWork(() -> {
-			ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SimpleRPGRacesConfiguration.SPEC, "Simple RPG Races.toml");
-		});
+	private SimpleracesModConfigs() {
+	}
+
+	public static void register(ModContainer modContainer) {
+		modContainer.registerConfig(
+				ModConfig.Type.COMMON,
+				SimpleRPGRacesConfiguration.SPEC,
+				COMMON_CONFIG_FILE
+		);
 	}
 }

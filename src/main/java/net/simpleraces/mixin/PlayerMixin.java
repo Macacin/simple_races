@@ -27,8 +27,7 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Override
     public boolean onClimbable() {
-        var vars = ((Player)(Object) this).getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-                .orElse(new SimpleracesModVariables.PlayerVariables());
+        var vars = SimpleracesModVariables.getPlayerVariables((Player) (Object) this);
         if (this.horizontalCollision && this.isAlive() && vars.aracha) {
             return true;
         }
@@ -40,7 +39,7 @@ public abstract class PlayerMixin extends LivingEntity {
         if(entity == null){
             return super.addEffect(oldInstance, entity);
         }
-        if(entity.getCapability(SimpleracesModVariables.PLAYER_VARIABLES_CAPABILITY).map(vars -> vars.serpentin).orElse(false) && !oldInstance.getEffect().isBeneficial()) {
+        if (SimpleracesModVariables.getPlayerVariables(entity).serpentin && !oldInstance.getEffect().value().isBeneficial()) {
             MobEffectInstance instance = new MobEffectInstance(oldInstance.getEffect(), oldInstance.getDuration() / 2, oldInstance.getAmplifier(), oldInstance.isAmbient(), oldInstance.isVisible(), oldInstance.showIcon());
             return super.addEffect(instance, entity);
         } else {
@@ -48,3 +47,7 @@ public abstract class PlayerMixin extends LivingEntity {
         }
     }
 }
+
+
+
+

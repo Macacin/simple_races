@@ -10,8 +10,8 @@ import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class FairyModelRenderer extends HumanoidMobRenderer<Monster, HumanoidModel<Monster>> {
@@ -22,7 +22,7 @@ public class FairyModelRenderer extends HumanoidMobRenderer<Monster, HumanoidMod
 
 	@Override
 	public ResourceLocation getTextureLocation(Monster entity) {
-		return new ResourceLocation("simpleraces:textures/entities/fairy.png");
+		return ResourceLocation.parse("simpleraces:textures/entities/fairy.png");
 	}
 
 	@Override
@@ -33,3 +33,8 @@ public class FairyModelRenderer extends HumanoidMobRenderer<Monster, HumanoidMod
 		poseStack.popPose();
 	}
 }
+
+
+
+
+

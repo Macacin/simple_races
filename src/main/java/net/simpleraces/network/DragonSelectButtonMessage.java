@@ -5,10 +5,10 @@ import net.simpleraces.procedures.*;
 import net.simpleraces.world.inventory.DragonSelectMenu;
 import net.simpleraces.SimpleracesMod;
 
-import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.simpleraces.compat.neoforge.network.NetworkEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
@@ -73,3 +73,8 @@ public class DragonSelectButtonMessage {
 		}
 	}
 }
+
+
+
+
+

@@ -13,8 +13,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.simpleraces.SimpleracesMod;
 import net.simpleraces.entity.FairyModelEntity;
 import net.simpleraces.init.SimpleracesModEntities;
@@ -34,3 +34,7 @@ public class FairySelectScreen extends RaceSelectScreen<FairySelectMenu> {
 		super(p_97741_, p_97742_, Component.literal("fairy"));
 	}
 }
+
+
+
+
